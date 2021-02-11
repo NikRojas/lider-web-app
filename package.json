@@ -9,9 +9,17 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.2",
-    "core-js": "^3.6.5",
-    "nuxt": "^2.14.5"
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "core-js": "^3.8.3",
+    "lazysizes": "^5.3.0",
+    "nuxt": "^2.14.12",
+    "nuxt-i18n": "^6.20.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "fibers": "^5.0.0",
+    "sass": "^1.32.7",
+    "sass-loader": "^10.1.1"
+  }
 }

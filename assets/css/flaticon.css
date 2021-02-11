@@ -1,0 +1,66 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 04/02/2021 18:33
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.eot");
+  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff2") format("woff2"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+  font-style: normal;
+}
+
+.flaticon-whatsapp:before { content: "\f100"; }
+.flaticon-telephone:before { content: "\f101"; }
+.flaticon-whatsapp-1:before { content: "\f102"; }
+.flaticon-facebook:before { content: "\f103"; }
+.flaticon-youtube:before { content: "\f104"; }
+.flaticon-linkedin:before { content: "\f105"; }
+.flaticon-instagram:before { content: "\f106"; }
+.flaticon-mail:before { content: "\f107"; }
+.flaticon-mapa:before { content: "\f108"; }
+.flaticon-ubicacion:before { content: "\f109"; }
+.flaticon-cancelar:before { content: "\f10a"; }
+.flaticon-calendario:before { content: "\f10b"; }
+.flaticon-label:before { content: "\f10c"; }
+.flaticon-menu:before { content: "\f10d"; }
+.flaticon-download:before { content: "\f10e"; }
+.flaticon-next:before { content: "\f10f"; }
+.flaticon-back:before { content: "\f110"; }
+.flaticon-flecha-abajo-triangulo-relleno:before { content: "\f111"; }
+.flaticon-garrapata:before { content: "\f112"; }
+.flaticon-blueprint:before { content: "\f113"; }
+.flaticon-cama-matrimonial:before { content: "\f114"; }
+.flaticon-cama-individual:before { content: "\f115"; }
+.flaticon-boton-de-play:before { content: "\f116"; }
+.flaticon-360-grados:before { content: "\f117"; }
+.flaticon-google-maps:before { content: "\f118"; }
+.flaticon-waze:before { content: "\f119"; }
+.flaticon-waze-1:before { content: "\f11a"; }
+.flaticon-lupa:before { content: "\f11b"; }
+.flaticon-buscar:before { content: "\f11c"; }
+.flaticon-hotel:before { content: "\f11d"; }
+.flaticon-pantalla-completa:before { content: "\f11e"; }
+.flaticon-marca-de-verificacion:before { content: "\f11f"; }
+.flaticon-cheque:before { content: "\f120"; }
+.flaticon-gorjeo:before { content: "\f121"; }
+.flaticon-llamada-telefonica:before { content: "\f122"; }
+.flaticon-telefono-movil:before { content: "\f123"; }

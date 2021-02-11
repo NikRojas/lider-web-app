@@ -1,0 +1,194 @@
+/*=========================================
+=================Header==================*/
+header {
+    position: absolute;
+    z-index: 700;
+    width: 100%;
+    padding: 15px 0;
+    &.header1,&.header2{
+        transform: translateY(-100%);
+        background: white;
+        position: fixed;
+        padding: 10px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        .logo{
+            img.logo1{display: block!important;max-height: 48px;}
+            img.logo2{display: none;}
+        }
+        #abrir-side {
+            color: $color_2;
+            padding: 12px 20px;
+        }
+        .btn-idioma {
+            color: $color_h;
+        }
+    }
+    &.active,&.header2{
+        transform: translateY(0);
+        transition: 0.5s;
+    }
+    .grid-menu {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        .logo {
+            align-items: center;
+            display: grid;
+        }
+        .left {
+            display: grid;
+            grid-template-columns: auto auto;
+            .menu {
+                display: grid;
+                align-items: center;
+                cursor: pointer;
+                a {
+                    font-size: 25px;
+                    color: #fff;
+                    display: grid;
+                    padding: 12px;
+                    i {
+                        margin-bottom: -9px;
+                    }
+                }
+            }
+        }
+        .nav {
+            display: block;
+            text-align: right;
+        }
+    }
+}
+
+.nav-bar {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    transition:0.4s;
+    .sombra {
+        background: rgba(0, 0, 0, 0.55);
+        width: 100%;
+        height: 100%;
+        transition: 0.3s;
+        transition-delay: 0.3s;
+        position: absolute;
+        opacity: 0;
+    }
+    .content {
+        max-width: 420px;
+        height: 100%;
+        padding: 40px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        transition: 0.3s;
+        transition-delay: 0.4s;
+        transform: translateX(-100%);
+        background: rgba(12, 110, 165, 0.9);
+        .head {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            a{
+                i{
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: white;
+                }
+            }
+        }
+        .link-menu {
+            ul li{
+                margin: 0;
+                a{
+                    margin: 14px 0;
+                    font-size: 1.1rem;
+                    /* font-weight: 500; */
+                    color: #ffffff;
+                    display: block;
+                    &:hover{
+                        color: $color_3;
+                    }
+                }
+            }
+        }
+        a#cerrar-side {
+            padding: 20px;
+        }
+        .redes ul li {
+            display: inline-block;
+        }
+    }
+    &.active{
+        transform: translateX(0%);
+        .sombra {
+            opacity: 100;
+        }
+        .content{
+            transform: translateY(0%);
+        }
+    }
+}
+
+.header-proyectos {
+    position: fixed;
+    width: 100%;
+    z-index: 800;
+    background: white;
+    transition: 0.3s;
+    transform: translateY(-72px);
+    &.active{
+        transform: translateY(0);
+    }
+    .grid-head-proyecto {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-gap: 20px;
+        align-items: center;
+        height: 72px;
+        .logo{
+            img{
+                height: 35px;
+            }
+        }
+        .menu{
+            ul{
+                li{
+                    display: inline-block;
+                    margin: 0;
+                    a{
+                        color: $color_2;
+                        padding: 0 20px;
+                        font-weight: 600;
+                        display: grid;
+                        height: 48px;
+                        align-items: center;
+                        &.btn{
+                            color: white;
+                            padding: 0 35px;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    
+}
+
+@media only screen and (max-width: 580px) {
+   
+}
+
+@media only screen and (max-width: 350px) {
+    header .grid-menu {
+        grid-template-columns: 1fr auto;
+    }
+}

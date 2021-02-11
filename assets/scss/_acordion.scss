@@ -1,0 +1,50 @@
+.accordion {
+    margin: 0 auto 100px;
+  }
+  .accordion li {
+    border: 1px solid #d9e5e8;
+    margin-bottom: 12px;
+    position: relative;
+    border-radius: $radius;
+    overflow: hidden;
+    background-color: white;
+  }
+  .accordion li p {
+        display: none;
+        padding: 32px;
+  }
+  .accordion a {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 3;
+    text-indent: 15px;
+    user-select: none;
+    color: #0c3253;
+    background: white;
+    &.active{
+        border-bottom: 1px solid #d9e5e8;
+    }
+  }
+  .accordion a:after {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #0c3253;
+    border-bottom: 2px solid #0c3253;
+    position: absolute;
+    right: 20px;
+    content: " ";
+    top: 15px;
+    transform: rotate(45deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  a.active:after {
+    transform: rotate(45deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
