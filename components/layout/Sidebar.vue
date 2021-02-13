@@ -25,20 +25,20 @@
             }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="localePath('testimonials')">{{
+            <nuxt-link :to="localePath('testimonials')" @click.native="closeMenu">{{
               $t("testimoniales")
             }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="localePath('cami')"
+            <nuxt-link :to="localePath('cami')" @click.native="closeMenu"
               >{{ $t("comunidad amiga") }} - CAMI</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link :to="localePath('blog')">{{ $t("blog") }}</nuxt-link>
+            <nuxt-link :to="localePath('blog')" @click.native="closeMenu">{{ $t("blog") }}</nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="localePath('contact')">{{
+            <nuxt-link :to="localePath('contact')" @click.native="closeMenu">{{
               $t("contacto")
             }}</nuxt-link>
           </li>
