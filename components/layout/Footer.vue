@@ -6,15 +6,25 @@
           <div class="title2">
             <h5>Contacto</h5>
             <ul>
-              <li v-if="footer.information && footer.information.central_phone"><b>Central de ventas:</b> {{ footer.information.central_phone}}</li>
-              <li v-if="footer.information && footer.information.main_office"><b>Oficina principal:</b> {{ footer.information.main_office }}</li>
+              <li v-if="footer.information && footer.information.central_phone">
+                <b>Central de ventas:</b>
+                {{ footer.information.central_phone_formatted }}
+              </li>
+              <li v-if="footer.information && footer.information.main_office">
+                <b>Oficina principal:</b>
+                {{ footer.information.main_office_formatted }}
+              </li>
             </ul>
             <ul v-if="footer.information && footer.information.email">
               <li><b>Informes:</b> {{ footer.information.email }}</li>
             </ul>
             <ul v-if="footer.information && footer.information.location">
               <li>
-				  <b>Ubicacion oficinas:</b> <div style="display:inline"  v-html="footer.information.location"></div>
+                <b>Ubicacion oficinas:</b>
+                <div
+                  style="display: inline"
+                  v-html="footer.information.location"
+                ></div>
               </li>
             </ul>
           </div>
@@ -49,7 +59,12 @@
           </div>
           <ul>
             <li>
-              <a :href="footer.information.billing_url" target="_blank" v-if="footer.information && footer.information.billing_url">Comprobantes electrónico</a>
+              <a
+                :href="footer.information.billing_url"
+                target="_blank"
+                v-if="footer.information && footer.information.billing_url"
+                >Comprobantes electrónico</a
+              >
             </li>
             <li>
               <a href="">Términos y condiciones</a>
@@ -65,21 +80,31 @@
       </div>
       <div class="pie">
         <div class="certificados wow fadeInLeft" data-wow-delay="0.5s">
-          <div class="grid-certificado" v-if="footer.members && footer.members.length">
+          <div
+            class="grid-certificado"
+            v-if="footer.members && footer.members.length"
+          >
             <h6>Miembros de:</h6>
-			<img class="lazyload" v-for="(el,index) in footer.members"
-                    :key="'p'+index"
-                    :data-src="storageUrl+'/img/members/'+el.image"
-                    :alt="el.name"
-                   >
+            <img
+              class="lazyload"
+              v-for="(el, index) in footer.members"
+              :key="'p' + index"
+              :data-src="storageUrl + '/img/members/' + el.image"
+              :alt="el.name"
+            />
           </div>
-          <div class="grid-certificado" v-if="footer.certificates && footer.certificates.length">
+          <div
+            class="grid-certificado"
+            v-if="footer.certificates && footer.certificates.length"
+          >
             <h6>Certificados por:</h6>
-			<img class="lazyload" v-for="(el,index) in footer.certificates"
-                    :key="'p'+index"
-                    :data-src="storageUrl+'/img/certifications/'+el.image"
-                    :alt="el.name"
-                   >
+            <img
+              class="lazyload"
+              v-for="(el, index) in footer.certificates"
+              :key="'p' + index"
+              :data-src="storageUrl + '/img/certifications/' + el.image"
+              :alt="el.name"
+            />
           </div>
         </div>
         <div class="developer wow fadeInRight" data-wow-delay="0.5s">
@@ -111,8 +136,8 @@ export default {
   methods: {},
   data() {
     return {
-		storageUrl: process.env.STORAGE_URL,
-	};
+      storageUrl: process.env.STORAGE_URL,
+    };
   },
 };
 </script>

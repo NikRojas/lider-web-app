@@ -3,19 +3,45 @@
     <div class="sombra"></div>
     <div class="content">
       <div class="head">
-        <img src="~/assets/img/logo.png" class="lazyload" alt="" />
+        <img
+          :data-src="require('~/assets/img/logo.png')"
+          class="lazyload"
+          alt=""
+        />
         <a href="#" @click.prevent="closeMenu"
           ><i class="flaticon-cancelar"></i
         ></a>
       </div>
       <div class="link-menu">
         <ul>
-          <li><a href="page-nosotros.php">Nosotros</a></li>
-          <li><a href="index.php">Proyectos</a></li>
-          <li><a href="page-testimonios.php">Testimoniales</a></li>
-          <li><a href="page-cami.php">Comunidad Amiga - CAMI</a></li>
-          <li><a href="page-blog.php">Blog</a></li>
-          <li><a href="page-contacto.php">Contacto</a></li>
+          <li>
+            <nuxt-link :to="localePath('about-us')" @click.native="closeMenu">{{
+              $t("nosotros")
+            }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="localePath('projects')" @click.native="closeMenu">{{
+              $t("proyectos")
+            }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="localePath('testimonials')">{{
+              $t("testimoniales")
+            }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="localePath('cami')"
+              >{{ $t("comunidad amiga") }} - CAMI</nuxt-link
+            >
+          </li>
+          <li>
+            <nuxt-link :to="localePath('blog')">{{ $t("blog") }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="localePath('contact')">{{
+              $t("contacto")
+            }}</nuxt-link>
+          </li>
         </ul>
       </div>
       <div class="redes">
@@ -30,7 +56,10 @@
               target="_blank"
               rel="noopener"
             >
-              <i :class="'flaticon-' + social.master_social_networks.icon" v-if="social.master_social_networks.icon"></i>
+              <i
+                :class="'flaticon-' + social.master_social_networks.icon"
+                v-if="social.master_social_networks.icon"
+              ></i>
             </a>
           </li>
         </ul>

@@ -47,6 +47,8 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: '~/plugins/lazysizes.js', mode: 'client' },
+    { src: '~/plugins/vue-owl-carousel2.js', mode: 'client' },
+    { src: '~/plugins/vue-loading-skeleton.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -54,7 +56,15 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
+    '@nuxtjs/google-fonts'
   ],
+  googleFonts: {
+    display: 'swap',
+    families: {
+      Roboto: [300,400, 500,700],
+    },
+    /* module options */
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -62,24 +72,34 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     'nuxt-i18n',
+    ['vue-scrollto/nuxt', { duration: 300 }],
   ],
 
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'es',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      onlyOnRoot: true,  // recommended
+    },
+    locales: [
+      {
+        name: 'EN',
+        code: 'en',
+        file: 'en.js'
+      },
+      {
+        name: 'ES',
+        code: 'es',
+        file: 'es.js'
+      }
+    ],
+    lazy: true,
+    langDir: 'lang/',
+    vueI18nLoader: true,
     vueI18n: {
       fallbackLocale: 'en',
-      messages: {
-        /*en: {
-          welcome: 'Welcome'
-        },
-        fr: {
-          welcome: 'Bienvenue'
-        },
-        es: {
-          welcome: 'Bienvenido'
-        }*/
-      }
     }
   },
 
