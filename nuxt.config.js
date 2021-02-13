@@ -8,7 +8,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'msapplication-TileColor', content: '#ffffff' },
-      { name: 'msapplication-TileImage', content: '/img/faviconms-icon-144x144.png' },
+      { name: 'msapplication-TileImage', content: '/img/favicon/ms-icon-144x144.png' },
       { name: 'theme-color', content: '#ffffff' }
     ],
     link: [
@@ -26,7 +26,7 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/img/favicon/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/img/favicon/favicon-96x96.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/img/favicon/favicon-16x16.png' },
-      { rel: 'manifest', href: '/img/favicon/manifest.json' }
+      { rel: 'manifest', href: '/img/manifest.json' }
     ]
   },
   loading: {

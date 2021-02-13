@@ -16,6 +16,7 @@
     "jquery": "^3.5.1",
     "lazysizes": "^5.3.0",
     "nuxt": "^2.14.12",
+    "nuxt-dropzone": "^1.0.4",
     "nuxt-i18n": "^6.20.0",
     "vue-loading-skeleton": "^1.1.9",
     "vue-owl-carousel": "^2.0.3",

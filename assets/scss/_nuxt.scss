@@ -9,6 +9,9 @@
 
 .error{
     color: white;
+    &.error-red{
+        color: red;
+    }
     display: block;
     margin-top: 4px;
 }
@@ -25,4 +28,19 @@
         font-size: 1.5rem;
     }
     
+}
+
+.form__text-success-2{
+    padding: 4rem;
+    text-align: center;
+    h3{
+        font-size: 2.5rem;
+    }
+    p{
+        font-size: 1.5rem;
+    }
+}
+
+.w-100{
+    width: 100%;
 }

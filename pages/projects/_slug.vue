@@ -450,10 +450,10 @@
             <div class="grid-cotizador color-white">
               <div class="item-select-proyect">
                 <div class="form-control">
-                  <label for="">Selecciona el plano de interés*</label>
+                  <label for="topology">Selecciona el plano de interés*</label>
                   <select
-                    name="tipologia"
-                    id=""
+                    name="topology"
+                    id="topology"
                     class="form-control"
                     v-model="quotation.project_type_department_id"
                   >
