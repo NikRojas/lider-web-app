@@ -24,7 +24,7 @@
                   }"
                   href="#"
                   class="page-scroll no-tablet"
-                  >Descripción</a
+                  >{{$t("Descripción")}}</a
                 >
               </li>
               <li>
@@ -37,7 +37,7 @@
                   }"
                   href="#"
                   class="page-scroll no-tablet"
-                  >Galería</a
+                  >{{$t("Galería")}}</a
                 >
               </li>
               <li>
@@ -50,7 +50,7 @@
                   }"
                   href="#"
                   class="page-scroll no-tablet"
-                  >Recorrido Virtual</a
+                  >{{$t("Recorrido Virtual")}}</a
                 >
               </li>
               <li>
@@ -63,7 +63,7 @@
                   }"
                   href="#"
                   class="page-scroll no-tablet"
-                  >Ubicación</a
+                  >{{$t("Ubicación")}}</a
                 >
               </li>
               <li>
@@ -76,7 +76,7 @@
                   }"
                   href="#"
                   class="page-scroll no-tablet"
-                  >Documentos</a
+                  >{{$t("Documentos")}}</a
                 >
               </li>
               <li>
@@ -89,7 +89,7 @@
                   }"
                   href="#"
                   class="page-scroll btn btn2"
-                  >Cotizar</a
+                  >{{$t("Cotizar")}}</a
                 >
               </li>
             </ul>
@@ -157,11 +157,11 @@
               </div>
             </div>
             <div class="price">
-              <b>Precios desde:</b>
+              <b>{{$t("Precios desde")}}:</b>
               <span>$ 126,925.00</span>
             </div>
             <div class="financiamiento">
-              <b>Financiamiento:</b>
+              <b>{{$t("Financiamiento")}}:</b>
               <div class="img">
                 <img
                   v-for="el in page.data.project.banks_rel"
@@ -175,7 +175,7 @@
               class="financiamiento"
               v-if="page.data.project.bonds_rel.length"
             >
-              <b>Bonos:</b>
+              <b>{{$t("Bonos")}}:</b>
               <div class="img">
                 <img
                   :key="el.name"
@@ -195,7 +195,7 @@
                 }"
                 href="#"
                 class="page-scroll btn btn2"
-                >Cotizar</a
+                >{{$t("Cotizar")}}</a
               >
             </div>
           </div>
@@ -235,7 +235,7 @@
           <br /><br />
           <div>
             <div class="title">
-              <h2>Atributos del proyectos</h2>
+              <h2>{{$t("Atributos del proyecto")}}</h2>
             </div>
             <ul class="atributos">
               <li
@@ -277,7 +277,7 @@
               v-for="(el, i) in page.data.project.typeGallery"
               :key="'tab' + el"
             >
-              {{ el }}
+              {{ $t(el) }}
             </a>
           </div>
           <div class="wrapper_tabcontent">
@@ -325,7 +325,7 @@
     >
       <div class="container">
         <div class="title center color-white">
-          <h2>Recorrido virtual</h2>
+          <h2>{{$t("Recorrido Virtual")}}</h2>
         </div>
         <div class="grid-recorrido">
           <div
@@ -368,7 +368,7 @@
         <div class="grid-s-12 grid-m-12 grid-l-5">
           <div class="content-ubicacion text">
             <div class="title">
-              <h2>Ubicación</h2>
+              <h2>{{$t("Ubicación")}}</h2>
             </div>
             <div class="item-ubicacion line-bottom">
               <i class="flaticon-ubicacion"></i>
@@ -384,12 +384,12 @@
               </div>
             </div>
             <div class="item-referencias line-bottom">
-              <p><b>Salas de ventas:</b></p>
+              <p><b>{{$t("Salas de ventas")}}:</b></p>
               <div
                 v-if="page.data.project['sales_room_' + $i18n.locale]"
                 v-html="page.data.project['sales_room_' + $i18n.locale]"
               ></div>
-              <p><b>Horario de atención:</b></p>
+              <p><b>{{$t("Horario de atención")}}:</b></p>
               <div
                 v-if="page.data.project['schedule_attention_' + $i18n.locale]"
                 v-html="page.data.project['schedule_attention_' + $i18n.locale]"
@@ -402,7 +402,7 @@
                   target="_blank"
                   class="btn"
                   v-if="page.data.project.url_google_maps"
-                  >Ir con Maps <i class="flaticon-google-maps"></i
+                  >{{$t("Ir con")}} Maps <i class="flaticon-google-maps"></i
                 ></a>
               </div>
               <div class="grid-s-12 grid-m-6 grid-l-6">
@@ -411,7 +411,7 @@
                   class="btn"
                   target="_blank"
                   v-if="page.data.project.url_waze"
-                  >Ir con Waze <i class="flaticon-waze-1"></i
+                  >{{$t("Ir con")}} Waze <i class="flaticon-waze-1"></i
                 ></a>
               </div>
             </div>
@@ -445,12 +445,12 @@
         >
           <div class="container">
             <div class="title color-white">
-              <h2>Cotiza aquí</h2>
+              <h2>{{$t('Cotiza aquí')}}</h2>
             </div>
             <div class="grid-cotizador color-white">
               <div class="item-select-proyect">
                 <div class="form-control">
-                  <label for="topology">Selecciona el plano de interés*</label>
+                  <label for="topology">{{$t('Selecciona el plano de interés')}}*</label>
                   <select
                     name="topology"
                     id="topology"
@@ -468,7 +468,7 @@
                 </div>
               </div>
               <div class="item-carousel-plano">
-                <label for="">Planos</label>
+                <label for="">{{$t('Planos')}}</label>
                 <client-only>
                   <carousel
                     class="planos-proyecto"
@@ -505,7 +505,7 @@
                       </div>
                       <div>
                         <h5>
-                          Proyecto
+                          {{$t('Proyecto')}}
                           {{ page.data.project["name_" + $i18n.locale] }}
                         </h5>
                         <strong>{{ el.name }}</strong>
@@ -518,7 +518,7 @@
                 <div class="grid-col">
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
-                      <label for="name">Nombre*</label>
+                      <label for="name">{{ $t("Nombre")}}*</label>
                       <input type="text" id="name" v-model="quotation.name" />
                       <span
                         class="error"
@@ -546,10 +546,10 @@
                   </div>
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
-                      <label for="telefono">Teléfono*</label>
+                      <label for="phone">{{ $t("Teléfono")}}*</label>
                       <input
                         type="text"
-                        id="telefono"
+                        id="phone"
                         v-model="quotation.mobile"
                       />
                       <span
@@ -562,10 +562,10 @@
                   </div>
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
-                      <label for="correo">Correo*</label>
+                      <label for="email">{{ $t("Correo")}}*</label>
                       <input
                         type="text"
-                        id="correo"
+                        id="email"
                         v-model="quotation.email"
                       />
                       <span
@@ -578,7 +578,7 @@
                   </div>
                   <div class="grid-s-12">
                     <div class="form-control">
-                      <label for="message">Mensaje*</label>
+                      <label for="message">{{ $t("Mensaje")}}*</label>
                       <textarea
                         name="message"
                         id="message"
@@ -603,8 +603,8 @@
                         type="checkbox"
                       />
                       <label for="accepted"
-                        >He leído y acepto los <a>Términos y Condiciones</a> y
-                        <a>Políticas de privacidad</a>.</label
+                        >{{ $t('He leído y acepto los')}} <a>{{ $t('Términos y Condiciones')}}</a> {{ $t('y')}}
+                        <a>{{ $t('Políticas de privacidad')}}</a>.</label
                       >
                       <span
                         class="error"
@@ -615,8 +615,8 @@
                     </div>
                   </div>
                   <div class="grid-s-12">
-                    <button type="submit" form="quotationForm" class="btn btn2">
-                      Enviar
+                    <button type="submit" :class="requestQuotation ? 'btn--opacity' : ''" :disabled="requestQuotation" form="quotationForm" class="btn btn2">
+                      {{ requestQuotation ? $t("Cargando")+"..." : $t("Enviar") }}
                     </button>
                   </div>
                 </div>
@@ -636,7 +636,7 @@
         <div class="grid-col">
           <div class="grid-s-12 grid-m-12 grid-l-3">
             <div class="title left">
-              <h2>Documentos legales del proyecto</h2>
+              <h2>{{ $t('Documentos legales del proyecto')}}</h2>
             </div>
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-9">
@@ -687,10 +687,10 @@
           <div class="grid-s-12 grid-m-12 grid-l-3">
             <div class="aling-center">
               <div class="title left">
-                <h2>Otros proyectos</h2>
+                <h2>{{ $t('Otros proyectos')}}</h2>
               </div>
               <nuxt-link :to="localePath('projects')" class="btn"
-                >Ver más proyectos</nuxt-link
+                >{{ $t('Ver más proyectos')}}</nuxt-link
               >
             </div>
           </div>

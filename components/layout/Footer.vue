@@ -4,23 +4,23 @@
       <div class="grid-footer padding-footer">
         <div class="color-white wow fadeInUp">
           <div class="title2">
-            <h5>Contacto</h5>
+            <h5>{{ $t('Contacto')}}</h5>
             <ul>
               <li v-if="footer.information && footer.information.central_phone">
-                <b>Central de ventas:</b>
+                <b>{{ $t('Central de ventas')}}:</b>
                 {{ footer.information.central_phone_formatted }}
               </li>
               <li v-if="footer.information && footer.information.main_office">
-                <b>Oficina principal:</b>
+                <b>{{ $t('Oficina principal')}}:</b>
                 {{ footer.information.main_office_formatted }}
               </li>
             </ul>
             <ul v-if="footer.information && footer.information.email">
-              <li><b>Informes:</b> {{ footer.information.email }}</li>
+              <li><b>{{ $t('Informes')}}:</b> {{ footer.information.email }}</li>
             </ul>
             <ul v-if="footer.information && footer.information.location">
               <li>
-                <b>Ubicacion oficinas:</b>
+                <b>{{ $t('Ubicación oficinas')}}:</b>
                 <div
                   style="display: inline"
                   v-html="footer.information.location"
@@ -31,7 +31,7 @@
         </div>
         <div class="fotter-redes wow fadeInUp">
           <div class="title2 center">
-            <h5>Redes Sociales</h5>
+            <h5>{{ $t('Redes Sociales')}}</h5>
           </div>
 
           <ul>
@@ -55,7 +55,7 @@
         </div>
         <div class="wow fadeInUp">
           <div class="title2">
-            <h5>Documentos</h5>
+            <h5>{{ $t('Documentos')}}</h5>
           </div>
           <ul>
             <li>
@@ -63,11 +63,11 @@
                 :href="footer.information.billing_url"
                 target="_blank"
                 v-if="footer.information && footer.information.billing_url"
-                >Comprobantes electrónico</a
+                >{{ $t('Comprobantes electrónicos')}}</a
               >
             </li>
             <li>
-              <a href="">Términos y condiciones</a>
+              <a href="">{{ $t('Términos y Condiciones')}}</a>
             </li>
             <li>
               <a href="">Políticas de privacidad de datos</a>
@@ -84,7 +84,7 @@
             class="grid-certificado"
             v-if="footer.members && footer.members.length"
           >
-            <h6>Miembros de:</h6>
+            <h6>{{$t('Miembros de')}}:</h6>
             <img
               class="lazyload"
               v-for="(el, index) in footer.members"
@@ -97,7 +97,7 @@
             class="grid-certificado"
             v-if="footer.certificates && footer.certificates.length"
           >
-            <h6>Certificados por:</h6>
+            <h6>{{$t('Certificados por')}}:</h6>
             <img
               class="lazyload"
               v-for="(el, index) in footer.certificates"
@@ -108,17 +108,9 @@
           </div>
         </div>
         <div class="developer wow fadeInRight" data-wow-delay="0.5s">
-          © Copyright Lider Grupo Constructor {{ new Date().getFullYear() }}
-          <a href=""
-            >- Desarrollado por
-            <div class="img-dev">
-              <img
-                src="http://desarrollo.playdigital.pe/storage/img/logo-play.svg"
-              /><img
-                class="litt"
-                src="http://desarrollo.playdigital.pe/storage/img/lid.png"
-              />
-            </div>
+          © Copyright Lider Grupo Constructor {{ new Date().getFullYear() }} - {{$t('Desarrollado por')}}
+          <a href="https://playgroup.pe" target="_blank"
+            >
             PLAY Group</a
           >
         </div>

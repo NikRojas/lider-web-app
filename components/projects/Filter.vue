@@ -121,7 +121,7 @@
               class="btn btn2"
               :class="loading ? 'btn--opacity' : ''"
             >
-              {{ loading ? "Cargando" : "Buscar" }}
+              {{ loading ? $t("Cargando")+"..." : $t("Buscar") }}
             </button>
           </div>
         </form>

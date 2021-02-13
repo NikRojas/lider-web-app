@@ -2,8 +2,8 @@
     <main class="sell-your-land">
 <Banner>
       <div class="no-movil grid-col-2">
-        <nuxt-link :to="localePath('work-with-us')" class="btn">Trabaja con nosotros</nuxt-link>
-        <nuxt-link :to="localePath('sell-your-land')" class="btn">Vende tu terreno</nuxt-link>
+        <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contact')}}</nuxt-link>
+          <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
       </div>
     </Banner>
 
@@ -14,7 +14,7 @@
             <div class="content wow fadeInUp" data-wow-delay="1.5s">
               <h2><b>Déjanos tu consulta</b></h2>
               <p>
-                Envianos tus datos y tu mensaje de consulta para que un asesor
+                Envianos tus datos y tu {{ $t("Mensaje")}} de consulta para que un asesor
                 pueda resolverlo.
               </p>
               <transition name="slide-fade">
@@ -28,7 +28,7 @@
                 <div class="grid-col">
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
-                      <label for="name">Nombre*</label>
+                      <label for="name">{{ $t("Nombre")}}*</label>
                       <input type="text" id="name" v-model="form.name" />
                       <span
                         class="error error-red"
@@ -40,7 +40,7 @@
                   </div>
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
-                      <label for="mobile">Teléfono*</label>
+                      <label for="mobile">{{ $t("Teléfono")}}*</label>
                       <input
                         type="text"
                         id="mobile"
@@ -56,7 +56,7 @@
                   </div>
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
-                      <label for="email">Correo*</label>
+                      <label for="email">{{ $t("Correo")}}*</label>
                       <input
                         type="text"
                         id="email"
@@ -88,7 +88,7 @@
                   </div>
                   <div class="grid-s-12">
                     <div class="form-control">
-                      <label for="message">Mensaje*</label>
+                      <label for="message">{{ $t("Mensaje")}}*</label>
                       <textarea
                         name="message"
                         id="message"
@@ -106,7 +106,7 @@
                   </div>
                   <div class="grid-s-12">
                     <button type="submit" :class="request ? 'btn--opacity' : ''" :disabled="request" class="w-100 btn btn2">
-                      {{ request ? "Cargando..." : "Enviar" }} </button>
+                      {{ request ? $t("Cargando")+"..." : $t("Enviar") }} </button>
                   </div>
                 </div>
               </form>
@@ -123,8 +123,8 @@
     <section class="section si-movil-contacto bg1" style="display: none">
       <div class="container">
         <div class="grid-col-2">
-          <nuxt-link :to="localePath('work-with-us')" class="btn">Trabaja con nosotros</nuxt-link>
-          <nuxt-link :to="localePath('sell-your-land')" class="btn">Vende tu terreno</nuxt-link>
+          <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contact')}}</nuxt-link>
+          <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
         </div>
       </div>
     </section>

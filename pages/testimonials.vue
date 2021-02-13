@@ -76,7 +76,7 @@
             :disabled="loadingMore"
             class="btn"
           >
-            {{ loadingMore ? "Cargando..." : "Más testimonios" }}
+            {{ loadingMore ? $t("Cargando")+"..." : $t("Más testimonios") }}
           </button>
         </div>
       </div>

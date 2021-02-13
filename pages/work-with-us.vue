@@ -2,9 +2,9 @@
   <main class="work-with-us">
     <Banner>
       <div class="no-movil grid-col-2">
-        <nuxt-link :to="localePath('contact')" class="btn">Contacto</nuxt-link>
+        <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contact')}}</nuxt-link>
         <nuxt-link :to="localePath('sell-your-land')" class="btn"
-          >Vende tu terreno</nuxt-link
+          >{{ $t('Vende tu terreno')}}</nuxt-link
         >
       </div>
     </Banner>
@@ -16,7 +16,7 @@
             <div class="content wow fadeInUp" data-wow-delay="1.5s">
               <h2><b>Déjanos tu consulta CAMIBAR</b></h2>
               <p>
-                TEST Envianos tus datos y tu mensaje de consulta para que un asesor
+                TEST Envianos tus datos y tu {{ $t("Mensaje")}} de consulta para que un asesor
                 pueda resolverlo.
               </p>
               <transition name="slide-fade">
@@ -33,7 +33,7 @@
                   <div class="grid-col">
                     <div class="grid-s-12">
                       <div class="form-control">
-                        <label for="name">Nombre*</label>
+                        <label for="name">{{ $t("Nombre")}}*</label>
                         <input type="text" id="name" v-model="form.name" />
                         <span
                           class="error error-red"
@@ -45,7 +45,7 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
-                        <label for="phone">Teléfono*</label>
+                        <label for="phone">{{ $t("Teléfono")}}*</label>
                         <input type="text" id="phone" v-model="form.mobile" />
                         <span
                           class="error error-red"
@@ -57,7 +57,7 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
-                        <label for="email">Correo*</label>
+                        <label for="email">{{ $t("Correo")}}*</label>
                         <input type="text" id="email" v-model="form.email" />
                         <span
                           class="error error-red"
@@ -69,7 +69,7 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
-                        <label for="job">Puesto*</label>
+                        <label for="job">{{ $t("Puesto")}}*</label>
                         <input type="text" id="job" v-model="form.job" />
                         <span
                           class="error error-red"
@@ -81,7 +81,7 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
-                        <label for="url">URL Portafolio*</label>
+                        <label for="url">URL {{ $t("Portafolio")}}*</label>
                         <input type="text" id="url" v-model="form.url" />
                         <span
                           class="error error-red"
@@ -102,7 +102,7 @@
                             @vdropzone-file-added="validateFile($event,$refs.ref_pdf.dropzone,1,5242880,'5mb')"
                           >
                             <div class="dropzone-custom-content">
-                              <h5 class="dropzone-custom-title">Sube tu CV en formato PDF*</h5>
+                              <h5 class="dropzone-custom-title">{{ $t("Sube tu CV en formato PDF")}}*</h5>
                             </div>
                           </dropzone>
                           <span
@@ -115,7 +115,7 @@
                     </div>
                     <div class="grid-s-12">
                       <button type="submit" :class="request ? 'btn--opacity' : ''" :disabled="request" class="w-100 btn btn2">
-                      {{ request ? "Cargando..." : "Enviar" }} </button>
+                      {{ request ? $t("Cargando")+"..." : $t("Enviar") }} </button>
 
                     </div>
                   </div>
@@ -133,10 +133,10 @@
       <div class="container">
         <div class="grid-col-2">
           <nuxt-link :to="localePath('contact')" class="btn"
-            >Contacto</nuxt-link
+            >{{ $t('Contact')}}</nuxt-link
           >
           <nuxt-link :to="localePath('sell-your-land')" class="btn"
-            >Vende tu terreno</nuxt-link
+            >{{ $t('Vende tu terreno')}}</nuxt-link
           >
         </div>
       </div>

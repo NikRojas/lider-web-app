@@ -16,30 +16,30 @@
         <ul>
           <li>
             <nuxt-link :to="localePath('about-us')" @click.native="closeMenu">{{
-              $t("nosotros")
+              $t("Nosotros")
             }}</nuxt-link>
           </li>
           <li>
             <nuxt-link :to="localePath('projects')" @click.native="closeMenu">{{
-              $t("proyectos")
+              $t("Proyectos")
             }}</nuxt-link>
           </li>
           <li>
             <nuxt-link :to="localePath('testimonials')" @click.native="closeMenu">{{
-              $t("testimoniales")
+              $t("Testimoniales")
             }}</nuxt-link>
           </li>
           <li>
             <nuxt-link :to="localePath('cami')" @click.native="closeMenu"
-              >{{ $t("comunidad amiga") }} - CAMI</nuxt-link
+              >{{ $t("Comunidad Amiga") }} - CAMI</nuxt-link
             >
           </li>
           <li>
-            <nuxt-link :to="localePath('blog')" @click.native="closeMenu">{{ $t("blog") }}</nuxt-link>
+            <nuxt-link :to="localePath('blog')" @click.native="closeMenu">{{ $t("Blog") }}</nuxt-link>
           </li>
           <li>
             <nuxt-link :to="localePath('contact')" @click.native="closeMenu">{{
-              $t("contacto")
+              $t("Contacto")
             }}</nuxt-link>
           </li>
         </ul>

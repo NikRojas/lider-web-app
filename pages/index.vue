@@ -87,7 +87,7 @@
               v-if="page.data.projects.last_page != projectsPageActive"
             >
               <div class="text-center wow fadeInUp">
-                <button @click="searchFilter(true)" class="btn">Ver más proyectos</button>
+                <button @click="searchFilter(true)" class="btn">{{ $t("Ver más proyectos")}}</button>
               </div>
             </div>
           </template>
@@ -216,8 +216,7 @@
         <div class="top-section">
           <div class="text-center wow fadeInUp">
             <nuxt-link :to="localePath('blog')" class="btn"
-              >Ver más notas</nuxt-link
-            >
+              >{{ $t("Ver más notas")}}</nuxt-link>
           </div>
         </div>
       </div>

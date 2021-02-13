@@ -1,4 +1,3 @@
 export default {
-    bienvenido: 'Bienvinedo ES',
-    desde: 'Desde'
+    /*bienvenido: 'Bienvinedo ES',*/
 }
