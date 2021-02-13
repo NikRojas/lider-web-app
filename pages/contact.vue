@@ -88,7 +88,7 @@
                   </div>
                   <div class="grid-s-12">
                     <div class="form-control">
-                      <label for="message">Mensaje*</label>
+                      <label for="message">Mensaje</label>
                       <textarea
                         name="message"
                         id="message"
@@ -125,7 +125,8 @@
                     </div>
                   </div>
                   <div class="grid-s-12">
-                    <button type="submit" class="w-100 btn btn2">Enviar</button>
+                    <button type="submit" :class="request ? 'btn--opacity' : ''" :disabled="request" class="w-100 btn btn2">
+                      {{ request ? "Cargando..." : "Enviar" }} </button>
                   </div>
                 </div>
               </form>

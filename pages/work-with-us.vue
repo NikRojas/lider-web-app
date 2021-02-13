@@ -2,7 +2,7 @@
   <main class="work-with-us">
     <Banner>
       <div class="no-movil grid-col-2">
-        <nuxt-link :to="localePath('Contacto')" class="btn">Contacto</nuxt-link>
+        <nuxt-link :to="localePath('contact')" class="btn">Contacto</nuxt-link>
         <nuxt-link :to="localePath('sell-your-land')" class="btn"
           >Vende tu terreno</nuxt-link
         >
@@ -114,9 +114,9 @@
                           <span class="error error-red" v-if="error" for="pdf">{{ errors.pdf[0] }}</span>
                     </div>
                     <div class="grid-s-12">
-                      <button type="submit" class="w-100 btn btn2">
-                        Enviar
-                      </button>
+                      <button type="submit" :class="request ? 'btn--opacity' : ''" :disabled="request" class="w-100 btn btn2">
+                      {{ request ? "Cargando..." : "Enviar" }} </button>
+
                     </div>
                   </div>
                 </form>
