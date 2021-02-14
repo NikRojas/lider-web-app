@@ -55,5 +55,19 @@ export default {
     'desde': 'from',
     'Planos': 'Blueprints',
     'Trabaja con nosotros': 'Work with us',
-    'Vende tu terreno': 'Sell your land'
+    'Vende tu terreno': 'Sell your land',
+    'Cita Online': 'Online Appointment',
+    'Horario': 'Schedule',
+    'Proyecto de interés': 'Project of interest',
+    'Por favor ingrese su nombre.': 'Please insert your name.',
+    'Por favor ingrese su dni.': 'Please insert your dni.',
+    'Por favor ingrese su teléfono o celular.': 'Please insert your phone or mobile.',
+    'Por favor ingrese su email.': 'Please insert your email.',
+    'Debe aceptar nuestros términos y condiciones.': 'You must accept our terms and conditions.',
+    'Por favor ingrese su cargo.': 'Please insert your job.',
+    'Por favor ingrese una URL válida.': 'Please insert a valid URL.',
+    'Por favor ingrese su CV.': 'Please insert your CV.',
+    'Por favor ingrese su área.': 'Please insert your area',
+    'El campo dni debe ser un número de 8 dígitos.': 'The field dni must be a number of 8 digits.',
+    'El campo email debe ser una dirección de correo válida.': 'The field email must be a valid email.'
 }

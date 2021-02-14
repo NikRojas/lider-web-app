@@ -89,7 +89,7 @@
               <div class="text-center wow fadeInUp">
                 <button @click="searchFilter(true)" class="btn">{{ $t("Ver más proyectos")}}</button>
               </div>
-            </div>
+            </div> 
           </template>
         </div>
       </div>

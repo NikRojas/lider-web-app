@@ -39,7 +39,7 @@
                           class="error error-red"
                           v-if="errors && errors.name"
                           for="name"
-                          >{{ errors.name[0] }}</span
+                          >{{ $t(errors.name[0]) }}</span
                         >
                       </div>
                     </div>
@@ -51,7 +51,7 @@
                           class="error error-red"
                           v-if="errors && errors.mobile"
                           for="mobile"
-                          >{{ errors.mobile[0] }}</span
+                          >{{ $t(errors.mobile[0]) }}</span
                         >
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                           class="error error-red"
                           v-if="errors && errors.email"
                           for="email"
-                          >{{ errors.email[0] }}</span
+                          >{{ $t(errors.email[0]) }}</span
                         >
                       </div>
                     </div>
@@ -75,7 +75,7 @@
                           class="error error-red"
                           v-if="errors && errors.job"
                           for="job"
-                          >{{ errors.job[0] }}</span
+                          >{{ $t(errors.job[0]) }}</span
                         >
                       </div>
                     </div>
@@ -87,7 +87,7 @@
                           class="error error-red"
                           v-if="errors && errors.url"
                           for="url"
-                          >{{ errors.url[0] }}</span
+                          >{{ $t(errors.url[0]) }}</span
                         >
                       </div>
                     </div>
@@ -109,9 +109,9 @@
                             class="error error-red"
                             v-if="!error && errors && errors.pdf"
                             for="pdf"
-                          >{{ errors.pdf[0] }}</span>
+                          >{{ $t(errors.pdf[0] )}}</span>
 
-                          <span class="error error-red" v-if="error" for="pdf">{{ errors.pdf[0] }}</span>
+                          <span class="error error-red" v-if="error" for="pdf">{{ $t(errors.pdf[0] )}}</span>
                     </div>
                     <div class="grid-s-12">
                       <button type="submit" :class="request ? 'btn--opacity' : ''" :disabled="request" class="w-100 btn btn2">

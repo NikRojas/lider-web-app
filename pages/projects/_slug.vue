@@ -79,6 +79,11 @@
                   >{{$t("Documentos")}}</a
                 >
               </li>
+              <li v-if="page.data.project.form_videocall">
+                <nuxt-link :to="localePath({ name: 'online-appointment', query: { project: page.data.project['slug_'+$i18n.locale] } })">
+                  {{$t("Cita Online")}}
+                </nuxt-link>
+              </li>
               <li>
                 <a
                   v-scroll-to="{
@@ -524,7 +529,7 @@
                         class="error"
                         v-if="errors && errors.name"
                         for="name"
-                        >{{ errors.name[0] }}</span
+                        >{{ $t(errors.name[0]) }}</span
                       >
                     </div>
                   </div>
@@ -540,7 +545,7 @@
                         class="error"
                         v-if="errors && errors.document_number"
                         for="document_number"
-                        >{{ errors.document_number[0] }}</span
+                        >{{ $t(errors.document_number[0]) }}</span
                       >
                     </div>
                   </div>
@@ -556,7 +561,7 @@
                         class="error"
                         v-if="errors && errors.mobile"
                         for="mobile"
-                        >{{ errors.mobile[0] }}</span
+                        >{{ $t(errors.mobile[0]) }}</span
                       >
                     </div>
                   </div>
@@ -572,7 +577,7 @@
                         class="error"
                         v-if="errors && errors.email"
                         for="email"
-                        >{{ errors.email[0] }}</span
+                        >{{ $t(errors.email[0]) }}</span
                       >
                     </div>
                   </div>
@@ -590,7 +595,7 @@
                         class="error"
                         v-if="errors && errors.message"
                         for="message"
-                        >{{ errors.message[0] }}</span
+                        >{{ $t(errors.message[0]) }}</span
                       >
                     </div>
                   </div>
@@ -610,7 +615,7 @@
                         class="error"
                         v-if="errors && errors.accepted"
                         for="accepted"
-                        >{{ errors.accepted[0] }}</span
+                        >{{ $t(errors.accepted[0]) }}</span
                       >
                     </div>
                   </div>
