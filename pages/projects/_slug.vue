@@ -671,13 +671,12 @@
             <div class="otros-proyecto owl-carousel owl-theme margin-carousel">
               <div
                   class="item"
-                  v-for="pr in page.data.projects"
-                  :key="'pr' + pr.length ? pr[0].id : pr.id"
+                  v-for="(pr,k) in page.data.projects"
+                  :key="k"
                 >
                   <CardProject :el="pr.length ? pr[0] : pr"></CardProject>
                 </div>
             </div>
-            
           </div>
         </div>
       </div>
