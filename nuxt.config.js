@@ -35,11 +35,11 @@ export default {
     host: '0.0.0.0', // default: localhost
   },
   loading: {
-    color: '#000',
+    color: '#0B6FA6',
     //duration: 3000,
     continuous: true,
     throttle: 0,
-    height: '3px'
+    height: '4px'
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)

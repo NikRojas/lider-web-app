@@ -91,6 +91,20 @@
             width: 90px;
         }
     }
+    &.dropdown-border{
+      .btn-idioma{
+      margin:0;
+
+      }
+      .dropdown-menu{
+        left: 0;
+      }
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 5px 10px;
+      i{
+        font-size: 10px;
+      }
+    }
     .dropdown-menu-right {
         right: 0;
         left: auto;

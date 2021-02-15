@@ -43,6 +43,37 @@
             }}</nuxt-link>
           </li>
         </ul>
+        <Dropdown classWrapper="dropdown-language dropdown-border">
+            <div slot="active-text" class="btn-idioma">
+              {{ $i18n.locale.toUpperCase() }} <img
+                :key="$i18n.locale"
+                class="lazyload"
+                :data-src="require('~/assets/img/' + $i18n.locale + '.png')"
+                alt=""
+              />
+              <i class="flaticon-download"></i>
+            </div>
+            <div slot="dropdown-content">
+              <template v-for="locale in availableLocales">
+                  <nuxt-link
+                    class="dropdown-item"
+                    v-if="locale.code != $i18n.locale"
+                    :key="locale.code"
+                    :to="switchLocalePath(locale.code)"
+                    @click.native="closeMenu"
+                  >
+                    {{ locale.name }}
+                    <img
+                      class="lazyload dropdown-item__img"
+                      height="12"
+                      :data-src="
+                        require('~/assets/img/' + locale.code + '.png')
+                      "
+                      alt=""
+                  ></nuxt-link>
+                </template>
+            </div>
+          </Dropdown>
       </div>
       <div class="redes">
         <ul>
@@ -69,6 +100,7 @@
 </template>
 
 <script>
+import Dropdown from "../Dropdown";
 export default {
   computed: {
     menu() {
@@ -77,6 +109,12 @@ export default {
     menuOpen() {
       return this.$store.getters.getMenuOpen;
     },
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+    },
+  },
+  components:{
+    Dropdown
   },
   methods: {
     closeMenu() {
