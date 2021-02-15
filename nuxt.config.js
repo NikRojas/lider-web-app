@@ -78,6 +78,7 @@ export default {
     '@nuxtjs/dotenv',
     'nuxt-i18n',
     ['vue-scrollto/nuxt', { duration: 300 }],
+    'vue-social-sharing/nuxt'
   ],
 
   i18n: {

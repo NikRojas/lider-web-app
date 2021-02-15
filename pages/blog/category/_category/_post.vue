@@ -24,18 +24,46 @@
               <div class="compartir">
                 <h5><b>{{ $t('Compartir')}}:</b></h5>
                 <div class="lista-compartir">
-                  <a href="" class="compartir btn-circle facebook"
-                    ><i class="flaticon-facebook"></i
-                  ></a>
-                  <a href="" class="compartir btn-circle linkedin"
-                    ><i class="flaticon-linkedin"></i
-                  ></a>
-                  <a href="" class="compartir btn-circle whatsapp"
-                    ><i class="flaticon-whatsapp"></i
-                  ></a>
-                  <a href="" class="compartir btn-circle mail"
-                    ><i class="flaticon-mail"></i
-                  ></a>
+                  <ShareNetwork
+                    class="compartir btn-circle"
+                      network="facebook"
+                      :url="baseUrl+$route.path"
+                      :title="page.data.post['title_' + $i18n.locale]"
+                      :description="page.data.post['excerpt_' + $i18n.locale]"
+                    >
+                      <i class="flaticon-facebook"></i
+                  >
+                  </ShareNetwork>
+                  <ShareNetwork
+                    class="compartir btn-circle"
+                      network="linkedin"
+                      :url="baseUrl+$route.path"
+                      :title="page.data.post['title_' + $i18n.locale]"
+                      :description="page.data.post['excerpt_' + $i18n.locale]"
+                    >
+                      <i class="flaticon-linkedin"></i
+                  >
+                  </ShareNetwork>
+                  <ShareNetwork
+                    class="compartir btn-circle"
+                      network="whatsapp"
+                      :url="baseUrl+$route.path"
+                      :title="page.data.post['title_' + $i18n.locale]"
+                      :description="page.data.post['excerpt_' + $i18n.locale]"
+                    >
+                      <i class="flaticon-whatsapp-1"></i
+                  >
+                  </ShareNetwork>
+                   <ShareNetwork
+                    class="compartir btn-circle"
+                      network="email"
+                      :url="baseUrl+$route.path"
+                      :title="page.data.post['title_' + $i18n.locale]"
+                      :description="page.data.post['excerpt_' + $i18n.locale]"
+                    >
+                      <i class="flaticon-mail"></i
+                  >
+                  </ShareNetwork>
                 </div>
               </div>
               <hr />
@@ -133,6 +161,7 @@ export default {
   data() {
     return {
       page: {},
+      baseUrl: process.env.BASE_URL,
       storageUrl: process.env.STORAGE_URL,
     };
   },
