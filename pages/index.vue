@@ -2,9 +2,8 @@
   <main>
     <div style="400px;"></div>
     <section class="slider" v-if="page.data.slider.length">
-      <client-only>
-        <carousel :items="1" loop nav dots>
-          <div
+      <div class="hero-slider owl-carousel owl-theme nav-absolute">
+        <div
             class="single-hs-item"
             v-for="el in page.data.slider"
             :key="el.id"
@@ -37,8 +36,7 @@
               </picture>
             </div>
           </div>
-        </carousel>
-      </client-only>
+      </div>
     </section>
     <ProjectsFilter
       :departments.sync="filterDepartments"
@@ -56,8 +54,8 @@
           <template v-if="loadingProjects">
             <div
               class="grid-s-12 grid-m-6 grid-l-4"
-              v-for="(el,i) in 6"
-              :key="'lo1'+i"
+              v-for="(el, i) in 6"
+              :key="'lo1' + i"
             >
               <PuSkeleton height="450px"></PuSkeleton>
             </div>
@@ -72,24 +70,24 @@
             </div>
             <template v-if="loadingMoreProjects">
               <div
-              class="grid-s-12 grid-m-6 grid-l-4"
-              v-for="(el,i) in 3"
-              :key="'lo2'+i"
-            >
-               
-              <PuSkeleton height="450px" ></PuSkeleton>
-            </div>
+                class="grid-s-12 grid-m-6 grid-l-4"
+                v-for="(el, i) in 3"
+                :key="'lo2' + i"
+              >
+                <PuSkeleton height="450px"></PuSkeleton>
+              </div>
             </template>
-            
 
             <div
               class="grid-s-12"
               v-if="page.data.projects.last_page != projectsPageActive"
             >
               <div class="text-center wow fadeInUp">
-                <button @click="searchFilter(true)" class="btn">{{ $t("Ver más proyectos")}}</button>
+                <button @click="searchFilter(true)" class="btn">
+                  {{ $t("Ver más proyectos") }}
+                </button>
               </div>
-            </div> 
+            </div>
           </template>
         </div>
       </div>
@@ -111,112 +109,16 @@
           <h2>Últimas notas</h2>
         </div>
         <div class="home-blog owl-carousel owl-theme wow fadeInUp">
-          <div class="item">
-            <div class="card card-blog">
-              <div class="img">
-                <img src="public/img/blog/blog1.png" alt="" />
-                <a href="single-blog.php"><i class="flaticon-cancelar"></i></a>
-              </div>
-              <a href="single-blog.php"
-                ><h4>5 ventajas de vivir en un condominio</h4></a
-              >
-              <p>
-                El primer paso para iniciar una vida en familia es contar con un
-                hogar propio, para ello, es importante determinar el lugar donde
-                deseas vivir...
-              </p>
-              <div class="tag">
-                <div class="categoria">
-                  <i class="flaticon-label"> </i>Life Style
-                </div>
-                <div class="calendario">
-                  <i class="flaticon-calendario"> </i>12, Julio 2020
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="card card-blog">
-              <div class="img">
-                <img src="public/img/blog/blog2.png" alt="" />
-                <a href="single-blog.php"><i class="flaticon-cancelar"></i></a>
-              </div>
-              <a href="single-blog.php"
-                ><h4>
-                  6 cosas que puedes hacer en casa para aprovechar tu tiempo
-                </h4></a
-              >
-              <p>
-                El primer paso para iniciar una vida en familia es contar con un
-                hogar propio, para ello, es importante determinar el lugar donde
-                deseas vivir...
-              </p>
-              <div class="tag">
-                <div class="categoria">
-                  <i class="flaticon-label"> </i>Life Style
-                </div>
-                <div class="calendario">
-                  <i class="flaticon-calendario"> </i>12, Julio 2020
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="card card-blog">
-              <div class="img">
-                <img src="public/img/blog/blog3.png" alt="" />
-                <a href="single-blog.php"><i class="flaticon-cancelar"></i></a>
-              </div>
-              <a href="single-blog.php"
-                ><h4>5 ventajas de vivir en un condominio</h4></a
-              >
-              <p>
-                El primer paso para iniciar una vida en familia es contar con un
-                hogar propio, para ello, es importante determinar el lugar donde
-                deseas vivir...
-              </p>
-              <div class="tag">
-                <div class="categoria">
-                  <i class="flaticon-label"> </i>Life Style
-                </div>
-                <div class="calendario">
-                  <i class="flaticon-calendario"> </i>12, Julio 2020
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="card card-blog">
-              <div class="img">
-                <img src="public/img/blog/blog4.png" alt="" />
-                <a href="single-blog.php"><i class="flaticon-cancelar"></i></a>
-              </div>
-              <a href="single-blog.php"
-                ><h4>
-                  ¡Llega la nueva edición de 3 días de Locura Inmobiliaria!
-                </h4></a
-              >
-              <p>
-                El primer paso para iniciar una vida en familia es contar con un
-                hogar propio, para ello, es importante determinar el lugar donde
-                deseas vivir...
-              </p>
-              <div class="tag">
-                <div class="categoria">
-                  <i class="flaticon-label"> </i>Life Style
-                </div>
-                <div class="calendario">
-                  <i class="flaticon-calendario"> </i>12, Julio 2020
-                </div>
-              </div>
-            </div>
+          <div class="item" v-for="el in page.data.posts" :key="'post' + el.id">
+            <Post :el="el"></Post>
           </div>
         </div>
 
         <div class="top-section">
           <div class="text-center wow fadeInUp">
-            <nuxt-link :to="localePath('blog')" class="btn"
-              >{{ $t("Ver más notas")}}</nuxt-link>
+            <nuxt-link :to="localePath('blog')" class="btn">{{
+              $t("Ver más notas")
+            }}</nuxt-link>
           </div>
         </div>
       </div>
@@ -227,6 +129,12 @@
 <script>
 import ProjectsFilter from "../components/projects/Filter";
 import CardProject from "../components/projects/Card";
+import Post from "../components/blog/Post";
+if (process.client) {
+  require("owl.carousel");
+}
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.green.css";
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/home", {
@@ -253,6 +161,7 @@ export default {
   components: {
     ProjectsFilter,
     CardProject,
+    Post,
   },
   methods: {
     searchFilter(next = false) {
@@ -260,40 +169,72 @@ export default {
       console.log(this.filterDistricts);
       console.log(this.filterStatuses);
       console.log( this.$i18n.locale)*/
-      if(next){
+      if (next) {
         this.loadingMoreProjects = true;
-      }
-      else{
+      } else {
         this.loadingProjects = true;
       }
       this.$axios
         .$get("/api/paginate/projects", {
           params: {
             locale: this.$i18n.locale,
-            ...(next ? { page: this.projectsPageActive + 1 } : {page: 1}),
-            ...(this.filterDepartments ? { departments: this.filterDepartments } : {}),
-            ...(this.filterDistricts ? { districts: this.filterDistricts } : {}),
+            ...(next ? { page: this.projectsPageActive + 1 } : { page: 1 }),
+            ...(this.filterDepartments
+              ? { departments: this.filterDepartments }
+              : {}),
+            ...(this.filterDistricts
+              ? { districts: this.filterDistricts }
+              : {}),
             ...(this.filterStatuses ? { statuses: this.filterStatuses } : {}),
           },
         })
         .then((response) => {
-          if(next){
+          if (next) {
             if (response.data.length) {
               this.projectsPageActive += 1;
               this.page.data.projects.data.push(...response.data);
             }
-          }
-          else{
+          } else {
             this.projectsPageActive = 1;
             this.page.data.projects = response;
           }
           setTimeout(() => {
-             this.loadingProjects = false;
+            this.loadingProjects = false;
             this.loadingMoreProjects = false;
           }, 1000);
-         
         });
     },
+  },
+  mounted() {
+    $(document).ready(function () {
+      $('.hero-slider').owlCarousel({
+  animateIn: 'pulse',
+  items:1,
+  loop:true,
+  nav:true,
+  dots: true
+});
+      $(".home-blog").owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: true,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          600: {
+            items: 2,
+          },
+          1025: {
+            items: 3,
+          },
+        },
+      });
+    });
   },
 };
 </script>

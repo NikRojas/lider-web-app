@@ -1,4 +1,5 @@
 require('dotenv').config()
+const webpack = require('webpack')
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -128,6 +129,13 @@ export default {
         vue.transformAssetUrls.img = ['data-src', 'src']
         vue.transformAssetUrls.source = ['data-srcset', 'srcset']
       }
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+      })
+    ]
   }
 }

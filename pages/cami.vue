@@ -128,7 +128,7 @@
                   <h4 class="titulo-cami-carousel">
                     <b>{{ el["title_elements_" + $i18n.locale] }}</b>
                   </h4>
-                  <div class="carousel-sociocultural" v-if="el['elements_' + $i18n.locale+'_format']">
+                  <div class="carousel-sociocultural owl-carousel owl-theme" v-if="el['elements_' + $i18n.locale+'_format']">
                     <div class="item" v-for="item in el['elements_' + $i18n.locale+'_format']" :key="item.icon">
                       <div class="card-cultura">
                         <div class="content-cultura">
@@ -160,136 +160,24 @@
               </div>
             </div>
           </div>
-          <!--
-          <div id="s20" class="tabcontent active">
-            <div class="section-cami-tab">
-              <div class="grid-col">
-                <div class="grid-s-12 grid-m-12 grid-l-5">
-                  <div class="content wow fadeInLeft">
-                    <h3><b>Desarrollo Sociocultural</b></h3>
-                    <p>
-                      Fomenta y promueve entre los niños, adolescentes y adultos
-                      la práctica de valores para una sana convivencia, el uso
-                      adecuado del tiempo libre, la revaloración del juego y el
-                      fortalecimiento de las relaciones humanas a través del
-                      <b
-                        >desarrollo de actividades lúdicas, recreativas y
-                        artísticas.</b
-                      >
-                    </p>
-                  </div>
-                </div>
-                <div class="grid-s-12 grid-m-12 grid-l-7 wow fadeInRight">
-                  <h4 class="titulo-cami-carousel">
-                    <b>Metodología de animación sociocultural:</b>
-                  </h4>
-                  <div class="carousel-sociocultural owl-carousel owl-theme">
-                    <div class="item">
-                      <div class="card-cultura">
-                        <div class="content-cultura">
-                          <img src="public/img/cami/desarrollo1.png" alt="" />
-                          <div class="text">
-                            <p>
-                              Promovemos la participación activa de los
-                              residentes en las actividades desarrolladas por
-                              CAMI para hacer del condominio un lugar acogedor
-                              para todos.
-                            </p>
-                          </div>
-                        </div>
-                        <div class="titulo">
-                          <img src="public/img/cami/icon/3.png" alt="" />
-                          <h5><b>Espacios Acogedores</b></h5>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="card-cultura">
-                        <div class="content-cultura">
-                          <img src="public/img/cami/desarrollo1.png" alt="" />
-                          <div class="text">
-                            <p>
-                              Fomentamos la revaloración del juego y la
-                              recreación como un derecho importante para el
-                              desarrollo integral de las personas.
-                            </p>
-                          </div>
-                        </div>
-                        <div class="titulo">
-                          <img src="public/img/cami/icon/1.png" alt="" />
-                          <h5><b>Sensibilización</b></h5>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="card-cultura">
-                        <div class="content-cultura">
-                          <img src="public/img/cami/desarrollo1.png" alt="" />
-                          <div class="text">
-                            <p>
-                              Facilitamos espacios de reflexión y orientación a
-                              los padres sobre temas relacionados con el
-                              desarrollo de sus hijos.
-                            </p>
-                          </div>
-                        </div>
-                        <div class="titulo">
-                          <img src="public/img/cami/icon/2.png" alt="" />
-                          <h5><b>Encuentros</b></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="grid-s-12 grid-m-12 grid-l-5">
-                  <div class="img2 card-video wow fadeInLeft">
-                    <img src="public/img/cami/video2.png" alt="" />
-                    <a data-fancybox="cami" href="https://youtu.be/NxhkIBOUJgg"
-                      ><i class="flaticon-boton-de-play"></i
-                    ></a>
-                  </div>
-                </div>
-                <div class="grid-s-12 grid-m-12 grid-l-7">
-                  <div class="content wow fadeInRight">
-                    <p>
-                      Cuenta con un espacio físico acogedor en
-                      <b
-                        >cada condominio a cargo de una monitora de desarrollo
-                        socio cultural,</b
-                      >
-                      quien en coordinación con los especialistas de los
-                      diversos talleres, desarrollan las distintas actividades
-                      artísticas, deportivas y recreativas.
-                    </p>
-                    <p>
-                      Por su carácter formativo y de sensibilización, apunta a
-                      la construcción de ciudadanía en base a la práctica de
-                      valores y el reconocimiento del otro, al respeto mutuo y
-                      de las normas. Así se generan espacios acogedores de
-                      comunicación e integración entre las personas, lo cual se
-                      refleja en las buenas relaciones entre vecinos,
-                      <b
-                        >la comunicación y organización; como también en el
-                        cuidado del condominio y sus áreas comunes.</b
-                      >
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          -->
         </div>
       </div>
     </section>
   </main>
 </template>
 <script>
+if (process.client) {
+  require("/static/js/jq.fancybox.min.js");
+  require("owl.carousel");
+}
+import "/static/css/jq.fancybox.min.css";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.green.css";
 export default {
-  head: {
+  /*head: {
     link: [{ rel: "stylesheet", href: "/css/jq.fancybox.min.css" }],
     script: [{ src: "/js/jq.min.js" }, { src: "/js/jq.fancybox.min.js" }],
-  },
+  },*/
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/cami", {
       params: { locale: app.i18n.locale },
@@ -327,7 +215,34 @@ export default {
       document.querySelector("#" + country).classList.add("active");
       btnTarget.classList.add("active");
     }
-    $(".fancybox").fancybox();
+    $(document).ready(function () {
+      $(".fancybox").fancybox();
+      $('.carousel-sociocultural').owlCarousel({
+            nav:true,
+            autoplay:true,
+            margin:25,
+            dots: false,
+            autoplayTimeout:5000,
+            autoplayHoverPause:true,
+            pagination : true,
+            paginationNumbers: true,
+            rewindNav : true,
+            scrollPerPage : true,
+            singleItem: true,
+            loop:true,
+                responsive:{
+                    0:{
+                        items:1.2
+                    },
+                    600:{
+                        items:2
+                    },
+                    1025:{
+                        items:2.5
+                    }
+                }
+            });
+      });
   },
 };
 </script>

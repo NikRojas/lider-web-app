@@ -474,17 +474,8 @@
               </div>
               <div class="item-carousel-plano">
                 <label for="">{{$t('Planos')}}</label>
-                <client-only>
-                  <carousel
-                    class="planos-proyecto"
-                    loop
-                    nav
-                    :items="1"
-                    autoplay
-                    :autoplayTimeout="5000"
-                    :autoplayHoverPause="false"
-                  >
-                    <div
+                <div class="planos-proyecto owl-carousel owl-theme">
+                   <div
                       class="item"
                       v-for="(el, i) in page.data.project.tipologies_rel"
                       :key="'ti' + el"
@@ -516,8 +507,7 @@
                         <strong>{{ el.name }}</strong>
                       </div>
                     </div>
-                  </carousel>
-                </client-only>
+                </div>
               </div>
               <div class="item-from">
                 <div class="grid-col">
@@ -645,23 +635,8 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-9">
-            <client-only>
-              <carousel
-                class="margin-carousel"
-                loop
-                :nav="false"
-                :dots="false"
-                :responsive="{
-                  0: { items: 1 },
-                  600: { items: 2, margin: 10 },
-                  900: { items: 3, margin: 20 },
-                  1150: { items: 3, margin: 0 },
-                }"
-                autoplay
-                :autoplayTimeout="5000"
-                :autoplayHoverPause="false"
-              >
-                <div
+            <div class="documentos-proyecto owl-carousel owl-theme margin-carousel">
+              <div
                   class="item"
                   v-for="el in page.data.project.files_rel"
                   :key="'fil' + el.id"
@@ -670,14 +645,7 @@
                     el["name_" + $i18n.locale]
                   }}</a>
                 </div>
-                <template slot="prev"
-                  ><button class="owl-prev"><span>‹</span></button></template
-                >
-                <template slot="next"
-                  ><button class="owl-next"><span>›</span></button></template
-                >
-              </carousel>
-            </client-only>
+            </div>
           </div>
         </div>
       </div>
@@ -700,27 +668,16 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-9">
-            <client-only>
-              <carousel
-                class="margin-carousel"
-                :responsive="{
-                  0: { items: 1 },
-                  600: { items: 2 },
-                  1025: { items: 2 },
-                }"
-                autoplay
-                :autoplayTimeout="5000"
-                :autoplayHoverPause="false"
-              >
-                <div
+            <div class="otros-proyecto owl-carousel owl-theme margin-carousel">
+              <div
                   class="item"
                   v-for="pr in page.data.projects"
                   :key="'pr' + pr.length ? pr[0].id : pr.id"
                 >
                   <CardProject :el="pr.length ? pr[0] : pr"></CardProject>
                 </div>
-              </carousel>
-            </client-only>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -729,10 +686,15 @@
 </template>
 <script>
 import CardProject from "../../components/projects/Card";
+if (process.client) {
+  require("owl.carousel");
+  require("/static/js/jq.fancybox.min.js");
+}
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.green.css";
+import "/static/css/jq.fancybox.min.css";
 export default {
   head: {
-    link: [{ rel: "stylesheet", href: "/css/jq.fancybox.min.css" }],
-    script: [{ src: "/js/jq.min.js" }, { src: "/js/jq.fancybox.min.js" }],
   },
   components: {
     CardProject,
@@ -820,7 +782,61 @@ export default {
     this.page.data.project.tipologies_rel.length
       ? (this.quotation.project_type_department_id = this.page.data.project.tipologies_rel[0].id)
       : "";
-    $(".fancybox").fancybox();
+      $(document).ready(function () {
+        $(".fancybox").fancybox();
+        $('.documentos-proyecto').owlCarousel({
+            loop:true,
+            nav:true,
+            autoplay:true,
+            dots: false,
+            autoplayTimeout:5000,
+            autoplayHoverPause:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2,
+                    margin:20
+                },
+                900:{
+                    items:3,
+                    margin:20
+                },
+                1150:{
+                    items:3,
+                    margin:0
+                }
+            }
+          });
+        $('.otros-proyecto').owlCarousel({
+            nav:true,
+            loop:false,
+            dots: false,
+            autoplay:true,
+            autoplayTimeout:5000,
+            autoplayHoverPause:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1025:{
+                    items:2
+                }
+            }
+          });
+          $('.planos-proyecto').owlCarousel({
+            loop:true,
+            nav:true,
+            autoplay:true,
+            autoplayTimeout:5000,
+            autoplayHoverPause:true,
+            items:1
+          });
+    });
   },
   nuxtI18n: {
     paths: {
