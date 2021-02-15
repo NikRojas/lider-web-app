@@ -80,5 +80,6 @@ export default {
     'Ingresa tu correo y mantente informado': 'Enter your email and stay informed',
     'Te contactaremos muy pronto': 'We will contact you very soon',
     'Te mantendremos informado': 'We will keep you informed',
-    'Listo': 'Done'
+    'Listo': 'Done',
+    'Que estás buscando': 'What are you looking for'
 }

@@ -1,6 +1,10 @@
 <template>
   <main class="blog--category">
-    <Banner> </Banner>
+    <Banner> 
+      <div class="section-filter-blog wow fadeInUp">
+        <Search></Search>
+      </div> 
+    </Banner>
     <section class="section-filter-blog" v-if="page.data.categories">
       <div class="container">
         <div class="list-categoria wow fadeInUp">
@@ -25,10 +29,10 @@
         </div>
       </div>
     </section>
-    <section class="bottom-section" v-if="page.data.posts">
+    <section class="bottom-section" v-if="page.data.posts.data">
         <div class="container">
             <div class="grid-col">
-                <div class="grid-s-12 grid-m-6" :class="i == 0 || i == 1 ? ' grid-l-6' : ' grid-l-4'" v-for="(el,i) in page.data.posts" :key="'post' + el.id">
+                <div class="grid-s-12 grid-m-6" :class="i == 0 || i == 1 ? ' grid-l-6' : ' grid-l-4'" v-for="(el,i) in page.data.posts.data" :key="'post' + el.id">
                     <Post :el="el"></Post>
                 </div>
             </div>
@@ -62,7 +66,8 @@ export default {
     },
   },
   components:{
-    Banner
+    Banner,
+    Post
   },
   data() {
     return {

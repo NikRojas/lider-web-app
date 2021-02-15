@@ -58,15 +58,30 @@
       font-weight: 600; }
     .btn-idioma img {
       height: 12px; }
-  
+      .banner{
+        background-color: $color-1;
+      }
+    
+      .section-resultado{
+        text-align: center;
+        padding-top: 2rem;
+        color: $color-1;
+        &.no-data{
+          padding: 9.5rem 30px;
+        }
+      }
 .dropdown-custom{
     display: inline-block;
     position: relative;
+    .btn-circle{
+      cursor: pointer;
+    }
     &.dropdown-width{
         .dropdown-menu{
         width: 230px;
     }
     }
+
     
     .dropdown-menu{
         box-shadow: 0px 4px 12px rgb(0 0 0 / 22%);

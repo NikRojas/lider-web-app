@@ -81,10 +81,11 @@
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-3">
             <div class="aside-blog">
-              <div class="buscador">
+              <!--<div class="buscador">
                 <input type="text" placeholder="| Que estas buscando" />
                 <i class="flaticon-lupa"></i>
-              </div>
+              </div>-->
+              <Search></Search>
               <div class="list-categoria">
                 <h5><b>{{ $t('Categorías')}}:</b></h5>
                 <div class="grid-col-2">
@@ -128,6 +129,7 @@
   </main>
 </template>
 <script>
+import Search from "../../../../components/blog/Search";
 import Banner from "../../../../components/Banner";
 import Suscribe from "../../../../components/Suscribe";
 import Post from "../../../../components/blog/Post";
@@ -156,7 +158,8 @@ export default {
   components: {
     Banner,
     Suscribe,
-    Post
+    Post,
+    Search
   },
   data() {
     return {
