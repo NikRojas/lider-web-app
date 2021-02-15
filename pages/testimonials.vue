@@ -89,10 +89,6 @@ if (process.client) {
 }
 import "/static/css/jq.fancybox.min.css";
 export default {
-  /*head: {
-    link: [{ rel: "stylesheet", href: "/css/jq.fancybox.min.css" }],
-    script: [{ src: "/js/jq.min.js" }, { src: "/js/jq.fancybox.min.js" }],
-  },*/
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/testimonials", {
       params: { locale: app.i18n.locale },

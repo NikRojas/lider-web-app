@@ -20,9 +20,9 @@
               <transition name="slide-fade">
                 <div v-if="success" key="true" class="form__text-success-2">
                     <h3>
-                        <strong>¡Listo!</strong>
+                        <strong>¡{{$t('Listo')}}!</strong>
                     </h3>
-                    <p>Te contactaremos muy pronto.</p>
+                    <p>{{ $t('Te contactaremos muy pronto')}}.</p>
                 </div>
                 <form v-else key="false" @submit.prevent="submit">
                 <div class="grid-col">

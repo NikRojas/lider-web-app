@@ -438,9 +438,9 @@
       <transition name="slide-fade">
         <div v-if="quotationSuccess" key="true" class="form__text-success">
           <h3>
-            <strong>¡Listo!</strong>
+            <strong>¡{{$t('Listo')}}!</strong>
           </h3>
-          <p>Te contactaremos muy pronto.</p>
+          <p>{{ $t('Te contactaremos muy pronto')}}.</p>
         </div>
         <form
           v-else

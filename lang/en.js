@@ -69,5 +69,16 @@ export default {
     'Por favor ingrese su CV.': 'Please insert your CV.',
     'Por favor ingrese su área.': 'Please insert your area',
     'El campo dni debe ser un número de 8 dígitos.': 'The field dni must be a number of 8 digits.',
-    'El campo email debe ser una dirección de correo válida.': 'The field email must be a valid email.'
+    'El campo email debe ser una dirección de correo válida.': 'The field email must be a valid email.',
+    'Categorías': 'Categories',
+    'Todos': 'All',
+    'Últimos artículos': 'Latest articles',
+    'Compartir': 'Share',
+    'Suscríbete': 'Suscribe',
+    'He leído y acepto las': 'I have read and accept the',
+    'Nombre y apellido': 'First and last name',
+    'Ingresa tu correo y mantente informado': 'Enter your email and stay informed',
+    'Te contactaremos muy pronto': 'We will contact you very soon',
+    'Te mantendremos informado': 'We will keep you informed',
+    'Listo': 'Done'
 }
