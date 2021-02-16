@@ -472,7 +472,7 @@
                    <div
                       class="item"
                       v-for="(el, i) in page.data.project.tipologies_rel"
-                      :key="'ti' + el"
+                      :key="'ti' + i"
                     >
                       <div class="img-plano">
                         <a
@@ -687,7 +687,85 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.green.css";
 import "/static/css/jq.fancybox.min.css";
 export default {
-  head: {
+  head() {
+      return { 
+      htmlAttrs: {
+        lang: this.$i18n.locale == 'en' ? this.$i18n.locale+'_US' : this.$i18n.locale+'_PE'
+      },
+      title: this.page.data.project["name_"+this.$i18n.locale] ? (this.$i18n.locale == 'en' ? 'Project' : 'Proyecto') + ' - ' + this.page.data.project["name_"+this.$i18n.locale] : "",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.page.data.page['seo_description_'+this.$i18n.locale]
+            ? this.page.data.page['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          itemprop: "name",
+          content: this.page.data.project['title_'+this.$i18n.locale] ? (this.$i18n.locale == 'en' ? 'Project' : 'Proyecto') + ' - ' + this.page.data.project["name_"+this.$i18n.locale] : ""
+        },
+        {
+          itemprop: "description",
+          content: this.page.data.page['seo_description_'+this.$i18n.locale]
+            ? this.page.data.page['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          itemprop: "image",
+          content: this.page.data.page['seo_image']
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.page['seo_image']
+            : ""
+        },
+        {
+          name: "keywords",
+          content: this.page.data.page['seo_keywords_'+this.$i18n.locale]
+            ? this.page.data.page['seo_keywords_'+this.$i18n.locale]
+            : ""
+        },
+        { name: "og:url", content: process.env.BASE_URL+this.$route.path  },
+        { name: "og:type", content: "website" },
+        {
+          name: "og:title",
+          content: this.page.data.project['title_'+this.$i18n.locale] ? (this.$i18n.locale == 'en' ? 'Project' : 'Proyecto') + ' - ' + this.page.data.project["name_"+this.$i18n.locale] : ""
+        },
+        {
+          name: "og:description",
+          content: this.page.data.page['seo_description_'+this.$i18n.locale]
+            ? this.page.data.page['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          name: "og:image",
+          content: this.page.data.page['seo_image']
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.page['seo_image']
+            : ""
+        },
+        { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:title",
+          content: this.page.data.project['title_'+this.$i18n.locale] ? (this.$i18n.locale == 'en' ? 'Project' : 'Proyecto') + ' - ' + this.page.data.project["name_"+this.$i18n.locale] : ""
+        },
+        {
+          name: "twitter:description",
+          content: this.page.data.page['seo_description_'+this.$i18n.locale]
+            ? this.page.data.page['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          name: "twitter:image",
+          content: this.page.data.page['seo_image']
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.page['seo_image']
+            : ""
+        }
+      ]
+    };
   },
   components: {
     CardProject,

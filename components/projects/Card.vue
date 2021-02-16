@@ -27,7 +27,7 @@
             class="fachada lazyload"
           />
           <div class="interna" style="opacity: 0">
-            <img src="public/img/proyectos/interna-unno.jpg" alt="" />
+            <img class="lazyload" v-if="el.images_format[1]" :data-src="storageUrl + '/img/projects/'+el.images_format[1]" :alt="'Fachada '+el['name_' + $i18n.locale]" />
           </div>
         </div>
         <div class="ubicacion">

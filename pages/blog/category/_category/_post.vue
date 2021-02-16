@@ -133,7 +133,87 @@ import Search from "../../../../components/blog/Search";
 import Banner from "../../../../components/Banner";
 import Suscribe from "../../../../components/Suscribe";
 import Post from "../../../../components/blog/Post";
-export default {
+export default {  
+  head() {
+    return { 
+      htmlAttrs: {
+        lang: this.$i18n.locale == 'en' ? this.$i18n.locale+'_US' : this.$i18n.locale+'_PE'
+      },
+      title: this.page.data.post["title_"+this.$i18n.locale] ? this.page.data.post["title_"+this.$i18n.locale] : "",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.page.data.post['seo_description_'+this.$i18n.locale]
+            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          itemprop: "name",
+          content: this.page.data.post['title_'+this.$i18n.locale] ? this.page.data.post['title_'+this.$i18n.locale] : ""
+        },
+        {
+          itemprop: "description",
+          content: this.page.data.post['seo_description_'+this.$i18n.locale]
+            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          itemprop: "image",
+          content: this.page.data.post['seo_image']
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.post['seo_image']
+            : ""
+        },
+        {
+          name: "keywords",
+          content: this.page.data.post['seo_keywords_'+this.$i18n.locale]
+            ? this.page.data.post['seo_keywords_'+this.$i18n.locale]
+            : ""
+        },
+        { name: "og:url", content: process.env.BASE_URL+this.$route.path  },
+        { name: "og:type", content: "website" },
+        {
+          name: "og:title",
+          content: this.page.data.post['title_'+this.$i18n.locale] ? this.page.data.post['title_'+this.$i18n.locale] : ""
+        },
+        {
+          name: "og:description",
+          content: this.page.data.post['seo_description_'+this.$i18n.locale]
+            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          name: "og:image",
+          content: this.page.data.post['seo_image']
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.post['seo_image']
+            : ""
+        },
+        { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:title",
+          content: this.page.data.post['title_'+this.$i18n.locale] ? this.page.data.post['title_'+this.$i18n.locale] : ""
+        },
+        {
+          name: "twitter:description",
+          content: this.page.data.post['seo_description_'+this.$i18n.locale]
+            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+            : ""
+        },
+        {
+          name: "twitter:image",
+          content: this.page.data.post['seo_image']
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.post['seo_image']
+            : ""
+        }
+      ]
+    };
+  },
   async validate({ params, $axios, app }) {
     const data = await $axios.$get(
       "/api/page/blog/category/" + params.category + "/" + params.post,

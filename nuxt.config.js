@@ -3,7 +3,7 @@ const webpack = require('webpack')
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'lider-web-app',
+    title: 'Líder Grupo Constructor',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

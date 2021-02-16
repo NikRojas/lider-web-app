@@ -83,4 +83,5 @@ export default {
     'Listo': 'Done',
     'Que estás buscando': 'What are you looking for',
     'Blog': 'Blog',
+    'Comentarios': 'Comments'
 }
