@@ -156,6 +156,25 @@
   }
 }
 
+@media only screen and (min-width: 720px) {
+    .proyectos-entregados{
+        .owl-next,.owl-prev{
+            border: 0 !important;
+        }
+    }
+}
+.proyectos-entregados{
+
+    .owl-next,.owl-prev{
+    display: flex  !important;
+    justify-content: center  !important;
+    align-items: center  !important;
+    span{
+        height: auto !important;
+    }
+    }
+}
+
             section.slider{
                 min-height: 100vh;
                 background-color: $color_1;
