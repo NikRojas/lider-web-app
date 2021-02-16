@@ -27,8 +27,13 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/img/favicon/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/img/favicon/favicon-96x96.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/img/favicon/favicon-16x16.png' },
-      { rel: 'manifest', href: '/img/manifest.json' }
-    ]
+      { rel: 'manifest', href: '/img/manifest.json' },
+    ],
+    script: [
+      {
+        src: "/js/wow.min.js",
+      },
+    ],
   },
   server: {
     port: 3000, // default: 3000
@@ -54,6 +59,7 @@ export default {
     { src: '~/plugins/lazysizes.js', mode: 'client' },
     { src: '~/plugins/vue-owl-carousel2.js', mode: 'client' },
     { src: '~/plugins/vue-loading-skeleton.js', mode: 'client' },
+    //{ src: '~/statis/js/wow.min.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
