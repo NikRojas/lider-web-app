@@ -1132,17 +1132,17 @@ section.filtro-home {
     }
     .grid-proyecto-top .content-slider{
         button.owl-prev, button.owl-next {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            border: none;
-            margin: 0;
+            position: absolute !important;
+            top: 0 !important;
+            height: 100% !important;
+            border: none !important;
+            margin: 0 !important;
         }
         button.owl-prev{
-            left: 0;
+            left: 0 !important;
         }
         button.owl-next{
-            right: 0;
+            right: 0 !important;
         }
     }
     .section-cotiza .grid-cotizador {

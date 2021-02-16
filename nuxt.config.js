@@ -76,7 +76,10 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    'nuxt-i18n',
+    //'nuxt-i18n',
+    ['nuxt-i18n', {
+      seo: false
+    }],
     ['vue-scrollto/nuxt', { duration: 300 }],
     'vue-social-sharing/nuxt'
   ],
@@ -93,20 +96,22 @@ export default {
       {
         name: 'EN',
         code: 'en',
-        file: 'en.js'
+        file: 'en.js',
+        iso: 'en_US'
       },
       {
         name: 'ES',
         code: 'es',
-        file: 'es.js'
+        file: 'es.js',
+        iso: 'es_PE'
       }
     ],
     lazy: true,
     langDir: 'lang/',
-    vueI18nLoader: true,
-    vueI18n: {
+    //vueI18nLoader: true,
+    /*vueI18n: {
       fallbackLocale: 'en',
-    }
+    }*/
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

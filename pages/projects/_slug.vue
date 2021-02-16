@@ -105,28 +105,22 @@
     <section>
       <div class="grid-proyecto-top">
         <div class="content-slider">
-          <client-only>
-            <carousel
-              loop
-              nav
-              :items="1"
-              autoplay
-              :autoplayTimeout="5000"
-              :autoplayHoverPause="false"
-            >
+          <div class="slider-proyecto owl-carousel owl-theme nav-absolute">
+            <template v-for="(el, i) in page.data.project.images_format" >
               <div
-                class="item"
-                v-for="(el, i) in page.data.project.images_format"
-                :key="'sl' + el"
-              >
-                <img
-                  class="lazyload"
-                  :data-src="storageUrl + '/img/projects/' + el"
-                  :alt="'Slide ' + i"
-                />
-              </div>
-            </carousel>
-          </client-only>
+                  class="item"
+                  
+                  :key="'sl' + el"
+                    v-if="i != 0"
+                >
+                  <img
+                    class="lazyload"
+                    :data-src="storageUrl + '/img/projects/' + el"
+                    :alt="'Slide ' + i"
+                  />
+                </div>
+            </template>
+          </div>
         </div>
 
         <div class="aside-proyecto">
@@ -808,8 +802,25 @@ export default {
                 }
             }
           });
-        $('.otros-proyecto').owlCarousel({
+          $('.planos-proyecto.owl-carousel').owlCarousel({
+            loop:true,
             nav:true,
+            autoplay:true,
+            dots: false,
+            autoplayTimeout:5000,
+            autoplayHoverPause:true,
+            items:1
+          });
+          $('.slider-proyecto.owl-carousel').owlCarousel({
+          loop:true,
+          nav:true,
+          autoplay:true,
+          autoplayTimeout:5000,
+          autoplayHoverPause:true,
+          items:1
+        });
+        $('.otros-proyecto').owlCarousel({
+            nav:false,
             loop:false,
             dots: false,
             autoplay:true,
@@ -827,14 +838,7 @@ export default {
                 }
             }
           });
-          $('.planos-proyecto').owlCarousel({
-            loop:true,
-            nav:true,
-            autoplay:true,
-            autoplayTimeout:5000,
-            autoplayHoverPause:true,
-            items:1
-          });
+          
     });
   },
   nuxtI18n: {

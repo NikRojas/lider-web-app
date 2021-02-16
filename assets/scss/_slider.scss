@@ -120,6 +120,7 @@ button.owl-prev,button.owl-next {
         margin-top: -5px;*/
         display: block;
         height: inherit;
+        line-height: 0.95;
     }
 }
 
@@ -127,14 +128,14 @@ button.owl-prev,button.owl-next {
     .owl-nav{
         margin: 0!important;
         .owl-prev,.owl-next {
-            position: absolute;
-            top: 0;
-            height: 100%;
+            position: absolute !important;
+            top: 0 !important;
+            height: 100% !important;
             margin: 0 !important;
             background: none!important;
             color: white!important;
-            border: none;
-            padding: 10px 30px;
+            border: none !important;
+            padding: 10px 30px !important;
         }
         .owl-prev{
             left: 0;
