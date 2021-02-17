@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar" :class="{ active: menuOpen }">
-    <div class="sombra"></div>
+    <div class="sombra" @click.prevent="closeMenu"></div>
     <div class="content">
       <div class="head">
         <img

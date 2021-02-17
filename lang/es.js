@@ -83,5 +83,8 @@ export default {
     'Listo': 'Listo',
     'Que estás buscando': 'Que estás buscando',
     'Blog': 'Blog',
-    'Comentarios': 'Comentarios'
+    'Comentarios': 'Comentarios',
+    'Políticas de privacidad de datos': 'Políticas de privacidad de datos',
+    'Misión': 'Misión',
+    'Visión': 'Visión',
 }

@@ -1,15 +1,15 @@
 <template>
   <main class="cami">
-    <section
-      class="banner"
-      style="background-image: url(public/img/banners/banner-nosotros.jpg)"
-    >
-      <div class="container">
-        <div class="text-center wow fadeIn" data-wow-delay="0.5s">
-          <h1>Comunidad CAMI</h1>
-        </div>
-      </div>
-    </section>
+    <Banner :banner="page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content_formatted.includes('image') ? 
+                page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content.find((x) => x.field === 'image').value : ''" :title="page.data.content[page.data.content.findIndex(x => x.name === 'Banner')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
+            page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
+            : ''">
+    </Banner>
 
     <section class="section section-cami">
       <div class="container">
@@ -173,7 +173,11 @@ if (process.client) {
 import "/static/css/jq.fancybox.min.css";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.green.css";
+import Banner from "../components/Banner";
 export default {  
+  components:{
+    Banner
+  },
   head() {
     return { 
       htmlAttrs: {

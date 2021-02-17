@@ -1,7 +1,15 @@
 <template>
     <main class="sell-your-land">
-<Banner>
-      <div class="no-movil grid-col-2">
+      <Banner :banner="page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content_formatted.includes('image') ? 
+                page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content.find((x) => x.field === 'image').value : ''" :title="page.data.content[page.data.content.findIndex(x => x.name === 'Banner')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
+            page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
+            : ''">
+           <div class="no-movil grid-col-2">
         <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contact')}}</nuxt-link>
           <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
       </div>

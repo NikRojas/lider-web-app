@@ -67,10 +67,10 @@
               >
             </li>
             <li>
-              <a href="">{{ $t('Términos y Condiciones')}}</a>
+              <nuxt-link  :to="localePath('terms-conditions')">{{ $t('Términos y Condiciones')}}</nuxt-link>
             </li>
             <li>
-              <a href="">Políticas de privacidad de datos</a>
+              <nuxt-link :to="localePath('privacy-policies')">{{ $t('Políticas de privacidad de datos')}}</nuxt-link>
             </li>
             <li>
               <a href="">Código de protección al consumidor</a>

@@ -83,5 +83,8 @@ export default {
     'Listo': 'Done',
     'Que estás buscando': 'What are you looking for',
     'Blog': 'Blog',
-    'Comentarios': 'Comments'
+    'Comentarios': 'Comments',
+    'Políticas de privacidad de datos': 'Data privacy policies',
+    'Misión': 'Mision',
+    'Visión': 'Vision',
 }

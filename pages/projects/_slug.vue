@@ -592,8 +592,8 @@
                         type="checkbox"
                       />
                       <label for="accepted"
-                        >{{ $t('He leído y acepto los')}} <a>{{ $t('Términos y Condiciones')}}</a> {{ $t('y')}}
-                        <a>{{ $t('Políticas de privacidad')}}</a>.</label
+                        >{{ $t('He leído y acepto los')}} <nuxt-link :to="localePath('terms-conditions')">{{ $t('Términos y Condiciones')}}</nuxt-link> {{ $t('y')}}
+                        <nuxt-link :to="localePath('privacy-policies')">{{ $t('Políticas de privacidad')}}</nuxt-link>.</label
                       >
                       <span
                         class="error"

@@ -1,15 +1,15 @@
 <template>
   <main class="testimonials">
-    <section
-      class="banner"
-      style="background-image: url(public/img/banners/banner-nosotros.jpg)"
-    >
-      <div class="container">
-        <div class="text-center">
-          <h1>Testimoniales</h1>
-        </div>
-      </div>
-    </section>
+    <Banner :banner="page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content_formatted.includes('image') ? 
+                page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content.find((x) => x.field === 'image').value : ''" :title="page.data.content[page.data.content.findIndex(x => x.name === 'Banner')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
+            page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
+            : ''">
+    </Banner>
 
     <section class="section section-testimoniales">
       <div class="container">
@@ -88,7 +88,11 @@ if (process.client) {
   require("/static/js/jq.fancybox.min.js");
 }
 import "/static/css/jq.fancybox.min.css";
+import Banner from "../components/Banner";
 export default {
+  components:{
+    Banner
+  },
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/testimonials", {
       params: { locale: app.i18n.locale },

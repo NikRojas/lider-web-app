@@ -1,6 +1,14 @@
 <template>
   <main class="blog--post">
-    <Banner :title="page.data.post['title_' + $i18n.locale]"></Banner>
+    <Banner :banner="
+        page.data.content[
+          page.data.content.findIndex((x) => x.name === 'Banner')
+        ].content_formatted.includes('image')
+          ? page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Banner')
+            ].content.find((x) => x.field === 'image').value
+          : ''
+      " :title="page.data.post['title_' + $i18n.locale]"></Banner>
     <section class="section">
       <div class="container">
         <div class="grid-col">

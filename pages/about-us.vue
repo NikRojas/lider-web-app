@@ -1,6 +1,15 @@
 <template>
   <main class="about-us">
-    <Banner></Banner>
+    <Banner :banner="page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content_formatted.includes('image') ? 
+                page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content.find((x) => x.field === 'image').value : ''" :title="page.data.content[page.data.content.findIndex(x => x.name === 'Banner')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
+            page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
+            : ''">
+    </Banner>
     <section class="top-section">
       <div class="container">
         <div class="grid-col">
@@ -205,12 +214,9 @@
             <div class="box-ser-cliente wow fadeInLeft">
               <span>{{ i + 1 }}</span>
               <div>
-                <h4><b>Comunicate con nosotros</b></h4>
-                <p>
-                  Al teléfono (511) 208-0979 en horario de oficina (de Lunes a
-                  Viernes de 9am-1pm y 2pm-6pm) o podrán enviarnos un correo
-                  electrónico a servicioalcliente@lider.com.pe
-                </p>
+                <h4 v-if="el['title_'+ $i18n.locale]"><b>{{ el['title_'+ $i18n.locale]}}</b></h4>
+                <div  v-if="el['description_'+ $i18n.locale]"
+                v-html="el['description_'+ $i18n.locale]"></div>
               </div>
             </div>
           </div>
@@ -359,6 +365,12 @@ export default {
         },
       });
     });
+  },
+  nuxtI18n: {
+    paths: {
+      en: "/about-us",
+      es: "/nosotros",
+    },
   },
 };
 </script>

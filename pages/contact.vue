@@ -1,7 +1,15 @@
 <template>
   <main class="contact">
-    <Banner>
-      <div class="no-movil grid-col-2">
+    <Banner :banner="page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content_formatted.includes('image') ? 
+                page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content.find((x) => x.field === 'image').value : ''" :title="page.data.content[page.data.content.findIndex(x => x.name === 'Banner')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
+            page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
+            : ''">
+            <div class="no-movil grid-col-2">
         <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
         <nuxt-link :to="localePath('sell-your-land')" class="btn">{{ $t('Vende tu terreno')}}</nuxt-link>
       </div>
@@ -113,8 +121,8 @@
                         type="checkbox"
                       />
                       <label for="accepted"
-                        >{{ $t('He leído y acepto los')}} <a>{{ $t('Términos y Condiciones')}}</a> {{ $t('y')}}
-                        <a>{{ $t('Políticas de privacidad')}}</a>.</label
+                        >{{ $t('He leído y acepto los')}} <nuxt-link :to="localePath('terms-conditions')">{{ $t('Términos y Condiciones')}}</nuxt-link> {{ $t('y')}}
+                        <nuxt-link :to="localePath('privacy-policies')">{{ $t('Políticas de privacidad')}}</nuxt-link>.</label
                       >
                       <span
                         class="error error-red"

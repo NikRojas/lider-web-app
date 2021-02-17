@@ -1,9 +1,31 @@
 <template>
   <main class="blog--category">
-    <Banner> 
+    <Banner
+      :banner="
+        page.data.content[
+          page.data.content.findIndex((x) => x.name === 'Banner')
+        ].content_formatted.includes('image')
+          ? page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Banner')
+            ].content.find((x) => x.field === 'image').value
+          : ''
+      "
+      :title="
+        page.data.content[
+          page.data.content.findIndex((x) => x.name === 'Banner')
+        ].content_formatted.includes('title') &&
+        page.data.content[
+          page.data.content.findIndex((el) => el.name === 'Banner')
+        ].content.find((x) => x.field === 'title')['value_' + $i18n.locale]
+          ? page.data.content[
+              page.data.content.findIndex((el) => el.name === 'Banner')
+            ].content.find((x) => x.field === 'title')['value_' + $i18n.locale]
+          : ''
+      "
+    >
       <div class="section-filter-blog wow fadeInUp">
         <Search></Search>
-      </div> 
+      </div>
     </Banner>
     <section class="section-filter-blog" v-if="page.data.categories">
       <div class="container">

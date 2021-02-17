@@ -93,20 +93,29 @@
       </div>
     </section>
 
-    <!--<section class="top-section">
+    <section class="top-section">
       <div class="container">
-        <div class="img wow fadeInUp">
-          <a href="page-cami.php">
-            <img src="public/img/cami.png" alt="" />
-          </a>
+        <div class="img wow fadeInUp"   v-if="
+                page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Cami')
+                ].content_formatted.includes('image')
+              ">
+          <nuxt-link :to="localePath('cami')">
+            <img class="lazyload" :data-src="storageUrl+'/img/content/'+page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Cami')
+                ].content.find((x) => x.field === 'image').value" alt="Cami" />
+          </nuxt-link>
         </div>
       </div>
-    </section>-->
+    </section>
 
     <section class="section" v-if="page.data.posts.length">
       <div class="container">
         <div class="title center wow fadeInUp">
-          <h2>Últimas notas</h2>
+          <h2 v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Blog')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Blog')].content.find(x => x.field === 'title')['value_'+$i18n.locale]"
+            >{{ page.data.content[page.data.content.findIndex(el => el.name === 'Blog')].content.find(x => x.field === 'title')['value_'+$i18n.locale] }}
+          </h2>
         </div>
         <div class="home-blog owl-carousel owl-theme wow fadeInUp">
           <div class="item" v-for="el in page.data.posts" :key="'post' + el.id">
@@ -286,7 +295,7 @@ export default {
   mounted() {
     $(document).ready(function () {
       $('.hero-slider').owlCarousel({
-  animateIn: 'pulse',
+  //animateIn: 'pulse',
   items:1,
   loop:true,
   nav:true,

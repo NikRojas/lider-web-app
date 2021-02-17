@@ -1,7 +1,11 @@
 <template>
   <section
-    class="banner"
-    style="background-image: url(public/img/banners/banner-nosotros.jpg)"
+    class="banner lazyload"
+    :data-bg="
+        banner
+          ? storageUrl + '/img/content/' + banner
+          : ''
+      "
   >
     <div class="container">
       <div class="grid-banner-contacto wow fadeIn" data-wow-delay="0.5s">
@@ -15,6 +19,12 @@
 export default {
     props:{
         title: String,
-    }   
+        banner: String
+    }   ,
+    data(){
+      return{
+        storageUrl: process.env.STORAGE_URL,
+      }
+    }
 }
 </script>
