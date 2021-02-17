@@ -72,9 +72,6 @@
             <li>
               <nuxt-link :to="localePath('privacy-policies')">{{ $t('Políticas de privacidad de datos')}}</nuxt-link>
             </li>
-            <li>
-              <a href="">Código de protección al consumidor</a>
-            </li>
           </ul>
         </div>
       </div>

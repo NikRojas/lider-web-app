@@ -157,7 +157,12 @@
             </div>
             <div class="price">
               <b>{{$t("Precios desde")}}:</b>
-              <span>$ 126,925.00</span>
+              <template v-if="page.data.project.price_total_foreign">
+              <span>{{ page.data.project.price_total_foreign_format }}</span>
+            </template>
+            <template v-if="!page.data.project.price_total_foreign && page.data.project.price_total">
+              <span>{{ page.data.project.price_total_format }}</span>
+            </template>
             </div>
             <div class="financiamiento">
               <b>{{$t("Financiamiento")}}:</b>
@@ -206,20 +211,8 @@
       <div class="container">
         <div class="content-text text-justify-p">
           <div>
-            <h2>
-              <b
-                >FALTA VER ESTO EN BASE Un condominio seguro sin perder el sabor
-                del barrio</b
-              >
-            </h2>
-            <!--<p>
-              Diseñado pensando en los más pequeños del hogar: áreas comunes y
-              parques que rodean el condominio pueden ser vistos desde la
-              comodidad de tu departamento, estacionamientos en sótanos para
-              mayor seguridad y plaza interna con bancas y jardines crean el
-              lugar ideal para una vida plena y tranquila.
-            </p>-->
             <div
+              class="description--project"
               v-html="page.data.project['description_' + $i18n.locale]"
             ></div>
             <a
@@ -247,18 +240,27 @@
                     :data-src="storageUrl + '/img/features/' + el.image"
                     :alt="el['name_' + $i18n.locale]"
                   />{{ el["name_" + $i18n.locale] }}
+
+                  
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="img-proyec-fachada">
+      <div class="img-proyec-fachada card-video">
         <img
           class="lazyload"
           :data-src="storageUrl + '/img/projects/' + page.data.project.banner"
           :alt="'Fachada ' + page.data.project['name_' + $i18n.locale]"
         />
+        <a
+                    v-if="page.data.project.url_video"
+                    class="fancybox"
+                    data-fancybox="Video"
+                    :href="page.data.project.url_video"
+                    ><i class="flaticon-boton-de-play"></i
+                  ></a>
       </div>
     </section>
 

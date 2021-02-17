@@ -77,12 +77,17 @@
               <hr />
               <div>
                 <h5><b>{{ $t('Comentarios')}}:</b></h5>
-                <div
-                  class="fb-comments"
-                  data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-                  data-width=""
-                  data-numposts="5"
-                ></div>
+
+                <client-only>
+                  <div
+                    class="fb-comments"
+                    :data-href="baseUrl+$route.path"
+                    data-width="100%"
+                    data-numposts="10"
+                    data-lazy="true"
+                  ></div>
+                  <div id="fb-root"></div>
+                </client-only>
               </div>
               <hr />
             </div>
@@ -255,6 +260,11 @@ export default {
       baseUrl: process.env.BASE_URL,
       storageUrl: process.env.STORAGE_URL,
     };
+  },
+  updated() {
+    if (window.FB) {
+      window.FB.XFBML.parse();
+    }
   },
   nuxtI18n: {
     paths: {

@@ -199,3 +199,23 @@
                     }
                 }
             }
+            .img-proyec-fachada{
+                .fancybox{
+                   /* position: absolute;
+    top: 50%;*/
+                }
+            }
+
+            .description--project{
+                h1,h2{
+                    color: $color_1;
+                }
+            }
+            .content-single-blog{
+                iframe{
+
+                    width: 100%;
+                    height: 500px;
+                    margin-bottom: 10px;
+                }
+            }

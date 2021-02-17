@@ -65,18 +65,20 @@
                 ></a>
               </div>
               <div class="gal2">
-                <div
-                  class="wow fadeInUp"
-                  :data-wow-delay="1.2 + i * 0.2 + 's'"
-                  v-for="(el, i) in page.data.cami.images_format"
-                  :key="i"
-                >
-                  <img
-                    v-if="i != 0"
-                    :data-src="storageUrl + '/img/cami/' + el"
-                    class="lazyload"
-                  />
-                </div>
+                <template v-for="(el, i) in page.data.cami.images_format">
+                  <div
+                    class="wow fadeInUp"
+                    :data-wow-delay="1.2 + i * 0.2 + 's'"
+                    :key="i"
+                     v-if="i != 0"
+                  >
+                    <img
+                     
+                      :data-src="storageUrl + '/img/cami/' + el"
+                      class="lazyload"
+                    />
+                  </div>
+                </template>
               </div>
             </div>
           </div>

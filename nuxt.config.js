@@ -10,7 +10,8 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'msapplication-TileColor', content: '#ffffff' },
       { name: 'msapplication-TileImage', content: '/img/favicon/ms-icon-144x144.png' },
-      { name: 'theme-color', content: '#ffffff' }
+      { name: 'theme-color', content: '#ffffff' },
+      { property: 'fb:app_id', content: '483145982276069' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -33,6 +34,7 @@ export default {
       {
         src: "/js/wow.min.js",
       },
+      { src: '/js/facebook-sdk.js', defer: true, async: true },
     ],
   },
   server: {
@@ -87,9 +89,14 @@ export default {
       seo: false
     }],
     ['vue-scrollto/nuxt', { duration: 300 }],
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    '@nuxtjs/gtm',
   ],
-
+  gtm: {
+    id: 'GTM-XXXXXX',
+    //debug: true,
+    //enabled: true
+  },
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'es',
