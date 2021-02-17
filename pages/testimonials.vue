@@ -14,11 +14,15 @@
     <section class="section section-testimoniales">
       <div class="container">
         <div class="text-center wow fadeInUp">
-          <h2><b>Conoce lo que dicen nuestros vecinos Lider</b></h2>
-          <p>
-            Líder Grupo Constructor, cuenta con más de 18 años de experiencia
-            haciendo felices a muchas familias.
-          </p>
+             <h2 v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Conoce lo que dicen nuestros vecinos Líder')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Conoce lo que dicen nuestros vecinos Líder')].content.find(x => x.field === 'title')['value_'+$i18n.locale]"
+            ><b>{{ page.data.content[page.data.content.findIndex(el => el.name === 'Conoce lo que dicen nuestros vecinos Líder')].content.find(x => x.field === 'title')['value_'+$i18n.locale] }}</b>
+          </h2>
+              <div v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Conoce lo que dicen nuestros vecinos Líder')].content_formatted.includes('description')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Conoce lo que dicen nuestros vecinos Líder')].content.find(x => x.field === 'description')['value_'+$i18n.locale]"
+                      v-html="
+                        page.data.content[page.data.content.findIndex(el => el.name === 'Conoce lo que dicen nuestros vecinos Líder')].content.find(x => x.field === 'description')['value_'+$i18n.locale]
+                      "></div>
           <br />
         </div>
         <div

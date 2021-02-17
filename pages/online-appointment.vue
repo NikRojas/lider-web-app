@@ -1,12 +1,28 @@
 <template>
   <main class="online-appointment">
-    <Banner> </Banner>
+    <Banner :banner="page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content_formatted.includes('image') ? 
+                page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Banner')
+                ].content.find((x) => x.field === 'image').value : ''" :title="page.data.content[page.data.content.findIndex(x => x.name === 'Banner')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
+            page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
+            : ''"> </Banner>
     <section class="section section-contacto">
       <div class="container">
         <div class="grid-col">
           <div class="grid-s-12 grid-m-12 grid-l-6">
             <div class="content wow fadeInUp">
-              <h2><b>Déjanos tus datos para agendarte una cita online.</b></h2>
+              <h2 v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Información')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'title')['value_'+$i18n.locale]"
+            ><b>{{ page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'title')['value_'+$i18n.locale] }}</b>
+          </h2>
+              <div v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Información')].content_formatted.includes('description')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'description')['value_'+$i18n.locale]"
+                      v-html="
+                        page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'description')['value_'+$i18n.locale]
+                      "></div>
               <transition name="slide-fade">
                 <div v-if="success" key="true" class="form__text-success-2">
                     <h3>
@@ -155,8 +171,12 @@
           </div>
         </div>
       </div>
-      <div class="banner-contact wow fadeInRight">
-        <img src="public/img/contacto/fondo-citaonline.jpg" alt="" />
+      <div class="banner-contact wow fadeInRight" data-wow-delay="1.5s" v-if=" page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Información')
+                ].content_formatted.includes('image')">
+        <img class="lazyload" :data-src="storageUrl+'/img/content/'+page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Información')
+                ].content.find((x) => x.field === 'image').value" alt="" />
       </div>
     </section>
   </main>
@@ -277,6 +297,7 @@ export default {
   },
   data() {
     return {
+      storageUrl: process.env.STORAGE_URL,
       errors: {},
       page: {},
       form: {

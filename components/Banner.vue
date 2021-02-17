@@ -10,8 +10,9 @@
     <div class="container">
       <div class="grid-banner-contacto wow fadeIn" data-wow-delay="0.5s">
         <h1>{{ title }}</h1>
+        <slot name="title"></slot>
       </div>
-      <slot></slot>
+      <slot name="default"></slot>
     </div>
   </section>
 </template>

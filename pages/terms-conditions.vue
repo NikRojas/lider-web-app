@@ -10,6 +10,31 @@
             page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
             : ''">
     </Banner>
+
+    <section class="section">
+      <div class="container">
+        <div
+          class="text text-justify"
+          v-if="
+            page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Información')
+            ].content_formatted.includes('description') &&
+            page.data.content[
+              page.data.content.findIndex((el) => el.name === 'Información')
+            ].content.find((x) => x.field === 'description')[
+              'value_' + $i18n.locale
+            ]
+          "
+          v-html="
+            page.data.content[
+              page.data.content.findIndex((el) => el.name === 'Información')
+            ].content.find((x) => x.field === 'description')[
+              'value_' + $i18n.locale
+            ]
+          "
+        ></div>
+      </div>
+    </section>
     </main>
 </template>
 <script>

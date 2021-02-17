@@ -9,7 +9,7 @@
             && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
             page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
             : ''">
-            <div class="no-movil grid-col-2">
+            <div slot="title" class="no-movil grid-col-2">
         <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contact')}}</nuxt-link>
         <nuxt-link :to="localePath('sell-your-land')" class="btn"
           >{{ $t('Vende tu terreno')}}</nuxt-link
@@ -23,11 +23,15 @@
         <div class="grid-col">
           <div class="grid-s-12 grid-m-12 grid-l-6">
             <div class="content wow fadeInUp" data-wow-delay="1.5s">
-              <h2><b>Déjanos tu consulta CAMIBAR</b></h2>
-              <p>
-                TEST Envianos tus datos y tu {{ $t("Mensaje")}} de consulta para que un asesor
-                pueda resolverlo.
-              </p>
+                <h2 v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Información')].content_formatted.includes('title')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'title')['value_'+$i18n.locale]"
+            ><b>{{ page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'title')['value_'+$i18n.locale] }}</b>
+          </h2>
+              <div v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Información')].content_formatted.includes('description')
+            && page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'description')['value_'+$i18n.locale]"
+                      v-html="
+                        page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'description')['value_'+$i18n.locale]
+                      "></div>
               <transition name="slide-fade">
                 <div v-if="success" key="true" class="form__text-success-2">
                   <h3>
@@ -134,8 +138,12 @@
           </div>
         </div>
       </div>
-      <div class="banner-contact wow fadeInRight" data-wow-delay="1.5s">
-        <img src="public/img/contacto/fondo-contacto.png" alt="" />
+      <div class="banner-contact wow fadeInRight" data-wow-delay="1.5s" v-if=" page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Información')
+                ].content_formatted.includes('image')">
+        <img class="lazyload" :data-src="storageUrl+'/img/content/'+page.data.content[
+                  page.data.content.findIndex((x) => x.name === 'Información')
+                ].content.find((x) => x.field === 'image').value" alt="" />
       </div>
     </section>
     <section class="section si-movil-contacto bg1" style="display: none">
@@ -256,6 +264,7 @@ export default {
   },
   data() {
     return {
+      storageUrl: process.env.STORAGE_URL,
       request: false,
       form: {},
       success: false,
