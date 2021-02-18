@@ -44,6 +44,7 @@
               <a
                 class="fancybox"
                 data-fancybox="Testimonios"
+                v-if="el.url_video"
                 :href="el.url_video"
                 ><i class="flaticon-boton-de-play"></i
               ></a>

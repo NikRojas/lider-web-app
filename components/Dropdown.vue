@@ -25,7 +25,6 @@ export default {
   },
   methods:{
       close(){
-          console.log("test");
           this.show = false
       }
   },

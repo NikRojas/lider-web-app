@@ -35,7 +35,7 @@
           <Dropdown
             :right="true"
             classWrapper="dropdown-width"
-            v-if="menu.information && menu.information.whatsapp_numbers.length"
+            v-if="menu.information && menu.information.whatsapp_numbers && menu.information.whatsapp_numbers.length"
           >
             <div slot="active-text" class="btn-circle">
               <i class="flaticon-whatsapp-1"></i>
@@ -55,7 +55,7 @@
           <Dropdown
             :right="true"
             classWrapper="dropdown-width"
-            v-if="menu.information && menu.information.phone_numbers.length"
+            v-if="menu.information && menu.information.phone_numbers && menu.information.phone_numbers.length"
           >
             <div slot="active-text" class="btn-circle">
               <i class="flaticon-telephone"></i>
