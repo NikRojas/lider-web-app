@@ -1,6 +1,7 @@
 <template>
   <nuxt-link :to="localePath({ name: 'projects-slug', params: { slug: el['slug_'+$i18n.locale] } })">
-    <div class="card card-proyecto wow fadeInUp">
+    <!--<div class="card card-proyecto wow fadeInUp">-->
+      <div class="card card-proyecto">
       <div class="proyecto-body">
         <div class="head-proyect">
           <div class="proyect-logo">

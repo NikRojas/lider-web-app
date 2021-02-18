@@ -1,12 +1,17 @@
 <template>
   <div
-    class="suscribete"
-    style="background-image: url(public/img/blog/bg-suscribete.jpg)"
+    class="suscribete lazyload"
+    :data-bg="
+        banner
+          ? storageUrl + '/img/content/' + banner
+          : ''
+      "
   >
     <div class="grid-col">
       <div class="grid-s-12 grid-m-5 grid-l-5 no-movil">
-        <div class="img">
-          <img src="public/img/blog/foto-suscribete.png" alt="" />
+        
+        <div class="img" v-if="image">
+          <img class="lazyload" :data-src="storageUrl + '/img/content/' + image" alt="" />
         </div>
       </div>
       <div class="grid-s-12 grid-m-7 grid-l-7">
@@ -29,7 +34,7 @@
                         <label for="name">{{ $t("Nombre y apellido")}}*</label>
                             <input type="text" id="name" v-model="form.name" />
                             <span
-                                class="error"
+                                class="error error-red"
                                 v-if="errors && errors.name"
                                 for="name"
                                 >{{ $t(errors.name[0]) }}</span
@@ -41,7 +46,7 @@
                         <label for="email">{{ $t("Correo") }}*</label>
                         <input type="text" id="email" v-model="form.email" />
                         <span
-                            class="error"
+                            class="error error-red"
                             v-if="errors && errors.email"
                             for="email"
                             >{{ $t(errors.email[0]) }}</span
@@ -62,7 +67,7 @@
                             >.</label
                         >
                         <span
-                            class="error"
+                            class="error error-red"
                             v-if="errors && errors.accepted"
                             for="accepted"
                             >{{ $t(errors.accepted[0]) }}</span
@@ -78,8 +83,8 @@
         </div>
       </div>
       <div class="grid-s-12 si-movil" style="display: none">
-        <div class="img">
-          <img src="public/img/blog/foto-suscribete.png" alt="" />
+        <div class="img" v-if="image">
+          <img class="lazyload" :data-src="storageUrl + '/img/content/' + image" alt="" />
         </div>
       </div>
     </div>
@@ -87,12 +92,17 @@
 </template>
 <script>
 export default {
+   props:{
+        image: String,
+        banner: String
+    }   ,
     data(){
         return{
             form:{},
             request: false,
             errors:{},
             success: false,
+            storageUrl: process.env.STORAGE_URL,
         }
     },
     methods:{

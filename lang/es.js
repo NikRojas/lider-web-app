@@ -87,4 +87,6 @@ export default {
     'Políticas de privacidad de datos': 'Políticas de privacidad de datos',
     'Misión': 'Misión',
     'Visión': 'Visión',
+    'Dormitorio': 'Dormitorio',
+    'Dormitorios' : 'Dormitorios',
 }

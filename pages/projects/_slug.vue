@@ -420,7 +420,12 @@
         </div>
         <div class="grid-s-12 grid-m-12 grid-l-7">
           <div class="mapa">
-            <img src="public/img/proyectos/mapa1.jpg" alt="" />
+              <img
+              v-if="page.data.project.iframe_map"
+              class="lazyload"
+              :data-src="storageUrl + '/img/projects/' + page.data.project.iframe_map"
+              :alt="'Mapa ' + page.data.project['name_' + $i18n.locale]"
+            />
           </div>
         </div>
       </div>

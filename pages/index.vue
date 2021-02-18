@@ -42,6 +42,7 @@
       :departments.sync="filterDepartments"
       :districts.sync="filterDistricts"
       :statuses.sync="filterStatuses"
+      :rooms.sync="filterRooms"
       @search="searchFilter"
       :loading="loadingProjects"
       label="Proyectos en venta"
@@ -273,6 +274,7 @@ export default {
               ? { districts: this.filterDistricts }
               : {}),
             ...(this.filterStatuses ? { statuses: this.filterStatuses } : {}),
+            ...(this.filterRooms ? { rooms: this.filterRooms } : {}),
           },
         })
         .then((response) => {
@@ -285,10 +287,8 @@ export default {
             this.projectsPageActive = 1;
             this.page.data.projects = response;
           }
-          setTimeout(() => {
             this.loadingProjects = false;
             this.loadingMoreProjects = false;
-          }, 1000);
         });
     },
   },

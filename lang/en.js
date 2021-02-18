@@ -22,6 +22,8 @@ export default {
     'Recorrido Virtual': 'Virtual Tour',
     'Ubicación': 'Location',
     'Documentos': 'Documents',
+    'Dormitorio': 'Room',
+    'Dormitorios' : 'Rooms',
     'Cotizar': 'Quote',
     'Precios desde': 'Prices from',
     'Atributos del proyecto': 'Project attributes',

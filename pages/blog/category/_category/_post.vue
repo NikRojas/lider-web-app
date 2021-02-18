@@ -94,10 +94,6 @@
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-3">
             <div class="aside-blog">
-              <!--<div class="buscador">
-                <input type="text" placeholder="| Que estas buscando" />
-                <i class="flaticon-lupa"></i>
-              </div>-->
               <Search></Search>
               <div class="list-categoria">
                 <h5><b>{{ $t('Categorías')}}:</b></h5>
@@ -134,7 +130,19 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-9">
-            <Suscribe></Suscribe>
+            <Suscribe :banner="page.data.content[
+          page.data.content.findIndex((x) => x.name === 'Suscríbete')
+        ].content_formatted.includes('background')
+          ? page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Suscríbete')
+            ].content.find((x) => x.field === 'background').value
+          : ''" :image="page.data.content[
+          page.data.content.findIndex((x) => x.name === 'Suscríbete')
+        ].content_formatted.includes('image')
+          ? page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Suscríbete')
+            ].content.find((x) => x.field === 'image').value
+          : ''"></Suscribe>
           </div>
         </div>
       </div>

@@ -24,20 +24,29 @@
                     />
                     <label :for="el['department']">{{ el.department }}</label>
                   </div>
-                  <div
-                    class="form-control second"
-                    v-for="el3 in el.districts"
-                    :key="el3.code_department + el3.code_district"
-                  >
-                    <input
-                      class="checkbox"
-                      :id="el3['district']"
-                      type="checkbox"
-                      :value="el.code_department+el3.code_district"
-                      v-model="districtsValue"
-                    />
-                    <label :for="el3['district']">{{ el3.district }}</label>
-                  </div>
+                  <template v-if="departmentsValue.indexOf(el.code_department) !== -1">
+                    <div
+                      class="form-control second"
+                      v-for="el3 in el.districts"
+                      :key="el3.code_department + el3.code_district"
+                    >
+                      <!--<input
+                        class="checkbox"
+                        :id="el3['district']"
+                        type="checkbox"
+                        :value="el.code_department+el3.code_district"
+                        v-model="districtsValue"
+                      />-->
+                      <input
+                        class="checkbox"
+                        :id="el3['district']"
+                        type="checkbox"
+                        :value="el3.code_ubigeo"
+                        v-model="districtsValue"
+                      />
+                      <label :for="el3['district']">{{ el3.district }}</label>
+                    </div>
+                  </template>
                 </template>
               </div>
             </div>
@@ -84,10 +93,27 @@
             </div>
             <div class="dropdown top">
               <div class="dropdown-result">
-                N° dormitorios <i class="flaticon-download"></i>
+                N° {{ $t('Dormitorios') }} <i class="flaticon-download"></i>
               </div>
               <div class="dropdown-content">
-                <div class="form-control first">
+                <div
+                  class="form-control first"
+                  v-for="el in filters.rooms"
+                  :key="'room' + el"
+                >
+                  <input
+                    class="checkbox"
+                    :id="'room'+el"
+                    type="checkbox"
+                    :value="el"
+                    v-model="roomsValue"
+                  />
+                  <label :for="'room'+el">{{
+                    el
+                  }} {{ el == 1 ? $t('Dormitorio') : $t('Dormitorios')}}</label>
+                </div>
+
+                <!--<div class="form-control first">
                   <input
                     class="checkbox"
                     id="1dorm"
@@ -113,7 +139,7 @@
                     value="value1"
                   />
                   <label for="3dorm">3 Dormitorios</label>
-                </div>
+                </div>-->
               </div>
             </div>
             <button
@@ -159,19 +185,31 @@ export default {
     departmentsValue: {
       handler: function (newValue, oldValue) {
         if (newValue) {
+          let difference = oldValue.filter(x => !newValue.includes(x));
+          
+            if(difference.length){
+              if(this.districtsValue.length){
+                var newDistricts = this.districtsValue.filter(x => { console.log(x); x.substring(0, 2) == difference});
+                this.districtsValue = newDistricts.slice();
+              }
+            }
+
           this.$emit("update:departments", newValue);
           this.search();
         }
-        let difference = newValue.filter(x => !oldValue.includes(x));
-        console.log(difference)
       },
     },
     districtsValue: {
       handler: function (newValue) {
         if (newValue) {
           var value = newValue[newValue.length - 1];
-          var codeDepartment = value.substring(0, 2);
-          this.departmentsValue.push(codeDepartment);
+          if(value && value.length){
+            var codeDepartment = value.substring(0, 2);
+            var exist = this.departmentsValue.indexOf(codeDepartment) !== -1;
+            if(!exist){
+              this.departmentsValue.push(codeDepartment);
+            }
+          }
           this.$emit("update:districts", newValue);
           this.search();
         }
@@ -181,6 +219,14 @@ export default {
       handler: function (newValue) {
         if (newValue) {
           this.$emit("update:statuses", newValue);
+          this.search();
+        }
+      },
+    },
+    roomsValue: {
+      handler: function (newValue) {
+        if (newValue) {
+          this.$emit("update:rooms", newValue);
           this.search();
         }
       },
