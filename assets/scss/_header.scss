@@ -54,8 +54,10 @@ header {
             }
         }
         .nav {
-            display: block;
+            display: flex;
+            justify-self: right;
             text-align: right;
+            align-items: center;
         }
     }
 }
@@ -111,7 +113,8 @@ header {
                     color: #ffffff;
                     display: block;
                     &:hover{
-                        color: $color_3;
+                        color: #ffffff;
+                        font-weight: 600;
                     }
                 }
             }

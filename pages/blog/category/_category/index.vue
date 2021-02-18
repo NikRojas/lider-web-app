@@ -65,6 +65,7 @@
 <script>
 import Banner from "../../../../components/Banner";
 import Post from "../../../../components/blog/Post";
+import Search from "../../../../components/blog/Search";
 export default {
   head() {
     return { 
@@ -169,7 +170,8 @@ export default {
   },
   components:{
     Banner,
-    Post
+    Post,
+    Search
   },
   data() {
     return {
