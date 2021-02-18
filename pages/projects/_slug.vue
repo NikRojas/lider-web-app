@@ -476,9 +476,10 @@
               <div class="item-carousel-plano">
                 <label for="">{{$t('Planos')}}</label>
                 <div class="planos-proyecto owl-carousel owl-theme">
+                  <template v-for="(el, i) in page.data.project.tipologies_rel">
                    <div
                       class="item"
-                      v-for="(el, i) in page.data.project.tipologies_rel"
+                      v-if="el.available"
                       :key="'ti' + i"
                     >
                       <div class="img-plano">
@@ -508,6 +509,7 @@
                         <strong>{{ el.name }}</strong>
                       </div>
                     </div>
+                  </template>
                 </div>
               </div>
               <div class="item-from">

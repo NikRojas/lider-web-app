@@ -28,7 +28,7 @@
                     <div
                       class="form-control second"
                       v-for="el3 in el.districts"
-                      :key="el3.code_department + el3.code_district"
+                      :key="el3.code_ubigeo"
                     >
                       <!--<input
                         class="checkbox"
