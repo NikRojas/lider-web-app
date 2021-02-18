@@ -84,7 +84,7 @@
                   </div>
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
-                      <label for="area">Área*</label>
+                      <label for="area">{{$t('Área')}}*</label>
                       <input
                         type="text"
                         id="area"

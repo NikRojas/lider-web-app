@@ -89,4 +89,9 @@ export default {
     'Políticas de privacidad de datos': 'Data privacy policies',
     'Misión': 'Mision',
     'Visión': 'Vision',
+    'Estatus del proyecto': 'Project status',
+    'Ciudad - Distrito': 'City - District',
+    'Proyectos en venta': 'Projects for sale',
+    'Disponibles': 'Availables',
+    'Área': 'Area'
 }

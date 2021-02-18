@@ -44,8 +44,9 @@
       :statuses.sync="filterStatuses"
       :rooms.sync="filterRooms"
       @search="searchFilter"
+      orientation="top"
       :loading="loadingProjects"
-      label="Proyectos en venta"
+      :label="$t('Proyectos en venta')"
       :filters="page.data.filters"
     />
 
@@ -253,10 +254,6 @@ export default {
   },
   methods: {
     searchFilter(next = false) {
-      /*console.log(this.filterDepartments);
-      console.log(this.filterDistricts);
-      console.log(this.filterStatuses);
-      console.log( this.$i18n.locale)*/
       if (next) {
         this.loadingMoreProjects = true;
       } else {

@@ -89,4 +89,9 @@ export default {
     'Visión': 'Visión',
     'Dormitorio': 'Dormitorio',
     'Dormitorios' : 'Dormitorios',
+    'Estatus del proyecto': 'Estatus del proyecto',
+    'Ciudad - Distrito': 'Ciudad - Distrito',
+    'Proyectos en venta': 'Proyectos en venta',
+    'Disponibles': 'Disponibles',
+    'Área': 'Área'
 }

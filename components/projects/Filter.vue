@@ -5,9 +5,9 @@
         <h1>{{ label }}</h1>
         <form @submit.prevent="search">
           <div class="grid-input-filtro">
-            <div class="dropdown top">
+            <div class="filter-dropdown" :orientation="orientation">
               <div class="dropdown-result">
-                Ciudad - Distrito <i class="flaticon-download"></i>
+                {{ $t('Ciudad - Distrito')}} <i class="flaticon-download"></i>
               </div>
               <div class="dropdown-content">
                 <template v-for="el in filters.departments">
@@ -30,13 +30,6 @@
                       v-for="el3 in el.districts"
                       :key="el3.code_ubigeo"
                     >
-                      <!--<input
-                        class="checkbox"
-                        :id="el3['district']"
-                        type="checkbox"
-                        :value="el.code_department+el3.code_district"
-                        v-model="districtsValue"
-                      />-->
                       <input
                         class="checkbox"
                         :id="el3['district']"
@@ -50,9 +43,9 @@
                 </template>
               </div>
             </div>
-            <div class="dropdown top">
+            <div class="filter-dropdown" :orientation="orientation">
               <div class="dropdown-result">
-                Estatus del proyecto <i class="flaticon-download"></i>
+                {{ $t('Estatus del proyecto')}} <i class="flaticon-download"></i>
               </div>
               <div class="dropdown-content">
                 <div
@@ -71,27 +64,9 @@
                     el["name_" + $i18n.locale]
                   }}</label>
                 </div>
-                <!--<div class="form-control first">
-					<input
-					class="checkbox"
-					id="contrucción"
-					type="checkbox"
-					value="value1"
-					/>
-					<label for="contrucción">En contrucción</label>
-				</div>
-				<div class="form-control first">
-					<input
-					class="checkbox"
-					id="inmediata"
-					type="checkbox"
-					value="value1"
-					/>
-					<label for="inmediata">Entrega inmediata</label>
-				</div>-->
               </div>
             </div>
-            <div class="dropdown top">
+            <div class="filter-dropdown" :orientation="orientation">
               <div class="dropdown-result">
                 N° {{ $t('Dormitorios') }} <i class="flaticon-download"></i>
               </div>
@@ -112,34 +87,6 @@
                     el
                   }} {{ el == 1 ? $t('Dormitorio') : $t('Dormitorios')}}</label>
                 </div>
-
-                <!--<div class="form-control first">
-                  <input
-                    class="checkbox"
-                    id="1dorm"
-                    type="checkbox"
-                    value="value1"
-                  />
-                  <label for="1dorm">1 Dormitorio</label>
-                </div>
-                <div class="form-control first">
-                  <input
-                    class="checkbox"
-                    id="2dorm"
-                    type="checkbox"
-                    value="value1"
-                  />
-                  <label for="2dorm">2 Dormitorios</label>
-                </div>
-                <div class="form-control first">
-                  <input
-                    class="checkbox"
-                    id="3dorm"
-                    type="checkbox"
-                    value="value1"
-                  />
-                  <label for="3dorm">3 Dormitorios</label>
-                </div>-->
               </div>
             </div>
             <button
@@ -158,6 +105,10 @@
 <script>
 export default {
   props: {
+    orientation:{
+      default: 'bottom',
+      type: String
+    },
     label: String,
     filters: Object,
     loading: Boolean,
