@@ -118,25 +118,25 @@
         </div>
         <div
           class="proyectos-entregados owl-carousel owl-theme nav-absolute2 wow fadeInUp"
-          v-if="page.data.third['2'].length"
+          v-if="page.data.third['2'] && page.data.third['2'].length"
         >
           <div
             class="item"
             v-for="(el, i) in page.data.third['2']"
             :key="'pe' + i"
           >
-            <div class="box-proyecto">
+            <div class="box-proyecto" v-for="(el2, j) in el" :key="'item'+j">
               <img
                 class="lazyload"
-                :data-src="storageUrl + '/img/about/' + el.image"
-                :alt="el.name + ' ' + i"
+                :data-src="storageUrl + '/img/about/' + el2.image"
+                :alt="el2.name + ' ' + i"
               />
               <h4>
-                <b>{{ el.name }}</b>
+                <b>{{ el2.name }}</b>
               </h4>
               <div
-                v-if="el['description_' + $i18n.locale]"
-                v-html="el['description_' + $i18n.locale]"
+                v-if="el2['description_' + $i18n.locale]"
+                v-html="el2['description_' + $i18n.locale]"
               ></div>
             </div>
           </div>

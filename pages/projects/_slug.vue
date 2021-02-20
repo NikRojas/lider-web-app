@@ -273,7 +273,7 @@
       </div>
     </section>
 
-    <section id="galeria" class="section">
+    <section id="galeria" class="section" v-if="page.data.project.gallery_rel.length">
       <div class="container">
         <div class="title center">
           <h2>{{ page.data.project["text_place_" + $i18n.locale] }}</h2>
@@ -515,10 +515,11 @@
                 <div class="item-carousel-plano">
                   <label for="">{{ $t("Planos") }}</label>
                   <div class="planos-proyecto owl-carousel owl-theme">
-                    <template
+                    <!--<template
                       v-for="(el, i) in page.data.project.tipologies_rel"
-                    >
-                      <div class="item" v-if="el.available" :key="'ti' + i">
+                    >-->
+                      <!--<div class="item" v-if="el.available" :key="'ti' + i">-->
+                        <div class="item"  v-for="(el, i) in page.data.project.tipologies_rel" :key="'ti' + i">
                         <div class="img-plano">
                           <a
                             class="fancybox"
@@ -548,7 +549,7 @@
                           <strong>{{ el.name }}</strong>
                         </div>
                       </div>
-                    </template>
+                    <!--</template>-->
                   </div>
                 </div>
                 <div class="item-from">

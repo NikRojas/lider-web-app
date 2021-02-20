@@ -7,12 +7,12 @@
             <img
               :data-src="storageUrl + '/img/projects/' + el.logo"
               alt=""
-              class="logo-p1 lazyload"
+              class="logo-p1 lazyload img--width-auto"
             />
             <img
               :data-src="storageUrl + '/img/projects/' + el.logo_colour"
               alt=""
-              class="logo-p2 lazyload"
+              class="logo-p2 lazyload img--width-auto"
               style="display: none"
             />
           </div>
