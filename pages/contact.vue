@@ -180,7 +180,7 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: "/contact",
+      en: "/contact-us",
       es: "/contacto",
     },
   },

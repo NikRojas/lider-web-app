@@ -10,7 +10,7 @@
             page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
             : ''">
             <div slot="title" class="no-movil grid-col-2">
-        <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contact')}}</nuxt-link>
+        <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contacto')}}</nuxt-link>
         <nuxt-link :to="localePath('sell-your-land')" class="btn"
           >{{ $t('Vende tu terreno')}}</nuxt-link
         >

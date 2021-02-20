@@ -107,7 +107,7 @@ export default {
   nuxtI18n: {
     paths: {
       en: "/testimonials",
-      es: "/testimonios",
+      es: "/testimoniales",
     },
   },
   head() {

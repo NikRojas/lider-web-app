@@ -134,12 +134,12 @@
                     <div class="item" v-for="item in el['elements_' + $i18n.locale+'_format']" :key="item.icon">
                       <div class="card-cultura">
                         <div class="content-cultura">
-                          <img  class="lazyload" :data-src="storageUrl+'/img/cami-elements/'+item.file"  />
+                          <img  class="cami__item__image lazyload" :data-src="storageUrl+'/img/cami-elements/'+item.file"  />
                           <div class="text" v-html="item['description_'+$i18n.locale]">
                           </div>
                         </div>
                         <div class="titulo">
-                          <img class="lazyload" :data-src="storageUrl+'/img/cami-elements/'+item.icon"  />
+                          <img height="43" class="cami__item__icon lazyload img--width-auto" :data-src="storageUrl+'/img/cami-elements/'+item.icon"  />
                           <h5><b>{{ item['title_'+$i18n.locale]}}</b></h5>
                         </div>
                       </div>

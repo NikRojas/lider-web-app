@@ -93,5 +93,6 @@ export default {
     'Ciudad - Distrito': 'Ciudad - Distrito',
     'Proyectos en venta': 'Proyectos en venta',
     'Disponibles': 'Disponibles',
-    'Área': 'Área'
+    'Área': 'Área',
+    'Ver galería': 'Ver galería'
 }
