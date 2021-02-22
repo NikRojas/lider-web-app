@@ -5,7 +5,7 @@
         <h1>{{ label }}</h1>
         <form @submit.prevent="search">
           <div class="grid-input-filtro">
-            <div class="filter-dropdown" :orientation="orientation">
+            <!--<div class="filter-dropdown">
               <div class="dropdown-result">
                 {{ $t('Ciudad - Distrito')}} <i class="flaticon-download"></i>
               </div>
@@ -43,7 +43,7 @@
                 </template>
               </div>
             </div>
-            <div class="filter-dropdown" :orientation="orientation">
+            <div class="filter-dropdown">
               <div class="dropdown-result">
                 {{ $t('Estatus del proyecto')}} <i class="flaticon-download"></i>
               </div>
@@ -66,7 +66,7 @@
                 </div>
               </div>
             </div>
-            <div class="filter-dropdown" :orientation="orientation">
+            <div class="filter-dropdown">
               <div class="dropdown-result">
                 N° {{ $t('Dormitorios') }} <i class="flaticon-download"></i>
               </div>
@@ -88,13 +88,68 @@
                   }} {{ el == 1 ? $t('Dormitorio') : $t('Dormitorios')}}</label>
                 </div>
               </div>
+            </div>-->
+            <div>
+              <select name="ubigeo" v-model="filter.ubigeo" id="" class="w-100">
+                <option disabled value="0">
+                  {{ $t("Ciudad - Distrito") }}
+                </option>
+                <option
+                  v-for="(el, z) in filtersData.departments"
+                  :key="'dep' + el.code_ubigeo + z"
+                  :value="el.department ? el.code_department : el.code_ubigeo"
+                >
+                  {{ el.department ? el.department : el.district }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <div v-if="loadingSpecific">
+                <client-only>
+                  <PuSkeleton height="45px"></PuSkeleton>
+                </client-only>
+              </div>
+              <div v-else>
+                <select name="status" v-model="filter.status" id="" class="w-100">
+                  <option disabled value="0">
+                    {{ $t("Estatus del proyecto") }}
+                  </option>
+                  <option
+                    v-for="el in filtersData.status"
+                    :key="'stat' + el.id"
+                    :value="el.id"
+                  >
+                    {{ el["name_" + $i18n.locale] }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <div v-if="loadingSpecific">
+                <client-only>
+                  <PuSkeleton height="45px"></PuSkeleton>
+                </client-only>
+              </div>
+              <div v-else>
+                <select name="room" v-model="filter.rooms" id="" class="w-100">
+                  <option disabled value="0">N° {{ $t("Dormitorios") }}</option>
+                  <option
+                    v-for="el in filtersData.rooms"
+                    :key="'room' + el"
+                    :value="el"
+                  >
+                    {{ el }}
+                    {{ el == 1 ? $t("Dormitorio") : $t("Dormitorios") }}
+                  </option>
+                </select>
+              </div>
             </div>
             <button
               type="submit"
               class="btn btn2"
-              :class="loading ? 'btn--opacity' : ''"
+              :class="loading ? 'btn--opaubigeo' : ''"
             >
-              {{ loading ? $t("Cargando")+"..." : $t("Buscar") }}
+              {{ loading ? $t("Cargando") + "..." : $t("Buscar") }}
             </button>
           </div>
         </form>
@@ -105,35 +160,101 @@
 <script>
 export default {
   props: {
-    orientation:{
+    /*orientation:{
       default: 'bottom',
       type: String
-    },
+    },*/
     label: String,
     filters: Object,
     loading: Boolean,
   },
   data() {
     return {
-      departmentsValue: [],
+      filter: {
+        rooms: 0,
+        ubigeo: 0,
+        status: 0,
+      },
+      filtersData: {},
+      /*departmentsValue: [],
       districtsValue: [],
       statusValue: [],
-      roomsValue: [],
+      roomsValue: [],*/
+      loadingSpecific: false,
+      notSearch: false,
     };
   },
   methods: {
     search() {
+      if(this.notSearch === false){
+        return
+      }
       this.$emit(
-        "search"
+        "search",
+        /*this.filter.ubigeo,
+        this.filter.status,
+        this.filter.rooms*/
         /*,
         this.departmentsValue,
         this.districtsValue,
         this.statusValue*/
       );
     },
+    getFilters(ubigeo) {
+      this.loadingSpecific = true;
+      this.$axios
+        .$get("/api/filters", {
+          params: {
+            ...(ubigeo ? { ubigeo: ubigeo } : {}),
+          },
+        })
+        .then((response) => {
+          this.loadingSpecific = false;
+          if (response.status) {
+            this.filtersData.status = response.status.slice();
+          }
+          if (response.rooms) {
+            this.filtersData.rooms = response.rooms.slice();
+          }
+            this.filter.status = 0;
+            this.filter.rooms = 0;
+
+        });
+    },
   },
   watch: {
-    departmentsValue: {
+    filters: {
+      immediate: true,
+      handler: function (newValue, oldValue) {
+        this.filtersData = Object.assign({}, newValue);
+      },
+    },
+    "filter.ubigeo": {
+      handler: function (newValue) {
+        if (newValue) {
+          this.getFilters(newValue);
+          this.$emit("update:ubigeo", newValue);
+          this.notSearch = true;
+        }
+      },
+    },
+     "filter.rooms": {
+      handler: function (newValue) {
+        if (newValue) {
+          this.$emit("update:rooms", newValue);
+          this.notSearch = true;
+        }
+      },
+    },
+     "filter.status": {
+      handler: function (newValue) {
+        if (newValue) {
+          this.$emit("update:status", newValue);
+          this.notSearch = true;
+        }
+      },
+    },
+    /*departmentsValue: {
       handler: function (newValue, oldValue) {
         if (newValue) {
           let difference = oldValue.filter(x => !newValue.includes(x));
@@ -181,7 +302,7 @@ export default {
           this.search();
         }
       },
-    },
+    },*/
   },
 };
 </script>

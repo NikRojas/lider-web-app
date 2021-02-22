@@ -25,9 +25,8 @@
     >
     </Banner>
     <ProjectsFilter
-      :departments.sync="filterDepartments"
-      :districts.sync="filterDistricts"
-      :statuses.sync="filterStatuses"
+      :ubigeo.sync="filterUbigeo"
+      :status.sync="filterStatus"
       :rooms.sync="filterRooms"
       @search="searchFilter"
       :loading="loadingProjects"
@@ -200,9 +199,8 @@ export default {
       loadingProjects: false,
       loadingMoreProjects: false,
       projectsPageActive: 1,
-      filterDepartments: [],
-      filterDistricts: [],
-      filterStatuses: [],
+      filterUbigeo: [],
+      filterStatus: [],
       filterRooms: [],
     };
   },
@@ -218,13 +216,10 @@ export default {
           params: {
             locale: this.$i18n.locale,
             ...(next ? { page: this.projectsPageActive + 1 } : { page: 1 }),
-            ...(this.filterDepartments
-              ? { departments: this.filterDepartments }
+            ...(this.filterUbigeo
+              ? { ubigeo: this.filterUbigeo }
               : {}),
-            ...(this.filterDistricts
-              ? { districts: this.filterDistricts }
-              : {}),
-            ...(this.filterStatuses ? { statuses: this.filterStatuses } : {}),
+            ...(this.filterStatus ? { status: this.filterStatus } : {}),
             ...(this.filterRooms ? { rooms: this.filterRooms } : {}),
           },
         })

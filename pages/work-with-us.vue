@@ -35,11 +35,10 @@
               <transition name="slide-fade">
                 <div v-if="success" key="true" class="form__text-success-2">
                   <h3>
-                    <strong>¡Registro exitoso!</strong>
+                    <strong>¡{{$t('Registro exitoso')}}!</strong>
                   </h3>
                   <p>
-                    Si cumples con el perfil te contactaremos a la brevedad
-                    posible. ¡Suerte!
+                    {{$t('Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!')}}
                   </p>
                 </div>
                 <form v-else key="false" @submit.prevent="submit">

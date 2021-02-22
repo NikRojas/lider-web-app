@@ -94,5 +94,7 @@ export default {
     'Proyectos en venta': 'Proyectos en venta',
     'Disponibles': 'Disponibles',
     'Área': 'Área',
-    'Ver galería': 'Ver galería'
+    'Ver galería': 'Ver galería',
+    'Registro exitoso': 'Registro exitoso',
+    'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!'
 }

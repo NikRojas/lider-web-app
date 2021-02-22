@@ -94,5 +94,7 @@ export default {
     'Proyectos en venta': 'Projects for sale',
     'Disponibles': 'Availables',
     'Área': 'Area',
-    'Ver galería': 'Show gallery'
+    'Ver galería': 'Show gallery',
+    'Registro exitoso': 'Successful registration',
+    'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'If you meet the profile we will contact you as soon as possible. Luck!'
 }

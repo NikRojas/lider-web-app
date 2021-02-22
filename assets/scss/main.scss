@@ -258,11 +258,17 @@ section.section1 {
 }
 /*=========================================
 =================FILTRADO==================*/
-section.filtro-home.page-proyectos {
-    background: #0b6fa6;
-    position: relative;
-    margin-top: 0;
+.projects{
+    section.filtro-home {
+        background: #0b6fa6;
+        position: relative;
+        margin-top: 0;
+    }
+    .banner{
+        text-align: center;
+    }
 }
+
 section.filtro-home {
     background: rgba(0, 0, 0, 0.60);
     color: #fff;

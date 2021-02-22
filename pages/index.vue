@@ -3,53 +3,57 @@
     <div style="400px;"></div>
     <section class="slider" v-if="page.data.slider.length">
       <div class="hero-slider owl-carousel owl-theme nav-absolute">
-        <div
-            class="single-hs-item"
-            v-for="el in page.data.slider"
-            :key="el.id"
-          >
-            <div class="img-slide">
-              <picture>
-                <source
-                  media="(min-width: 720px)"
-                  :data-srcset="
-                    storageUrl + '/img/slider/' + el['image_' + $i18n.locale]
-                  "
-                />
-                <source
-                  media="(max-width: 720px)"
-                  :data-srcset="
-                    storageUrl +
-                    '/img/slider/' +
-                    el['image_responsive_' + $i18n.locale]
-                  "
-                />
-                <img
-                  class="lazyload"
-                  :data-src="
-                    storageUrl +
-                    '/img/slider/' +
-                    el['image_responsive_' + $i18n.locale]
-                  "
-                  alt=""
-                />
-              </picture>
-            </div>
+        <div class="single-hs-item" v-for="el in page.data.slider" :key="el.id">
+          <div class="img-slide">
+            <picture>
+              <source
+                media="(min-width: 720px)"
+                :data-srcset="
+                  storageUrl + '/img/slider/' + el['image_' + $i18n.locale]
+                "
+              />
+              <source
+                media="(max-width: 720px)"
+                :data-srcset="
+                  storageUrl +
+                  '/img/slider/' +
+                  el['image_responsive_' + $i18n.locale]
+                "
+              />
+              <img
+                class="lazyload"
+                :data-src="
+                  storageUrl +
+                  '/img/slider/' +
+                  el['image_responsive_' + $i18n.locale]
+                "
+                alt=""
+              />
+            </picture>
           </div>
+        </div>
       </div>
     </section>
-    <ProjectsFilter
-      :departments.sync="filterDepartments"
-      :districts.sync="filterDistricts"
-      :statuses.sync="filterStatuses"
+    <!--<ProjectsFilter
+      :departments.sync="filterUbigeo"
+      :districts.sync="filterD"
+      :statuses.sync="filterStatus"
       :rooms.sync="filterRooms"
       @search="searchFilter"
       orientation="top"
       :loading="loadingProjects"
       :label="$t('Proyectos en venta')"
       :filters="page.data.filters"
+    />-->
+    <ProjectsFilter
+      :ubigeo.sync="filterUbigeo"
+      :status.sync="filterStatus"
+      :rooms.sync="filterRooms"
+      @search="searchFilter"
+      :loading="loadingProjects"
+      :label="$t('Proyectos en venta')"
+      :filters="page.data.filters"
     />
-
     <section class="top-section">
       <div class="container">
         <div class="grid-col">
@@ -97,15 +101,26 @@
 
     <section class="top-section">
       <div class="container">
-        <div class="img wow fadeInUp"   v-if="
+        <div
+          class="img wow fadeInUp"
+          v-if="
+            page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Cami')
+            ].content_formatted.includes('image')
+          "
+        >
+          <nuxt-link :to="localePath('cami')">
+            <img
+              class="lazyload"
+              :data-src="
+                storageUrl +
+                '/img/content/' +
                 page.data.content[
                   page.data.content.findIndex((x) => x.name === 'Cami')
-                ].content_formatted.includes('image')
-              ">
-          <nuxt-link :to="localePath('cami')">
-            <img class="lazyload" :data-src="storageUrl+'/img/content/'+page.data.content[
-                  page.data.content.findIndex((x) => x.name === 'Cami')
-                ].content.find((x) => x.field === 'image').value" alt="Cami" />
+                ].content.find((x) => x.field === 'image').value
+              "
+              alt="Cami"
+            />
           </nuxt-link>
         </div>
       </div>
@@ -114,14 +129,34 @@
     <section class="section" v-if="page.data.posts.length">
       <div class="container">
         <div class="title center wow fadeInUp">
-          <h2 v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Blog')].content_formatted.includes('title')
-            && page.data.content[page.data.content.findIndex(el => el.name === 'Blog')].content.find(x => x.field === 'title')['value_'+$i18n.locale]"
-            >{{ page.data.content[page.data.content.findIndex(el => el.name === 'Blog')].content.find(x => x.field === 'title')['value_'+$i18n.locale] }}
+          <h2
+            v-if="
+              page.data.content[
+                page.data.content.findIndex((x) => x.name === 'Blog')
+              ].content_formatted.includes('title') &&
+              page.data.content[
+                page.data.content.findIndex((el) => el.name === 'Blog')
+              ].content.find((x) => x.field === 'title')[
+                'value_' + $i18n.locale
+              ]
+            "
+          >
+            {{
+              page.data.content[
+                page.data.content.findIndex((el) => el.name === "Blog")
+              ].content.find((x) => x.field === "title")[
+                "value_" + $i18n.locale
+              ]
+            }}
           </h2>
         </div>
         <client-only>
           <div class="home-blog owl-carousel owl-theme wow fadeInUp">
-            <div class="item" v-for="el in page.data.posts" :key="'post' + el.id">
+            <div
+              class="item"
+              v-for="el in page.data.posts"
+              :key="'post' + el.id"
+            >
               <Post :el="el"></Post>
             </div>
           </div>
@@ -149,7 +184,7 @@ if (process.client) {
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.green.css";
 export default {
-  name: 'index',
+  name: "index",
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/home", {
       params: { locale: app.i18n.locale },
@@ -157,83 +192,94 @@ export default {
     return { page: data };
   },
   head() {
-    return { 
+    return {
       htmlAttrs: {
-        lang: this.$i18n.locale == 'en' ? this.$i18n.locale+'_US' : this.$i18n.locale+'_PE'
+        lang:
+          this.$i18n.locale == "en"
+            ? this.$i18n.locale + "_US"
+            : this.$i18n.locale + "_PE",
       },
-      title: this.page.data.page["title_"+this.$i18n.locale] ? this.page.data.page["title_"+this.$i18n.locale] : "",
+      title: this.page.data.page["title_" + this.$i18n.locale]
+        ? this.page.data.page["title_" + this.$i18n.locale]
+        : "",
       meta: [
         {
           hid: "description",
           name: "description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           itemprop: "name",
-          content: this.page.data.page['title_'+this.$i18n.locale] ? this.page.data.page['title_'+this.$i18n.locale] : ""
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
         },
         {
           itemprop: "description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           itemprop: "image",
-          content: this.page.data.page['seo_image']
+          content: this.page.data.page["seo_image"]
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.page['seo_image']
-            : ""
+              this.page.data.page["seo_image"]
+            : "",
         },
         {
           name: "keywords",
-          content: this.page.data.page['seo_keywords_'+this.$i18n.locale]
-            ? this.page.data.page['seo_keywords_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_keywords_" + this.$i18n.locale]
+            ? this.page.data.page["seo_keywords_" + this.$i18n.locale]
+            : "",
         },
-        { name: "og:url", content: process.env.BASE_URL  },
+        { name: "og:url", content: process.env.BASE_URL },
         { name: "og:type", content: "website" },
         {
           name: "og:title",
-          content: this.page.data.page['title_'+this.$i18n.locale] ? this.page.data.page['title_'+this.$i18n.locale] : ""
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "og:description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "og:image",
-          content: this.page.data.page['seo_image']
+          content: this.page.data.page["seo_image"]
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.page['seo_image']
-            : ""
+              this.page.data.page["seo_image"]
+            : "",
         },
         { name: "twitter:card", content: "summary_large_image" },
         {
           name: "twitter:title",
-          content: this.page.data.page['title_'+this.$i18n.locale] ? this.page.data.page['title_'+this.$i18n.locale] : ""
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "twitter:description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "twitter:image",
-          content: this.page.data.page['seo_image']
+          content: this.page.data.page["seo_image"]
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.page['seo_image']
-            : ""
-        }
-      ]
+              this.page.data.page["seo_image"]
+            : "",
+        },
+      ],
     };
   },
   data() {
@@ -243,9 +289,8 @@ export default {
       loadingProjects: false,
       loadingMoreProjects: false,
       projectsPageActive: 1,
-      filterDepartments: [],
-      filterDistricts: [],
-      filterStatuses: [],
+      filterUbigeo: [],
+      filterStatus: [],
       filterRooms: [],
     };
   },
@@ -266,13 +311,10 @@ export default {
           params: {
             locale: this.$i18n.locale,
             ...(next ? { page: this.projectsPageActive + 1 } : { page: 1 }),
-            ...(this.filterDepartments
-              ? { departments: this.filterDepartments }
+            ...(this.filterUbigeo
+              ? { ubigeo: this.filterUbigeo }
               : {}),
-            ...(this.filterDistricts
-              ? { districts: this.filterDistricts }
-              : {}),
-            ...(this.filterStatuses ? { statuses: this.filterStatuses } : {}),
+            ...(this.filterStatus ? { status: this.filterStatus } : {}),
             ...(this.filterRooms ? { rooms: this.filterRooms } : {}),
           },
         })
@@ -286,20 +328,20 @@ export default {
             this.projectsPageActive = 1;
             this.page.data.projects = response;
           }
-            this.loadingProjects = false;
-            this.loadingMoreProjects = false;
+          this.loadingProjects = false;
+          this.loadingMoreProjects = false;
         });
     },
   },
   mounted() {
     $(document).ready(function () {
-      $('.hero-slider').owlCarousel({
-  //animateIn: 'pulse',
-  items:1,
-  loop:true,
-  nav:true,
-  dots: true
-});
+      $(".hero-slider").owlCarousel({
+        //animateIn: 'pulse',
+        items: 1,
+        loop: true,
+        nav: true,
+        dots: true,
+      });
       $(".home-blog").owlCarousel({
         loop: true,
         margin: 20,
