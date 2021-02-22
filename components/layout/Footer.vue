@@ -105,9 +105,15 @@
           </div>
         </div>
         <div class="developer wow fadeInRight" data-wow-delay="0.5s">
-          © Copyright Lider Grupo Constructor {{ new Date().getFullYear() }} - {{$t('Desarrollado por')}}
+          © Copyright Lider Grupo Constructor {{ new Date().getFullYear() }} - 
+         
           <a href="https://playgroup.pe" target="_blank"
-            >
+            >  
+            {{$t('Desarrollado por')}}
+            <div class="img-dev">
+            <img :data-src="require('~/assets/img/logo-play.svg')" class="lazyload">
+            <img class="lazyload litt" :data-src="require('~/assets/img/lid.png')">
+          </div>
             PLAY Group</a
           >
         </div>
