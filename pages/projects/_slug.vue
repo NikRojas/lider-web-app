@@ -114,17 +114,19 @@
     <section>
       <div class="grid-proyecto-top">
         <div class="content-slider">
-          <div class="slider-proyecto owl-carousel owl-theme nav-absolute">
-            <template v-for="(el, i) in page.data.project.images_format">
-              <div class="item" :key="'sl' + el" v-if="i != 0 && i != 1">
-                <img
-                  class="lazyload"
-                  :data-src="storageUrl + '/img/projects/' + el"
-                  :alt="'Slide ' + i"
-                />
-              </div>
-            </template>
-          </div>
+          <client-only>
+            <div class="slider-proyecto owl-carousel owl-theme nav-absolute">
+              <template v-for="(el, i) in page.data.project.images_format">
+                <div class="item" :key="'sl' + el" v-if="i != 0 && i != 1">
+                  <img
+                    class="lazyload"
+                    :data-src="storageUrl + '/img/projects/' + el"
+                    :alt="'Slide ' + i"
+                  />
+                </div>
+              </template>
+            </div>
+          </client-only>
         </div>
 
         <div class="aside-proyecto">
@@ -514,43 +516,45 @@
                 </div>
                 <div class="item-carousel-plano">
                   <label for="">{{ $t("Planos") }}</label>
-                  <div class="planos-proyecto owl-carousel owl-theme">
-                    <!--<template
-                      v-for="(el, i) in page.data.project.tipologies_rel"
-                    >-->
-                      <!--<div class="item" v-if="el.available" :key="'ti' + i">-->
-                        <div class="item"  v-for="(el, i) in page.data.project.tipologies_rel" :key="'ti' + i">
-                        <div class="img-plano">
-                          <a
-                            class="fancybox"
-                            data-fancybox="Planos"
-                            :href="
-                              storageUrl +
-                              '/img/projects/tipologies/' +
-                              el.image
-                            "
-                          >
-                            <img
-                              class="lazyload"
-                              :data-src="
+                  <client-only>
+                    <div class="planos-proyecto owl-carousel owl-theme">
+                      <!--<template
+                        v-for="(el, i) in page.data.project.tipologies_rel"
+                      >-->
+                        <!--<div class="item" v-if="el.available" :key="'ti' + i">-->
+                          <div class="item"  v-for="(el, i) in page.data.project.tipologies_rel" :key="'ti' + i">
+                          <div class="img-plano">
+                            <a
+                              class="fancybox"
+                              data-fancybox="Planos"
+                              :href="
                                 storageUrl +
                                 '/img/projects/tipologies/' +
                                 el.image
                               "
-                              :alt="el.name"
-                            />
-                          </a>
+                            >
+                              <img
+                                class="lazyload"
+                                :data-src="
+                                  storageUrl +
+                                  '/img/projects/tipologies/' +
+                                  el.image
+                                "
+                                :alt="el.name"
+                              />
+                            </a>
+                          </div>
+                          <div>
+                            <h5>
+                              {{ $t("Proyecto") }}
+                              {{ page.data.project["name_" + $i18n.locale] }}
+                            </h5>
+                            <strong>{{ el.name }}</strong>
+                          </div>
                         </div>
-                        <div>
-                          <h5>
-                            {{ $t("Proyecto") }}
-                            {{ page.data.project["name_" + $i18n.locale] }}
-                          </h5>
-                          <strong>{{ el.name }}</strong>
-                        </div>
-                      </div>
-                    <!--</template>-->
-                  </div>
+                      <!--</template>-->
+                    </div>
+                  </client-only>
                 </div>
                 <div class="item-from">
                   <div class="grid-col">
@@ -695,19 +699,21 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-9">
-            <div
-              class="documentos-proyecto owl-carousel owl-theme margin-carousel"
-            >
+            <client-only>
               <div
-                class="item"
-                v-for="el in page.data.project.files_rel"
-                :key="'fil' + el.id"
+                class="documentos-proyecto owl-carousel owl-theme margin-carousel"
               >
-                <a :href="storageUrl + '/files/' + el.file" class="btn">{{
-                  el["name_" + $i18n.locale]
-                }}</a>
+                <div
+                  class="item"
+                  v-for="el in page.data.project.files_rel"
+                  :key="'fil' + el.id"
+                >
+                  <a :href="storageUrl + '/files/' + el.file" class="btn">{{
+                    el["name_" + $i18n.locale]
+                  }}</a>
+                </div>
               </div>
-            </div>
+            </client-only>
           </div>
         </div>
       </div>
@@ -730,11 +736,13 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-12 grid-l-9">
+            <client-only>
             <div class="otros-proyecto owl-carousel owl-theme margin-carousel">
               <div class="item" v-for="(pr, k) in page.data.projects" :key="k">
                 <CardProject :el="pr.length ? pr[0] : pr"></CardProject>
               </div>
             </div>
+            </client-only>
           </div>
         </div>
       </div>
@@ -759,92 +767,92 @@ export default {
             ? this.$i18n.locale + "_US"
             : this.$i18n.locale + "_PE",
       },
-      title: this.page.data.project["name_" + this.$i18n.locale]
-        ? (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
+      title: this.page.data.project["seo_title_" + this.$i18n.locale]
+        ? this.page.data.project["seo_title_" + this.$i18n.locale]
+        : (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
           " - " +
-          this.page.data.project["name_" + this.$i18n.locale]
-        : "",
+          this.page.data.project["name_" + this.$i18n.locale],
       meta: [
         {
           hid: "description",
           name: "description",
-          content: this.page.data.page["seo_description_" + this.$i18n.locale]
-            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+          content: this.page.data.project["seo_description_" + this.$i18n.locale]
+            ? this.page.data.project["seo_description_" + this.$i18n.locale]
             : "",
         },
         {
           itemprop: "name",
-          content: this.page.data.project["title_" + this.$i18n.locale]
-            ? (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
+          content: this.page.data.project["seo_title_" + this.$i18n.locale]
+            ? this.page.data.project["seo_title_" + this.$i18n.locale]
+            : (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
               " - " +
-              this.page.data.project["name_" + this.$i18n.locale]
-            : "",
+              this.page.data.project["name_" + this.$i18n.locale],
         },
         {
           itemprop: "description",
-          content: this.page.data.page["seo_description_" + this.$i18n.locale]
-            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+          content: this.page.data.project["seo_description_" + this.$i18n.locale]
+            ? this.page.data.project["seo_description_" + this.$i18n.locale]
             : "",
         },
         {
           itemprop: "image",
-          content: this.page.data.page["seo_image"]
+          content: this.page.data.project["seo_image"]
             ? process.env.STORAGE_URL +
-              "/img/pages/" +
-              this.page.data.page["seo_image"]
+              "/img/projects/" +
+              this.page.data.project["seo_image"]
             : "",
         },
         {
           name: "keywords",
-          content: this.page.data.page["seo_keywords_" + this.$i18n.locale]
-            ? this.page.data.page["seo_keywords_" + this.$i18n.locale]
+          content: this.page.data.project["seo_keywords_" + this.$i18n.locale]
+            ? this.page.data.project["seo_keywords_" + this.$i18n.locale]
             : "",
         },
         { name: "og:url", content: process.env.BASE_URL + this.$route.path },
         { name: "og:type", content: "website" },
         {
           name: "og:title",
-          content: this.page.data.project["title_" + this.$i18n.locale]
-            ? (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
+          content: this.page.data.project["seo_title_" + this.$i18n.locale]
+            ? this.page.data.project["seo_title_" + this.$i18n.locale] 
+            : (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
               " - " +
-              this.page.data.project["name_" + this.$i18n.locale]
-            : "",
+              this.page.data.project["name_" + this.$i18n.locale],
         },
         {
           name: "og:description",
-          content: this.page.data.page["seo_description_" + this.$i18n.locale]
-            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+          content: this.page.data.project["seo_description_" + this.$i18n.locale]
+            ? this.page.data.project["seo_description_" + this.$i18n.locale]
             : "",
         },
         {
           name: "og:image",
-          content: this.page.data.page["seo_image"]
+          content: this.page.data.project["seo_image"]
             ? process.env.STORAGE_URL +
-              "/img/pages/" +
-              this.page.data.page["seo_image"]
+              "/img/projects/" +
+              this.page.data.project["seo_image"]
             : "",
         },
         { name: "twitter:card", content: "summary_large_image" },
         {
           name: "twitter:title",
-          content: this.page.data.project["title_" + this.$i18n.locale]
-            ? (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
+          content: this.page.data.project["seo_title_" + this.$i18n.locale]
+            ? this.page.data.project["seo_title_" + this.$i18n.locale]
+            : (this.$i18n.locale == "en" ? "Project" : "Proyecto") +
               " - " +
-              this.page.data.project["name_" + this.$i18n.locale]
-            : "",
+              this.page.data.project["name_" + this.$i18n.locale],
         },
         {
           name: "twitter:description",
-          content: this.page.data.page["seo_description_" + this.$i18n.locale]
-            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+          content: this.page.data.project["seo_description_" + this.$i18n.locale]
+            ? this.page.data.project["seo_description_" + this.$i18n.locale]
             : "",
         },
         {
           name: "twitter:image",
-          content: this.page.data.page["seo_image"]
+          content: this.page.data.project["seo_image"]
             ? process.env.STORAGE_URL +
-              "/img/pages/" +
-              this.page.data.page["seo_image"]
+              "/img/projects/" +
+              this.page.data.project["seo_image"]
             : "",
         },
       ],

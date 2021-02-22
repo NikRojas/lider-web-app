@@ -119,11 +119,13 @@
             >{{ page.data.content[page.data.content.findIndex(el => el.name === 'Blog')].content.find(x => x.field === 'title')['value_'+$i18n.locale] }}
           </h2>
         </div>
-        <div class="home-blog owl-carousel owl-theme wow fadeInUp">
-          <div class="item" v-for="el in page.data.posts" :key="'post' + el.id">
-            <Post :el="el"></Post>
+        <client-only>
+          <div class="home-blog owl-carousel owl-theme wow fadeInUp">
+            <div class="item" v-for="el in page.data.posts" :key="'post' + el.id">
+              <Post :el="el"></Post>
+            </div>
           </div>
-        </div>
+        </client-only>
 
         <div class="top-section">
           <div class="text-center wow fadeInUp">
