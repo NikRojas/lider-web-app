@@ -31,13 +31,13 @@
     <section v-if="this.$route.query.q">
       <div class="container" v-if="page.data.posts.data.length">
         <div class="section-resultado">
-          <h3>Resultados para "{{ this.$route.query.q }}"</h3>
+          <h3>{{ $t('Resultados para')}} "{{ this.$route.query.q }}"</h3>
         </div>
       </div>
       <div class="container" v-else>
         <div class="section-resultado no-data">
           <h3>
-            Lo sentimos, no hay ningún resultado para "{{
+            {{ $t('Lo sentimos, no hay ningún resultado para')}} "{{
               this.$route.query.q
             }}"
           </h3>
@@ -53,7 +53,7 @@
             class="btn"
             :class="this.$route.query.q ? '' : 'active'"
             :to="localePath('blog')"
-            >Todos</nuxt-link
+            >{{ $t('Todos') }}</nuxt-link
           >
           <nuxt-link
             class="btn"

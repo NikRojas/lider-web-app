@@ -181,10 +181,10 @@ export default {
         },
         {
           itemprop: "image",
-          content: this.page.data.post['seo_image']
+          content: this.page.data.post['image']
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.post['seo_image']
+              this.page.data.post['image']
             : ""
         },
         {
@@ -207,10 +207,10 @@ export default {
         },
         {
           name: "og:image",
-          content: this.page.data.post['seo_image']
+          content: this.page.data.post['image']
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.post['seo_image']
+              this.page.data.post['image']
             : ""
         },
         { name: "twitter:card", content: "summary_large_image" },
@@ -226,10 +226,10 @@ export default {
         },
         {
           name: "twitter:image",
-          content: this.page.data.post['seo_image']
+          content: this.page.data.post['image']
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.post['seo_image']
+              this.page.data.post['image']
             : ""
         }
       ]

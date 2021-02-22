@@ -96,5 +96,7 @@ export default {
     'Área': 'Area',
     'Ver galería': 'Show gallery',
     'Registro exitoso': 'Successful registration',
-    'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'If you meet the profile we will contact you as soon as possible. Luck!'
+    'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'If you meet the profile we will contact you as soon as possible. Luck!',
+    'Resultados para' : 'Results for',
+    'Lo sentimos, no hay ningún resultado para': 'Sorry, there is no result for'
 }

@@ -8,11 +8,11 @@
             <ul>
               <li v-if="footer.information && footer.information.central_phone">
                 <b>{{ $t('Central de ventas')}}:</b>
-                {{ footer.information.central_phone_formatted }}
+                <a class="text-underline" :href="'tel:01'+footer.information.central_phone">{{ footer.information.central_phone_formatted }}</a>
               </li>
               <li v-if="footer.information && footer.information.main_office">
                 <b>{{ $t('Oficina principal')}}:</b>
-                {{ footer.information.main_office_formatted }}
+                <a class="text-underline" :href="'tel:01'+footer.information.main_office">{{ footer.information.main_office_formatted }}</a>
               </li>
             </ul>
             <ul v-if="footer.information && footer.information.email">

@@ -96,5 +96,7 @@ export default {
     'Área': 'Área',
     'Ver galería': 'Ver galería',
     'Registro exitoso': 'Registro exitoso',
-    'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!'
+    'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!',
+    'Resultados para' : 'Resultados para',
+    'Lo sentimos, no hay ningún resultado para': 'Lo sentimos, no hay ningún resultado para'
 }
