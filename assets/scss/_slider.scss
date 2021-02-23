@@ -159,6 +159,18 @@ button.owl-prev,button.owl-next {
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
     background: #0b6fa6!important;
 }
+.section-documentos .owl-nav,.otros-proyecto .owl-nav{
+    text-align: right!important;
+}
+
+@media only screen and (max-width: 1150px) {
+    .margin-carousel .owl-stage-outer {
+        right: 0px;
+    }
+    .section-documentos .owl-nav,.otros-proyecto .owl-nav{
+        text-align: center!important;
+    }
+}
 @media only screen and (min-width: 720px) {
     .nav-absolute2{
         .owl-nav{
@@ -214,11 +226,19 @@ button.owl-prev,button.owl-next {
         button.owl-prev, button.owl-next, button.owl-dot {
             padding-bottom: 0!important;
         }
-        button.owl-prev{
-            display: none!important;
-        }
     }
-    
+    .nav-absolute .owl-nav .owl-prev, .nav-absolute .owl-nav .owl-next {
+        position: absolute;
+        top: auto;
+        bottom: 0!important;
+        height: 62px;
+        margin: 0 !important;
+        background: rgba(0, 0, 0, 0.45) !important;
+        color: white !important;
+        border: none;
+        padding: 10px 50px!important;
+        z-index: 2;
+    }
 }
 
 @media only screen and (max-width: 800px) {

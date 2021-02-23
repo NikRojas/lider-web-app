@@ -8,7 +8,7 @@
               page.data.content.findIndex((x) => x.name === 'Banner')
             ].content.find((x) => x.field === 'image').value
           : ''
-      " :title="page.data.post['title_' + $i18n.locale]"></Banner>
+      " title="Blog"></Banner>
     <section class="section">
       <div class="container">
         <div class="grid-col">

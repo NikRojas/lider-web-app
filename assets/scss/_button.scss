@@ -14,6 +14,8 @@
     cursor: pointer;
     justify-content: center;
     background: none;
+    align-items: center;
+    -webkit-align-items: center;
 
     &:hover,&.btn2{
         background: $color_3;
@@ -77,6 +79,7 @@ button:focus { outline: none; }
         }
     }
 }
+
 .btn-idioma {
     color: #fff;
     margin-left: 10px;

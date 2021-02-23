@@ -220,7 +220,7 @@
       </div>
     </section>
 
-    <section id="description" class="section description-proyect">
+    <section id="description" class="top-section description-proyect">
       <div class="container">
         <div class="content-text text-justify-p">
           <div>
@@ -947,7 +947,7 @@ export default {
     $(document).ready(function () {
       $(".fancybox").fancybox();
       $(".documentos-proyecto").owlCarousel({
-        loop: true,
+        loop:false,
         nav: true,
         autoplay: true,
         dots: false,
@@ -972,7 +972,7 @@ export default {
         },
       });
       $(".planos-proyecto.owl-carousel").owlCarousel({
-        loop: true,
+        loop: false,
         nav: true,
         autoplay: true,
         dots: false,

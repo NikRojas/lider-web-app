@@ -1,5 +1,3 @@
-/*=========================================
-=================FOOTER==================*/
 footer {
     background: $color_1;
     color: white;
@@ -69,17 +67,17 @@ footer {
 
         .certificados {
             display: flex;
-            gap: 20px;
             h6{
                 margin: 0;
             }
             .grid-certificado {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                margin-right: 25px;
                 img {
                     max-width: 135px;
                     max-height: 62px;
+                    margin-left: 12px;
                 }
             }
         }
@@ -95,7 +93,6 @@ footer {
                 position: relative;
                 color: white;
                 align-items: center;
-                gap: 6px;
                 margin-left: 6px;
             }
             a:hover {
@@ -110,6 +107,7 @@ footer {
             }
             .img-dev img {
                 width: 19px;
+                margin: 0 5px;
             }
             .img-dev img.litt {
                 position: absolute;

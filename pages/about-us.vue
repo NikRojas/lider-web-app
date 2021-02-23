@@ -14,7 +14,7 @@
       <div class="container">
         <div class="grid-col">
           <div class="grid-s-12 grid-m-6 grid-l-6">
-            <div class="box-n box-gris wow fadeInUp">
+            <div class="box-n box-gris wow fadeInUp text-justify">
               <h2  v-if="page.data.first['1'] &&  page.data.first['1']['title_' + $i18n.locale]">
                 <b>{{page.data.first['1']['title_' + $i18n.locale]}}</b>
               </h2>
@@ -24,7 +24,7 @@
           </div>
           <div class="grid-s-12 grid-m-6 grid-l-6">
             <div
-              class="box-n box-video card-video wow fadeInUp"
+              class="box-n box-video card-video wow fadeInUp text-justify"
               data-wow-delay="0.4s"
             >
               <img v-if="page.data.first['2'] && page.data.first['2']['image']"
@@ -38,7 +38,7 @@
           </div>
           <div class="grid-s-12 grid-m-6 grid-l-4">
             <div
-              class="box-n box-mision color-white wow fadeInUp"
+              class="box-n box-mision color-white wow fadeInUp text-justify"
               data-wow-delay="0.8s"
             >
               <h2>{{ $t('Misión')}}</h2>
@@ -47,14 +47,14 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-6 grid-l-4">
-            <div class="box-n box-img wow fadeInUp" data-wow-delay="1.2s">
+            <div class="box-n box-img wow fadeInUp text-justify" data-wow-delay="1.2s">
               <img v-if="page.data.first['4'] &&  page.data.first['4']['image']" class="lazyload" 
               :data-src="storageUrl+'/img/about/'+page.data.first['4']['image']" />
             </div>
           </div>
           <div class="grid-s-12 grid-m-6 grid-l-4">
             <div
-              class="box-n box-vision color-white wow fadeInUp"
+              class="box-n box-vision color-white wow fadeInUp text-justify"
               data-wow-delay="1.6s"
             >
               <h2>{{ $t('Visión')}}</h2>
@@ -63,14 +63,14 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-6 grid-l-5">
-            <div class="box-n box-img wow fadeInUp" data-wow-delay="2s">
+            <div class="box-n box-img wow fadeInUp text-justify" data-wow-delay="2s">
               <img v-if="page.data.first['6'] &&  page.data.first['6']['image']" class="lazyload" 
               :data-src="storageUrl+'/img/about/'+page.data.first['6']['image']" />
             </div>
           </div>
           <div class="grid-s-12 grid-m-6 grid-l-4">
             <div
-              class="box-n box-mision color-white wow fadeInUp"
+              class="box-n box-mision color-white wow fadeInUp text-justify"
               data-wow-delay="2.4s"
             >
               <h2 v-if="page.data.first['7'] &&  page.data.first['7']['quantity']"><b>{{page.data.first['7']['quantity']}}</b></h2>
@@ -83,7 +83,7 @@
             </div>
           </div>
           <div class="grid-s-12 grid-m-6 grid-l-3">
-            <div class="box-n box-gris wow fadeInUp" data-wow-delay="2.8s">
+            <div class="box-n box-gris wow fadeInUp text-justify" data-wow-delay="2.8s">
               <img v-if="page.data.first['8'] &&  page.data.first['8']['icon']" class="lazyload" 
               :data-src="storageUrl+'/img/about/'+page.data.first['8']['icon']" />
               <h2 v-if="page.data.first['8'] &&  page.data.first['8']['quantity']"><b>{{page.data.first['8']['quantity']}}</b></h2>
@@ -98,12 +98,13 @@
       <div class="container">
         <div class="text-content text-center wow fadeInUp">
           <div
-            class="title center"
+            class="title center movil-left"
             v-if="page.data.second['title_' + $i18n.locale]"
           >
             <h2>{{ page.data.second["title_" + $i18n.locale] }}</h2>
           </div>
           <div
+            class="movil-text-justify"
             v-if="page.data.second['description_' + $i18n.locale]"
             v-html="page.data.second['description_' + $i18n.locale]"
           ></div>
@@ -113,7 +114,7 @@
 
     <section class="section">
       <div class="container">
-        <div class="title center wow fadeInUp" v-if="page.data.third['1']">
+        <div class="title center wow fadeInUp movil-left" v-if="page.data.third['1']">
           <h2>{{ page.data.third["1"]["title_" + $i18n.locale] }}</h2>
         </div>
         <div
@@ -125,7 +126,7 @@
             v-for="(el, i) in page.data.third['2']"
             :key="'pe' + i"
           >
-            <div class="box-proyecto" v-for="(el2, j) in el" :key="'item'+j">
+            <div class="box-proyecto text-justify" v-for="(el2, j) in el" :key="'item'+j">
               <img
                 class="lazyload"
                 :data-src="storageUrl + '/img/about/' + el2.image"
@@ -187,7 +188,7 @@
     <section class="section">
       <div class="container">
         <div class="text-center wow fadeInUp">
-          <div class="title center">
+          <div class="title center movil-left">
             <h2
               v-if="
                 page.data.fifth['1'] &&
@@ -198,6 +199,7 @@
             </h2>
           </div>
           <div
+           class="movil-text-justify"
             v-if="
               page.data.fifth['1'] &&
               page.data.fifth['1']['description_' + $i18n.locale]
@@ -345,7 +347,7 @@ export default {
     $(document).ready(function () {
        $(".fancybox").fancybox();
       $(".proyectos-entregados.owl-carousel").owlCarousel({
-        loop: true,
+        loop:false,
         margin: 20,
         nav: true,
         autoplay: true,
@@ -354,10 +356,10 @@ export default {
         autoplayHoverPause: true,
         responsive: {
           0: {
-            items: 1.2,
+            items: 2,
           },
           600: {
-            items: 2,
+            items: 2.5,
           },
           1025: {
             items: 4,

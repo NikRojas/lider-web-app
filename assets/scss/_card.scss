@@ -19,14 +19,14 @@
             grid-template-columns: 1fr 1fr;
             top: 0;
             width: 100%;
-            align-items: center;
+                align-items: center;
+    -webkit-align-items: center;
             z-index: 1;
             .proyect-logo{
                 padding: 18px 20px;
                 transition: 0.4s;
                 img {
                     height: 26px;
-                    //width: auto;
                 }
                 img.logo-p1 {
                     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
@@ -42,6 +42,7 @@
                     font-weight: 600;
                     text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
                     transition: 0.3s;
+                    display: block;
                 }
             }
         }
@@ -96,13 +97,14 @@
         }
         .price {
             display: grid;
-            align-items: center;
+                align-items: center;
+    -webkit-align-items: center;
             h4 {
                 margin: 0;
             }
         }
     }
-    &:hover{
+    &:hover, &.ver-recor{
         box-shadow: 0 6px 18px rgba(0, 0, 0,0.35);
         .proyecto-body .head-proyect .proyect-logo {
             padding: 20px 12px;
@@ -214,6 +216,7 @@
 
 .card-video{
     position: relative;
+    display: grid;
     img{
         display: block;
     }
@@ -223,7 +226,8 @@
         height: 100%;
         display: grid;
         justify-items: center;
-        align-items: center;
+            align-items: center;
+    -webkit-align-items: center;
         top: 0;
         left: 0;
         i{
@@ -295,8 +299,10 @@
         }
     }
     .titulo {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-columns: auto 1fr;
+            align-items: center;
+    -webkit-align-items: center;
         gap: 20px;
         padding: 20px;
         background-color: #fff;

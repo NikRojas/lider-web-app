@@ -49,25 +49,27 @@
       <div class="container">
         <div class="list-categoria wow fadeInUp">
           <h5>{{ $t("Categorías") }} :</h5>
-          <nuxt-link
-            class="btn"
-            :class="this.$route.query.q ? '' : 'active'"
-            :to="localePath('blog')"
-            >{{ $t('Todos') }}</nuxt-link
-          >
-          <nuxt-link
-            class="btn"
-            :to="
-              localePath({
-                name: 'blog-category-category',
-                params: { category: category['slug_' + $i18n.locale] },
-              })
-            "
-            v-for="category in page.data.categories"
-            :key="category.id"
-          >
-            {{ category["name_" + $i18n.locale] }}
-          </nuxt-link>
+          <div class="lista-categ">
+            <nuxt-link
+              class="btn"
+              :class="this.$route.query.q ? '' : 'active'"
+              :to="localePath('blog')"
+              >{{ $t('Todos') }}</nuxt-link
+            >
+            <nuxt-link
+              class="btn"
+              :to="
+                localePath({
+                  name: 'blog-category-category',
+                  params: { category: category['slug_' + $i18n.locale] },
+                })
+              "
+              v-for="category in page.data.categories"
+              :key="category.id"
+            >
+              {{ category["name_" + $i18n.locale] }}
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </section>

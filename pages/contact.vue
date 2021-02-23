@@ -9,7 +9,7 @@
             && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
             page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
             : ''">
-            <div slot="title" class="no-movil grid-col-2">
+            <div slot="title" class="grid-col-2">
         <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
         <nuxt-link :to="localePath('sell-your-land')" class="btn">{{ $t('Vende tu terreno')}}</nuxt-link>
       </div>
@@ -154,14 +154,6 @@
         <img class="lazyload" :data-src="storageUrl+'/img/content/'+page.data.content[
                   page.data.content.findIndex((x) => x.name === 'Información')
                 ].content.find((x) => x.field === 'image').value" alt="" />
-      </div>
-    </section>
-    <section class="section si-movil-contacto bg1" style="display: none">
-      <div class="container">
-        <div class="grid-col-2">
-          <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
-          <nuxt-link :to="localePath('sell-your-land')" class="btn">{{ $t('Vende tu terreno')}}</nuxt-link>
-        </div>
       </div>
     </section>
   </main>

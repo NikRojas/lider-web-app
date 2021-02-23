@@ -101,7 +101,7 @@
           </div>
           <!-- Tab links -->
           <div
-            class="tabs2 margin-botton wow fadeInUp"
+            class="tabs2 movil-col-2 margin-botton wow fadeInUp"
             v-if="page.data.cami_elements.length"
           >
             <a
