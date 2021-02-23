@@ -49,7 +49,7 @@
             <div>
               <div v-if="loadingSpecific">
                 <client-only>
-                  <PuSkeleton height="45px"></PuSkeleton>
+                  <PuSkeleton height="52px"></PuSkeleton>
                 </client-only>
               </div>
               <div v-else>
