@@ -99,5 +99,9 @@ export default {
     'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'If you meet the profile we will contact you as soon as possible. Luck!',
     'Resultados para' : 'Results for',
     'Lo sentimos, no hay ningún resultado para': 'Sorry, there is no result for',
-    'Leer más': 'Show more'
+    'Leer más': 'Show more',
+    'Algo salió mal': 'Something went wrong',
+    'La página que estabas buscando no existe': 'The page you were looking for does not exist',
+    'Volver a la página de inicio': 'Return to homepage',
+    'Volver al inicio': 'Back to Home'
 }

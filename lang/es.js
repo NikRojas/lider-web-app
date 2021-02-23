@@ -99,5 +99,9 @@ export default {
     'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!': 'Si cumples con el perfil te contactaremos a la brevedad posible. ¡Suerte!',
     'Resultados para' : 'Resultados para',
     'Lo sentimos, no hay ningún resultado para': 'Lo sentimos, no hay ningún resultado para',
-    'Leer más': 'Leer más'
+    'Leer más': 'Leer más',
+    'Algo salió mal': 'Algo salió mal',
+    'La página que estabas buscando no existe': 'La página que estabas buscando no existe',
+    'Volver a la página de inicio': 'Volver a la página de inicio',
+    'Volver al inicio': 'Volver al inicio'
 }

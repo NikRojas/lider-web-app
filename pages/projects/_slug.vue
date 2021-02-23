@@ -708,7 +708,7 @@
                   v-for="el in page.data.project.files_rel"
                   :key="'fil' + el.id"
                 >
-                  <a :href="storageUrl + '/files/' + el.file" class="btn">{{
+                  <a :href="storageUrl + '/files/projects/documents/' + el.file" class="btn" target="_blank">{{
                     el["name_" + $i18n.locale]
                   }}</a>
                 </div>

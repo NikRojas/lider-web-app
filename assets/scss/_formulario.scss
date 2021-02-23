@@ -9,6 +9,16 @@ input, select, textarea{
     padding: 10px;
 }
 
+select{
+    background: #fff url('../../assets/img/arrow-up-icon.png') no-repeat;
+    background-size: 15px;
+    background-position:  right 10px center;
+    padding-left: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 input:focus {
     outline: none;
     z-index: 3;

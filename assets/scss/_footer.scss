@@ -155,3 +155,29 @@ footer {
     justify-self: center;
 }
 
+section.page-404 {
+    min-height: 80vh;
+    padding-top: 100px;
+    display: grid;
+    align-items: center;
+    .contant-404 {
+        max-width: 900px;
+        width: 90%;
+        display: grid;
+        text-align: center;
+        padding: 35px;
+        background: white;
+        border-radius: 2px;
+        margin: auto;
+        span {
+            font-size: 8rem;
+            color: #f15f23;
+        }
+        a{
+            max-width: 200px;
+            display: inline-block;
+            margin: auto;
+        }
+    }
+}
+
