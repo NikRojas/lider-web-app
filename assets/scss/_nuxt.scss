@@ -288,3 +288,9 @@ justify-content: center;
         grid-gap: 15px !important;
     }
 }
+
+.slider-proyecto{
+    .owl-prev,.owl-next{
+        border: 0!important;
+    }
+}

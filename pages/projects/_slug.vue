@@ -230,7 +230,7 @@
             ></div>
             <a
               :href="
-                storageUrl + '/files/projects/documents/' + page.data.project.brochure
+                storageUrl + '/files/projects/' + page.data.project.brochure
               "
               target="_blank"
               class="btn"
@@ -988,8 +988,10 @@ export default {
         items: 1,
       }).on('changed.owl.carousel', onChangePlano);
       function onChangePlano(el) {
+        if(el){
         let active = el.property.value;
         self.quotation.project_type_department_id = self.page.data.project.tipologies_rel[active].id;
+        }
       }
       $(".slider-proyecto.owl-carousel").owlCarousel({
         loop: true,
