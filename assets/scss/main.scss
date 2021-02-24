@@ -1482,7 +1482,13 @@ section.filtro-home {
     .section-cami .gal2 img {
         max-height: 110px;
     }
-
+    .header-proyectos .grid-head-proyecto {
+        grid-gap: 0;
+    }
+    .header-proyectos .grid-head-proyecto .logo img {
+        max-height: 35px;
+        height: auto;
+    }
 }
 @media only screen and (max-width: 500px) {
     .nav .btn-idioma {
