@@ -21,11 +21,11 @@
               $t("Nosotros")
             }}</nuxt-link>
           </li>
-          <!--<li>
-            <nuxt-link :to="localePath('projects')" @click.native="closeMenu">{{
+          <li>
+            <nuxt-link :to="localePath('index')" @click.native="closeMenu">{{
               $t("Proyectos")
             }}</nuxt-link>
-          </li>-->
+          </li>
           <li>
             <nuxt-link :to="localePath('testimonials')" @click.native="closeMenu">{{
               $t("Testimoniales")
