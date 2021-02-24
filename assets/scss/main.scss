@@ -283,6 +283,7 @@ section.filtro-home {
                 height: 52px;
                 width: 100%;
             }
+
         }
     }
 }
@@ -1471,7 +1472,7 @@ section.filtro-home {
 
 }
 @media only screen and (max-width: 500px) {
-    .nav .btn-idioma.dropdown2 {
+    .nav .btn-idioma {
         display: none!important;
     }
 }

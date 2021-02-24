@@ -1,6 +1,7 @@
 <template>
   <main class="blog">
     <Banner
+     classes="banner-blog"
       :banner="
         page.data.content[
           page.data.content.findIndex((x) => x.name === 'Banner')

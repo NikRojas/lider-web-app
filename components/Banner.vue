@@ -1,6 +1,7 @@
 <template>
   <section
     class="banner lazyload"
+    :class="classes"
     :data-bg="
         banner
           ? storageUrl + '/img/content/' + banner
@@ -19,6 +20,7 @@
 <script>
 export default {
     props:{
+      classes: String,
         title: String,
         banner: String
     }   ,

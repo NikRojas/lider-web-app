@@ -230,7 +230,7 @@
             ></div>
             <a
               :href="
-                storageUrl + '/files/projects/' + page.data.project.brochure
+                storageUrl + '/files/projects/documents/' + page.data.project.brochure
               "
               target="_blank"
               class="btn"

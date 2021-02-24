@@ -3,11 +3,13 @@
     <div class="sombra" @click.prevent="closeMenu"></div>
     <div class="content">
       <div class="head">
-        <img
-          :data-src="require('~/assets/img/logo.png')"
-          class="lazyload"
-          alt=""
-        />
+        <nuxt-link :to="localePath('index')" @click.native="closeMenu">
+          <img
+            :data-src="require('~/assets/img/logo.png')"
+            class="lazyload"
+            alt=""
+          />
+        </nuxt-link>
         <a href="#" @click.prevent="closeMenu"
           ><i class="flaticon-cancelar"></i
         ></a>
