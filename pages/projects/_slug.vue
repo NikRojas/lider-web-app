@@ -647,7 +647,7 @@
                           id="accepted"
                           type="checkbox"
                         />
-                        <label
+                        <label for="accepted"
                           >{{ $t("He leído y acepto los") }}
                           <a target="_blank" :href="localePath('terms-conditions')">{{
                             $t("Términos y Condiciones")
