@@ -47,7 +47,7 @@
                 @click.prevent="shareWhatsapp(el.number)"
                 v-for="(el, i) in menu.information.whatsapp_formatted"
                 :key="'w' + i"
-                ><i class="flaticon-whatsapp-1"> </i> {{ el.department }}:
+                >{{ el.department }}:
                 {{ el.number_format }}</a
               >
             </div>
