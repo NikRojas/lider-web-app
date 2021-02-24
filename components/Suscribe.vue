@@ -61,9 +61,9 @@
                             id="accepted"
                             type="checkbox"
                         />
-                        <label for="accepted"
+                        <label 
                             >{{ $t("He leído y acepto las") }}
-                            <a>{{ $t("Políticas de privacidad") }}</a
+                            <a target="_blank" :href="localePath('privacy-policies')">{{ $t("Políticas de privacidad") }}</a
                             >.</label
                         >
                         <span

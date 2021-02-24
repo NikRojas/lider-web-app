@@ -124,9 +124,9 @@
                         id="accepted"
                         type="checkbox"
                       />
-                      <label for="accepted"
-                        >{{ $t('He leído y acepto los')}} <nuxt-link :to="localePath('terms-conditions')">{{ $t('Términos y Condiciones')}}</nuxt-link> {{ $t('y')}}
-                        <nuxt-link :to="localePath('privacy-policies')">{{ $t('Políticas de privacidad')}}</nuxt-link>.</label
+                      <label 
+                        >{{ $t('He leído y acepto los')}} <a target="_blank" :href="localePath('terms-conditions')">{{ $t('Términos y Condiciones')}}</a> {{ $t('y')}}
+                        <a target="_blank" :href="localePath('privacy-policies')">{{ $t('Políticas de privacidad')}}</a>.</label
                       >
                       <span
                         class="error error-red"
