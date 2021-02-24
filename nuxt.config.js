@@ -133,7 +133,7 @@ export default {
   },
   proxy: {
     '/api/': {
-      target: 'https://lider-admin.playgroup.pe/api/',
+      target: 'https://admin.lider.com.pe/api/',
       //target: 'http://127.0.0.1:8000/api/',
       pathRewrite: { '^/api/': '' },
     }

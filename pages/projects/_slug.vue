@@ -281,7 +281,10 @@
           <h2>{{ page.data.project["text_place_" + $i18n.locale] }}</h2>
         </div>
         <template v-if="page.data.project.gallery_rel.length">
-          <div class="tabs2 margin-botton">
+          <div class="tabs2 margin-botton"
+          :class="{
+            'col2-movil-gal': Object.keys(page.data.project.typeGallery).length == 2,
+          }">
             <a
               class="tablinks btn"
               :class="{
@@ -882,8 +885,11 @@ export default {
       errors: {},
       requestQuotation: false,
       quotationSuccess: false,
-      quotation: {},
+      quotation: {
+        project_type_department_id: null,
+      },
       storageUrl: process.env.STORAGE_URL,
+      planos: null
     };
   },
   methods: {
@@ -944,6 +950,7 @@ export default {
     this.page.data.project.tipologies_rel.length
       ? (this.quotation.project_type_department_id = this.page.data.project.tipologies_rel[0].id)
       : "";
+    let self = this;
     $(document).ready(function () {
       $(".fancybox").fancybox();
       $(".documentos-proyecto").owlCarousel({
@@ -974,12 +981,16 @@ export default {
       $(".planos-proyecto.owl-carousel").owlCarousel({
         loop: false,
         nav: true,
-        autoplay: true,
+        autoplay: false,
         dots: false,
         autoplayTimeout: 5000,
         autoplayHoverPause: true,
         items: 1,
-      });
+      }).on('changed.owl.carousel', onChangePlano);
+      function onChangePlano(el) {
+        let active = el.property.value;
+        self.quotation.project_type_department_id = self.page.data.project.tipologies_rel[active].id;
+      }
       $(".slider-proyecto.owl-carousel").owlCarousel({
         loop: true,
         nav: true,
@@ -1008,6 +1019,12 @@ export default {
         },
       });
     });
+  },
+  watch: {
+    'quotation.project_type_department_id': function (newVal, oldVal) {
+      const indexTipology = this.page.data.project.tipologies_rel.findIndex( el => el.id === newVal );
+      $(".planos-proyecto.owl-carousel").trigger('to.owl.carousel', indexTipology);
+    }
   },
   nuxtI18n: {
     paths: {
