@@ -904,8 +904,14 @@ export default {
       this.$axios
         .$post("/api/post/quotation", this.quotation)
         .then((response) => {
+          console.log(response);
           this.requestQuotation = false;
-          this.quotationSuccess = true;
+          this.$router.push(
+            this.localePath({
+              name: "quotation",
+              query: { id: response.data.identifier },
+            })
+          );
         })
         .catch((error) => {
           this.requestQuotation = false;
@@ -989,8 +995,8 @@ export default {
       }).on('changed.owl.carousel', onChangePlano);
       function onChangePlano(el) {
         if(el){
-        let active = el.property.value;
-        self.quotation.project_type_department_id = self.page.data.project.tipologies_rel[active].id;
+          let active = el.property.value;
+          self.quotation.project_type_department_id = self.page.data.project.tipologies_rel[active].id;
         }
       }
       $(".slider-proyecto.owl-carousel").owlCarousel({
