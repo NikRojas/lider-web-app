@@ -349,6 +349,7 @@ export default {
         cami: {},
       },
       storageUrl: process.env.STORAGE_URL,
+      showCamiButton: false,
     };
   },
   methods: {
@@ -359,6 +360,7 @@ export default {
         }
       });
       $("#btn-show-cami").hide();
+      this.showCamiButton = true;
     },
   },
   mounted() {
@@ -384,13 +386,17 @@ export default {
       document.querySelector("#" + country).classList.add("active");
       btnTarget.classList.add("active");
     }
+    let self = this;
     $(window).resize(function () {
       if ($(window).width() <= 720) {
-        $("#cami-description > .ql-align-justify").each(function (i, obj) {
-          if (i > 0) {
-            $(this).hide();
+        if(!self.showCamiButton){
+          
+          $("#cami-description > .ql-align-justify").each(function (i, obj) {
+            if (i > 0) {
+              $(this).hide();
+            }
+          });
           }
-        });
       } else {
         $("#cami-description > .ql-align-justify").each(function (i, obj) {
           if (i > 0) {
