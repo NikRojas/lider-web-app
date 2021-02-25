@@ -1,7 +1,7 @@
 <template>
   <header
     :class="
-      $route.name == 'projects-slug___es' || $route.name == 'projects-slug___en'
+      $route.name == 'projects-slug___es' || $route.name == 'projects-slug___en' || $route.name == 'quotation___en' || $route.name == 'quotation_es'
         ? 'header2'
         : ''
     "
