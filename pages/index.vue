@@ -34,17 +34,6 @@
         </div>
       </div>
     </section>
-    <!--<ProjectsFilter
-      :departments.sync="filterUbigeo"
-      :districts.sync="filterD"
-      :statuses.sync="filterStatus"
-      :rooms.sync="filterRooms"
-      @search="searchFilter"
-      orientation="top"
-      :loading="loadingProjects"
-      :label="$t('Proyectos en venta')"
-      :filters="page.data.filters"
-    />-->
     <ProjectsFilter
       :ubigeo.sync="filterUbigeo"
       :status.sync="filterStatus"
@@ -165,7 +154,7 @@
         <div class="top-section">
           <div class="text-center wow fadeInUp">
             <nuxt-link :to="localePath('blog')" class="btn">{{
-              $t("Ver más notas")
+              $t("Ver más artículos")
             }}</nuxt-link>
           </div>
         </div>

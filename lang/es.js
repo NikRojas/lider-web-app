@@ -16,7 +16,7 @@ export default {
     'Mensaje': 'Mensaje',
     'Más testimonios': 'Más testimonios',
     'Ver más proyectos': 'Ver más proyectos',
-    'Ver más notas': 'Ver más notas',
+    'Ver más artículos': 'Ver más artículos',
     'Descripción': 'Descripción',
     'Galería': 'Galería',
     'Recorrido Virtual': 'Recorrido Virtual',
@@ -103,5 +103,6 @@ export default {
     'Algo salió mal': 'Algo salió mal',
     'La página que estabas buscando no existe': 'La página que estabas buscando no existe',
     'Volver a la página de inicio': 'Volver a la página de inicio',
-    'Volver al inicio': 'Volver al inicio'
+    'Volver al inicio': 'Volver al inicio',
+    'Más artículos': 'Más artículos'
 }

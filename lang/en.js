@@ -16,7 +16,7 @@ export default {
     'Mensaje': 'Message',
     'Más testimonios': 'More testimonials',
     'Ver más proyectos': 'Show more projects',
-    'Ver más notas': 'Show more posts',
+    'Ver más artículos': 'Show more posts',
     'Descripción': 'Description',
     'Galería': 'Gallery',
     'Recorrido Virtual': 'Virtual Tour',
@@ -103,5 +103,6 @@ export default {
     'Algo salió mal': 'Something went wrong',
     'La página que estabas buscando no existe': 'The page you were looking for does not exist',
     'Volver a la página de inicio': 'Return to homepage',
-    'Volver al inicio': 'Back to Home'
+    'Volver al inicio': 'Back to Home',
+    'Más artículos': 'More posts'
 }

@@ -123,7 +123,7 @@
                 </template>
                 <div>
                   <nuxt-link class="btn btn2" :to="localePath('blog')">{{
-                    $t("Todos")
+                    $t("Ver más artículos")
                   }}</nuxt-link>
                 </div>
               </div>
