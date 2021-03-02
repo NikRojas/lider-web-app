@@ -2,7 +2,7 @@ export const state = () => ({
     menu_open : false,
     footer: {},
     menu: {},
-    //form: {},
+    page: {}
 });
 
 export const mutations = {
@@ -14,6 +14,9 @@ export const mutations = {
     SET_MENU_OPEN(state){
         state.menu_open = !state.menu_open; 
     },
+    SET_CURRENT_PAGE(state, page){
+        state.page = page; 
+    },
 }
 
 export const actions = {
@@ -24,6 +27,9 @@ export const actions = {
     setMenuOpen({ commit}){
         commit('SET_MENU_OPEN');
     },
+    setCurrentPage({ commit}, page){
+        commit('SET_CURRENT_PAGE', page);
+    },
     async nuxtServerInit({ dispatch }) {
         await dispatch('getLayout');
     },
@@ -32,6 +38,9 @@ export const actions = {
 export const getters = {
     getMenu: state => {
         return state.menu;
+    },
+    getCurrentPage: state => {
+        return state.page;
     },
     getFooter: state => {
         return state.footer;

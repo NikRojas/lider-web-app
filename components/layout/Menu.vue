@@ -1,7 +1,10 @@
 <template>
   <header
     :class="
-      $route.name == 'projects-slug___es' || $route.name == 'projects-slug___en' || $route.name == 'quotation___en' || $route.name == 'quotation___es'
+      $route.name == 'projects-slug___es' ||
+      $route.name == 'projects-slug___en' ||
+      $route.name == 'quotation___en' ||
+      $route.name == 'quotation___es'
         ? 'header2'
         : ''
     "
@@ -35,7 +38,11 @@
           <Dropdown
             :right="true"
             classWrapper="dropdown-width"
-            v-if="menu.information && menu.information.whatsapp_numbers && menu.information.whatsapp_numbers.length"
+            v-if="
+              menu.information &&
+              menu.information.whatsapp_numbers &&
+              menu.information.whatsapp_numbers.length
+            "
           >
             <div slot="active-text" class="btn-circle">
               <i class="flaticon-whatsapp-1"></i>
@@ -47,15 +54,18 @@
                 @click.prevent="shareWhatsapp(el.number)"
                 v-for="(el, i) in menu.information.whatsapp_formatted"
                 :key="'w' + i"
-                >{{ el.department }}:
-                {{ el.number_format }}</a
+                >{{ el.department }}: {{ el.number_format }}</a
               >
             </div>
           </Dropdown>
           <Dropdown
             :right="true"
             classWrapper="dropdown-width"
-            v-if="menu.information && menu.information.phone_numbers && menu.information.phone_numbers.length"
+            v-if="
+              menu.information &&
+              menu.information.phone_numbers &&
+              menu.information.phone_numbers.length
+            "
           >
             <div slot="active-text" class="btn-circle">
               <i class="flaticon-telephone"></i>
@@ -83,19 +93,163 @@
             </div>
             <div slot="dropdown-content">
               <template v-for="locale in availableLocales">
-                <nuxt-link
-                  class="dropdown-item"
-                  v-if="locale.code != $i18n.locale"
-                  :key="locale.code"
-                  :to="switchLocalePath(locale.code)"
+                <template
+                  v-if="
+                    $route.name != 'blog-category-category-post___es' &&
+                    $route.name != 'blog-category-category-post___en' &&
+                    $route.name != 'blog-category-category___es' &&
+                    $route.name != 'blog-category-category___en'
+                  "
                 >
-                  {{ locale.name }}
-                  <img
-                    class="lazyload dropdown-item__img"
-                    height="12"
-                    :data-src="require('~/assets/img/' + locale.code + '.png')"
-                    alt=""
-                /></nuxt-link>
+                  <nuxt-link
+                    class="dropdown-item"
+                    v-if="locale.code != $i18n.locale"
+                    :key="locale.code"
+                    :to="switchLocalePath(locale.code)"
+                  >
+                    {{ locale.name }}
+                    <img
+                      class="lazyload dropdown-item__img"
+                      height="12"
+                      :data-src="
+                        require('~/assets/img/' + locale.code + '.png')
+                      "
+                      alt=""
+                  /></nuxt-link>
+                </template>
+                <template v-else>
+<template
+                  v-if="
+                    $route.name == 'blog-category-category___es' ||
+                    $route.name == 'blog-category-category___en'
+                  "
+                >
+                  <nuxt-link
+                    class="dropdown-item"
+                    v-if="locale.code != $i18n.locale"
+                    :key="locale.code"
+                    :to="
+                      localePath(
+                        {
+                          name: 'blog-category-category',
+                          params: {
+                            category:
+                              currentPage.data.category['slug_' + locale.code],
+                          },
+                        },
+                        locale.code
+                      )
+                    "
+                  >
+                    {{ locale.name }}
+                    <img
+                      class="lazyload dropdown-item__img"
+                      height="12"
+                      :data-src="
+                        require('~/assets/img/' + locale.code + '.png')
+                      "
+                      alt=""
+                  /></nuxt-link>
+                </template>
+                <template
+                  v-else
+                >
+                  <nuxt-link
+                    class="dropdown-item"
+                    v-if="locale.code != $i18n.locale && currentPage.data.post"
+                    :key="locale.code"
+                    :to="
+                      localePath(
+                        {
+                          name: 'blog-category-category-post',
+                          params: {
+                            category:
+                              currentPage.data.category['slug_' + locale.code],
+                            post: currentPage.data.post['slug_' + locale.code],
+                          },
+                        },
+                        locale.code
+                      )
+                    "
+                  >
+                    {{ locale.name }}
+                    <img
+                      class="lazyload dropdown-item__img"
+                      height="12"
+                      :data-src="
+                        require('~/assets/img/' + locale.code + '.png')
+                      "
+                      alt=""
+                  /></nuxt-link>
+                </template>
+                </template>
+                <!--<template
+                  v-if="
+                    $route.name == 'blog-category-category___es' ||
+                    $route.name == 'blog-category-category___en'
+                  "
+                >
+                  <nuxt-link
+                    class="dropdown-item"
+                    v-if="locale.code != $i18n.locale"
+                    :key="locale.code"
+                    :to="
+                      localePath(
+                        {
+                          name: 'blog-category-category',
+                          params: {
+                            category:
+                              currentPage.data.category['slug_' + locale.code],
+                          },
+                        },
+                        locale.code
+                      )
+                    "
+                  >
+                    {{ locale.name }}
+                    <img
+                      class="lazyload dropdown-item__img"
+                      height="12"
+                      :data-src="
+                        require('~/assets/img/' + locale.code + '.png')
+                      "
+                      alt=""
+                  /></nuxt-link>
+                </template>
+                <template
+                  v-if="
+                    $route.name == 'blog-category-category-post___es' ||
+                    $route.name == 'blog-category-category-post___en'
+                  "
+                >
+                  <nuxt-link
+                    class="dropdown-item"
+                    v-if="locale.code != $i18n.locale"
+                    :key="locale.code"
+                    :to="
+                      localePath(
+                        {
+                          name: 'blog-category-category-post',
+                          params: {
+                            category:
+                              currentPage.data.category['slug_' + locale.code],
+                            post: currentPage.data.post['slug_' + locale.code],
+                          },
+                        },
+                        locale.code
+                      )
+                    "
+                  >
+                    {{ locale.name }}
+                    <img
+                      class="lazyload dropdown-item__img"
+                      height="12"
+                      :data-src="
+                        require('~/assets/img/' + locale.code + '.png')
+                      "
+                      alt=""
+                  /></nuxt-link>
+                </template>-->
               </template>
             </div>
           </Dropdown>
@@ -114,6 +268,9 @@ export default {
     },
     menu() {
       return this.$store.getters.getMenu;
+    },
+    currentPage() {
+      return this.$store.getters.getCurrentPage;
     },
   },
   data() {

@@ -159,10 +159,11 @@ export default {
     }
     return false;
   },
-  async asyncData({ params, $axios, app }) {
+  async asyncData({ params, $axios, app, store }) {
     let { data } = await $axios.get("/api/page/blog/category/" + params.category, {
       params: { locale: app.i18n.locale },
     });
+    await store.dispatch('setCurrentPage',data)
     return { page: data };
   },
   nuxtI18n: {

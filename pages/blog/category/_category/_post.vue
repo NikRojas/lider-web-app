@@ -165,8 +165,8 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.page.data.post['seo_description_'+this.$i18n.locale]
-            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+          content: this.page.data.post['excerpert_'+this.$i18n.locale]
+            ? this.page.data.post['excerpert_'+this.$i18n.locale]
             : ""
         },
         {
@@ -175,8 +175,8 @@ export default {
         },
         {
           itemprop: "description",
-          content: this.page.data.post['seo_description_'+this.$i18n.locale]
-            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+          content: this.page.data.post['excerpert_'+this.$i18n.locale]
+            ? this.page.data.post['excerpert_'+this.$i18n.locale]
             : ""
         },
         {
@@ -201,8 +201,8 @@ export default {
         },
         {
           name: "og:description",
-          content: this.page.data.post['seo_description_'+this.$i18n.locale]
-            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+          content: this.page.data.post['excerpert_'+this.$i18n.locale]
+            ? this.page.data.post['excerpert_'+this.$i18n.locale]
             : ""
         },
         {
@@ -220,8 +220,8 @@ export default {
         },
         {
           name: "twitter:description",
-          content: this.page.data.post['seo_description_'+this.$i18n.locale]
-            ? this.page.data.post['seo_description_'+this.$i18n.locale]
+          content: this.page.data.post['excerpert_'+this.$i18n.locale]
+            ? this.page.data.post['excerpert_'+this.$i18n.locale]
             : ""
         },
         {
@@ -247,13 +247,14 @@ export default {
     }
     return false;
   },
-  async asyncData({ params, $axios, app }) {
+  async asyncData({ params, $axios, app, store }) {
     let { data } = await $axios.get(
       "/api/page/blog/category/" + params.category + "/" + params.post,
       {
         params: { locale: app.i18n.locale },
       }
     );
+    await store.dispatch('setCurrentPage',data)
     return { page: data };
   },
   components: {
