@@ -129,8 +129,7 @@ export default {
     }*/
   },
   sitemap: {
-    //hostname: 'https://lider.com.pe',
-    hostname: 'http://35.193.255.94',
+    hostname: 'https://lider.com.pe',
     path: '/sitemap.xml',
     sitemaps: [
       {
