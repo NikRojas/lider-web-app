@@ -130,7 +130,7 @@ export default {
   },
   sitemap: {
     //hostname: 'https://lider.com.pe',
-    hostname: 'http//35.193.255.94',
+    hostname: 'http://35.193.255.94',
     path: '/sitemap.xml',
     sitemaps: [
       {
