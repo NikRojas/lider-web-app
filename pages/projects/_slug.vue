@@ -116,13 +116,33 @@
         <div class="content-slider">
           <client-only>
             <div class="slider-proyecto owl-carousel owl-theme nav-absolute">
-              <template v-for="(el, i) in page.data.project.images_format">
-                <div class="item" :key="'sl' + el" v-if="i != 0 && i != 1">
-                  <img
-                    class="lazyload"
-                    :data-src="storageUrl + '/img/projects/' + el"
-                    :alt="'Slide ' + i"
-                  />
+              <template v-for="(el, i) in page.data.project.banners">
+                <div class="item" :key="'sl' + i">
+                  <picture>
+                      <source
+                        media="(min-width: 720px)"
+                        :data-srcset="
+                          storageUrl + '/img/projects/banner/' + el['image_' + $i18n.locale]
+                        "
+                      />
+                      <source
+                        media="(max-width: 720px)"
+                        :data-srcset="
+                          storageUrl +
+                          '/img/projects/banner/' +
+                          el['image_responsive_' + $i18n.locale]
+                        "
+                      />
+                      <img
+                        class="lazyload"
+                        :data-src="
+                          storageUrl +
+                          '/img/projects/banner/' +
+                          el['image_responsive_' + $i18n.locale]
+                        "
+                        alt=""
+                      />
+                    </picture>
                 </div>
               </template>
             </div>
