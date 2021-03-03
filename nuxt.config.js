@@ -1,5 +1,6 @@
 require('dotenv').config()
 const webpack = require('webpack')
+const axios = require('axios')
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -91,6 +92,7 @@ export default {
     ['vue-scrollto/nuxt', { duration: 300 }],
     'vue-social-sharing/nuxt',
     '@nuxtjs/gtm',
+    '@nuxtjs/sitemap'
   ],
   gtm: {
     id: 'GTM-XXXXXX',
@@ -126,7 +128,147 @@ export default {
       fallbackLocale: 'en',
     }*/
   },
-
+  sitemap: {
+    hostname: 'https://lider.com.pe',
+    path: '/sitemap.xml',
+    sitemaps: [
+      {
+        path: '/sitemap-default.xml',
+        exclude: [
+          '/en/quotation',
+          '/cotizacion',
+          '/politicas-privacidad',
+          '/en/privacy-policies',
+          '/en/projects',
+          '/proyectos',
+          '/en/terms-conditions',
+          '/terminos-condiciones',
+        ],
+        routes: [
+          {
+            url: '/',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en/testimonials',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/testimoniales',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/blog',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en/blog',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/nosotros',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en/about-us',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/cami',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en/cami',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/contacto',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en/contact-us',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/cita-online',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en/online-appointment',
+            priority: 1,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/vende-tu-terreno',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/en/sell-your-land',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+        ],
+        gzip: true
+      },
+      {
+        path: '/sitemap-blog.xml',
+        exclude: ['/**'],
+        routes: async () => {
+          let { data } = await axios.get('https://admin.lider.com.pe/api/sitemap-blog');
+          return data.data.blog.flatMap(item => {
+            return [{
+              url: `/blog/${item.category.slug_es}/${item['slug_es']}`,
+              changefreq: 'weekly',
+              priority: 1,
+            },
+            {
+              url: `/en/blog/${item.category.slug_en}/${item['slug_en']}`,
+              changefreq: 'weekly',
+              priority: 1,
+            }]
+          })
+        },
+        gzip: true
+      }, {
+        path: '/sitemap-projects.xml',
+        exclude: ['/**'],
+        gzip: true,
+        routes: async () => {
+          let { data } = await axios.get('https://admin.lider.com.pe/api/sitemap-projects');
+          return data.data.projects.flatMap(item => {
+            return [{
+              url: `/proyectos/${item.slug_es}`,
+              changefreq: 'weekly',
+              priority: 1,
+            },
+            {
+              url: `/en/projects/${item.slug_en}`,
+              changefreq: 'weekly',
+              priority: 1,
+            }]
+          })
+        },
+      }
+    ]
+  },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     proxy: true
