@@ -669,14 +669,10 @@
                         />
                         <label for="accepted"
                           >{{ $t("He leído y acepto los") }}
-                          <a target="_blank" :href="localePath('terms-conditions')">{{
-                            $t("Términos y Condiciones")
-                          }}</a>
+                          <Terms :content="page.data.terms"></Terms>
                           {{ $t("y") }}
-                          <a target="_blank" :href="localePath('privacy-policies')">{{
-                            $t("Políticas de privacidad")
-                          }}</a
-                          >.</label
+                          <Policies :content="page.data.privacy"></Policies>
+                          .</label
                         >
                         <span
                           class="error"
@@ -781,6 +777,8 @@ if (process.client) {
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.green.css";
 import "/static/css/jq.fancybox.min.css";
+import Terms from "../../components/modals/Terms";
+import Policies from '../../components/modals/Policies.vue';
 export default {
   head() {
     return {
@@ -883,6 +881,8 @@ export default {
   },
   components: {
     CardProject,
+    Terms,
+    Policies
   },
   async validate({ params, $axios, app }) {
     const data = await $axios.$get("/api/page/projects/" + params.slug, {

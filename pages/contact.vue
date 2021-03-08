@@ -125,8 +125,8 @@
                         type="checkbox"
                       />
                       <label for="accepted"
-                        >{{ $t('He leído y acepto los')}} <a target="_blank" :href="localePath('terms-conditions')">{{ $t('Términos y Condiciones')}}</a> {{ $t('y')}}
-                        <a target="_blank" :href="localePath('privacy-policies')">{{ $t('Políticas de privacidad')}}</a>.</label
+                        >{{ $t('He leído y acepto los')}} <Terms :content="page.data.terms"></Terms> {{ $t("y") }}
+                          <Policies :content="page.data.privacy"></Policies>.</label
                       >
                       <span
                         class="error error-red"
@@ -160,6 +160,8 @@
 </template>
 <script>
 import Banner from "../components/Banner";
+import Terms from "../components/modals/Terms";
+import Policies from '../components/modals/Policies';
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/contact-us", {
@@ -169,6 +171,8 @@ export default {
   },
   components: {
     Banner,
+    Terms,
+    Policies
   },
   nuxtI18n: {
     paths: {

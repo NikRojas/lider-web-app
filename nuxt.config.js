@@ -62,7 +62,7 @@ export default {
     { src: '~/plugins/lazysizes.js', mode: 'client' },
     { src: '~/plugins/vue-owl-carousel2.js', mode: 'client' },
     { src: '~/plugins/vue-loading-skeleton.js', mode: 'client' },
-    //{ src: '~/statis/js/wow.min.js', mode: 'client' },
+    { src: '~/plugins/vue-js-modal.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
