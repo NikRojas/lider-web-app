@@ -21,8 +21,8 @@
           ✖
         </button>
         <div>
-          <div class="container">
-            <h3 class="text-center">{{ $t("Políticas de privacidad") }}</h3>
+          <div class="content-modal">
+            <h3 class="title">{{ $t("Políticas de privacidad") }}</h3>
 
             <div
               class="text text-justify"

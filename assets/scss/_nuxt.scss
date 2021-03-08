@@ -331,7 +331,7 @@ main{
             color: #0E5983 !important;
         }
     }
-    h2.text-center,h3.text-center{
+    h1.title,h2.title,h3.title{
         color: #474747 !important;
     }
     overflow: inherit;
@@ -345,11 +345,16 @@ main{
     position: absolute;
     background-color: #fff;
     padding: 14px 18px;
-    right: -25px;
-    top: -25px;
-    border-radius: 50%;
+    right: 10px;
+    top: 10px;
+    //border-radius: 50%;
     border: 3px solid $color_3;
     color: $color_3;
     box-shadow: -3px 1px 6px 0 rgb(0 0 0 / 10%);
+    }
+    .content-modal {
+        padding: 35px 25px;
+        max-height: 90vh;
+        overflow-y: auto;
     }
 }
