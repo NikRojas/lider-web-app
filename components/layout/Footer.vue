@@ -66,9 +66,9 @@
                 >{{ $t('Comprobantes electrónicos')}}</a
               >
             </li>
-            <li>
+            <!--<li>
               <nuxt-link  :to="localePath('terms-conditions')">{{ $t('Términos y Condiciones')}}</nuxt-link>
-            </li>
+            </li>-->
             <li>
               <nuxt-link :to="localePath('privacy-policies')">{{ $t('Políticas de privacidad de datos')}}</nuxt-link>
             </li>
