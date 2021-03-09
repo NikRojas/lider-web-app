@@ -48,7 +48,7 @@
         </div>
         <div class="line"></div>
         <div class="price">
-          <strong>{{ $t("desde") }}</strong>
+          <strong>{{ $t("Desde") }}</strong>
           <template v-if="el.price_total_foreign">
             <h4>{{ el.price_total_foreign_format }}</h4>
           </template>

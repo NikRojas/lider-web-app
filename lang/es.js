@@ -104,5 +104,6 @@ export default {
     'La página que estabas buscando no existe': 'La página que estabas buscando no existe',
     'Volver a la página de inicio': 'Volver a la página de inicio',
     'Volver al inicio': 'Volver al inicio',
-    'Más artículos': 'Más artículos'
+    'Más artículos': 'Más artículos',
+    'Desde': 'Desde'
 }
