@@ -370,3 +370,8 @@ body {
 .ql-align-justify {
     text-align: justify;
 }
+
+.nav-absolute button.owl-next, .nav-absolute button.owl-prev {
+    border: none!important;
+    border-radius: 0!important;
+}
