@@ -176,9 +176,10 @@
               </div>
               <div>
                 <i class="flaticon-ubicacion"> </i
-                >{{ page.data.project.location }},
+                >{{ page.data.project.location }}
+                <!--,
                 {{ page.data.project.ubigeo_rel.district }} -
-                {{ page.data.project.ubigeo_rel.department }}
+                {{ page.data.project.ubigeo_rel.department }}-->
               </div>
             </div>
             <div class="price">
@@ -434,10 +435,10 @@
             <div class="item-ubicacion line-bottom">
               <i class="flaticon-ubicacion"></i>
               <div>
-                <p>
+                <!--<p>
                   {{ page.data.project.location }} -
                   {{ page.data.project.ubigeo_rel.district }}
-                </p>
+                </p>-->
                 <div
                   v-if="page.data.project['map_indications_' + $i18n.locale]"
                   v-html="page.data.project['map_indications_' + $i18n.locale]"
