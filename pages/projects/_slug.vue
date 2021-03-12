@@ -533,7 +533,7 @@
                         v-for="el in page.data.project.tipologies_rel"
                         :key="el.id"
                       >
-                        {{ el.name }} / {{ el.area }}
+                        {{ el.name }} / {{ el.area }}m2
                       </option>
                     </select>
                   </div>
@@ -573,7 +573,7 @@
                               {{ $t("Proyecto") }}
                               {{ page.data.project["name_" + $i18n.locale] }}
                             </h5>
-                            <strong>{{ el.name }} / {{ el.area }}</strong>
+                            <strong>{{ el.name }} / {{ el.area }}m2</strong>
                           </div>
                         </div>
                       <!--</template>-->
