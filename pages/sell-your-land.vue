@@ -117,6 +117,26 @@
                     </div>
                   </div>
                   <div class="grid-s-12">
+                    <div class="form-control">
+                      <input
+                        v-model="form.accepted"
+                        class="checkbox"
+                        id="accepted"
+                        type="checkbox"
+                      />
+                      <label for="accepted"
+                        >{{ $t('He leído y acepto los')}} <Terms :content="page.data.terms"></Terms> {{ $t("y") }}
+                          <Policies :content="page.data.privacy"></Policies>.</label
+                      >
+                      <span
+                        class="error error-red"
+                        v-if="errors && errors.accepted"
+                        for="accepted"
+                        >{{ $t(errors.accepted[0]) }}</span
+                      >
+                    </div>
+                  </div>
+                  <div class="grid-s-12">
                     <button type="submit" :class="request ? 'btn--opacity' : ''" :disabled="request" class="w-100 btn btn2">
                       {{ request ? $t("Cargando")+"..." : $t("Enviar") }} </button>
                   </div>
@@ -141,6 +161,8 @@
 </template>
 <script>
 import Banner from "../components/Banner";
+import Terms from "../components/modals/Terms";
+import Policies from '../components/modals/Policies';
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/sell-your-land", {
@@ -231,6 +253,8 @@ export default {
   },
   components: {
     Banner,
+    Terms,
+    Policies
   },
   nuxtI18n: {
     paths: {

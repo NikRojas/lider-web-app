@@ -925,7 +925,7 @@ export default {
       this.$axios
         .$post("/api/post/quotation", this.quotation)
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           this.requestQuotation = false;
           this.$router.push(
             this.localePath({

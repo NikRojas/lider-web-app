@@ -126,6 +126,26 @@
                           <span class="error error-red" v-if="error" for="pdf">{{ $t(errors.pdf[0] )}}</span>
                     </div>
                     <div class="grid-s-12">
+                    <div class="form-control">
+                      <input
+                        v-model="form.accepted"
+                        class="checkbox"
+                        id="accepted"
+                        type="checkbox"
+                      />
+                      <label for="accepted"
+                        >{{ $t('He leído y acepto los')}} <Terms :content="page.data.terms"></Terms> {{ $t("y") }}
+                          <Policies :content="page.data.privacy"></Policies>.</label
+                      >
+                      <span
+                        class="error error-red"
+                        v-if="errors && errors.accepted"
+                        for="accepted"
+                        >{{ $t(errors.accepted[0]) }}</span
+                      >
+                    </div>
+                  </div>
+                    <div class="grid-s-12">
                       <button type="submit" :class="request ? 'btn--opacity' : ''" :disabled="request" class="w-100 btn btn2">
                       {{ request ? $t("Cargando")+"..." : $t("Enviar") }} </button>
 
@@ -152,6 +172,8 @@
 import Dropzone from "nuxt-dropzone";
 import "nuxt-dropzone/dropzone.css";
 import Banner from "../components/Banner";
+import Terms from "../components/modals/Terms";
+import Policies from '../components/modals/Policies';
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/work-with-us", {
@@ -243,6 +265,8 @@ export default {
   components: {
     Banner,
     Dropzone,
+    Terms,
+    Policies
   },
   nuxtI18n: {
     paths: {
