@@ -4,7 +4,7 @@
     <section class="slider" v-if="page.data.slider.length">
       <div class="hero-slider owl-carousel owl-theme nav-absolute">
         <div class="single-hs-item" v-for="el in page.data.slider" :key="el.id">
-          <div class="img-slide">
+          <div class="img-slide" v-if="!el.link">
             <picture>
               <source
                 media="(min-width: 720px)"
@@ -31,6 +31,33 @@
               />
             </picture>
           </div>
+          <a :href="el.link" target="_blank" class="img-slide" v-else>
+            <picture>
+              <source
+                media="(min-width: 720px)"
+                :data-srcset="
+                  storageUrl + '/img/slider/' + el['image_' + $i18n.locale]
+                "
+              />
+              <source
+                media="(max-width: 720px)"
+                :data-srcset="
+                  storageUrl +
+                  '/img/slider/' +
+                  el['image_responsive_' + $i18n.locale]
+                "
+              />
+              <img
+                class="lazyload"
+                :data-src="
+                  storageUrl +
+                  '/img/slider/' +
+                  el['image_responsive_' + $i18n.locale]
+                "
+                alt=""
+              />
+            </picture>
+          </a>
         </div>
       </div>
     </section>

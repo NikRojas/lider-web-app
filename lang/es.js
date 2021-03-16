@@ -105,5 +105,7 @@ export default {
     'Volver a la página de inicio': 'Volver a la página de inicio',
     'Volver al inicio': 'Volver al inicio',
     'Más artículos': 'Más artículos',
-    'Desde': 'Desde'
+    'Desde': 'Desde',
+    'y/o perfil de Linkedin': 'y/o perfil de Linkedin',
+    'Puesto al que postula': 'Puesto al que postula'
 }

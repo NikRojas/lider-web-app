@@ -81,7 +81,7 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
-                        <label for="job">{{ $t("Puesto")}}*</label>
+                        <label for="job">{{ $t("Puesto al que postula")}}*</label>
                         <input type="text" id="job" v-model="form.job" />
                         <span
                           class="error error-red"
@@ -93,7 +93,7 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
-                        <label for="url">URL {{ $t("Portafolio")}}*</label>
+                        <label for="url">URL {{ $t("Portafolio")}} {{ $t('y/o perfil de Linkedin') }}*</label>
                         <input type="text" id="url" v-model="form.url" />
                         <span
                           class="error error-red"

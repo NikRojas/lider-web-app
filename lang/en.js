@@ -105,5 +105,7 @@ export default {
     'Volver a la página de inicio': 'Return to homepage',
     'Volver al inicio': 'Back to Home',
     'Más artículos': 'More posts',
-    'Desde': 'From'
+    'Desde': 'From',
+    'y/o perfil de Linkedin': 'and/or Linkedin profile',
+    'Puesto al que postula': 'Job you are applying for'
 }
