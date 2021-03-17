@@ -350,6 +350,7 @@
                 >
                   <a
                     class="fancybox"
+                    :data-caption="item['name_' + $i18n.locale]"
                     :data-fancybox="el"
                     :href="storageUrl + '/img/projects/gallery/' + item.image"
                   >
