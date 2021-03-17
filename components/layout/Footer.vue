@@ -20,7 +20,7 @@
             </ul>
             <ul v-if="footer.information && footer.information.location">
               <li>
-                <b>{{ $t('Ubicación oficinas')}}:</b>
+                <!--<b>{{ $t('Ubicación oficinas')}}:</b>-->
                 <div
                   style="display: inline"
                   v-html="footer.information.location"
