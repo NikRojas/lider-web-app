@@ -31,7 +31,7 @@
               />
             </picture>
           </div>
-          <a :href="el.link" target="_blank" class="img-slide" v-else>
+          <a :href="el.link" class="img-slide" v-else>
             <picture>
               <source
                 media="(min-width: 720px)"
