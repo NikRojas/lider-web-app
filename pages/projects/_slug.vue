@@ -3,7 +3,14 @@
     <div class="header-proyectos">
       <div class="container">
         <div class="grid-head-proyecto">
-          <div class="logo">
+          <a class="logo"
+                  v-scroll-to="{
+                    el: '#slider',
+                    duration: 1000,
+                    easing: 'ease',
+                    offset: -50,
+                  }"
+                  href="#">
             <img
               :data-src="
                 storageUrl + '/img/projects/' + page.data.project.logo_colour
@@ -11,7 +18,7 @@
               class="lazyload"
               :alt="page.data.project['name_' + $i18n.locale] + 'Logo Color'"
             />
-          </div>
+          </a>
           <div class="menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li>
@@ -111,7 +118,7 @@
         </div>
       </div>
     </div>
-    <section>
+    <section id="slider">
       <div class="grid-proyecto-top">
         <div class="content-slider">
           <client-only>
