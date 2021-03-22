@@ -11,7 +11,9 @@
             : ''">
            <div  slot="title" class="grid-col-2">
         <nuxt-link :to="localePath('contact')" class="btn">{{ $t('Contacto')}}</nuxt-link>
-          <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
+          <a class="btn" :href="footer.information.link_jobs" v-if="footer.information && footer.information.link_jobs" rel="noopener" target="_blank">
+          {{ $t('Trabaja con nosotros')}}
+        </a>
       </div>
     </Banner>
 
@@ -272,6 +274,11 @@ export default {
           success: false,
           errors:{}
       }
+  },
+  computed: {
+    footer() {
+      return this.$store.getters.getFooter;
+    },
   },
   methods:{
       submit() {

@@ -10,7 +10,9 @@
             page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
             : ''">
             <div slot="title" class="grid-col-2">
-        <nuxt-link :to="localePath('work-with-us')" class="btn">{{ $t('Trabaja con nosotros')}}</nuxt-link>
+        <a class="btn" :href="footer.information.link_jobs" v-if="footer.information && footer.information.link_jobs" rel="noopener" target="_blank">
+          {{ $t('Trabaja con nosotros')}}
+        </a>
         <nuxt-link :to="localePath('sell-your-land')" class="btn">{{ $t('Vende tu terreno')}}</nuxt-link>
       </div>
     </Banner>
@@ -289,6 +291,11 @@ export default {
             }
             });
         },
-  }
+  },
+  computed: {
+    footer() {
+      return this.$store.getters.getFooter;
+    },
+  },
 };
 </script>
