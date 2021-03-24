@@ -3752,8 +3752,8 @@
                           </table>
                           <table
                             v-if="
-                              page.data.financingOptions &&
-                              page.data.financingOptions.length
+                              page.data.lead.project_rel &&
+                              page.data.lead.project_rel.financing_options_rel.length
                             "
                             class="row"
                             style="
@@ -4022,7 +4022,7 @@
                                           >
                                             <li
                                               style="margin-bottom: 0.5rem"
-                                              v-for="el in page.data.financingOptions"
+                                              v-for="el in page.data.lead.project_rel.financing_options_rel"
                                               :key="el.id"
                                             >
                                               {{ el.name }}
@@ -6325,9 +6325,11 @@ export default {
           projectTypeDepartmentRel: {},
           status_rel: {},
           statusRel: {},
+          financing_options_rel: {},
         },
         projectRel: {
           status_rel: {},
+          financing_options_rel: {},
           statusRel: {},
         },
       },
