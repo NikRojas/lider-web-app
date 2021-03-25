@@ -41,7 +41,7 @@
               overflow: hidden;
               visibility: hidden;
             "
-            >Esto es preheader</span
+            ></span
           >
           <table
             class="div"

@@ -107,5 +107,8 @@ export default {
     'Más artículos': 'More posts',
     'Desde': 'From',
     'y/o perfil de Linkedin': 'and/or Linkedin profile',
-    'Puesto al que postula': 'Job you are applying for'
+    'Puesto al que postula': 'Job you are applying for',
+    'Excelente': 'Excellent',
+    'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo': 'We have successfully registered your data. Soon an advisor will contact you',
+    '¡Gracias por solicitar información!' : 'Thank you for requesting information!'
 }

@@ -107,5 +107,8 @@ export default {
     'Más artículos': 'Más artículos',
     'Desde': 'Desde',
     'y/o perfil de Linkedin': 'y/o perfil de Linkedin',
-    'Puesto al que postula': 'Puesto al que postula'
+    'Puesto al que postula': 'Puesto al que postula',
+    'Excelente': 'Excelente',
+    'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo': 'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo',
+    '¡Gracias por solicitar información!' : '¡Gracias por solicitar información!'
 }

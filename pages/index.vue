@@ -357,6 +357,7 @@ export default {
         loop: true,
         nav: true,
         dots: true,
+        autoplay: true
       });
       $(".home-blog").owlCarousel({
         loop: true,
