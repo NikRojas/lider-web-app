@@ -135,7 +135,7 @@
                       />
                       <label for="accepted"
                         >{{ $t('He leído y acepto los')}} <Terms :content="page.data.terms"></Terms> {{ $t("y") }}
-                          <Policies :content="page.data.privacy"></Policies>.</label
+                          <Policies :content="page.data.privacy"></Policies></label
                       >
                       <span
                         class="error error-red"

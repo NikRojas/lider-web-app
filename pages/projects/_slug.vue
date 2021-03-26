@@ -681,7 +681,7 @@
                           <Terms :content="page.data.terms"></Terms>
                           {{ $t("y") }}
                           <Policies :content="page.data.privacy"></Policies>
-                          .</label
+                          </label
                         >
                         <span
                           class="error"
