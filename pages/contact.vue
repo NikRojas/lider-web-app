@@ -37,7 +37,7 @@
                         <b>¡{{$t('Excelente')}}!</b>
                     </h3>
                     <p>{{ $t('Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo')}}.</p>
-                    <p>{{ $t('¡Gracias por solicitar información!')}}</p>
+                    <b>{{ $t('¡Gracias por solicitar información!')}}</b>
                 </div>
                 <form v-else key="false" @submit.prevent="submit">
                 <div class="grid-col">
