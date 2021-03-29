@@ -85,6 +85,7 @@
                       >
                     </div>
                   </div>
+                  
                   <div class="grid-s-12 grid-m-6 grid-l-6">
                     <div class="form-control">
                       <label for="correo">{{ $t("Correo")}}*</label>
@@ -98,6 +99,33 @@
                         v-if="errors && errors.email"
                         for="email"
                         >{{ $t(errors.email[0]) }}</span
+                      >
+                    </div>
+                  </div>
+                  <div class="grid-s-12">
+                    <div class="form-control">
+                      <label for="department">{{ $t("Sede")}}*</label>
+                       <select
+                        v-if="menu.information && menu.information.phone_numbers_formatted"
+                          name="department"
+                          id="department"
+                          class="form-control"
+                          v-model="form.department"
+                        >
+                          <option
+                            
+                            :value="el.department"
+                            v-for="(el,i) in menu.information.phone_numbers_formatted"
+                            :key="'dep'+i"
+                          >
+                            {{ el.department }}
+                          </option>
+                        </select>
+                      <span
+                        class="error error-red"
+                        v-if="errors && errors.department"
+                        for="department"
+                        >{{ $t(errors.department[0]) }}</span
                       >
                     </div>
                   </div>
@@ -296,6 +324,9 @@ export default {
   computed: {
     footer() {
       return this.$store.getters.getFooter;
+    },
+    menu() {
+      return this.$store.getters.getMenu;
     },
   },
 };
