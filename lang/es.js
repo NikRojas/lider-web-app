@@ -106,6 +106,7 @@ export default {
     'Volver al inicio': 'Volver al inicio',
     'Más artículos': 'Más artículos',
     'Desde': 'Desde',
+    'Por favor ingrese su sede.': 'Por favor ingrese su sede.',
     'y/o perfil de Linkedin': 'y/o perfil de Linkedin',
     'Puesto al que postula': 'Puesto al que postula',
     'Excelente': 'Excelente',
