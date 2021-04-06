@@ -36,6 +36,7 @@ export default {
         src: "/js/wow.min.js",
       },
       { src: '/js/facebook-sdk.js', defer: true, async: true },
+
     ],
   },
   /*server: {
@@ -63,6 +64,7 @@ export default {
     { src: '~/plugins/vue-owl-carousel2.js', mode: 'client' },
     { src: '~/plugins/vue-loading-skeleton.js', mode: 'client' },
     { src: '~/plugins/vue-js-modal.js', mode: 'client' },
+    { src: '~/plugins/google-tag-manager.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -75,7 +77,7 @@ export default {
   googleFonts: {
     display: 'swap',
     families: {
-      Roboto: [300,400, 500,700],
+      Roboto: [300, 400, 500, 700],
     },
     /* module options */
   },
@@ -92,13 +94,14 @@ export default {
     ['vue-scrollto/nuxt', { duration: 300 }],
     'vue-social-sharing/nuxt',
     '@nuxtjs/gtm',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
   ],
   gtm: {
-    id: 'GTM-XXXXXX',
+    id: 'GTM-NGC9RT7',
     //debug: true,
-    //enabled: true
+    enabled: true
   },
+
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'es',
