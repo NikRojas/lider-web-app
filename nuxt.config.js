@@ -64,7 +64,6 @@ export default {
     { src: '~/plugins/vue-owl-carousel2.js', mode: 'client' },
     { src: '~/plugins/vue-loading-skeleton.js', mode: 'client' },
     { src: '~/plugins/vue-js-modal.js', mode: 'client' },
-    { src: '~/plugins/google-tag-manager.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -97,7 +96,7 @@ export default {
     '@nuxtjs/sitemap',
   ],
   gtm: {
-    id: 'GTM-NGC9RT7',
+    id: 'GTM-T6FN5PJ',
     //debug: true,
     enabled: true
   },
