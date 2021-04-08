@@ -2630,7 +2630,7 @@
                                                     </tr>
                                                   </tbody>
                                                 </table>
-                                                Precio dpto.:
+                                                Precio dpto. desde:
                                                 <template
                                                   v-if="
                                                     page.data.lead.project_rel
