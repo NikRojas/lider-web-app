@@ -59,6 +59,7 @@ export default {
     'Cita Online': 'Cita Online',
     'Horario': 'Horario',
     'Proyecto de interés': 'Proyecto de interés',
+    'Por favor ingrese su apellido.': 'Por favor ingrese su apellido.',
     'Por favor ingrese su nombre.': 'Por favor ingrese su nombre.',
     'Por favor ingrese su dni.': 'Por favor ingrese su dni.',
     'Por favor ingrese su teléfono o celular.': 'Por favor ingrese su teléfono o celular.',
@@ -111,6 +112,7 @@ export default {
     'Puesto al que postula': 'Puesto al que postula',
     'Excelente': 'Excelente',
     'Sede': 'Sede',
+    'Apellido': 'Apellido',
     'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo': 'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo',
     '¡Gracias por solicitar información!' : '¡Gracias por solicitar información!'
 }

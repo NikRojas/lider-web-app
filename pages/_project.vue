@@ -604,6 +604,18 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
+                        <label for="name">{{ $t("Apellido") }}*</label>
+                        <input type="text" id="lastname" v-model="quotation.lastname" />
+                        <span
+                          class="error"
+                          v-if="errors && errors.lastname"
+                          for="lastname"
+                          >{{ $t(errors.lastname[0]) }}</span
+                        >
+                      </div>
+                    </div>
+                    <div class="grid-s-12 grid-m-6 grid-l-6">
+                      <div class="form-control">
                         <label for="dni">DNI*</label>
                         <input
                           type="text"
@@ -634,7 +646,7 @@
                         >
                       </div>
                     </div>
-                    <div class="grid-s-12 grid-m-6 grid-l-6">
+                    <div class="grid-s-12">
                       <div class="form-control">
                         <label for="email">{{ $t("Correo") }}*</label>
                         <input
@@ -758,7 +770,7 @@
               <div class="title left">
                 <h2>{{ $t("Otros proyectos") }}</h2>
               </div>
-              <nuxt-link :to="localePath('projects')" class="btn">{{
+              <nuxt-link :to="localePath('index')" class="btn">{{
                 $t("Ver más proyectos")
               }}</nuxt-link>
             </div>
@@ -916,6 +928,11 @@ export default {
       quotationSuccess: false,
       quotation: {
         project_type_department_id: null,
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign: '',
+        utm_term: '',
+        utm_content: ''
       },
       storageUrl: process.env.STORAGE_URL,
       planos: null
@@ -927,6 +944,11 @@ export default {
       this.quotation = {};
     },
     submitQuotation() {
+      if(this.$route.query.utm_source) this.quotation.utm_source = this.$route.query.utm_source;
+      if(this.$route.query.utm_medium) this.quotation.utm_medium = this.$route.query.utm_medium;
+      if(this.$route.query.utm_campaign) this.quotation.utm_campaign = this.$route.query.utm_campaign;
+      if(this.$route.query.utm_term) this.quotation.utm_term = this.$route.query.utm_term;
+      if(this.$route.query.utm_content) this.quotation.utm_content = this.$route.query.utm_content;
       this.requestQuotation = true;
       this.quotation["project_id"] = this.page.data.project["id"];
       this.quotation["locale"] = this.$i18n.locale;

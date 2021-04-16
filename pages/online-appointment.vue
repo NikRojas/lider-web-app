@@ -94,6 +94,18 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
+                        <label for="name">{{ $t("Apellido") }}*</label>
+                        <input type="text" id="lastname" v-model="form.lastname" />
+                        <span
+                          class="error error-red"
+                          v-if="errors && errors.lastname"
+                          for="lastname"
+                          >{{ $t(errors.lastname[0]) }}</span
+                        >
+                      </div>
+                    </div>
+                    <div class="grid-s-12 grid-m-6 grid-l-6">
+                      <div class="form-control">
                         <label for="dni">DNI*</label>
                         <input
                           type="text"
@@ -120,7 +132,7 @@
                         >
                       </div>
                     </div>
-                    <div class="grid-s-12 grid-m-6 grid-l-6">
+                    <div class="grid-s-12">
                       <div class="form-control">
                         <label for="email">{{ $t("Correo") }}*</label>
                         <input type="text" id="email" v-model="form.email" />
@@ -306,6 +318,11 @@ export default {
       page: {},
       form: {
         project_id: null,
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign: '',
+        utm_term: '',
+        utm_content: ''
       },
       request: false,
       success: false,
@@ -324,6 +341,11 @@ export default {
       this.form = {};
     },
     submit() {
+      if(this.$route.query.utm_source) this.form.utm_source = this.$route.query.utm_source;
+      if(this.$route.query.utm_medium) this.form.utm_medium = this.$route.query.utm_medium;
+      if(this.$route.query.utm_campaign) this.form.utm_campaign = this.$route.query.utm_campaign;
+      if(this.$route.query.utm_term) this.form.utm_term = this.$route.query.utm_term;
+      if(this.$route.query.utm_content) this.form.utm_content = this.$route.query.utm_content;
       this.request = true;
       this.$axios
         .$post("/api/post/lead/online-appointment", this.form)

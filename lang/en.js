@@ -61,6 +61,7 @@ export default {
     'Cita Online': 'Online Appointment',
     'Horario': 'Schedule',
     'Proyecto de interés': 'Project of interest',
+    'Por favor ingrese su apellido.': 'Please insert your lastname.',
     'Por favor ingrese su sede.': 'Please insert your campus.',
     'Por favor ingrese su nombre.': 'Please insert your name.',
     'Por favor ingrese su dni.': 'Please insert your dni.',
@@ -111,6 +112,7 @@ export default {
     'Puesto al que postula': 'Job you are applying for',
     'Excelente': 'Excellent',
     'Sede': 'Campus',
+    'Apellido': 'Lastname',
     'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo': 'We have successfully registered your data. Soon an advisor will contact you',
     '¡Gracias por solicitar información!' : 'Thank you for requesting information!'
 }
