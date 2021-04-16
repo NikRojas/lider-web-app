@@ -778,7 +778,7 @@
   </main>
 </template>
 <script>
-import CardProject from "../../components/projects/Card";
+import CardProject from "../components/projects/Card";
 if (process.client) {
   require("owl.carousel");
   require("/static/js/jq.fancybox.min.js");
@@ -786,8 +786,8 @@ if (process.client) {
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.green.css";
 import "/static/css/jq.fancybox.min.css";
-import Terms from "../../components/modals/Terms";
-import Policies from '../../components/modals/Policies.vue';
+import Terms from "../components/modals/Terms";
+import Policies from '../components/modals/Policies.vue';
 export default {
   head() {
     return {
@@ -894,7 +894,7 @@ export default {
     Policies
   },
   async validate({ params, $axios, app }) {
-    const data = await $axios.$get("/api/page/projects/" + params.slug, {
+    const data = await $axios.$get("/api/page/projects/" + params.project, {
       params: { locale: app.i18n.locale },
     });
     if (data.success) {
@@ -903,7 +903,7 @@ export default {
     return false;
   },
   async asyncData({ params, $axios, app }) {
-    let { data } = await $axios.get("/api/page/projects/" + params.slug, {
+    let { data } = await $axios.get("/api/page/projects/" + params.project, {
       params: { locale: app.i18n.locale },
     });
     return { page: data };
@@ -1065,8 +1065,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      en: "/projects/:slug",
-      es: "/proyectos/:slug",
+      en: "/:project",
+      es: "/:project",
     },
   },
 };

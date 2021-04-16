@@ -141,8 +141,8 @@ export default {
           '/cotizacion',
           '/politicas-privacidad',
           '/en/privacy-policies',
-          '/en/projects',
-          '/proyectos',
+          //'/en/projects',
+          //'/proyectos',
           '/en/terms-conditions',
           '/terminos-condiciones',
         ],
@@ -257,12 +257,12 @@ export default {
           let { data } = await axios.get('https://admin.lider.com.pe/api/sitemap-projects');
           return data.data.projects.flatMap(item => {
             return [{
-              url: `/proyectos/${item.slug_es}`,
+              url: `/${item.slug_es}`,
               changefreq: 'weekly',
               priority: 1,
             },
             {
-              url: `/en/projects/${item.slug_en}`,
+              url: `/en/${item.slug_en}`,
               changefreq: 'weekly',
               priority: 1,
             }]
@@ -277,8 +277,8 @@ export default {
   },
   proxy: {
     '/api/': {
-      target: 'https://admin.lider.com.pe/api/',
-      //target: 'http://127.0.0.1:9000/api/',
+      //target: 'https://admin.lider.com.pe/api/',
+      target: 'http://127.0.0.1:9000/api/',
       pathRewrite: { '^/api/': '' },
     }
   },
