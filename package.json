@@ -25,6 +25,7 @@
     "vue-loading-skeleton": "^1.1.9",
     "vue-owl-carousel": "^2.0.3",
     "vue-owl-carousel2": "^2.0.7",
+    "vue-range-component": "^1.0.3",
     "vue-scrollto": "^2.20.0",
     "vue-social-sharing": "^3.0.5"
   },

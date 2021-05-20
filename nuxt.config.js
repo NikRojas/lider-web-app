@@ -64,6 +64,7 @@ export default {
     { src: '~/plugins/vue-owl-carousel2.js', mode: 'client' },
     { src: '~/plugins/vue-loading-skeleton.js', mode: 'client' },
     { src: '~/plugins/vue-js-modal.js', mode: 'client' },
+    { src: '~/plugins/vue-range-slider.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -86,7 +87,6 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    //'nuxt-i18n',
     ['nuxt-i18n', {
       seo: false
     }],
@@ -277,8 +277,8 @@ export default {
   },
   proxy: {
     '/api/': {
-      target: 'https://admin.lider.com.pe/api/',
-      //target: 'http://127.0.0.1:9000/api/',
+      //target: 'https://admin.lider.com.pe/api/',
+      target: 'http://127.0.0.1:9000/api/',
       pathRewrite: { '^/api/': '' },
     }
   },

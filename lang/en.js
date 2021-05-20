@@ -114,5 +114,21 @@ export default {
     'Sede': 'Campus',
     'Apellido': 'Lastname',
     'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo': 'We have successfully registered your data. Soon an advisor will contact you',
-    '¡Gracias por solicitar información!' : 'Thank you for requesting information!'
+    '¡Gracias por solicitar información!' : 'Thank you for requesting information!',
+    'Piso': 'Floor',
+    'Estatus': 'Status',
+    'Vista': 'View',
+    'Separar' : 'Reserve',
+    'Separación': 'Reservation',
+    'Tipo' : 'Type',
+    'Plano': 'Plan',
+    'Metraje': 'Footage',
+    'Características': 'Features',
+    'Precio inmueble': 'Property price',
+    'Precio separación': 'Reservation price',
+    'dormitorio(s)': 'room(s)',
+    'Precios': 'Prices',
+    'Tipo departamento': 'Department type',
+    'To': 'To',
+    'Selecciona el rango': 'Select range'
 }

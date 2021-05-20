@@ -114,5 +114,22 @@ export default {
     'Sede': 'Sede',
     'Apellido': 'Apellido',
     'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo': 'Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo',
-    '¡Gracias por solicitar información!' : '¡Gracias por solicitar información!'
+    '¡Gracias por solicitar información!' : '¡Gracias por solicitar información!',
+    'Piso': 'Piso',
+    'Estatus': 'Estatus',
+    'Vista': 'Vista',
+    'Separar' : 'Separar',
+    'Separación': 'Separación',
+    'Tipo' : 'Tipo',
+    'Plano': 'Plano',
+    'Metraje': 'Metraje',
+    'Características': 'Características',
+    'Precio inmueble': 'Precio inmueble',
+    'Precio separación': 'Precio separación',
+    'piso': 'piso',
+    'dormitorio(s)': 'dormitorio(s)',
+    'Precios': 'Precios',
+    'Tipo de departamento': 'Tipo de departamento',
+    'Hasta': 'Hasta',
+    'Selecciona el rango': 'Selecciona el rango'
 }
