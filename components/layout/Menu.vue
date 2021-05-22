@@ -35,7 +35,16 @@
           </div>
         </div>
         <div class="nav wow fadeIn" data-wow-delay="0.2s">
-          <nuxt-link class="btn btn1" :to="localePath({name: 'reserve'})">
+          <nuxt-link v-if="$route.name != 'reserve-success___es' && 
+          $route.name != 'reserve-success___en' &&
+          $route.name != 'reserve-error___es' &&
+          $route.name != 'reserve-error___en' &&
+          $route.name != 'reserve-slug-summary___es' &&
+          $route.name != 'reserve-slug-summary___en' &&
+          $route.name != 'reserve-slug___es' &&
+          $route.name != 'reserve-slug___en' &&
+           $route.name != 'reserve___es' &&
+          $route.name != 'reserve___en'" class="btn btn1" :to="localePath({name: 'reserve'})">
             {{ $t('Separa tu inmueble')}}
           </nuxt-link>
           <Dropdown
