@@ -130,5 +130,20 @@ export default {
     'Precios': 'Prices',
     'Tipo departamento': 'Department type',
     'To': 'To',
-    'Selecciona el rango': 'Select range'
+    'Selecciona el rango': 'Select range',
+    'Selecciona el rango': 'Selecciona el rango',
+    'Separa tu inmueble': 'Reserve your property',
+    'inmuebles': 'properties',
+    'Ver': 'Show',
+    'Datos de reserva': 'Reservation data',
+    'Ingresa tus datos': 'Enter your details',
+    'Apellido Paterno': 'Lastname',
+    'Apellido Materno': "Mother's last name",
+    'N° de documento': 'Document number',
+    'Realizar el pago':  'Make the payment',
+    'Cambiar inmueble': 'Change property',
+    'Tipo de documento': 'Document type',
+    'Datos del inmueble': 'Property data',
+    'Monto a pagar': 'Amount payable',
+    'Datos de la persona a reservar': 'Data of the person to reserve'
 }

@@ -140,7 +140,7 @@
         <client-only>
          <vue-range-slider :process-style="{
           backgroundColor: '#0E5983'
-        }" :enableCross="false" v-model="rangePrices" :min="data.prices.min" :max="data.prices.max"></vue-range-slider>
+        }" :enableCross="false" :tooltip="false" v-model="rangePrices" :min="data.prices.min" :max="data.prices.max"></vue-range-slider>
         </client-only>
         </div>
         <div>
@@ -155,9 +155,9 @@
   </div>
 </template>
 <style lang="scss">
-.vue-range-slider.slider-component .slider .slider-dot.slider-always .slider-tooltip-wrap{
+/*.vue-range-slider.slider-component .slider .slider-dot.slider-always .slider-tooltip-wrap{
   display: none !important;
-}
+}*/
 </style>
 <script>
 export default {

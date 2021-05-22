@@ -35,6 +35,9 @@
           </div>
         </div>
         <div class="nav wow fadeIn" data-wow-delay="0.2s">
+          <nuxt-link class="btn btn1" :to="localePath({name: 'reserve'})">
+            {{ $t('Separa tu inmueble')}}
+          </nuxt-link>
           <Dropdown
             :right="true"
             classWrapper="dropdown-width"

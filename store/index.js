@@ -2,7 +2,8 @@ export const state = () => ({
     menu_open : false,
     footer: {},
     menu: {},
-    page: {}
+    page: {},
+    customer: {}
 });
 
 export const mutations = {
@@ -16,6 +17,9 @@ export const mutations = {
     },
     SET_CURRENT_PAGE(state, page){
         state.page = page; 
+    },
+    SET_CUSTOMER(state, customer){
+        state.customer = Object.assign({},customer); 
     },
 }
 
@@ -33,6 +37,9 @@ export const actions = {
     async nuxtServerInit({ dispatch }) {
         await dispatch('getLayout');
     },
+    setCustomer({ commit}, customer){
+        commit('SET_CUSTOMER', customer);
+    },
 }
 
 export const getters = {
@@ -47,6 +54,9 @@ export const getters = {
     },
     getMenuOpen: state => {
         return state.menu_open
+    },
+    getCustomer: state => {
+        return state.customer
     },
 }
 

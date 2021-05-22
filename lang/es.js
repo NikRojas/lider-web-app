@@ -131,5 +131,19 @@ export default {
     'Precios': 'Precios',
     'Tipo de departamento': 'Tipo de departamento',
     'Hasta': 'Hasta',
-    'Selecciona el rango': 'Selecciona el rango'
+    'Selecciona el rango': 'Selecciona el rango',
+    'Separa tu inmueble': 'Separa tu inmueble',
+    'inmuebles': 'inmuebles',
+    'Ver': 'Ver',
+    'Datos de reserva': 'Datos de reserva',
+    'Ingresa tus datos': 'Ingresa tus datos',
+    'Apellido Paterno': 'Apellido Paterno',
+    'Apellido Materno': 'Apellido Materno',
+    'N° de documento': 'N° de documento',
+    'Realizar el pago':  'Realizar el pago',
+    'Cambiar inmueble': 'Cambiar inmueble',
+    'Tipo de documento': 'Tipo de documento',
+    'Datos del inmueble': 'Datos del inmueble',
+    'Monto a pagar': 'Monto a pagar',
+    'Datos de la persona a reservar': 'Datos de la persona a reservar'
 }

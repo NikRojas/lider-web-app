@@ -35,7 +35,7 @@ export default {
       {
         src: "/js/wow.min.js",
       },
-      { src: '/js/facebook-sdk.js', defer: true, async: true },
+      //{ src: '/js/facebook-sdk.js', defer: true, async: true },
 
     ],
   },
@@ -65,6 +65,7 @@ export default {
     { src: '~/plugins/vue-loading-skeleton.js', mode: 'client' },
     { src: '~/plugins/vue-js-modal.js', mode: 'client' },
     { src: '~/plugins/vue-range-slider.js', mode: 'client' },
+    { src: '~/plugins/vuex-persistedstate.client.js' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -95,11 +96,11 @@ export default {
     '@nuxtjs/gtm',
     '@nuxtjs/sitemap',
   ],
-  gtm: {
+  /*gtm: {
     id: 'GTM-T6FN5PJ',
     //debug: true,
     enabled: true
-  },
+  },*/
 
   i18n: {
     locales: ['en', 'es'],

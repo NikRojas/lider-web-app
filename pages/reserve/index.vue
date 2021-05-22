@@ -68,12 +68,13 @@
 </template>
 <script>
 import Banner from "../../components/Banner";
-import Steps from "../../components/reserve-your-property/Steps";
-import Filters from "../../components/reserve-your-property/Filters";
-import Pagination from "../../components/reserve-your-property/Pagination";
+import Steps from "../../components/payment/Steps";
+import Filters from "../../components/payment/Filters";
+import Pagination from "../../components/payment/Pagination";
 export default {
+  name: 'ReserveIndex',
   async validate({ params, $axios, app }) {
-    const data = await $axios.$get("/api/page/reserve-your-property", {
+    const data = await $axios.$get("/api/page/reserve", {
       params: { locale: app.i18n.locale },
     });
     if (data.success) {
@@ -82,7 +83,7 @@ export default {
     return false;
   },
   async asyncData({ params, $axios, app }) {
-    let { data } = await $axios.get("/api/page/reserve-your-property", {
+    let { data } = await $axios.get("/api/page/reserve", {
       params: { locale: app.i18n.locale },
     });
     return { page: data };
@@ -123,16 +124,7 @@ export default {
     };
   },
   methods: {
-    //get(range, views, floors, departments, rooms, statuses,projects, typedepartments){
     get(){
-      /*this.range = range;
-      this.views = views;
-      this.floors = floors;
-      this.departments = departments;
-      this.rooms = rooms;
-      this.statuses = statuses;
-      this.projects = projects;
-      this.typeDepartments = typedepartments;*/
       this.getEls(1);
     },
     clear(){

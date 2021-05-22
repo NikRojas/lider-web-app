@@ -13,10 +13,13 @@
               </a>
             </li>
 
-
-            <li class="page-item" v-for="page in pages" :key="page" v-bind:class="[ page == data.current_page ? 'active' : '']">
+                <li class="page-item" v-for="page in data.last_page" :key="'p'+page" v-bind:class="[ page == data.current_page ? 'active' : '']">
                 <a class="page-link" href="#" @click.prevent="clickPage(page)">{{ page }}</a>
            </li>
+
+            <!--<li class="page-item" v-for="page in pages" :key="page" v-bind:class="[ page == data.current_page ? 'active' : '']">
+                <a class="page-link" href="#" @click.prevent="clickPage(page)">{{ page }}</a>
+           </li>-->
 
             <li class="page-item"  v-if="data.current_page < data.last_page">
               <a
@@ -60,12 +63,12 @@ export default {
     },
     data(){
         return{
-            //active: 0,
-            offset: 2
+            pageActive: 1,
+            //offset: 2
         }
     },
     computed: { 
-    	pages(){
+    	/*pages(){
                 if (!this.data.to) {
                     return [];
                 }
@@ -83,7 +86,7 @@ export default {
                     from++;
                 }
                 return pages;
-            }
+            }*/
     },
     methods:{
         clickPage(page){
@@ -92,8 +95,8 @@ export default {
         clickNextPage(){
             this.$emit('get', this.data.current_page + 1);
         },
-         clickPrevPage(){
-this.$emit('get', this.data.current_page - 1);
+        clickPrevPage(){
+            this.$emit('get', this.data.current_page - 1);
         },
     }
 }

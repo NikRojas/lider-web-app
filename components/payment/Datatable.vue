@@ -31,15 +31,17 @@
                     <td class="text-center">
                         {{ $t('Ubicación')}}: {{ el.project_rel.ubigeo_rel.district }}<br>
                         {{ $t('Estatus')}}: {{ el.project_rel.status_rel['name_' + $i18n.locale] }}<br>
-                        <template v-if="el.type_department_id">{{ $t('Tipo')}}: {{ el.tipology_rel.name}} <br></template>
-                        {{ $t('Piso')}}: {{ el.floor}} {{$t('Piso')}} <br>
+                       <template v-if="el.type_department_id && el.tipology_rel && el.tipology_rel.parent_type_department_id"
+                    >{{ $t("Tipo") }}: {{ el.tipology_rel.parent_type_department_rel.name }} <br
+                  /></template>
+                        {{ $t('Piso')}}: {{ el.floor}}° {{$t('piso')}} <br>
                         {{ $t('Vista')}}: {{ el.view_rel.name }} <br>
                     </td>
                     <td class="text-center">
                         {{ el.tipology_rel.area}}m2
                     </td>
                      <td class="text-center">
-                        {{ el.tipology_rel.parent_type_department_rel.room}}
+                        {{ el.tipology_rel.room}}
                     </td>
                     <td class="text-center">
                         <template v-if="el.price_foreign">
@@ -53,7 +55,7 @@
                         </template>
                     </td>
                     <td class="text-center">
-                        <nuxt-link to="index" v-if="el.project_rel.price_separation">
+                        <nuxt-link :to="localePath({ name: 'reserve-slug', params: { slug: el.slug} })" v-if="el.project_rel.price_separation">
                             {{ $t('Separar')}}
                             {{ el.project_rel.price_separation_format}}
                         </nuxt-link>
