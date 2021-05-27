@@ -1,5 +1,6 @@
 <template>
   <main class="reserve-your-property">
+    <Loading :loading="requestPayment"/>
     <Banner
       :banner="
         page.data.content[
@@ -154,7 +155,7 @@
 
             <button class="btn" @click="checkout">PAGAR</button>-->
 
-            <div class="kr-embedded" kr-popin id="pafo"></div>
+            <div class="kr-embedded" kr-popin id="payfo"></div>
           </div>
         </div>
       </div>
@@ -176,6 +177,7 @@
 <script>
 import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
+import Loading from "../../../components/payment/Loading";
 import KRGlue from "@lyracom/embedded-form-glue";
 import Logo from "~/assets/img/logo-payment.svg";
 export default {
@@ -201,6 +203,7 @@ export default {
   components: {
     Banner,
     Steps,
+    Loading
   },
   nuxtI18n: {
     paths: {
@@ -236,6 +239,7 @@ export default {
   },
   data() {
     return {
+      requestPayment: false,
       page: {},
       storageUrl: process.env.STORAGE_URL,
       requestSubmit: false,
@@ -243,8 +247,31 @@ export default {
     };
   },
   methods: {
-    /*pay() {
-      this.requestSubmit = true;
+    handleError(event){
+      var code = event.errorCode;
+            var message = event.errorMessage;
+            var myMessage = code + ": " + message;
+            console.log(event.errorCode);
+            //El formulario ha caducado
+            //event.errorCode = PSP_108
+            //ACQ_001: Pago rechazado
+            alert(myMessage);
+    },
+    pay(event) {
+      console.log("pay");
+      console.log(event);
+      if (event.clientAnswer.orderStatus === "PAID") {
+        // Remove the payment form
+        KR.removeForms();
+
+        // Show success message
+        //document.getElementById("paymentSuccessful").style.display = "block";
+        alert("success");
+      } else {
+        // Show error message to the user
+        alert("Payment failed !");
+      }
+      /*this.requestSubmit = true;
       this.customer = this.customerGlobal;
       this.$axios
         .$post("/api/reserve/pay", this.customer)
@@ -271,14 +298,12 @@ export default {
             this.errors = error.response.data.errors || {};
             return;
           }
-        });
-    },*/
+        });*/
+    },
     checkout() {
       this.loadingCheckout = true;
-      let department = {};
-      department.slug = this.page.data.department.slug;
       this.$axios
-        .$post("/api/reserve/payment/init", department)
+        .$post("/api/reserve/payment/init", this.customerGlobal)
         .then((response) => {
           this.loadingCheckout = false;
           if (response.data.t) {
@@ -299,7 +324,7 @@ export default {
           KR.setFormConfig({
             /* set the minimal configuration */ formToken: formToken,
             form: {
-              //"layout": 'compact'
+              layout: 'default'
             },
             merchant: {
               header: {
@@ -318,16 +343,21 @@ export default {
           })
         )
         .then(({ KR }) =>
-          KR.addForm("#pafo")
+          KR.addForm("#payfo")
         ) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
+        .then(({ KR }) => KR.onSubmit(this.pay))
+        .then(({ KR }) => KR.onError(this.handleError))
+        .then(({ KR }) => this.requestPayment = false)
         .catch(
           (error) =>
-            (this.promiseError = error + " (see console for more details)")
+            { this.requestPayment = false;
+            (this.promiseError = error + " (see console for more details)") }
         );
-    },
+    }
   },
   mounted() {
+    this.requestPayment = true;
     if (
       Object.entries(this.customerGlobal).length === 0 &&
       this.customerGlobal.constructor === Object
