@@ -392,17 +392,31 @@ export default {
       this.requestSubmit = true;
       this.customer.slug = this.$route.params.slug;
       this.customer.price = this.page.data.department.price;
+      if(this.$route.query.adv){
+        this.customer.adv = this.$route.query.adv;
+      }
       this.$axios
         .$post("/api/reserve/customer", this.customer)
         .then((response) => {
           this.requestSubmit = false;
           this.$store.dispatch("setCustomer", this.customer);
-          this.$router.push(
-            this.localePath({
-              name: "reserve-slug-summary",
-              params: { slug: this.$route.params.slug },
-            })
-          );
+          if(!this.$route.query.adv){
+            this.$router.push(
+              this.localePath({
+                name: "reserve-slug-summary",
+                params: { slug: this.$route.params.slug },
+              })
+            );
+          }
+          else{
+            this.$router.push(
+              this.localePath({
+                name: "reserve-slug-summary",
+                params: { slug: this.$route.params.slug },
+                query: { adv: this.$route.query.adv }
+              })
+            );
+          }
         })
         .catch((error) => {
           this.requestSubmit = false;

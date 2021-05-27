@@ -79,7 +79,7 @@
                 page.data.department.tipology_rel.parent_type_department_rel
                   .name
               }}
-              <br/>
+              <br />
             </template>
             {{ $t("Piso") }}: {{ page.data.department.floor }}°
             {{ $t("piso") }} <br />
@@ -127,47 +127,76 @@
           </div>
 
           <div class="grid-s-12">
-              {{ $t("Monto a pagar") }}
-              {{ page.data.department.project_rel.price_separation_format }}
+            {{ $t("Monto a pagar") }}
+            {{ page.data.department.project_rel.price_separation_format }}
 
-              <nuxt-link
-                class="btn"
-                :to="
-                  localePath({
-                    name: 'reserve-slug',
-                    params: { slug: $route.params.slug },
-                  })
-                "
+            <nuxt-link
+              class="btn"
+              :to="
+                localePath({
+                  name: 'reserve-slug',
+                  params: { slug: $route.params.slug },
+                  query: { ...$route.query, adv: $route.query.adv },
+                })
+              "
+            >
+              Editar Datos
+            </nuxt-link>
+            <!--<div v-if="Object.entries(customerGlobal).length === 0"></div>
+            <div v-else>
+              <button
+                @click="pay"
+                v-if="page.data.department.project_rel.price_separation"
               >
-                Editar Datos
-              </nuxt-link>
-              <div v-if="Object.entries(customerGlobal).length === 0"></div>
-              <div v-else>
+                Pagar
+              </button>
+            </div>
 
-                <button
-                  @click="pay"
-                  v-if="page.data.department.project_rel.price_separation"
-                >
-                  Pagar
-                </button>
-              </div>
+            <button class="btn" @click="checkout">PAGAR</button>-->
+
+            <div class="kr-embedded" kr-popin id="pafo"></div>
           </div>
         </div>
       </div>
     </section>
   </main>
 </template>
+<style lang="scss">
+.kr-embedded {
+  background-color: #eeeeee !important;
+  .kr-payment-button {
+    background-color: #f15f23 !important;
+    color: #fff !important;
+  }
+  .kr-popin-modal-header {
+    border-bottom: 0 !important;
+  }
+}
+</style>
 <script>
 import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
+import KRGlue from "@lyracom/embedded-form-glue";
+import Logo from "~/assets/img/logo-payment.svg";
 export default {
-  name: 'ReserveSlugSummary',
-  head () {
-        return {
-            meta: [
-                { hid: 'robots', name: 'robots', content: 'noindex, nofollow' }
-            ]
-        }
+  name: "ReserveSlugSummary",
+  head() {
+    return {
+      meta: [{ hid: "robots", name: "robots", content: "noindex, nofollow" }],
+      script: [
+        {
+          src:
+            "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.js",
+        },
+      ],
+      link: [
+        {
+          rel: "stylesheet",
+          href:
+            "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic-reset.css",
+        },
+      ],
+    };
   },
   components: {
     Banner,
@@ -209,11 +238,12 @@ export default {
     return {
       page: {},
       storageUrl: process.env.STORAGE_URL,
-      requestSubmit: false
+      requestSubmit: false,
+      endpoint: process.env.KRGLUE_URL,
     };
   },
-  methods:{
-    pay(){
+  methods: {
+    /*pay() {
       this.requestSubmit = true;
       this.customer = this.customerGlobal;
       this.$axios
@@ -224,7 +254,7 @@ export default {
           this.$store.dispatch("setCustomer", {});
           this.$router.push(
             this.localePath({
-              name: "reserve-success"
+              name: "reserve-success",
             })
           );
         })
@@ -234,14 +264,78 @@ export default {
           this.$store.dispatch("setCustomer", {});
           this.$router.push(
             this.localePath({
-              name: "reserve-error"
+              name: "reserve-error",
             })
           );
-          /*if (error.response.status === 422) {
+         if (error.response.status === 422) {
             this.errors = error.response.data.errors || {};
             return;
-          }*/
+          }
         });
+    },*/
+    checkout() {
+      this.loadingCheckout = true;
+      let department = {};
+      department.slug = this.page.data.department.slug;
+      this.$axios
+        .$post("/api/reserve/payment/init", department)
+        .then((response) => {
+          this.loadingCheckout = false;
+          if (response.data.t) {
+            this.generateForm(response.data.t, response.data.j);
+          }
+        })
+        .catch((error) => {
+          //Errors Admin Payment
+          console.log(error.response);
+          this.loadingCheckout = false;
+        });
+    },
+    generateForm(token, tokenjs) {
+      //El formToken es válido por 15 minutos. Revisar como manejarlo
+      const formToken = token;
+      KRGlue.loadLibrary(this.endpoint, tokenjs) /* Load the remote library */
+        .then(({ KR }) =>
+          KR.setFormConfig({
+            /* set the minimal configuration */ formToken: formToken,
+            form: {
+              //"layout": 'compact'
+            },
+            merchant: {
+              header: {
+                shopName: {
+                  color: "black",
+                },
+                backgroundColor: "#EEEEEE",
+                image: {
+                  type: "logo",
+                  visibility: true,
+                  src: Logo,
+                },
+              },
+            },
+            //'kr-language': 'en-US',                       /* to update initialization parameter */
+          })
+        )
+        .then(({ KR }) =>
+          KR.addForm("#pafo")
+        ) /* create a payment form */
+        .then(({ KR, result }) => KR.showForm(result.formId))
+        .catch(
+          (error) =>
+            (this.promiseError = error + " (see console for more details)")
+        );
+    },
+  },
+  mounted() {
+    if (
+      Object.entries(this.customerGlobal).length === 0 &&
+      this.customerGlobal.constructor === Object
+    ) {
+      this.$router.push(this.localePath({ name: "reserve" }));
+    }
+    else{
+      this.checkout();
     }
   },
   computed: {
