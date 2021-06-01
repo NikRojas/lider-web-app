@@ -1,6 +1,6 @@
 <template>
   <main class="reserve-your-property">
-    <Loading :loading="requestPayment"/>
+    <Loading :loading="requestPayment" />
     <Banner
       :banner="
         page.data.content[
@@ -143,18 +143,6 @@
             >
               Editar Datos
             </nuxt-link>
-            <!--<div v-if="Object.entries(customerGlobal).length === 0"></div>
-            <div v-else>
-              <button
-                @click="pay"
-                v-if="page.data.department.project_rel.price_separation"
-              >
-                Pagar
-              </button>
-            </div>
-
-            <button class="btn" @click="checkout">PAGAR</button>-->
-
             <div class="kr-embedded" kr-popin id="payfo"></div>
           </div>
         </div>
@@ -179,7 +167,7 @@ import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
 import Loading from "../../../components/payment/Loading";
 import KRGlue from "@lyracom/embedded-form-glue";
-import Logo from "~/assets/img/logo-payment.svg";
+import Logo from "~/assets/img/izipay.jpg";
 export default {
   name: "ReserveSlugSummary",
   head() {
@@ -203,7 +191,7 @@ export default {
   components: {
     Banner,
     Steps,
-    Loading
+    Loading,
   },
   nuxtI18n: {
     paths: {
@@ -212,13 +200,6 @@ export default {
     },
   },
   async validate({ params, $axios, app, store, redirect }) {
-    //Si no existe los datos del usuario en VUEX retornar a la pagina anterior
-    //Cuando se hace refresh esto esta vacio
-    //console.log(store.state['customer'])
-    //if(Object.entries(store.state.customer).length === 0 && store.state.customer.constructor === Object) {
-    // console.log(store.state.customer)
-    //redirect(app.localePath({name: "reserve"}))
-    //}
     const data = await $axios.$get("/api/page/reserve/summary/" + params.slug, {
       params: { locale: app.i18n.locale },
     });
@@ -228,7 +209,6 @@ export default {
     return false;
   },
   async asyncData({ params, $axios, app, store, redirect }) {
-    //console.log(store.state['customer'])
     let { data } = await $axios.get(
       "/api/page/reserve/summary/" + params.slug,
       {
@@ -247,15 +227,40 @@ export default {
     };
   },
   methods: {
-    handleError(event){
+    setExpireLS(ttl) {
+      const now = new Date();
+      this.$store.dispatch("setExpireLS", now.getTime() + ttl);
+    },
+    checkExpireLS() {
+      const item = this.expireLS;
+      if (!item) {
+        return null;
+      }
+      const now = new Date();
+      if (now.getTime() > item) {
+        this.$store.dispatch("setExpireLS", null);
+        this.$store.dispatch("setCustomer", {});
+        this.$router.push(
+          this.localePath({
+            name: "index",
+            query: { timeout: true },
+          })
+        );
+      }
+    },
+    handleError(event) {
       var code = event.errorCode;
-            var message = event.errorMessage;
-            var myMessage = code + ": " + message;
-            console.log(event.errorCode);
-            //El formulario ha caducado
-            //event.errorCode = PSP_108
-            //ACQ_001: Pago rechazado
-            alert(myMessage);
+      var message = event.errorMessage;
+      var myMessage = code + ": " + message;
+      console.log(event);
+      console.log(event.detailedErrorMessage);
+      //El formulario ha caducado
+      //event.errorCode = PSP_108
+      //ACQ_001: Pago rechazado
+      //detailedErrorCode: "51"
+      //detailedErrorMessage: "Fondos insuficientes o límite de crédito excedido"
+      this.$store.dispatch("setErrorMessage", event.detailedErrorMessage);
+      //alert(myMessage);
     },
     pay(event) {
       console.log("pay");
@@ -263,68 +268,57 @@ export default {
       if (event.clientAnswer.orderStatus === "PAID") {
         // Remove the payment form
         KR.removeForms();
-
         // Show success message
         //document.getElementById("paymentSuccessful").style.display = "block";
         alert("success");
+        //this.$store.dispatch("setCustomer", {});
+        this.$router.push(
+          this.localePath({
+            name: "reserve-success",
+          })
+        );
       } else {
         // Show error message to the user
         alert("Payment failed !");
+        KR.removeForms();
+        //this.$store.dispatch("setCustomer", {});
+        this.$router.push(
+          this.localePath({
+            name: "reserve-error",
+          })
+        );
       }
-      /*this.requestSubmit = true;
-      this.customer = this.customerGlobal;
-      this.$axios
-        .$post("/api/reserve/pay", this.customer)
-        .then((response) => {
-          this.requestSubmit = false;
-          //Limpiar Cliente
-          this.$store.dispatch("setCustomer", {});
-          this.$router.push(
-            this.localePath({
-              name: "reserve-success",
-            })
-          );
-        })
-        .catch((error) => {
-          this.requestSubmit = false;
-          console.log(error.response.data);
-          this.$store.dispatch("setCustomer", {});
-          this.$router.push(
-            this.localePath({
-              name: "reserve-error",
-            })
-          );
-         if (error.response.status === 422) {
-            this.errors = error.response.data.errors || {};
-            return;
-          }
-        });*/
     },
     checkout() {
-      this.loadingCheckout = true;
       this.$axios
         .$post("/api/reserve/payment/init", this.customerGlobal)
         .then((response) => {
-          this.loadingCheckout = false;
+          this.requestPayment = false;
           if (response.data.t) {
             this.generateForm(response.data.t, response.data.j);
           }
         })
         .catch((error) => {
           //Errors Admin Payment
+          console.log("error");
           console.log(error.response);
-          this.loadingCheckout = false;
+          this.requestPayment = false;
+          this.$store.dispatch("setCustomer", {});
+          this.$router.push(
+            this.localePath({
+              name: "reserve-error",
+            })
+          );
         });
     },
     generateForm(token, tokenjs) {
-      //El formToken es válido por 15 minutos. Revisar como manejarlo
       const formToken = token;
       KRGlue.loadLibrary(this.endpoint, tokenjs) /* Load the remote library */
         .then(({ KR }) =>
           KR.setFormConfig({
             /* set the minimal configuration */ formToken: formToken,
             form: {
-              layout: 'default'
+              layout: "default",
             },
             merchant: {
               header: {
@@ -342,33 +336,42 @@ export default {
             //'kr-language': 'en-US',                       /* to update initialization parameter */
           })
         )
-        .then(({ KR }) =>
-          KR.addForm("#payfo")
-        ) /* create a payment form */
+        .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
+        //El formToken válido por 15 minutos.
+        //Establecer limite de LS 15m
+        .then(({ KR }) => this.setExpireLS(60 * 14500))
         .then(({ KR }) => KR.onSubmit(this.pay))
         .then(({ KR }) => KR.onError(this.handleError))
-        .then(({ KR }) => this.requestPayment = false)
-        .catch(
-          (error) =>
-            { this.requestPayment = false;
-            (this.promiseError = error + " (see console for more details)") }
-        );
-    }
+        .then(({ KR }) => (this.requestPayment = false))
+        .catch((error) => {
+          this.requestPayment = false;
+          this.promiseError = error + " (see console for more details)";
+        });
+    },
   },
   mounted() {
     this.requestPayment = true;
+    //Si no hay cliente retornar
     if (
       Object.entries(this.customerGlobal).length === 0 &&
       this.customerGlobal.constructor === Object
     ) {
-      this.$router.push(this.localePath({ name: "reserve" }));
-    }
-    else{
+      this.$router.push(this.localePath({ name: "index" }));
+    } else {
+      //Generar Token
       this.checkout();
+      //Verificar Tiempo ExpireLS
+      let self = this;
+      setInterval(function () {
+        self.checkExpireLS();
+      }, 1000); // 60 * 1000 milsec
     }
   },
   computed: {
+    expireLS() {
+      return this.$store.getters.getExpireLS;
+    },
     customerGlobal() {
       return this.$store.getters.getCustomer;
     },

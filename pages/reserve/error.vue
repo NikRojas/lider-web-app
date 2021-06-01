@@ -1,6 +1,9 @@
 <template>
-    <div>
+    <div style="">
         ERROR
+        <div class="text-center">
+            {{ errorMessage }}
+        </div>
     </div>
 </template>
 <script>
@@ -17,6 +20,18 @@ export default {
         paths: {
             es: "/separa-tu-inmueble/error",
             en: "/reserve-your-property/error",
+        },
+    },
+    mounted() {
+        if (
+        this.errorMessage
+        ) {
+        this.$router.push(this.localePath({ name: "index" }));
+        }
+    },
+    computed: {
+        errorMessage() {
+            return this.$store.getters.getErrorMessage;
         },
     },
 }

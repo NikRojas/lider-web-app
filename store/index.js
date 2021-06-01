@@ -3,7 +3,9 @@ export const state = () => ({
     footer: {},
     menu: {},
     page: {},
-    customer: {}
+    customer: {},
+    errorMessage: '',
+    expireLS: null 
 });
 
 export const mutations = {
@@ -20,6 +22,12 @@ export const mutations = {
     },
     SET_CUSTOMER(state, customer){
         state.customer = Object.assign({},customer); 
+    },
+    SET_ERROR_MESSAGE(state, message){
+        state.errorMessage = message; 
+    },
+    SET_EXPIRE_LS(state, expire){
+        state.expireLS = expire; 
     },
 }
 
@@ -40,6 +48,12 @@ export const actions = {
     setCustomer({ commit}, customer){
         commit('SET_CUSTOMER', customer);
     },
+    setErrorMessage({ commit}, message){
+        commit('SET_ERROR_MESSAGE', message);
+    },
+    setExpireLS({ commit}, expire){
+        commit('SET_EXPIRE_LS', expire);
+    },
 }
 
 export const getters = {
@@ -57,6 +71,12 @@ export const getters = {
     },
     getCustomer: state => {
         return state.customer
+    },
+    getErrorMessage: state => {
+        return state.errorMessage
+    },
+    getExpireLS: state => {
+        return state.expireLS
     },
 }
 

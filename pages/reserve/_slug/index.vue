@@ -399,6 +399,7 @@ export default {
         .$post("/api/reserve/customer", this.customer)
         .then((response) => {
           this.requestSubmit = false;
+          this.customer.oi = response.data.order_id;
           this.$store.dispatch("setCustomer", this.customer);
           if(!this.$route.query.adv){
             this.$router.push(
@@ -424,6 +425,7 @@ export default {
             this.errors = error.response.data.errors || {};
             return;
           }
+          
         });
     },
   },
