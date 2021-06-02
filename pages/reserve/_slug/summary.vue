@@ -267,7 +267,12 @@ export default {
       console.log(event);
       if (event.clientAnswer.orderStatus === "PAID") {
         // Remove the payment form
+        console.log(KR);
         KR.removeForms();
+        document.querySelectorAll('.kr-popin-background').forEach(function(a){
+          console.log(a);
+          a.remove()
+        })
         // Show success message
         //document.getElementById("paymentSuccessful").style.display = "block";
         alert("success");
@@ -278,9 +283,14 @@ export default {
           })
         );
       } else {
+         console.log(KR);
         // Show error message to the user
         alert("Payment failed !");
         KR.removeForms();
+         document.querySelectorAll('.kr-popin-background').forEach(function(a){
+          console.log(a);
+          a.remove()
+        })
         //this.$store.dispatch("setCustomer", {});
         this.$router.push(
           this.localePath({
@@ -338,11 +348,11 @@ export default {
         )
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
+        .then(({ KR }) => KR.onSubmit(this.pay))
+        .then(({ KR }) => KR.onError(this.handleError))
         //El formToken válido por 15 minutos.
         //Establecer limite de LS 15m
         .then(({ KR }) => this.setExpireLS(60 * 14500))
-        .then(({ KR }) => KR.onSubmit(this.pay))
-        .then(({ KR }) => KR.onError(this.handleError))
         .then(({ KR }) => (this.requestPayment = false))
         .catch((error) => {
           this.requestPayment = false;
@@ -359,6 +369,7 @@ export default {
     ) {
       this.$router.push(this.localePath({ name: "index" }));
     } else {
+     
       //Generar Token
       this.checkout();
       //Verificar Tiempo ExpireLS
@@ -367,7 +378,13 @@ export default {
         self.checkExpireLS();
       }, 1000); // 60 * 1000 milsec
     }
+    var form = document.getElementById("payfo");
+    console.log(form);
   },
+  /*beforeDestroy(){
+    var form = document.getElementById("payfo");
+    form.parentNode.removeChild(form);
+  },*/
   computed: {
     expireLS() {
       return this.$store.getters.getExpireLS;

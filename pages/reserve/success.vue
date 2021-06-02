@@ -36,12 +36,16 @@ export default {
         },
     },
     mounted() {
-        /*if (
+        if (
         Object.entries(this.customerGlobal).length === 0 &&
         this.customerGlobal.constructor === Object
         ) {
         this.$router.push(this.localePath({ name: "index" }));
-        }*/
+        }
+    },
+    destroyed() {
+        //Clear
+        this.$store.dispatch("setCustomer", {});
     },
     computed: {
         customerGlobal() {
