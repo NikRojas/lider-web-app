@@ -72,7 +72,7 @@
             <button
               type="submit"
               class="btn btn2"
-              :class="loading ? 'btn--opaubigeo' : ''"
+              :class="loading ? 'btn--opacity' : ''"
             >
               {{ loading ? $t("Cargando") + "..." : $t("Buscar") }}
             </button>

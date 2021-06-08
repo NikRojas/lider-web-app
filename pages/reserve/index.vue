@@ -30,14 +30,15 @@
 
     <section class="estates">
       <div class="container">
-        <Filters  :range.sync="range" 
+        <!--<Filters  :range.sync="range" 
         :views.sync="views"
         :floors.sync="floors"
         :departments.sync="departments"
         :rooms.sync="rooms"
         :statuses.sync="statuses"
         :projects.sync="projects"
-        :typeDepartments.sync="typeDepartments" @set="get" @clear="clear" :data="page.data.filters"></Filters>
+        :typeDepartments.sync="typeDepartments" @set="get" @clear="clear" :data="page.data.filters"></Filters>-->
+        <Filters @set="getEls" @clear="clear" :data="page.data.filters"></Filters>
         <hr />
         <div id="buttons" >
         <button class="btn" @click="toggleShow()">
@@ -73,6 +74,97 @@ import Filters from "../../components/payment/Filters";
 import Pagination from "../../components/payment/Pagination";
 export default {
   name: 'ReserveIndex',
+  head() {
+    return {
+      htmlAttrs: {
+        lang:
+          this.$i18n.locale == "en"
+            ? this.$i18n.locale + "_US"
+            : this.$i18n.locale + "_PE",
+      },
+      title: this.page.data.page["title_" + this.$i18n.locale]
+        ? this.page.data.page["title_" + this.$i18n.locale]
+        : "",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
+        },
+        {
+          itemprop: "name",
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
+        },
+        {
+          itemprop: "description",
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
+        },
+        {
+          itemprop: "image",
+          content: this.page.data.page["seo_image"]
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.page["seo_image"]
+            : "",
+        },
+        {
+          name: "keywords",
+          content: this.page.data.page["seo_keywords_" + this.$i18n.locale]
+            ? this.page.data.page["seo_keywords_" + this.$i18n.locale]
+            : "",
+        },
+        { name: "og:url", content: process.env.BASE_URL + this.$route.path },
+        { name: "og:type", content: "website" },
+        {
+          name: "og:title",
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
+        },
+        {
+          name: "og:description",
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
+        },
+        {
+          name: "og:image",
+          content: this.page.data.page["seo_image"]
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.page["seo_image"]
+            : "",
+        },
+        { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:title",
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
+        },
+        {
+          name: "twitter:description",
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
+        },
+        {
+          name: "twitter:image",
+          content: this.page.data.page["seo_image"]
+            ? process.env.STORAGE_URL +
+              "/img/pages/" +
+              this.page.data.page["seo_image"]
+            : "",
+        },
+      ],
+    };
+  },
   async validate({ params, $axios, app }) {
     const data = await $axios.$get("/api/page/reserve", {
       params: { locale: app.i18n.locale },
@@ -90,8 +182,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      es: "/separa-tu-inmueble",
-      en: "/reserve-your-property",
+      es: "/separa-tu-depa",
+      en: "/reserve-your-department",
     },
   },
   components: {
@@ -124,17 +216,34 @@ export default {
     };
   },
   methods: {
-    get(){
+    /*get(){
       this.getEls(1);
-    },
+    },*/
     clear(){
       this.sortBy = 'initial';
       this.getEls(1);
     },
-    getEls(page = false) {
+    //getEls(page = false) {
+    getEls(page = false, range = false, views = false, floors = false, ubigeo = false , rooms = false, statuses = false, projects = false, type = false) {
       this.loadingEls = true;
       if(page) this.pageActive = page;
       this.$scrollTo(document.getElementById("estates"),900,{offset:-30});
+      console.log(range);
+      console.log(views);
+      console.log(floors);
+      console.log(ubigeo);
+      console.log(rooms);
+      console.log(statuses);
+      console.log(projects);
+      console.log(type);
+      if(range) this.range = range;
+      if(views) this.views = views;
+      if(floors) this.floors = floors;
+      if(rooms) this.rooms = rooms;
+      if(statuses) this.statuses = statuses;
+      if(ubigeo) this.ubigeo = ubigeo;
+      if(projects) this.projects = projects;
+      if(type) this.type = type;
       this.$axios
         .$get("/api/paginate/departments", {
           params: {

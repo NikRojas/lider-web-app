@@ -43,6 +43,10 @@ export default {
         this.$router.push(this.localePath({ name: "index" }));
         }
     },
+    /*beforeDestroy() {
+        //Clear
+        this.$store.dispatch("setCustomer", {});
+    },*/
     destroyed() {
         //Clear
         this.$store.dispatch("setCustomer", {});

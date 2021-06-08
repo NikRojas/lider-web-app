@@ -160,6 +160,9 @@
   .kr-popin-modal-header {
     border-bottom: 0 !important;
   }
+  .kr-popin-modal-footer{
+    display: none !important;
+  }
 }
 </style>
 <script>
@@ -269,13 +272,9 @@ export default {
         // Remove the payment form
         console.log(KR);
         KR.removeForms();
-        document.querySelectorAll('.kr-popin-background').forEach(function(a){
-          console.log(a);
-          a.remove()
-        })
         // Show success message
         //document.getElementById("paymentSuccessful").style.display = "block";
-        alert("success");
+        //alert("success");
         //this.$store.dispatch("setCustomer", {});
         this.$router.push(
           this.localePath({
@@ -285,12 +284,8 @@ export default {
       } else {
          console.log(KR);
         // Show error message to the user
-        alert("Payment failed !");
+        //alert("Payment failed !");
         KR.removeForms();
-         document.querySelectorAll('.kr-popin-background').forEach(function(a){
-          console.log(a);
-          a.remove()
-        })
         //this.$store.dispatch("setCustomer", {});
         this.$router.push(
           this.localePath({
@@ -323,31 +318,33 @@ export default {
     },
     generateForm(token, tokenjs) {
       const formToken = token;
-      KRGlue.loadLibrary(this.endpoint, tokenjs) /* Load the remote library */
+      KRGlue.loadLibrary(this.endpoint, tokenjs)
         .then(({ KR }) =>
           KR.setFormConfig({
-            /* set the minimal configuration */ formToken: formToken,
-            form: {
-              layout: "default",
-            },
-            merchant: {
-              header: {
-                shopName: {
-                  color: "black",
-                },
-                backgroundColor: "#EEEEEE",
-                image: {
-                  type: "logo",
-                  visibility: true,
-                  src: Logo,
+              formToken: formToken,
+              /*form: {
+                layout: "default",
+              },*/
+              merchant: {
+                header: {
+                  shopName: {
+                    color: "black",
+                  },
+                  backgroundColor: "#EEEEEE",
+                  image: {
+                    type: "logo",
+                    visibility: true,
+                    src: Logo,
+                  },
                 },
               },
-            },
-            //'kr-language': 'en-US',                       /* to update initialization parameter */
-          })
+              //'kr-language': 'en-US',                       /* to update initialization parameter */
+            })
         )
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
+        .then(({ KR }) => KR.setShopName("Pasarela de Pagos Izipay")) /* create a payment form */
+        .then(({ KR }) => KR.closePopin()) /* create a payment form */
         .then(({ KR }) => KR.onSubmit(this.pay))
         .then(({ KR }) => KR.onError(this.handleError))
         //El formToken válido por 15 minutos.
@@ -378,8 +375,6 @@ export default {
         self.checkExpireLS();
       }, 1000); // 60 * 1000 milsec
     }
-    var form = document.getElementById("payfo");
-    console.log(form);
   },
   /*beforeDestroy(){
     var form = document.getElementById("payfo");

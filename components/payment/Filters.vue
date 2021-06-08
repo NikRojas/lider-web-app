@@ -181,7 +181,7 @@ export default {
   },
   methods:{
     sendFilters(){
-      this.$emit("set", this.rangePrices, this.views, this.floors, this.departments, this.rooms, this.statuses, this.projects, this.typeDepartments );
+      this.$emit("set", 1, this.rangePrices, this.views, this.floors, this.departments, this.rooms, this.statuses, this.projects, this.typeDepartments );
     },
     reset(){
       this.rangePrices = [this.data.prices.min, this.data.prices.max];
@@ -206,7 +206,7 @@ export default {
     }
   },
   watch: {
-    "rangePrices": function (newValue, oldValue) {
+    /*"rangePrices": function (newValue, oldValue) {
       this.$emit("update:range", newValue);
     }, 
     views: {
@@ -272,7 +272,8 @@ export default {
       handler(newValue, oldValue){
         this.$emit("update:typeDepartments", newValue);
       }
-    }
+    }*/
+
     /*"views": function (newValue, oldValue) {
       this.$emit("update:views", newValue);
     }, 
