@@ -28,6 +28,13 @@ export default {
         ) {
         this.$router.push(this.localePath({ name: "index" }));
         }
+        else{
+            setTimeout(() => {
+                console.log("Clear")
+                this.$store.dispatch("setCustomer", {});
+                this.$store.dispatch("setExpireLS", null);
+            }, 10);
+        }
     },
     computed: {
         errorMessage() {

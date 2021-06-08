@@ -221,6 +221,14 @@ export default {
     },*/
     clear(){
       this.sortBy = 'initial';
+      this.range =[];
+      this.views =[];
+      this.floors =[];
+      this.departments =[];
+      this.rooms =[];
+      this.statuses =[];
+      this.projects =[];
+      this.typeDepartments =[];
       this.getEls(1);
     },
     //getEls(page = false) {

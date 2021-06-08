@@ -400,6 +400,7 @@ export default {
         .then((response) => {
           this.requestSubmit = false;
           this.customer.oi = response.data.order_id;
+          this.customer.department = Object.assign({},this.page.data.department);
           this.$store.dispatch("setCustomer", this.customer);
           if(!this.$route.query.adv){
             this.$router.push(

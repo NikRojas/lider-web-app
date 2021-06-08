@@ -2,24 +2,30 @@
     <div>
         EXITO
 
-         {{ customerGlobal.name }} {{ customerGlobal.lastname }}
-              {{ customerGlobal.lastname_2 }}
+         {{ customer.name }} {{ customer.lastname }}
+              {{ customer.lastname_2 }}
 
-              {{ customerGlobal.type_document_id }}
-              {{ customerGlobal.document_number }}
+              {{ customer.type_document_id }}
+              {{ customer.document_number }}
 
               {{ $t("Teléfono") }}
-              {{ customerGlobal.mobile }}
+              {{ customer.mobile }}
               {{ $t("Correo") }}
-              {{ customerGlobal.email }}
+              {{ customer.email }}
 
 
               Orden Registrada
 
-              {{ customerGlobal.oi }}
+              {{ customer.oi }}
+
+
+              <div class="container">
+                 <Steps active="success" text="Confirmación de Pago" />
+             </div>
     </div>
 </template>
 <script>
+import Steps from "../../components/payment/Steps";
 export default {
     name: 'ReserveSuccess',
     head () {
@@ -29,11 +35,20 @@ export default {
             ]
         }
     },
+    components:{
+        Steps
+    },
     nuxtI18n: {
         paths: {
         es: "/separa-tu-inmueble/exitoso",
         en: "/reserve-your-property/success",
         },
+    },
+    data() {
+        return {
+            customer: {},
+            storageUrl: process.env.STORAGE_URL,
+        }
     },
     mounted() {
         if (
@@ -42,14 +57,15 @@ export default {
         ) {
         this.$router.push(this.localePath({ name: "index" }));
         }
-    },
-    /*beforeDestroy() {
-        //Clear
-        this.$store.dispatch("setCustomer", {});
-    },*/
-    destroyed() {
-        //Clear
-        this.$store.dispatch("setCustomer", {});
+        else{
+            this.customer = Object.assign({},this.customerGlobal);
+            console.log("Mounted before clear")
+            setTimeout(() => {
+                console.log("Clear")
+                this.$store.dispatch("setCustomer", {});
+                this.$store.dispatch("setExpireLS", null);
+            }, 10);
+        }
     },
     computed: {
         customerGlobal() {
