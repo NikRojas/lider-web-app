@@ -1,0 +1,357 @@
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  padding: 14px 50px;
+  background-color: $color_1;
+  color: #FFFFFF;
+  text-transform: capitalize;
+  font-size: 18px;
+  line-height: 22px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.full-width-container {
+  width: 100%;
+  min-width: 320px;
+  overflow: hidden;
+}
+
+.sized-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slide-container {
+  position: relative;
+  left: 0;
+  overflow: hidden;
+}
+
+.slide {
+  float: left;
+}
+.slide .sized-container {
+  padding: 75px 0px;
+}
+
+
+.pagination-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.caracteristicas-pago {
+  margin-top: 15px;
+}
+img.plano {
+  margin-bottom: 15px;
+}
+
+.pagination {
+  width: 100%;
+  text-align: center;
+  padding: 0 25px;
+}
+
+.indicator {
+  width: 25px;
+  height: 25px;
+  border: 4px solid lightgray;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.3s;
+  position: relative;
+}
+.indicator .tag {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color:#757575;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.indicator.active, .indicator.complete {
+  border-color: $color_1;
+  background: $color_1;
+}
+.indicator.active .tag, .indicator.complete .tag {
+  color: $color_2;
+}
+.indicator.complete:after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  left: 4px;
+  top: 3px;
+  font-size: 14px;
+}
+
+.progress-bar-container {
+  width: 15%;
+  height: 4px;
+  display: inline-block;
+  background-color: lightgray;
+  position: relative;
+  top: -10px;
+}
+.progress-bar-container:last-of-type {
+  display: none;
+}
+.progress-bar-container .progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: $color_1;
+}
+
+
+.content-bg {
+  background: #f7f7f7;
+  padding: 20px;
+  img.logo {
+    max-width: 100px;
+    margin-bottom: 12px;
+  }
+}
+
+input.range-slider__range {
+  width: 100%;
+}
+
+.scroll-filter {
+  height: 122px;
+  //overflow-y: scroll;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.grid-listado {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 78px 58px 1fr 2fr;
+  /*grid-template-columns: 3fr 1fr 3fr 2fr 2fr 2fr 3fr;*/
+  grid-gap: 20px;
+}
+.grid-listado.cabecera {
+  border-bottom: 2px solid #0e5983;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.card-depa-lista {
+  border-bottom: 1px solid #D0D0D0;
+  align-items: center;
+  padding: 10px 0;
+  .img img {
+    height: auto;
+    width: auto;
+    margin: auto;
+    display: block;
+  }
+  ul li {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    margin: 1px 0;
+}
+}
+
+.card-filter {
+  .checkbox + label {
+      margin-bottom: 4px;
+  }
+  .checkbox + label:before {
+      width: 15px;
+      height: 15px;
+  }
+}
+
+
+.grid-btn-orden {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin: 35px 0;
+  a, select {
+    max-width: 200px;
+  }
+}
+
+.btn-separa {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 10px 21px;
+  align-items: center;
+  text-align: left;
+  h2,h3,h4,h5,h6{
+    margin: 0;
+  }
+}
+
+.caract-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.monto {
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  margin-bottom: 15px;
+  b {
+    font-size: 1.5rem;
+    margin-left: 5px;
+  }
+  
+}
+
+.grid-center {
+  display: flex;
+  justify-content: center;
+  .btn {
+    margin: 8px;
+    width: 185px;
+  }
+}
+
+.card-depa-grid {
+  border: 1px solid #E1E1E1;
+  .card-head,.card-body {
+      padding:0 10px;
+  }
+  .card-head{
+    .logo {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      grid-gap: 10px;
+      img {
+        height: 26px;
+      }
+    }
+    .card-caract {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      border-top: 2px solid #0b6fa6;
+      border-bottom: 2px solid #0b6fa6;
+      padding: 10px 0;
+      margin: 15px 0;
+    }
+  }
+  .card-body{
+    padding-bottom: 10px;
+    ul li {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        margin-bottom: 1px;
+        grid-gap: 8px;
+    }
+  }
+
+
+}
+
+
+.pagination-pagos {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  margin: 20px 0;
+  button {
+    height: 42px;
+    width: 42px;
+    padding: 0;
+    color: #0e5983;
+    background: white;
+    border: 2px solid #0e5983;
+    margin: 5px;
+    transition: 0.3s;
+    &.active,&:hover{
+      background: #0e5983;
+      color: white;
+    }
+  }
+  ul {
+    display: flex;
+  }
+}
+
+.text-error b {
+  color: #f15f23;
+}
+
+
+.sized-container select {
+  border: 2px solid #0b6fa6;
+  color: #0b6fa6;
+  font-weight: 600;
+}
+
+a.nav-separa {
+  display: inline-block;
+  color: white;
+  font-weight: 600;
+  margin: 0 5px;
+  padding: 18px 18px;
+  align-items: center;
+  height: 52px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  border: 2px solid;
+  border-color: rgba(255, 255, 255, 0);
+  &:hover{
+    text-shadow: 0 2px 8px rgba(0,0,0, 0);
+    background: #f15f23;
+    border-color: #f15f23;
+  }
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .listado-departamentos, .grid-btn-orden, .movil-padding {
+    padding: 0 20px;
+  }
+}
+@media only screen and (max-width: 985px) {
+  .listado-departamentos {
+    overflow-x: auto;
+  }
+  .grid-listado {
+    width: 980px;
+}
+}
+@media only screen and (max-width: 720px) {
+  .grid-btn-orden {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+  .grid-btn-orden a, .grid-btn-orden select {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 800px) {
+  .indicator .tag {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 615px) {
+  .caract-grid {
+    grid-template-columns: 1fr 1fr ;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .grid-center {
+    display: grid;
+    justify-content: center;
+  }
+  .grid-btn-orden {
+    grid-template-columns: 1fr;
+  }
+}

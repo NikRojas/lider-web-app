@@ -24,56 +24,63 @@
       "
     >
     </Banner>
-    <div class="container">
-      <Steps active="index" text="Elige tu inmueble" />
-    </div>
-
-    <section class="estates">
-      <div class="container">
-        <!--<Filters  :range.sync="range" 
-        :views.sync="views"
-        :floors.sync="floors"
-        :departments.sync="departments"
-        :rooms.sync="rooms"
-        :statuses.sync="statuses"
-        :projects.sync="projects"
-        :typeDepartments.sync="typeDepartments" @set="get" @clear="clear" :data="page.data.filters"></Filters>-->
-        <Filters @set="getEls" @clear="clear" :data="page.data.filters"></Filters>
-        <hr />
-        <div id="buttons" >
-        <button class="btn" @click="toggleShow()">
-          {{ $t("Ver") }} {{ showData != "list" ? "En lista" : "En grilla" }}
-        </button>
-        <select v-model="sortBy">
-          <option :value="s.value" v-for="s in sorts" :key="s.value">
-            {{ s.desc }}
-          </option>
-        </select>
-        </div>
-        <div id="estates" style="padding-bottom: 60px; padding-top: 60px;">
-          <Datatable
-          :loading="loadingEls"
-            :data="page.data.departments.data"
-            v-show="showData == 'list'"
-          ></Datatable>
-          <Grid
-            :loading="loadingEls"
-            :data="page.data.departments.data"
-            v-show="showData == 'grid'"
-          ></Grid>
-          <Pagination @get="getEls" :data="page.data.departments"></Pagination>
+    <section class="section">
+      <div class="">
+        <Steps active="index"/>
+        <div class="viewport full-width-container">
+          <div class="sized-container">
+            <div class="title center">
+              <h2>{{ $t('Elige tu inmueble') }}</h2>
+            </div>
+            <div class="content-bg">
+              <Filters
+                @set="getEls"
+                @clear="clear"
+                :data="page.data.filters"
+              ></Filters>
+            </div>
+            <div class="grid-btn-orden" id="buttons">
+              <a href="#" class="btn" @click.prevent="toggleShow()">
+                <img :data-src="require('~/assets/img/p-icon-grid.png')" class="lazyload" alt="" />
+                {{ $t("Ver") }}
+                {{ showData != "list" ? "en lista" : "en grilla" }}
+              </a>
+              <select name="" id="" v-model="sortBy">
+                <option :value="s.value" v-for="s in sorts" :key="s.value">
+                  {{ s.desc }}
+                </option>
+              </select>
+            </div>
+            <div id="estates">
+              <Datatable
+              :loading="loadingEls"
+                :data="page.data.departments.data"
+                v-show="showData == 'list'"
+              ></Datatable>
+              <Grid
+                :loading="loadingEls"
+                :data="page.data.departments.data"
+                v-show="showData == 'grid'"
+              ></Grid>
+              <Pagination @get="getEls" :data="page.data.departments"></Pagination>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 </template>
 <script>
+if (process.client) {
+  require("/static/js/jq.fancybox.min.js");
+}
+import "/static/css/jq.fancybox.min.css";
 import Banner from "../../components/Banner";
 import Steps from "../../components/payment/Steps";
 import Filters from "../../components/payment/Filters";
 import Pagination from "../../components/payment/Pagination";
 export default {
-  name: 'ReserveIndex',
+  name: "ReserveIndex",
   head() {
     return {
       htmlAttrs: {
@@ -194,11 +201,11 @@ export default {
   },
   data() {
     return {
-      sortBy: 'initial',
-      sorts:[
-        {'value': 'initial', 'desc': 'Ordenar por defecto'},
-        {'value': 'low-high', 'desc': 'Menor precio a mayor precio'},
-        {'value': 'high-low', 'desc': 'Mayor precio a menor precio'},
+      sortBy: "initial",
+      sorts: [
+        { value: "initial", desc: "Ordenar por defecto" },
+        { value: "low-high", desc: "Menor precio a mayor precio" },
+        { value: "high-low", desc: "Mayor precio a menor precio" },
       ],
       showData: "grid",
       page: {},
@@ -207,35 +214,45 @@ export default {
       pageActive: 1,
       range: [],
       views: [],
-          floors: [],
-          departments: [],
-          rooms: [],
-          statuses: [],
-          projects: [],
-          typeDepartments: []
+      floors: [],
+      departments: [],
+      rooms: [],
+      statuses: [],
+      projects: [],
+      typeDepartments: [],
     };
   },
   methods: {
     /*get(){
       this.getEls(1);
     },*/
-    clear(){
-      this.sortBy = 'initial';
-      this.range =[];
-      this.views =[];
-      this.floors =[];
-      this.departments =[];
-      this.rooms =[];
-      this.statuses =[];
-      this.projects =[];
-      this.typeDepartments =[];
+    clear() {
+      this.sortBy = "initial";
+      this.range = [];
+      this.views = [];
+      this.floors = [];
+      this.departments = [];
+      this.rooms = [];
+      this.statuses = [];
+      this.projects = [];
+      this.typeDepartments = [];
       this.getEls(1);
     },
     //getEls(page = false) {
-    getEls(page = false, range = false, views = false, floors = false, ubigeo = false , rooms = false, statuses = false, projects = false, type = false) {
+    getEls(
+      page = false,
+      range = false,
+      views = false,
+      floors = false,
+      ubigeo = false,
+      rooms = false,
+      statuses = false,
+      projects = false,
+      type = false
+    ) {
       this.loadingEls = true;
-      if(page) this.pageActive = page;
-      this.$scrollTo(document.getElementById("estates"),900,{offset:-30});
+      if (page) this.pageActive = page;
+      this.$scrollTo(document.getElementById("buttons"), 900, { offset: -100 });
       console.log(range);
       console.log(views);
       console.log(floors);
@@ -244,14 +261,14 @@ export default {
       console.log(statuses);
       console.log(projects);
       console.log(type);
-      if(range) this.range = range;
-      if(views) this.views = views;
-      if(floors) this.floors = floors;
-      if(rooms) this.rooms = rooms;
-      if(statuses) this.statuses = statuses;
-      if(ubigeo) this.ubigeo = ubigeo;
-      if(projects) this.projects = projects;
-      if(type) this.type = type;
+      if (range) this.range = range;
+      if (views) this.views = views;
+      if (floors) this.floors = floors;
+      if (rooms) this.rooms = rooms;
+      if (statuses) this.statuses = statuses;
+      if (ubigeo) this.ubigeo = ubigeo;
+      if (projects) this.projects = projects;
+      if (type) this.type = type;
       this.$axios
         .$get("/api/paginate/departments", {
           params: {
@@ -265,7 +282,7 @@ export default {
             statuses: this.statuses,
             projects: this.projects,
             ubigeo: this.departments,
-            type: this.typeDepartments
+            type: this.typeDepartments,
           },
         })
         .then((response) => {
@@ -280,6 +297,11 @@ export default {
         this.showData = "grid";
       }
     },
+  },
+  mounted() {
+    $(document).ready(function () {
+      $(".fancybox").fancybox();
+      });
   },
   watch: {
     sortBy: {

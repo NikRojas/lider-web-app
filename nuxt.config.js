@@ -66,6 +66,7 @@ export default {
     { src: '~/plugins/vue-js-modal.js', mode: 'client' },
     { src: '~/plugins/vue-range-slider.js', mode: 'client' },
     { src: '~/plugins/vuex-persistedstate.client.js' },
+    { src: '~/plugins/simplebar-vue.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

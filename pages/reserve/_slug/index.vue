@@ -28,7 +28,7 @@
 
     <section class="section">
       <div class="container">
-        <Steps active="reserve" text="Datos de reserva" />
+        <Steps active="reserve" />
 
         {{ $t("Datos de reserva") }}
         <div class="grid-col">

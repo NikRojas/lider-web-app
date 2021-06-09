@@ -27,7 +27,7 @@
     </Banner>
     <section class="section">
       <div class="container">
-        <Steps active="summary" text="Resumen de reserva" />
+        <Steps active="summary"/>
 
         <div class="grid-col">
           <div class="grid-s-12">
