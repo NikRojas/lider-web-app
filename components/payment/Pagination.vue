@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination-pagos">
+  <div class="pagination-pagos" v-if="data.total">
     <button
       v-if="data.current_page > 1"
       class="page-link rounded-circle"

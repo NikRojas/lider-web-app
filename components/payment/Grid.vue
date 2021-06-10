@@ -4,7 +4,7 @@
       <template v-if="loading">
         <div
           class="grid-s-12 grid-m-4 grid-l-3"
-          v-for="(el, i) in 8"
+          v-for="(el, i) in 12"
           :key="'lo1' + i"
         >
           <PuSkeleton height="350px" ></PuSkeleton>
@@ -141,7 +141,7 @@
           </div>
         </template>
         <div class="grid-s-12" v-else>
-          <div class="text-center">
+          <div class="text-center mb-2xl">
             <img
               :data-src="require('~/assets/img/p-no-results.png')"
               class="lazyload"

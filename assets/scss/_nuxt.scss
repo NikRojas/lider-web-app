@@ -388,3 +388,28 @@ i.flaticon-linkedin {
     margin-bottom: 10px;
     font-weight: 600;
 }
+
+.mb-lg{
+    margin-bottom: 1.5rem;
+}
+
+.mb-2xl{
+    margin-bottom: 5rem;
+}
+
+.dep-no-available{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+    @media screen and (min-width: 720px){
+        padding-top: 4rem;
+        padding-bottom: 6rem;
+    }
+}
+
+.monto{
+    align-items: center;
+}

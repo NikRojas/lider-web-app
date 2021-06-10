@@ -26,124 +26,235 @@
     >
     </Banner>
     <section class="section">
-      <div class="container">
-        <Steps active="summary"/>
+      <div>
+        <Steps active="summary" />
 
-        <div class="grid-col">
-          <div class="grid-s-12">
-            {{ $t("Datos del inmueble") }}
-
-            <img
-              v-if="page.data.department.image"
-              :data-src="
-                storageUrl +
-                '/img/projects/estates/' +
-                page.data.department.image
-              "
-              :alt="$t('Plano') + ' ' + page.data.department.description"
-              height="5000"
-              class="lazyload img--width-auto"
-            />
-
-            <img
-              height="30"
-              :data-src="
-                storageUrl +
-                '/img/projects/' +
-                page.data.department.project_rel.logo_colour
-              "
-              :alt="
-                $t('Proyecto') +
-                ' ' +
-                page.data.department.project_rel['name_' + $i18n.locale]
-              "
-              class="logo-p2 lazyload img--width-auto"
-            />
-
-            {{ $t("Ubicación") }}:
-            {{ page.data.department.project_rel.ubigeo_rel.district }}<br />
-            {{ $t("Estatus") }}:
-            {{
-              page.data.department.project_rel.status_rel[
-                "name_" + $i18n.locale
-              ]
-            }}<br />
-            <template
-              v-if="
-                page.data.department.type_department_id &&
-                page.data.department.tipology_rel &&
-                page.data.department.tipology_rel.parent_type_department_id
-              "
-            >
-              {{ $t("Tipo") }}:
-              {{
-                page.data.department.tipology_rel.parent_type_department_rel
-                  .name
-              }}
-              <br />
-            </template>
-            {{ $t("Piso") }}: {{ page.data.department.floor }}°
-            {{ $t("piso") }} <br />
-            {{ $t("Vista") }}: {{ page.data.department.view_rel.name }} <br />
-            {{ $t("Metraje") }}: {{ page.data.department.tipology_rel.area }}m2
-            {{ $t("Dormitorios") }} :
-            {{ page.data.department.tipology_rel.room }}
-            {{ $t("Precio inmueble") }}:
-            <div>
-              <template v-if="page.data.department.price_foreign">
-                {{ page.data.department.price_foreign_format }}
-              </template>
-              <template
-                v-if="
-                  !page.data.department.price_foreign &&
-                  page.data.department.price
-                "
-              >
-                {{ page.data.department.price_format }}
-              </template>
+        <div class="viewport full-width-container">
+          <div class="sized-container">
+            <div class="title center">
+              <h2>{{ $t("Resumen de compra") }}</h2>
             </div>
-            <br /><br /><br />
-            {{ $t("Precio separación") }}
-            <template v-if="page.data.department.project_rel">
-              {{ page.data.department.project_rel.price_separation_format }}
-            </template>
-
-            <div v-if="Object.entries(customerGlobal).length === 0"></div>
-            <div v-else>
-              {{ $t("Datos de la persona a reservar") }}
-
-              {{ $t("Nombre") }}
-
-              {{ customerGlobal.name }} {{ customerGlobal.lastname }}
-              {{ customerGlobal.lastname_2 }}
-
-              {{ customerGlobal.type_document_id }}
-              {{ customerGlobal.document_number }}
-
-              {{ $t("Teléfono") }}
-              {{ customerGlobal.mobile }}
-              {{ $t("Correo") }}
-              {{ customerGlobal.email }}
+            <div class="grid-col">
+              <div class="grid-s-12">
+                <div class="content-bg">
+                  <h5>
+                    <b>{{ $t("Datos del inmueble") }}</b>
+                  </h5>
+                  <div class="grid-col">
+                    <div class="grid-s-12 grid-m-4 grid-l-3">
+                      <img
+                        v-if="page.data.department.image"
+                        class="plano lazyload"
+                        :data-src="
+                          storageUrl +
+                          '/img/projects/estates/' +
+                          page.data.department.image
+                        "
+                        :alt="
+                          $t('Plano') + ' ' + page.data.department.description
+                        "
+                      />
+                      <img
+                        v-else
+                        class="lazyload"
+                        :data-src="require('~/assets/img/p-no-data.png')"
+                        :alt="
+                          $t('Plano') + ' ' + page.data.department.description
+                        "
+                      />
+                    </div>
+                    <div class="grid-s-12 grid-m-8 grid-l-9">
+                      <img
+                        :data-src="
+                          storageUrl +
+                          '/img/projects/' +
+                          page.data.department.project_rel.logo_colour
+                        "
+                        :alt="
+                          $t('Proyecto') +
+                          ' ' +
+                          page.data.department.project_rel[
+                            'name_' + $i18n.locale
+                          ]
+                        "
+                        class="logo lazyload"
+                      />
+                      <div class="caract-grid">
+                        <div class="">
+                          <b>{{ $t("Ubicación") }}:</b>
+                          <p>
+                            {{
+                              page.data.department.project_rel.ubigeo_rel
+                                .district
+                            }}
+                          </p>
+                        </div>
+                        <div class="">
+                          <b>{{ $t("Estatus") }}:</b>
+                          <p>
+                            {{
+                              page.data.department.project_rel.status_rel[
+                                "name_" + $i18n.locale
+                              ]
+                            }}
+                          </p>
+                        </div>
+                        <div
+                          class=""
+                          v-if="
+                            page.data.department.type_department_id &&
+                            page.data.department.tipology_rel &&
+                            page.data.department.tipology_rel
+                              .parent_type_department_id
+                          "
+                        >
+                          <b>{{ $t("Tipo") }}:</b>
+                          <p>
+                            {{
+                              page.data.department.tipology_rel
+                                .parent_type_department_rel.name
+                            }}
+                          </p>
+                        </div>
+                        <div class="">
+                          <b>{{ $t("Metraje") }}:</b>
+                          <p>{{ page.data.department.tipology_rel.area }}m2</p>
+                        </div>
+                        <div
+                          class=""
+                          v-if="
+                            page.data.department.type_department_id &&
+                            page.data.department.tipology_rel &&
+                            page.data.department.tipology_rel.room
+                          "
+                        >
+                          <b>{{ $t("Dormitorios") }}:</b>
+                          <p>{{ page.data.department.tipology_rel.room }}</p>
+                        </div>
+                        <div class="">
+                          <b> {{ $t("Vista") }}:</b>
+                          <p>{{ page.data.department.view_rel.name }}</p>
+                        </div>
+                        <div class="">
+                          <b>{{ $t("Piso") }}:</b>
+                          <p>
+                            {{ page.data.department.floor }}° {{ $t("piso") }}
+                          </p>
+                        </div>
+                        <div class="">
+                          <b>{{ $t("Precio del inmueble") }}:</b>
+                          <p>
+                            <strong
+                              ><template
+                                v-if="page.data.department.price_foreign"
+                              >
+                                {{ page.data.department.price_foreign_format }}
+                              </template>
+                              <template
+                                v-if="
+                                  !page.data.department.price_foreign &&
+                                  page.data.department.price
+                                "
+                              >
+                                {{ page.data.department.price_format }}
+                              </template></strong
+                            >
+                          </p>
+                        </div>
+                        <div class="" v-if="page.data.department.project_rel">
+                          <b>{{ $t("Precio separación") }}:</b>
+                          <p>
+                            <strong>
+                              {{
+                                page.data.department.project_rel
+                                  .price_separation_format
+                              }}
+                            </strong>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-s-12">
+                 <div v-if="Object.entries(customerGlobal).length === 0"></div>
+                <div class="content-bg" v-else>
+                  <h5>
+                    <b>{{ $t("Datos de la persona a reservar") }}</b>
+                  </h5>
+                 
+                  <div class="grid-col">
+                    <div class="grid-s-12 grid-m-4 grid-l-2">
+                      <b>{{ $t("Nombre") }}:</b>
+                      <p>
+                        {{ customerGlobal.name }} {{ customerGlobal.lastname }}
+                        {{ customerGlobal.lastname_2 }}
+                      </p>
+                    </div>
+                    <div class="grid-s-12 grid-m-4 grid-l-2">
+                      <b>{{ customerGlobal.type_document_id }}:</b>
+                      <p>{{ customerGlobal.document_number }}</p>
+                    </div>
+                    <div class="grid-s-12 grid-m-4 grid-l-2">
+                      <b>{{ $t("Teléfono") }}:</b>
+                      <p>{{ customerGlobal.mobile }}</p>
+                    </div>
+                    <div class="grid-s-12 grid-m-4 grid-l-2">
+                      <b>{{ $t("Correo") }}:</b>
+                      <p>{{ customerGlobal.email }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-s-12">
+                <div class="text-center movil-padding">
+                  <p>
+                    {{
+                      $t(
+                        "Para garantizar su seguridad todas nuestras transacciones son encriptadas."
+                      )
+                    }}
+                  </p>
+                  <div class="monto">
+                    {{ $t("Número de orden") }}: <b>{{ customerGlobal.oi }} </b>
+                  </div>
+                  <div class="grid-center">
+                    <nuxt-link
+                      class="btn btn1 previous"
+                      :to="
+                        localePath({
+                          name: 'reserve-slug',
+                          params: { slug: $route.params.slug },
+                          query: { ...$route.query, adv: $route.query.adv },
+                        })
+                      "
+                      >{{ $t("Editar datos") }}</nuxt-link
+                    >
+                    <div class="kr-embedded" kr-popin id="payfo"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-s-12 text-center">
+                <p>
+                  <strong>{{ $t("Nota") }}:</strong>
+                </p>
+                <p>
+                  {{
+                    $t(
+                      'Haga click en el botón "Pagar" y se mostrará un formulario para que introduzca los datos de su tarjeta.'
+                    )
+                  }}
+                </p>
+                <p>
+                  {{
+                    $t(
+                      "Realice el pago con total seguridad recuerde que tiene 5 minutos para completar el pago."
+                    )
+                  }}
+                </p>
+              </div>
             </div>
-          </div>
-
-          <div class="grid-s-12">
-            {{ $t("Monto a pagar") }}
-            {{ page.data.department.project_rel.price_separation_format }}
-
-            <nuxt-link
-              class="btn"
-              :to="
-                localePath({
-                  name: 'reserve-slug',
-                  params: { slug: $route.params.slug },
-                  query: { ...$route.query, adv: $route.query.adv },
-                })
-              "
-            >
-              Editar Datos
-            </nuxt-link>
-            <div class="kr-embedded" kr-popin id="payfo"></div>
           </div>
         </div>
       </div>
@@ -151,6 +262,33 @@
   </main>
 </template>
 <style lang="scss">
+.kr-popin-utils {
+  .kr-popin-button {
+    background-color: #f15f23 !important;
+    border: 2px solid #f15f23 !important;
+    color: #fff !important;
+    max-width: 320px !important;
+    margin: 8px !important;
+    width: 185px !important;
+    padding: 16px 28px !important;
+    span {
+      font-weight: bold !important;
+    }
+    height: inherit !important;
+    padding: 16px 28px;
+    display: flex;
+    grid-gap: 6px;
+    gap: 6px;
+    font-size: 0.875rem;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    justify-content: center;
+    background: none;
+    align-items: center;
+    -webkit-align-items: center;
+  }
+}
 .kr-embedded {
   background-color: #eeeeee !important;
   .kr-payment-button {
@@ -160,7 +298,8 @@
   .kr-popin-modal-header {
     border-bottom: 0 !important;
   }
-  .kr-popin-modal-footer{
+
+  .kr-popin-modal-footer {
     display: none !important;
   }
 }
@@ -178,15 +317,13 @@ export default {
       meta: [{ hid: "robots", name: "robots", content: "noindex, nofollow" }],
       script: [
         {
-          src:
-            "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.js",
+          src: "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.js",
         },
       ],
       link: [
         {
           rel: "stylesheet",
-          href:
-            "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic-reset.css",
+          href: "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic-reset.css",
         },
       ],
     };
@@ -282,7 +419,7 @@ export default {
           })
         );
       } else {
-         console.log(KR);
+        console.log(KR);
         // Show error message to the user
         //alert("Payment failed !");
         KR.removeForms();
@@ -321,29 +458,31 @@ export default {
       KRGlue.loadLibrary(this.endpoint, tokenjs)
         .then(({ KR }) =>
           KR.setFormConfig({
-              formToken: formToken,
-              /*form: {
+            formToken: formToken,
+            /*form: {
                 layout: "default",
               },*/
-              merchant: {
-                header: {
-                  shopName: {
-                    color: "black",
-                  },
-                  backgroundColor: "#EEEEEE",
-                  image: {
-                    type: "logo",
-                    visibility: true,
-                    src: Logo,
-                  },
+            merchant: {
+              header: {
+                shopName: {
+                  color: "black",
+                },
+                backgroundColor: "#EEEEEE",
+                image: {
+                  type: "logo",
+                  visibility: true,
+                  src: Logo,
                 },
               },
-              //'kr-language': 'en-US',                       /* to update initialization parameter */
-            })
+            },
+            //'kr-language': 'en-US',                       /* to update initialization parameter */
+          })
         )
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
-        .then(({ KR }) => KR.setShopName("Pasarela de Pagos Izipay")) /* create a payment form */
+        .then(({ KR }) =>
+          KR.setShopName("Pasarela de Pagos Izipay")
+        ) /* create a payment form */
         .then(({ KR }) => KR.closePopin()) /* create a payment form */
         .then(({ KR }) => KR.onSubmit(this.pay))
         .then(({ KR }) => KR.onError(this.handleError))
@@ -366,7 +505,6 @@ export default {
     ) {
       this.$router.push(this.localePath({ name: "index" }));
     } else {
-     
       //Generar Token
       this.checkout();
       //Verificar Tiempo ExpireLS

@@ -136,7 +136,7 @@
       </div>
       </template>
       <div class="grid-s-12" v-else>
-          <div class="text-center">
+          <div class="text-center mb-2xl">
             <img
               :data-src="require('~/assets/img/p-no-results.png')"
               class="lazyload"
@@ -156,7 +156,7 @@
         </div>
     </template>
     <template v-else>
-      <div v-for="i in 8" :key="i + 'sk'" style="margin-bottom: 1rem">
+      <div v-for="i in 12" :key="i + 'sk'" style="margin-bottom: 1rem">
         <PuSkeleton height="200px"></PuSkeleton>
       </div>
     </template>
