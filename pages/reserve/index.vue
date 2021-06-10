@@ -43,11 +43,11 @@
               <a href="#" class="btn" @click.prevent="toggleShow()">
                 <img :data-src="require('~/assets/img/p-icon-grid.png')" class="lazyload" alt="" />
                 {{ $t("Ver") }}
-                {{ showData != "list" ? "en lista" : "en grilla" }}
+                {{ showData != "list" ? $t("en lista") : $t("en grilla") }}
               </a>
               <select name="" id="" v-model="sortBy">
                 <option :value="s.value" v-for="s in sorts" :key="s.value">
-                  {{ s.desc }}
+                  {{ $t(s.desc) }}
                 </option>
               </select>
             </div>

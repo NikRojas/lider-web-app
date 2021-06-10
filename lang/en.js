@@ -179,5 +179,12 @@ export default {
     'contáctanos': 'contact us',
     'Gracias': 'Thanks',
     'La transacción no fue realizada': 'The transaction was not carried out',
-    'Vuelve a intentar hacer tu pedido': 'Try to place your order again'
+    'Vuelve a intentar hacer tu pedido': 'Try to place your order again',
+    'en lista': 'list',
+    'en grilla': 'grid',
+    'Ordenar por defecto': 'Sort by default',
+    'Menor precio a mayor precio': 'Lower price at higher price',
+    'Mayor precio a menor precio': 'Higher price at lower price',
+    'Tipo de departamento': 'Department type',
+    'piso': 'floor'
 }

@@ -179,5 +179,11 @@ export default {
     'contáctanos': 'contáctanos',
     'Gracias': 'Gracias',
     'La transacción no fue realizada': 'La transacción no fue realizada',
-    'Vuelve a intentar hacer tu pedido': 'Vuelve a intentar hacer tu pedido'
+    'Vuelve a intentar hacer tu pedido': 'Vuelve a intentar hacer tu pedido',
+    'en lista': 'en lista',
+    'en grilla': 'en grilla',
+    'Ordenar por defecto': 'Ordenar por defecto',
+    'Menor precio a mayor precio': 'Menor precio a mayor precio',
+    'Mayor precio a menor precio': 'Mayor precio a menor precio',
+    'piso': 'piso'         
 }
