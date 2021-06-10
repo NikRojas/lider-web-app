@@ -185,5 +185,6 @@ export default {
     'Ordenar por defecto': 'Ordenar por defecto',
     'Menor precio a mayor precio': 'Menor precio a mayor precio',
     'Mayor precio a menor precio': 'Mayor precio a menor precio',
-    'piso': 'piso'         
+    'piso': 'piso',
+    'Hasta': 'Hasta'  
 }

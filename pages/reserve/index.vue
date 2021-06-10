@@ -281,8 +281,8 @@ export default {
             rooms: this.rooms,
             statuses: this.statuses,
             projects: this.projects,
-            ubigeo: this.departments,
-            type: this.typeDepartments,
+            ubigeo: this.ubigeo,
+            type: this.type,
           },
         })
         .then((response) => {

@@ -186,5 +186,6 @@ export default {
     'Menor precio a mayor precio': 'Lower price at higher price',
     'Mayor precio a menor precio': 'Higher price at lower price',
     'Tipo de departamento': 'Department type',
-    'piso': 'floor'
+    'piso': 'floor',
+    'Hasta': 'To' 
 }
