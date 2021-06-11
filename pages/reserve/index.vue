@@ -253,14 +253,6 @@ export default {
       this.loadingEls = true;
       if (page) this.pageActive = page;
       this.$scrollTo(document.getElementById("buttons"), 900, { offset: -100 });
-      console.log(range);
-      console.log(views);
-      console.log(floors);
-      console.log(ubigeo);
-      console.log(rooms);
-      console.log(statuses);
-      console.log(projects);
-      console.log(type);
       if (range) this.range = range;
       if (views) this.views = views;
       if (floors) this.floors = floors;
