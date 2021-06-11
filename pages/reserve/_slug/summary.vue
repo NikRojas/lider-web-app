@@ -231,7 +231,8 @@
                       "
                       >{{ $t("Editar datos") }}</nuxt-link
                     >
-                    <div class="kr-embedded" kr-popin id="payfo"></div>
+                    <div id="payfo">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -290,6 +291,7 @@
   }
 }
 .kr-embedded {
+  padding-bottom: 50px !important;
   background-color: #eeeeee !important;
   .kr-payment-button {
     background-color: #f15f23 !important;
@@ -299,7 +301,7 @@
     border-bottom: 0 !important;
   }
 
-  .kr-popin-modal-footer {
+  .kr-popin-modal-footer, .kr-first-installment-delay {
     display: none !important;
   }
 }
@@ -461,6 +463,7 @@ export default {
         .then(({ KR }) =>
           KR.setFormConfig({
             formToken: formToken,
+            "kr-popin": "",
             /*form: {
                 layout: "default",
               },*/
