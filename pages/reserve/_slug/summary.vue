@@ -177,9 +177,9 @@
                   </div>
                 </div>
               </div>
-              <div class="grid-s-12">
-                 <div v-if="Object.entries(customerGlobal).length === 0"></div>
-                <div class="content-bg" v-else>
+              <div v-if="Object.entries(customerGlobal).length === 0"></div>
+              <div class="grid-s-12" v-else>
+                <div class="content-bg">
                   <h5>
                     <b>{{ $t("Datos de la persona a reservar") }}</b>
                   </h5>
@@ -490,7 +490,7 @@ export default {
         .then(({ KR }) => KR.onError(this.handleError))
         //El formToken válido por 5 minutos.
         //Establecer limite de LS 5m
-        .then(({ KR }) => this.setExpireLS(60 * 5000))
+        .then(({ KR }) => this.setExpireLS(60 * 6000))
         .then(({ KR }) => (this.requestPayment = false))
         .catch((error) => {
           this.requestPayment = false;
