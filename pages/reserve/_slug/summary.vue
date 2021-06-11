@@ -488,9 +488,9 @@ export default {
         .then(({ KR }) => KR.closePopin()) /* create a payment form */
         .then(({ KR }) => KR.onSubmit(this.pay))
         .then(({ KR }) => KR.onError(this.handleError))
-        //El formToken válido por 15 minutos.
-        //Establecer limite de LS 15m
-        .then(({ KR }) => this.setExpireLS(60 * 14500))
+        //El formToken válido por 5 minutos.
+        //Establecer limite de LS 5m
+        .then(({ KR }) => this.setExpireLS(60 * 5000))
         .then(({ KR }) => (this.requestPayment = false))
         .catch((error) => {
           this.requestPayment = false;
