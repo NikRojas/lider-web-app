@@ -9,8 +9,8 @@
     </button>
     <ul>
       <li v-for="page in data.last_page" :key="'p' + page">
-        <button v-bind:class="[page == data.current_page ? 'active' : '']">
-          1
+        <button v-bind:class="[page == data.current_page ? 'active' : '']" @click.prevent="clickPage(page)">
+          {{ page }}
         </button>
       </li>
     </ul>
