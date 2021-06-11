@@ -370,10 +370,10 @@ export default {
   },
   methods: {
     setExpireLS(ttl) {
-      if(!this.expireLS){
+      //if(!this.expireLS){
         const now = new Date();
         this.$store.dispatch("setExpireLS", now.getTime() + ttl);
-      }
+      //}
     },
     checkExpireLS() {
       const item = this.expireLS;

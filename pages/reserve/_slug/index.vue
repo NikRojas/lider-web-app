@@ -78,6 +78,7 @@
                         v-if="!noAvailable"
                         style="display: inline-block"
                         class="btn previous"
+                         @click.native="clearData"
                         :to="localePath({ name: 'reserve' })"
                       >
                         {{ $t("Cambiar Inmueble") }}</nuxt-link
@@ -383,6 +384,7 @@
                     <h4>{{ $t('El inmueble ya no está disponible') }}.</h4>
                     <nuxt-link
                       class="btn"
+                      @click.native="clearData"
                       :to="localePath({ name: 'reserve' })"
                     >
                       {{ $t("Cambiar inmueble") }}
@@ -452,6 +454,10 @@ export default {
     },
   },
   methods: {
+    clearData(){
+      this.$store.dispatch("setExpireLS", null);
+      this.$store.dispatch("setCustomer", {});
+    },
     getAvailable() {
       this.requestAvailable = true;
       this.$axios
