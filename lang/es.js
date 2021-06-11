@@ -186,5 +186,6 @@ export default {
     'Menor precio a mayor precio': 'Menor precio a mayor precio',
     'Mayor precio a menor precio': 'Mayor precio a menor precio',
     'piso': 'piso',
-    'Hasta': 'Hasta'  
+    'Hasta': 'Hasta',
+    'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Ingresa otro método de pago e intenta hacer tu pedido nuevamente'
 }

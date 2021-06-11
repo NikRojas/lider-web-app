@@ -187,5 +187,6 @@ export default {
     'Mayor precio a menor precio': 'Higher price at lower price',
     'Tipo de departamento': 'Department type',
     'piso': 'floor',
-    'Hasta': 'To' 
+    'Hasta': 'To',
+    'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Enter another payment method and try to place your order again'
 }

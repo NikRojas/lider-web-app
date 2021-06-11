@@ -32,7 +32,7 @@
                     <p><strong>Pasarela de Pagos Izipay</strong></p>
                     <br>
                     <h3><b>{{ $t('La transacción no fue realizada') }}</b></h3>
-                    <p>{{ $t('Vuelve a intentar hacer tu pedido') }}</p>
+                    <p>{{ $t('Ingresa otro método de pago e intenta hacer tu pedido nuevamente') }}</p>
                     <br>
                     <nuxt-link :to="localePath({ name: 'reserve' })" class="btn">{{ $t('Regresar') }}</nuxt-link>
                 </div>
