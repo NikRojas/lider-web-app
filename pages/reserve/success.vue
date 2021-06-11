@@ -207,21 +207,21 @@
                     <div class="grid-s-12 grid-m-4 grid-l-2">
                       <b>{{ $t("Nombre") }}:</b>
                       <p>
-                        {{ customerGlobal.name }} {{ customerGlobal.lastname }}
-                        {{ customerGlobal.lastname_2 }}
+                        {{ customer.name }} {{ customer.lastname }}
+                        {{ customer.lastname_2 }}
                       </p>
                     </div>
                     <div class="grid-s-12 grid-m-4 grid-l-2">
-                      <b>{{ customerGlobal.type_document_id }}:</b>
-                      <p>{{ customerGlobal.document_number }}</p>
+                      <b>{{ customer.type_document_id }}:</b>
+                      <p>{{ customer.document_number }}</p>
                     </div>
                     <div class="grid-s-12 grid-m-4 grid-l-2">
                       <b>{{ $t("Teléfono") }}:</b>
-                      <p>{{ customerGlobal.mobile }}</p>
+                      <p>{{ customer.mobile }}</p>
                     </div>
                     <div class="grid-s-12 grid-m-4 grid-l-2">
                       <b>{{ $t("Correo") }}:</b>
-                      <p>{{ customerGlobal.email }}</p>
+                      <p>{{ customer.email }}</p>
                     </div>
                   </div>
                   
