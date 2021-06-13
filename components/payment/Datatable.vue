@@ -89,13 +89,13 @@
             <li>
               <b>{{ $t("Vista") }}:</b
               ><span>{{
-                el.tipology_rel.parent_type_department_rel.name
+                el.view_rel.name
               }}</span>
             </li>
           </ul>
         </div>
         <div>
-          <strong>{{ el.tipology_rel.area }}m2</strong>
+          <strong>{{ el.area_format }}m2</strong>
         </div>
         <div>
           <strong>{{ el.tipology_rel.room }}</strong>

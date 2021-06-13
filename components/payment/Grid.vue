@@ -72,7 +72,7 @@
                   </div>
                   <div>
                     <i class="flaticon-blueprint"> </i>
-                    {{ el.tipology_rel.area }}m2
+                    {{ el.area_format }}m2
                   </div>
                   <div>
                     <i class="flaticon-cama-matrimonial"> </i>

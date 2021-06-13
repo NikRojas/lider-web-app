@@ -142,7 +142,7 @@
                         </div>
                         <div class="">
                           <b>{{ $t("Metraje") }}:</b>
-                          <p>{{ customer.department.tipology_rel.area }}m2</p>
+                          <p>{{ customer.department.area_format }}m2</p>
                         </div>
                         <div
                           class=""
