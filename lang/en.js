@@ -188,5 +188,6 @@ export default {
     'Tipo de departamento': 'Department type',
     'piso': 'floor',
     'Hasta': 'To',
-    'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Enter another payment method and try to place your order again'
+    'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Enter another payment method and try to place your order again',
+    'No podemos encontrar ningún inmueble que coincida con su búsqueda': 'We cannot find any property that matches your search'
 }

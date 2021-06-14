@@ -187,5 +187,6 @@ export default {
     'Mayor precio a menor precio': 'Mayor precio a menor precio',
     'piso': 'piso',
     'Hasta': 'Hasta',
-    'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Ingresa otro método de pago e intenta hacer tu pedido nuevamente'
+    'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Ingresa otro método de pago e intenta hacer tu pedido nuevamente',
+    'No podemos encontrar ningún inmueble que coincida con su búsqueda': 'No podemos encontrar ningún inmueble que coincida con su búsqueda'
 }
