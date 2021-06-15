@@ -375,3 +375,31 @@ input.range-slider__range {
     grid-template-columns: 1fr;
   }
 }
+
+a.nav-separa {
+  display: inline-block;
+  color: white;
+  font-weight: 600;
+  margin: 0 5px;
+  padding: 18px 18px;
+  align-items: center;
+  height: 52px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  border: 2px solid;
+  border-color: rgba(255, 255, 255, 0);
+  &:hover{
+    text-shadow: 0 2px 8px rgba(0,0,0, 0);
+    background: #f15f23;
+    border-color: #f15f23;
+  }
+}
+.header1{
+  a.nav-separa{
+    text-shadow: 0 2px 8px rgba(0,0,0, 0);
+    color: #0B6FA6;
+    border-color: #0B6FA6;
+    &:hover{
+      color: white;
+    }
+  }
+}
