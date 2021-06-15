@@ -366,6 +366,7 @@ export default {
       storageUrl: process.env.STORAGE_URL,
       requestSubmit: false,
       endpoint: process.env.KRGLUE_URL,
+      timer: ""
     };
   },
   methods: {
@@ -514,15 +515,15 @@ export default {
       this.checkout();
       //Verificar Tiempo ExpireLS
       let self = this;
-      setInterval(function () {
+      this.timer = setInterval(function () {
         self.checkExpireLS();
       }, 1000); // 60 * 1000 milsec
     }
   },
-  /*beforeDestroy(){
-    var form = document.getElementById("payfo");
-    form.parentNode.removeChild(form);
-  },*/
+  beforeDestroy() {
+    // Clear Timer
+    clearInterval(this.timer);
+  },
   computed: {
     expireLS() {
       return this.$store.getters.getExpireLS;
