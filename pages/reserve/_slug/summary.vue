@@ -466,8 +466,8 @@ export default {
             "backgroundColor": "#EEEEEE",
             "image": {
               "type": "logo",
-              "visibility": true,
-              "src": Logo,
+              "visibility": false,
+              //"src": Logo,
             },
           },
         },
@@ -480,7 +480,7 @@ export default {
         )
         .then(({ KR }) =>
           KR.setFormConfig({
-            "kr-popin": "",
+            "kr-popin": ""
           })
         )
         .then(({ KR }) => KR.setFormConfig(config))
