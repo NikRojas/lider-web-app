@@ -305,7 +305,7 @@
         height: 74px;
         padding: 74px 74px 0 0;
         background-position: center;
-        background-image: "~/assets/img/izipay.jpg";
+        background-image:  url("~@/assets/img/izipay.jpg");
     }
   }
   .kr-popin-modal-header-background{
