@@ -183,7 +183,7 @@
                   <h5>
                     <b>{{ $t("Datos de la persona a reservar") }}</b>
                   </h5>
-                 
+
                   <div class="grid-col">
                     <div class="grid-s-12 grid-m-4 grid-l-2">
                       <b>{{ $t("Nombre") }}:</b>
@@ -231,8 +231,7 @@
                       "
                       >{{ $t("Editar datos") }}</nuxt-link
                     >
-                    <div id="payfo">
-                    </div>
+                    <div id="payfo"></div>
                   </div>
                 </div>
               </div>
@@ -304,7 +303,8 @@
     background: #eeeeee !important;
   }*/
 
-  .kr-popin-modal-footer, .kr-first-installment-delay {
+  .kr-popin-modal-footer,
+  .kr-first-installment-delay {
     display: none !important;
   }
 }
@@ -369,12 +369,12 @@ export default {
       storageUrl: process.env.STORAGE_URL,
       requestSubmit: false,
       endpoint: process.env.KRGLUE_URL,
-      timer: ""
+      timer: "",
     };
   },
   methods: {
     setExpireLS(ttl) {
-      if(!this.expireLS){
+      if (!this.expireLS) {
         const now = new Date();
         this.$store.dispatch("setExpireLS", now.getTime() + ttl);
       }
@@ -457,43 +457,25 @@ export default {
     },
     generateForm(token, tokenjs) {
       const formToken = token;
+      let config = {
+        "merchant": {
+          "header": {
+            "shopName": {
+              "color": "black",
+            },
+            "backgroundColor": "#EEEEEE",
+            "image": {
+              "type": "logo",
+              "visibility": true,
+              "src": Logo,
+            },
+          },
+        },
+      };
       KRGlue.loadLibrary(this.endpoint, tokenjs)
         .then(({ KR }) =>
           KR.setFormConfig({
             formToken: formToken,
-            /*merchant: {
-              header: {
-                shopName: {
-                  color: "black",
-                },
-                backgroundColor: "#EEEEEE",
-                image: {
-                  type: "logo",
-                  visibility: true,
-                  src: Logo,
-                },
-              },
-            },
-            "kr-popin": true,*/
-          })
-        )
-        .then(({ KR }) =>
-          KR.setFormConfig({
-            //formToken: formToken,
-            merchant: {
-              header: {
-                shopName: {
-                  color: "black",
-                },
-                backgroundColor: "#EEEEEE",
-                image: {
-                  type: "logo",
-                  visibility: true,
-                  src: Logo,
-                },
-              },
-            },
-            //"kr-popin": true,
           })
         )
         .then(({ KR }) =>
@@ -501,6 +483,7 @@ export default {
             "kr-popin": "",
           })
         )
+        .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
         .then(({ KR }) =>
