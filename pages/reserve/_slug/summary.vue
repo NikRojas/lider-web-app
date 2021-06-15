@@ -477,7 +477,7 @@ export default {
                 },
               },
             },
-            "kr-popin": "",
+            "kr-popin": true,
           })
         )
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
