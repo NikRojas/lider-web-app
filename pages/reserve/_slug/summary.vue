@@ -337,8 +337,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      es: "/separa-tu-inmueble/:slug/resumen",
-      en: "/reserve-your-property/:slug/summary",
+      es: "/separa-tu-depa/:slug/resumen",
+      en: "/reserve-your-department/:slug/summary",
     },
   },
   async validate({ params, $axios, app, store, redirect }) {
@@ -464,10 +464,6 @@ export default {
         .then(({ KR }) =>
           KR.setFormConfig({
             formToken: formToken,
-            "kr-popin": "",
-            /*form: {
-                layout: "default",
-              },*/
             merchant: {
               header: {
                 shopName: {
@@ -481,7 +477,7 @@ export default {
                 },
               },
             },
-            //'kr-language': 'en-US',                       /* to update initialization parameter */
+            "kr-popin": "",
           })
         )
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */

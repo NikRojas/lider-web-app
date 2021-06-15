@@ -256,8 +256,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      es: "/separa-tu-inmueble/exitoso",
-      en: "/reserve-your-property/success",
+      es: "/separa-tu-depa/exitoso",
+      en: "/reserve-your-department/success",
     },
   },
   data() {

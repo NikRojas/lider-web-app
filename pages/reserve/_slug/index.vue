@@ -460,8 +460,8 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      es: "/separa-tu-inmueble/:slug",
-      en: "/reserve-your-property/:slug",
+      es: "/separa-tu-depa/:slug",
+      en: "/reserve-your-department/:slug",
     },
   },
   methods: {

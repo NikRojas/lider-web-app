@@ -67,8 +67,8 @@ export default {
     },    
     nuxtI18n: {
         paths: {
-            es: "/separa-tu-inmueble/error",
-            en: "/reserve-your-property/error",
+            es: "/separa-tu-depa/error",
+            en: "/reserve-your-department/error",
         },
     },
     mounted() {
