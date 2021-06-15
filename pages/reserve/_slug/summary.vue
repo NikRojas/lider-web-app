@@ -323,7 +323,6 @@ import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
 import Loading from "../../../components/payment/Loading";
 import KRGlue from "@lyracom/embedded-form-glue";
-//import Logo from "~/assets/img/izipay.jpg";
 export default {
   name: "ReserveSlugSummary",
   head() {
@@ -346,7 +345,6 @@ export default {
     Banner,
     Steps,
     Loading,
-    //Logo
   },
   nuxtI18n: {
     paths: {
@@ -467,7 +465,6 @@ export default {
     },
     generateForm(token, tokenjs) {
       const formToken = token;
-      const imageUrl = require('~/assets/img/izipay.jpg')
       let config = {
         "merchant": {
           "header": {
@@ -478,7 +475,6 @@ export default {
             "image": {
               "type": "logo",
               "visibility": true,
-              "src": imageUrl,
             },
           },
         },
