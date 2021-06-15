@@ -300,6 +300,9 @@
   .kr-popin-modal-header {
     border-bottom: 0 !important;
   }
+  /*.kr-popin-modal-header-background{
+    background: #eeeeee !important;
+  }*/
 
   .kr-popin-modal-footer, .kr-first-installment-delay {
     display: none !important;
@@ -458,6 +461,25 @@ export default {
         .then(({ KR }) =>
           KR.setFormConfig({
             formToken: formToken,
+            /*merchant: {
+              header: {
+                shopName: {
+                  color: "black",
+                },
+                backgroundColor: "#EEEEEE",
+                image: {
+                  type: "logo",
+                  visibility: true,
+                  src: Logo,
+                },
+              },
+            },
+            "kr-popin": true,*/
+          })
+        )
+        .then(({ KR }) =>
+          KR.setFormConfig({
+            //formToken: formToken,
             merchant: {
               header: {
                 shopName: {
@@ -471,7 +493,12 @@ export default {
                 },
               },
             },
-            "kr-popin": true,
+            //"kr-popin": true,
+          })
+        )
+        .then(({ KR }) =>
+          KR.setFormConfig({
+            "kr-popin": "",
           })
         )
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
