@@ -381,6 +381,7 @@ a.nav-separa {
   color: white;
   font-weight: 600;
   margin: 0 5px;
+  line-height: 12px;
   padding: 18px 18px;
   align-items: center;
   height: 52px;
@@ -400,6 +401,7 @@ a.nav-separa {
     border-color: #0B6FA6;
     &:hover{
       color: white;
+      border-color: #0B6FA6;
     }
   }
 }
