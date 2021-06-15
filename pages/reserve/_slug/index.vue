@@ -35,6 +35,23 @@
             </div>
             <div class="grid-col">
               <div class="grid-s-12 grid-m-12 grid-l-6">
+                <div
+                  class="
+                    content-bg
+                    text-center
+                    margin-bottom
+                    content-disponible
+                  "
+                  v-if="requestAvailable"
+                >
+                  <div class="load-3">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </div>
+                  <h4><b>{{ $t("Obteniendo Disponibilidad") }}</b></h4>
+                </div>
+
                 <div class="content-bg">
                   <h5>
                     <b>{{ $t("Datos del inmueble") }}</b>
@@ -78,7 +95,7 @@
                         v-if="!noAvailable"
                         style="display: inline-block"
                         class="btn previous"
-                         @click.native="clearData"
+                        @click.native="clearData"
                         :to="localePath({ name: 'reserve' })"
                       >
                         {{ $t("Cambiar Inmueble") }}</nuxt-link
@@ -151,37 +168,35 @@
                       <div class="grid-s-12 grid-m-6 grid-l-4">
                         <b>{{ $t("Precio del inmueble") }}:</b>
                         <p>
-                            <strong v-if="!departmentUpdated">
-                              <template
-                                v-if="page.data.department.price_foreign"
-                              >
-                                {{ page.data.department.price_foreign_format }}
-                              </template>
-                              <template
-                                v-if="
-                                  !page.data.department.price_foreign &&
-                                  page.data.department.price
-                                "
-                              >
-                                {{ page.data.department.price_format }}
-                              </template>
-                            </strong>
-                            <strong v-else>
-                              <template
-                                v-if="departmentAvailable.price_foreign"
-                              >
-                                {{ departmentAvailable.price_foreign_format }}
-                              </template>
-                              <template
-                                v-if="
-                                  !departmentAvailable.price_foreign &&
-                                  departmentAvailable.price
-                                "
-                              >
-                                {{ departmentAvailable.price_format }}
-                              </template>
-                            </strong>
-                          <span v-if="departmentUpdated" style="color:#3DDC97;">{{ $t('Monto actualizado')}}!</span>
+                          <strong v-if="!departmentUpdated">
+                            <template v-if="page.data.department.price_foreign">
+                              {{ page.data.department.price_foreign_format }}
+                            </template>
+                            <template
+                              v-if="
+                                !page.data.department.price_foreign &&
+                                page.data.department.price
+                              "
+                            >
+                              {{ page.data.department.price_format }}
+                            </template>
+                          </strong>
+                          <strong v-else>
+                            <template v-if="departmentAvailable.price_foreign">
+                              {{ departmentAvailable.price_foreign_format }}
+                            </template>
+                            <template
+                              v-if="
+                                !departmentAvailable.price_foreign &&
+                                departmentAvailable.price
+                              "
+                            >
+                              {{ departmentAvailable.price_format }}
+                            </template>
+                          </strong>
+                          <span v-if="departmentUpdated" style="color: #3ddc97; display:block;"
+                            >{{ $t("Monto actualizado") }}!</span
+                          >
                         </p>
                       </div>
                       <div
@@ -201,12 +216,15 @@
                 </div>
               </div>
               <div class="grid-s-12 grid-m-12 grid-l-6">
-                <div class="movil-padding" :class="noAvailable ? 'dep-no-available' : ''">
+                <div
+                  class="movil-padding"
+                  :class="noAvailable ? 'dep-no-available' : ''"
+                >
                   <template v-if="!noAvailable">
                     <h5>{{ $t("Ingresa tus datos") }}</h5>
                     <form @submit.prevent="submit" id="formp">
                       <div class="grid-col">
-                        <div class="grid-s-12 ">
+                        <div class="grid-s-12">
                           <div class="form-control">
                             <label for="name">{{ $t("Nombre") }}*</label>
                             <input
@@ -381,23 +399,16 @@
                   </template>
                   <template v-else>
                     <div>
-                    <h4>{{ $t('El inmueble ya no está disponible') }}.</h4>
-                    <nuxt-link
-                      class="btn"
-                      @click.native="clearData"
-                      :to="localePath({ name: 'reserve' })"
-                    >
-                      {{ $t("Cambiar inmueble") }}
-                    </nuxt-link>
+                      <h4>{{ $t("El inmueble ya no está disponible") }}.</h4>
+                      <nuxt-link
+                        class="btn"
+                        @click.native="clearData"
+                        :to="localePath({ name: 'reserve' })"
+                      >
+                        {{ $t("Cambiar inmueble") }}
+                      </nuxt-link>
                     </div>
                   </template>
-                </div>
-              </div>
-            </div>
-            <div class="grid-col" v-if="requestAvailable">
-              <div class="grid-s-12">
-                <div>
-                  {{ $t("Obteniendo Disponibilidad") }}
                 </div>
               </div>
             </div>
@@ -454,7 +465,7 @@ export default {
     },
   },
   methods: {
-    clearData(){
+    clearData() {
       this.$store.dispatch("setExpireLS", null);
       this.$store.dispatch("setCustomer", {});
     },
@@ -526,7 +537,7 @@ export default {
     },
   },
   mounted() {
-    //this.getAvailable();
+    this.getAvailable();
   },
   computed: {
     customerGlobal() {
