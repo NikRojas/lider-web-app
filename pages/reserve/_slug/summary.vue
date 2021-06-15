@@ -298,10 +298,19 @@
   }
   .kr-popin-modal-header {
     border-bottom: 0 !important;
+    .kr-header-logo{
+        background-size: cover;
+        box-sizing: border-box;
+        width: 74px;
+        height: 74px;
+        padding: 74px 74px 0 0;
+        background-position: center;
+        background-image: "~/assets/img/izipay.jpg";
+    }
   }
-  /*.kr-popin-modal-header-background{
+  .kr-popin-modal-header-background{
     background: #eeeeee !important;
-  }*/
+  }
 
   .kr-popin-modal-footer,
   .kr-first-installment-delay {
