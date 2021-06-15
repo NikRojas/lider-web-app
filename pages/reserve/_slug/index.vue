@@ -496,6 +496,10 @@ export default {
     submit() {
       this.requestSubmit = true;
       this.customer.slug = this.$route.params.slug;
+      //Si se cambia de inmueble
+      if(this.customerGlobal.slug != this.customer.slug){
+        this.customer.oi = "";
+      }
       this.customer.price = this.page.data.department.price;
       if (this.$route.query.adv) {
         this.customer.adv = this.$route.query.adv;

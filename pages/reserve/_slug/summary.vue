@@ -371,10 +371,10 @@ export default {
   },
   methods: {
     setExpireLS(ttl) {
-      //if(!this.expireLS){
+      if(!this.expireLS){
         const now = new Date();
         this.$store.dispatch("setExpireLS", now.getTime() + ttl);
-      //}
+      }
     },
     checkExpireLS() {
       const item = this.expireLS;
@@ -412,12 +412,8 @@ export default {
       console.log(event);
       if (event.clientAnswer.orderStatus === "PAID") {
         // Remove the payment form
-        console.log(KR);
         KR.removeForms();
         // Show success message
-        //document.getElementById("paymentSuccessful").style.display = "block";
-        //alert("success");
-        //this.$store.dispatch("setCustomer", {});
         this.$router.push(
           this.localePath({
             name: "reserve-success",
@@ -426,9 +422,7 @@ export default {
       } else {
         console.log(KR);
         // Show error message to the user
-        //alert("Payment failed !");
         KR.removeForms();
-        //this.$store.dispatch("setCustomer", {});
         this.$router.push(
           this.localePath({
             name: "reserve-error",
