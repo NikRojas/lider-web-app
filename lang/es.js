@@ -188,5 +188,6 @@ export default {
     'piso': 'piso',
     'Hasta': 'Hasta',
     'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Ingresa otro método de pago e intenta hacer tu pedido nuevamente',
-    'No podemos encontrar ningún inmueble que coincida con su búsqueda': 'No podemos encontrar ningún inmueble que coincida con su búsqueda'
+    'No podemos encontrar ningún inmueble que coincida con su búsqueda': 'No podemos encontrar ningún inmueble que coincida con su búsqueda',
+    'Área': 'Área'
 }

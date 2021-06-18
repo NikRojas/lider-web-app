@@ -220,6 +220,7 @@ export default {
       statuses: [],
       projects: [],
       typeDepartments: [],
+      areas: []
     };
   },
   methods: {
@@ -236,6 +237,7 @@ export default {
       this.statuses = [];
       this.projects = [];
       this.typeDepartments = [];
+      this.areas = [];
       this.getEls(1);
     },
     //getEls(page = false) {
@@ -248,7 +250,8 @@ export default {
       rooms = false,
       statuses = false,
       projects = false,
-      type = false
+      type = false,
+      areas = false,
     ) {
       this.loadingEls = true;
       if (page) this.pageActive = page;
@@ -261,6 +264,7 @@ export default {
       if (ubigeo) this.ubigeo = ubigeo;
       if (projects) this.projects = projects;
       if (type) this.type = type;
+      if (areas) this.areas = areas;
       this.$axios
         .$get("/api/paginate/departments", {
           params: {
@@ -275,6 +279,7 @@ export default {
             projects: this.projects,
             ubigeo: this.ubigeo,
             type: this.type,
+            range_area: this.areas,
           },
         })
         .then((response) => {

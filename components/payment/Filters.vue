@@ -228,12 +228,35 @@
         </div>
       </div>
     </div>
-    <div class="grid-s-6 grid-m-4 grid-l-2">
-      <button class="btn btn2" @click="sendFilters" style="width: 100%">
+    <div class="grid-s-12 grid-m-6 grid-l-4">
+      <div class="card-filter">
+        <h5>
+          <b>{{ $t("Área") }}:</b>
+        </h5>
+        <div class="range-prices">
+          {{ $t("Selecciona el rango") }}
+          <client-only>
+            <vue-range-slider
+              :process-style="{
+                backgroundColor: '#0E5983',
+              }"
+              :enableCross="false"
+              :tooltip="false"
+              v-model="rangeAreas"
+              :min="data.areas.min"
+              :max="data.areas.max"
+            ></vue-range-slider>
+          </client-only>
+        </div>
+        <div>
+          {{ $t("Desde") }} {{ rangeAreas[0] }} - {{ $t("Hasta") }} {{ rangeAreas[1] }}
+        </div>
+      </div>
+    </div>
+    <div class="grid-s-6 grid-l-2">
+      <button class="btn btn2" @click="sendFilters" style="width: 100%; margin-bottom: 10px;">
         {{ $t("Filtrar") }}
       </button>
-    </div>
-    <div class="grid-s-6 grid-m-4 grid-l-2">
       <button class="btn btn1" @click="reset" style="width: 100%">
         {{ $t("Borrar Filtrado") }}
       </button>
@@ -251,6 +274,7 @@ export default {
   data() {
     return {
       rangePrices: [this.data.prices.min, this.data.prices.max],
+      rangeAreas: [this.data.areas.min, this.data.areas.max],
       views: [],
       floors: [],
       departments: [],
@@ -275,11 +299,13 @@ export default {
         this.rooms,
         this.statuses,
         this.projects,
-        this.typeDepartments
+        this.typeDepartments,
+        this.rangeAreas
       );
     },
     reset() {
       this.rangePrices = [this.data.prices.min, this.data.prices.max];
+      this.rangeAreas = [this.data.areas.min, this.data.areas.max];
       this.views = [];
       this.floors = [];
       this.departments = [];
