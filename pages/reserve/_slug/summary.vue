@@ -452,10 +452,9 @@ export default {
         })
         .catch((error) => {
           //Errors Admin Payment
-          console.log("error");
-          console.log(error.response);
+          console.log("not prod");
           this.requestPayment = false;
-          this.$store.dispatch("setCustomer", {});
+          //this.$store.dispatch("setCustomer", {});
           this.$router.push(
             this.localePath({
               name: "reserve-error",
