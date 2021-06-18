@@ -215,7 +215,7 @@ export default {
       range: [],
       views: [],
       floors: [],
-      departments: [],
+      ubigeo: [],
       rooms: [],
       statuses: [],
       projects: [],
@@ -232,7 +232,7 @@ export default {
       this.range = [];
       this.views = [];
       this.floors = [];
-      this.departments = [];
+      this.ubigeo = [];
       this.rooms = [];
       this.statuses = [];
       this.projects = [];
