@@ -7,13 +7,34 @@
     >
       <i class="flaticon-back"></i>
     </button>
-    <ul>
+
+    <ul class="pagination--list">
       <li v-for="page in data.last_page" :key="'p' + page">
-        <button v-bind:class="[page == data.current_page ? 'active' : '']" @click.prevent="clickPage(page)">
+        <button
+          v-bind:class="[page == data.current_page ? 'active' : '']"
+          @click.prevent="clickPage(page)"
+        >
           {{ page }}
         </button>
       </li>
     </ul>
+
+    <select
+      v-model="pageActive"
+      class="pagination--select"
+      style="width: 70px; height: 43px"
+      name=""
+      id=""
+      @change="clickPageSelect(pageActive)"
+    >
+      <option
+        :value="page1"
+        v-for="page1 in data.last_page"
+        :key="'ps' + page1"
+      >
+        {{ page1 }}
+      </option>
+    </select>
     <button
       v-if="data.current_page < data.last_page"
       class="page-link"
@@ -34,6 +55,11 @@ export default {
       pageActive: 1,
       //offset: 2
     };
+  },
+  watch: {
+    "data.current_page": function (newValue, oldValue) {
+      this.pageActive = newValue;
+    },
   },
   computed: {
     /*pages(){
@@ -57,13 +83,19 @@ export default {
             }*/
   },
   methods: {
+    clickPageSelect(page) {
+      this.$emit("get", page);
+    },
     clickPage(page) {
+      this.pageActive = page;
       this.$emit("get", page);
     },
     clickNextPage() {
+      this.pageActive = this.data.current_page + 1;
       this.$emit("get", this.data.current_page + 1);
     },
     clickPrevPage() {
+      this.pageActive = this.data.current_page - 1;
       this.$emit("get", this.data.current_page - 1);
     },
   },

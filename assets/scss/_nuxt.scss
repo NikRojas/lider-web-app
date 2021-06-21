@@ -417,3 +417,26 @@ i.flaticon-linkedin {
 .scroll-filter{
     overflow-y: initial !important;
 }
+
+.pagination--select{
+    margin: 5px;
+    min-height: 43px;
+}
+@media only screen and (max-width: 1150px) {
+    .pagination--list{
+        display: none !important;
+    }
+    .pagination--select{
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1151px) {
+   
+    .pagination--list{
+        display: flex !important;
+    }
+    .pagination--select{
+        display: none;
+    }
+}

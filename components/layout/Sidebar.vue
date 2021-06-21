@@ -17,6 +17,20 @@
       <div class="link-menu">
         <ul>
           <li>
+            <nuxt-link v-if="$route.name != 'reserve-success___es' && 
+              $route.name != 'reserve-success___en' &&
+              $route.name != 'reserve-error___es' &&
+              $route.name != 'reserve-error___en' &&
+              $route.name != 'reserve-slug-summary___es' &&
+              $route.name != 'reserve-slug-summary___en' &&
+              $route.name != 'reserve-slug___es' &&
+              $route.name != 'reserve-slug___en' &&
+              $route.name != 'reserve___es' &&
+              $route.name != 'reserve___en'" @click.native="closeMenu" :to="localePath({name: 'reserve'})">
+                {{ $t('Separa tu depa')}}
+              </nuxt-link>
+          </li>
+          <li>
             <nuxt-link :to="localePath('about-us')" @click.native="closeMenu">{{
               $t("Nosotros")
             }}</nuxt-link>
