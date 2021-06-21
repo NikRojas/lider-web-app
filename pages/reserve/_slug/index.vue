@@ -280,25 +280,6 @@
 
                         <div class="grid-s-12 grid-m-6 grid-l-6">
                           <div class="form-control">
-                            <label for="document_number"
-                              >{{ $t("N° de documento") }}*</label
-                            >
-                            <input
-                              type="text"
-                              id="document_number"
-                              v-model="customer.document_number"
-                            />
-                            <span
-                              class="error error-red"
-                              v-if="errors && errors.document_number"
-                              for="document_number"
-                              >{{ $t(errors.document_number[0]) }}</span
-                            >
-                          </div>
-                        </div>
-
-                        <div class="grid-s-12 grid-m-6 grid-l-6">
-                          <div class="form-control">
                             <label for="type_document_id"
                               >{{ $t("Tipo de documento") }}*</label
                             >
@@ -320,6 +301,25 @@
                               v-if="errors && errors.type_document_id"
                               for="type_document_id"
                               >{{ $t(errors.type_document_id[0]) }}</span
+                            >
+                          </div>
+                        </div>
+
+                        <div class="grid-s-12 grid-m-6 grid-l-6">
+                          <div class="form-control">
+                            <label for="document_number"
+                              >{{ $t("N° de documento") }}*</label
+                            >
+                            <input
+                              type="text"
+                              id="document_number"
+                              v-model="customer.document_number"
+                            />
+                            <span
+                              class="error error-red"
+                              v-if="errors && errors.document_number"
+                              for="document_number"
+                              >{{ $t(errors.document_number[0]) }}</span
                             >
                           </div>
                         </div>

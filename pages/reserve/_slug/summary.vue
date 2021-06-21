@@ -32,7 +32,7 @@
         <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
-              <h2>{{ $t("Resumen de compra") }}</h2>
+              <h2>{{ $t("Resumen de reserva") }}</h2>
             </div>
             <div class="grid-col">
               <div class="grid-s-12">
@@ -408,8 +408,9 @@ export default {
       var code = event.errorCode;
       var message = event.errorMessage;
       var myMessage = code + ": " + message;
-      console.log(event);
-      console.log(event.detailedErrorMessage);
+      //console.log(event);
+      console.log('pe');
+      //console.log(event.detailedErrorMessage);
       //El formulario ha caducado
       //event.errorCode = PSP_108
       //ACQ_001: Pago rechazado
@@ -419,8 +420,8 @@ export default {
       //alert(myMessage);
     },
     pay(event) {
-      console.log("pay");
-      console.log(event);
+      console.log("p");
+      //console.log(event);
       if (event.clientAnswer.orderStatus === "PAID") {
         // Remove the payment form
         KR.removeForms();
@@ -431,7 +432,7 @@ export default {
           })
         );
       } else {
-        console.log(KR);
+        //console.log(KR);
         // Show error message to the user
         KR.removeForms();
         this.$router.push(
@@ -452,7 +453,7 @@ export default {
         })
         .catch((error) => {
           //Errors Admin Payment
-          console.log("not prod");
+          console.log("pnp");
           this.requestPayment = false;
           //this.$store.dispatch("setCustomer", {});
           this.$router.push(
