@@ -378,8 +378,9 @@ export default {
       setTimeout(() => {
         this.$emit("clear");
       }, 50);
+      this.updateFilter();
     },
-    updateFilter(v){
+    updateFilter(v = false){
       this.lastSelected = v;
       this.requestServer = true;
       this.$axios
