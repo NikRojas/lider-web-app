@@ -35,6 +35,23 @@
               <h2>{{ $t("Resumen de reserva") }}</h2>
             </div>
             <div class="grid-col">
+              <div class="grid-s-12" v-if="requestAvailable">
+                <div
+                  class="
+                    content-bg
+                    text-center
+                    margin-bottom
+                    content-disponible
+                  "
+                >
+                  <div class="load-3">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </div>
+                  <h4><b>{{ $t("Obteniendo Disponibilidad") }}</b></h4>
+                </div>
+              </div>
               <div class="grid-s-12">
                 <div class="content-bg">
                   <h5>
@@ -207,7 +224,7 @@
                   </div>
                 </div>
               </div>
-              <div class="grid-s-12">
+              <div class="grid-s-12"  v-if="!noAvailable">
                 <div class="text-center movil-padding">
                   <p>
                     {{
@@ -235,7 +252,7 @@
                   </div>
                 </div>
               </div>
-              <div class="grid-s-12 text-center">
+              <div class="grid-s-12 text-center"  v-if="!noAvailable">
                 <p>
                   <strong>{{ $t("Nota") }}:</strong>
                 </p>
@@ -254,6 +271,19 @@
                   }}
                 </p>
               </div>
+              <div class="grid-s-12" v-else>
+                <div class="content-bg text-center pady-3">
+                  <h4>{{ $t("El inmueble ya no está disponible") }}.</h4>
+                      <nuxt-link
+                        style="display:inline-block"
+                        class="btn"
+                        @click.native="clearData"
+                        :to="localePath({ name: 'reserve' })"
+                      >
+                        {{ $t("Cambiar inmueble") }}
+                      </nuxt-link>
+                </div>
+            </div>
             </div>
           </div>
         </div>
@@ -378,9 +408,17 @@ export default {
       requestSubmit: false,
       endpoint: process.env.KRGLUE_URL,
       timer: "",
+      requestAvailable: false,
+      noAvailable: false,
+      departmentUpdated: false,
+      departmentAvailable: {},
     };
   },
   methods: {
+    clearData() {
+      this.$store.dispatch("setExpireLS", null);
+      this.$store.dispatch("setCustomer", {});
+    },
     setExpireLS(ttl) {
       if (!this.expireLS) {
         const now = new Date();
@@ -398,7 +436,7 @@ export default {
         this.$store.dispatch("setCustomer", {});
         this.$router.push(
           this.localePath({
-            name: "index",
+            name: "reserve",
             query: { timeout: true },
           })
         );
@@ -508,6 +546,30 @@ export default {
           this.promiseError = error + " (see console for more details)";
         });
     },
+    getAvailable() {
+      this.requestAvailable = true;
+      this.$axios
+        .$get("/api/reserve/available/" + this.page.data.department.slug)
+        .then((response) => {
+          //Verificar si esta disponible el inmueble
+          if (response.data[0]["available"]) {
+            //Verificar si se actualizo el precio del inmueble
+            if (response.data[0]["price"] != this.page.data.department.price) {
+              this.departmentAvailable = response.data[0];
+              this.departmentUpdated = true;
+            }
+          } else {
+            //Si no esta disponible el inmueble poner No Disponible
+            this.noAvailable = true;
+          }
+          this.requestAvailable = false;
+        })
+        .catch((error) => {
+          this.requestAvailable = false;
+          //Si no esta disponible el inmueble poner No Disponible
+          this.noAvailable = true;
+        });
+    },
   },
   mounted() {
     this.requestPayment = true;
@@ -520,6 +582,8 @@ export default {
     } else {
       //Generar Token
       this.checkout();
+      //Verificar Disponibilidad
+      this.getAvailable();
       //Verificar Tiempo ExpireLS
       let self = this;
       this.timer = setInterval(function () {
