@@ -160,6 +160,16 @@ export default {
             changefreq: 'weekly'
           },
           {
+            url: '/en/reserve-your-department',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+          {
+            url: '/separa-tu-depa',
+            priority: 0.5,
+            changefreq: 'weekly'
+          },
+          {
             url: '/en/testimonials',
             priority: 0.5,
             changefreq: 'weekly'
