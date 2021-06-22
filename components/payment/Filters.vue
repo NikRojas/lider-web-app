@@ -5,6 +5,7 @@
         <h5>
           <b>{{ $t("Ciudad - Distrito") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'ubigeo'">
         <client-only>
           <simplebar
             class="scroll-filter"
@@ -17,6 +18,7 @@
           >
             <template v-if="el.department">
               <input
+                @change="updateFilter('ubigeo')"
                 class="checkbox"
                 :id="'dep' + el.code_department"
                 v-model="departments"
@@ -29,6 +31,7 @@
             </template>
             <template v-else>
               <input
+                @change="updateFilter('ubigeo')"
                 class="checkbox"
                 :id="'ubi' + el.code_ubigeo"
                 type="checkbox"
@@ -40,6 +43,8 @@
           </div>
           </simplebar>
         </client-only>
+        </template>
+        <PuSkeleton height="120px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-6 grid-m-4 grid-l-2">
@@ -47,6 +52,7 @@
         <h5>
           <b>{{ $t("Estatus") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'status'">
         <client-only>
           <simplebar
             class="scroll-filter"
@@ -58,7 +64,7 @@
               :key="'stat' + el.id"
             >
               <input
-                @change="updateFilter"
+                @change="updateFilter('status')"
                 class="checkbox"
                 :id="'stat' + el.id"
                 type="checkbox"
@@ -69,6 +75,8 @@
             </div>
           </simplebar>
         </client-only>
+        </template>
+        <PuSkeleton height="120px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-6 grid-m-4 grid-l-2">
@@ -76,6 +84,7 @@
         <h5>
           <b>{{ $t("Proyecto") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'projects'">
         <client-only>
           <simplebar
             class="scroll-filter"
@@ -87,7 +96,7 @@
               :key="'proj' + el.id"
             >
               <input
-                @change="updateFilter"
+                @change="updateFilter('projects')"
                 class="checkbox"
                 :id="'proj' + el.id"
                 type="checkbox"
@@ -98,6 +107,8 @@
             </div>
           </simplebar>
         </client-only>
+        </template>
+        <PuSkeleton height="120px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-6 grid-m-4 grid-l-2">
@@ -105,6 +116,7 @@
         <h5>
           <b>{{ $t("Tipo de departamento") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'types'">
         <client-only>
           <simplebar
             class="scroll-filter"
@@ -116,7 +128,7 @@
               :key="'type' + el.id"
             >
               <input
-                @change="updateFilter"
+                @change="updateFilter('types')"
                 class="checkbox"
                 :id="'type' + el.id"
                 type="checkbox"
@@ -127,6 +139,8 @@
             </div>
           </simplebar>
         </client-only>
+        </template>
+        <PuSkeleton height="120px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-6 grid-m-4 grid-l-2">
@@ -134,6 +148,7 @@
         <h5>
           <b>{{ $t("Piso") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'floors'">
         <client-only>
           <simplebar
             class="scroll-filter"
@@ -141,7 +156,7 @@
           >
             <div class="form-control" v-for="el in data.floors" :key="'floor' + el">
               <input
-                @change="updateFilter"
+                @change="updateFilter('floors')"
                 class="checkbox"
                 :id="'floor' + el"
                 type="checkbox"
@@ -152,6 +167,8 @@
             </div>
           </simplebar>
         </client-only>
+        </template>
+        <PuSkeleton height="120px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-6 grid-m-4 grid-l-2">
@@ -159,6 +176,7 @@
         <h5>
           <b>{{ $t("Vista") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'views'">
         <client-only>
           <simplebar
             class="scroll-filter"
@@ -170,7 +188,7 @@
               :key="'view' + el.id"
             >
               <input
-                @change="updateFilter"
+                @change="updateFilter('views')"
                 class="checkbox"
                 :id="'view' + el.id"
                 type="checkbox"
@@ -181,6 +199,8 @@
             </div>
           </simplebar>
         </client-only>
+        </template>
+        <PuSkeleton height="120px" v-else></PuSkeleton>
       </div>
     </div>
 
@@ -189,6 +209,7 @@
         <h5>
           <b>{{ $t("Dormitorios") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'rooms'">
         <client-only>
           <simplebar
             class="scroll-filter"
@@ -196,7 +217,7 @@
           >
             <div class="form-control" v-for="el in data.rooms" :key="'room' + el">
               <input
-                @change="updateFilter"
+                @change="updateFilter('rooms')"
                 class="checkbox"
                 :id="'room' + el"
                 type="checkbox"
@@ -207,6 +228,8 @@
             </div>
           </simplebar>
         </client-only>
+        </template>
+        <PuSkeleton height="120px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-12 grid-m-6 grid-l-4">
@@ -214,6 +237,7 @@
         <h5>
           <b>{{ $t("Precios") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'ubigeo'">
         <div class="range-prices">
           {{ $t("Selecciona el rango") }}
           <client-only>
@@ -238,10 +262,13 @@
               :max="data.prices.max"
             ></vue-range-slider>
           </client-only>
+          
         </div>
         <div>
           {{ $t("Desde") }} {{ minFormat }} - {{ $t("Hasta") }} {{ maxFormat }}
         </div>
+        </template>
+        <PuSkeleton height="60px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-12 grid-m-6 grid-l-4">
@@ -249,6 +276,7 @@
         <h5>
           <b>{{ $t("Área") }}:</b>
         </h5>
+        <template  v-if="!requestServer || lastSelected == 'ubigeo'">
         <div class="range-prices">
           {{ $t("Selecciona el rango") }}
           <client-only>
@@ -267,6 +295,8 @@
         <div>
           {{ $t("Desde") }} {{ rangeAreas[0] }} - {{ $t("Hasta") }} {{ rangeAreas[1] }}
         </div>
+        </template>
+        <PuSkeleton height="60px" v-else></PuSkeleton>
       </div>
     </div>
     <div class="grid-s-6 grid-l-2">
@@ -301,6 +331,8 @@ export default {
       projects: [],
       typeDepartments: [],
 
+      lastSelected:'',
+      requestServer: false,
       data: {
         prices:{
           max: 0,
@@ -342,30 +374,27 @@ export default {
       this.statuses = [];
       this.projects = [];
       this.typeDepartments = [];
+      this.lastSelected = '';
       setTimeout(() => {
         this.$emit("clear");
       }, 50);
     },
-    updateFilter(){
+    updateFilter(v){
+      this.lastSelected = v;
+      this.requestServer = true;
       this.$axios
         .$get("/api/reserve/filters", {
           params: {
-            /*locale: this.$i18n.locale,
-            page: this.pageActive,
-            sort_by: this.sortBy,
-            range: this.range,
-            views: this.views,
-            floors: this.floors,
-            rooms: this.rooms,*/
+            /*
+            range: this.range,*/
             statuses: this.statuses,
             projects: this.projects,
-            //types: this.typeDepartments,
+            types: this.typeDepartments,
             rooms: this.rooms,
             floors: this.floors,
             views: this.views,
-            /*projects: this.projects,
-            ubigeo: this.ubigeo,
-            type: this.type,
+            ubigeo: this.departments,
+            /*
             range_area: this.areas,*/
           },
         })
@@ -373,8 +402,7 @@ export default {
           this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
           this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
           this.data = Object.assign({}, response.data.filters);
-          /*this.page.data.departments = Object.assign({}, response);
-          this.loadingEls = false;*/
+          this.requestServer = false;
         });
     }
   },
