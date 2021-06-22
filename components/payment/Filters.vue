@@ -58,6 +58,7 @@
               :key="'stat' + el.id"
             >
               <input
+                @change="updateFilter"
                 class="checkbox"
                 :id="'stat' + el.id"
                 type="checkbox"
@@ -86,6 +87,7 @@
               :key="'proj' + el.id"
             >
               <input
+                @change="updateFilter"
                 class="checkbox"
                 :id="'proj' + el.id"
                 type="checkbox"
@@ -114,6 +116,7 @@
               :key="'type' + el.id"
             >
               <input
+                @change="updateFilter"
                 class="checkbox"
                 :id="'type' + el.id"
                 type="checkbox"
@@ -138,6 +141,7 @@
           >
             <div class="form-control" v-for="el in data.floors" :key="'floor' + el">
               <input
+                @change="updateFilter"
                 class="checkbox"
                 :id="'floor' + el"
                 type="checkbox"
@@ -166,6 +170,7 @@
               :key="'view' + el.id"
             >
               <input
+                @change="updateFilter"
                 class="checkbox"
                 :id="'view' + el.id"
                 type="checkbox"
@@ -191,6 +196,7 @@
           >
             <div class="form-control" v-for="el in data.rooms" :key="'room' + el">
               <input
+                @change="updateFilter"
                 class="checkbox"
                 :id="'room' + el"
                 type="checkbox"
@@ -211,6 +217,16 @@
         <div class="range-prices">
           {{ $t("Selecciona el rango") }}
           <client-only>
+            <!--<vue-range-slider
+              :process-style="{
+                backgroundColor: '#0E5983',
+              }"
+              :enableCross="false"
+              :tooltip="false"
+              v-model="rangePrices"
+              :min="data.prices.min"
+              :max="data.prices.max"
+            ></vue-range-slider>-->
             <vue-range-slider
               :process-style="{
                 backgroundColor: '#0E5983',
@@ -269,12 +285,14 @@
 <script>
 export default {
   props: {
-    data: Object,
+    //data: Object,
   },
   data() {
     return {
-      rangePrices: [this.data.prices.min, this.data.prices.max],
-      rangeAreas: [this.data.areas.min, this.data.areas.max],
+      //rangePrices: [this.data.prices.min, this.data.prices.max],
+      //rangeAreas: [this.data.areas.min, this.data.areas.max],
+      rangePrices: [],
+      rangeAreas: [],
       views: [],
       floors: [],
       departments: [],
@@ -282,6 +300,17 @@ export default {
       statuses: [],
       projects: [],
       typeDepartments: [],
+
+      data: {
+        prices:{
+          max: 0,
+          min: 0
+        },
+        areas:{
+          max: 0,
+          min: 0,
+        }
+      }
     };
   },
   created() {
@@ -317,16 +346,57 @@ export default {
         this.$emit("clear");
       }, 50);
     },
+    updateFilter(){
+      this.$axios
+        .$get("/api/reserve/filters", {
+          params: {
+            /*locale: this.$i18n.locale,
+            page: this.pageActive,
+            sort_by: this.sortBy,
+            range: this.range,
+            views: this.views,
+            floors: this.floors,
+            rooms: this.rooms,*/
+            statuses: this.statuses,
+            projects: this.projects,
+            //types: this.typeDepartments,
+            rooms: this.rooms,
+            floors: this.floors,
+            views: this.views,
+            /*projects: this.projects,
+            ubigeo: this.ubigeo,
+            type: this.type,
+            range_area: this.areas,*/
+          },
+        })
+        .then((response) => {
+          this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
+          this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
+          this.data = Object.assign({}, response.data.filters);
+          /*this.page.data.departments = Object.assign({}, response);
+          this.loadingEls = false;*/
+        });
+    }
+  },
+  mounted(){
+    this.updateFilter();
   },
   computed: {
     minFormat: function () {
-      return "S/ " + this.rangePrices[0].toLocaleString("en");
+      if(this.rangePrices[0]){
+        return "S/ " + this.rangePrices[0].toLocaleString("en");
+      }
     },
     maxFormat: function () {
-      return "S/ " + this.rangePrices[1].toLocaleString("en");
+      if(this.rangePrices[1]){
+        return "S/ " + this.rangePrices[1].toLocaleString("en");
+      }
     },
   },
   watch: {
+    /*"data": function (newValue, oldValue) {
+      this.$emit("update:range", newValue);
+    },*/
     /*"rangePrices": function (newValue, oldValue) {
       this.$emit("update:range", newValue);
     }, 
