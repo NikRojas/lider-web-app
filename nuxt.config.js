@@ -47,7 +47,7 @@ export default {
     color: '#0B6FA6',
     //duration: 3000,
     continuous: true,
-    throttle: 0,
+    //throttle: 0,
     height: '4px'
   },
 

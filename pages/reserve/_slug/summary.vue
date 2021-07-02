@@ -72,6 +72,16 @@
                         "
                       />
                       <img
+                        v-else-if="page.data.department.tipology_rel.image"
+                        class="plano lazyload"
+                        :data-src="
+                          storageUrl +
+                          '/img/projects/tipologies/' +
+                          page.data.department.tipology_rel.image
+                        "
+                        :alt="$t('Plano') + ' ' + page.data.department.description"
+                      />
+                      <img
                         v-else
                         class="lazyload"
                         :data-src="require('~/assets/img/p-no-data.png')"

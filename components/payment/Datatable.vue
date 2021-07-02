@@ -31,17 +31,29 @@
             />
           </a>
           <a
-            data-fancybox
-            class="fancybox"
-            :href="require('~/assets/img/p-no-data.png')"
-            v-else
-          >
-            <img
-              class="lazyload"
-              :data-src="require('~/assets/img/p-no-data.png')"
-              :alt="el.description"
-            />
-          </a>
+                  v-else-if="el.tipology_rel.image"
+                  data-fancybox
+                  class="fancybox"
+                  :href="storageUrl + '/img/projects/tipologies/' + el.tipology_rel.image"
+                >
+                  <img
+                    class="lazyload"
+                    :data-src="storageUrl + '/img/projects/tipologies/' + el.tipology_rel.image"
+                    :alt="el.description"
+                  />
+                </a>
+                <a
+                  v-else
+                  data-fancybox
+                  class="fancybox"
+                  :href="require('~/assets/img/p-no-data.png')"
+                >
+                  <img
+                    class="lazyload"
+                    :data-src="require('~/assets/img/p-no-data.png')"
+                    :alt="el.description"
+                  />
+                </a>
         </div>
         <div>
           <img
