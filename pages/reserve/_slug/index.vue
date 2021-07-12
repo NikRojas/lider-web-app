@@ -213,7 +213,7 @@
                         class="grid-s-12 grid-m-6 grid-l-4"
                         v-if="page.data.department.project_rel"
                       >
-                        <b>{{ $t("Precio separación") }}:</b>
+                        <b>{{ $t("Monto de Separación") }}:</b>
                         <p>
                           <strong>{{
                             page.data.department.project_rel

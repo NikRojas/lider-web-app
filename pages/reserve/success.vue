@@ -198,7 +198,7 @@
                           </p>
                         </div>
                         <div class="">
-                          <b>{{ $t("Precio separación") }}:</b>
+                          <b>{{ $t("Monto de Separación") }}:</b>
                           <p>
                             <strong>
                               {{

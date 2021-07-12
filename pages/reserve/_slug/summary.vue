@@ -189,7 +189,7 @@
                           </p>
                         </div>
                         <div class="" v-if="page.data.department.project_rel">
-                          <b>{{ $t("Precio separación") }}:</b>
+                          <b>{{ $t("Monto de Separación") }}:</b>
                           <p>
                             <strong>
                               {{
