@@ -13,6 +13,7 @@
           >
           <div
             class="form-control"
+            :class="el.department ? '' : 'pl-1'"
             v-for="(el, i) in data.departments"
             :key="'dep' + el.code_ubigeo + i"
           >
@@ -32,7 +33,7 @@
             <template v-else>
               <input
                 @change="updateFilter('ubigeo')"
-                class="checkbox"
+                class="checkbox pl-1"
                 :id="'ubi' + el.code_ubigeo"
                 type="checkbox"
                 v-model="departments"
@@ -255,6 +256,7 @@
               :process-style="{
                 backgroundColor: '#0E5983',
               }"
+              @drag-end="handleDragEndPrice"
               :enableCross="false"
               :tooltip="false"
               v-model="rangePrices"
@@ -284,6 +286,7 @@
               :process-style="{
                 backgroundColor: '#0E5983',
               }"
+              @drag-end="handleDragEndArea"
               :enableCross="false"
               :tooltip="false"
               v-model="rangeAreas"
@@ -342,13 +345,21 @@ export default {
           max: 0,
           min: 0,
         }
-      }
+      },
+      areaDragged: false,
+      pricesDragged: false,
     };
   },
   created() {
     //this.formatter = value => `S/ ${value}`
   },
   methods: {
+    handleDragEndArea(){
+      this.areaDragged = true;
+    },
+     handleDragEndPrice(){
+      this.pricesDragged = true;
+    },
     sendFilters() {
       this.$emit(
         "set",
@@ -380,9 +391,12 @@ export default {
       }, 50);
       this.updateFilter();
     },
-    updateFilter(v = false){
+    updateFilter(v = false, init = false){
       this.lastSelected = v;
       this.requestServer = true;
+      let areas = this.rangeAreas;
+      let prices = this.rangePrices;
+      let minArea, maxArea, minPrice, maxPrice;
       this.$axios
         .$get("/api/reserve/filters", {
           params: {
@@ -400,15 +414,60 @@ export default {
           },
         })
         .then((response) => {
-          this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
-          this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
+          //this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
+          //this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
           this.data = Object.assign({}, response.data.filters);
+          if(init){
+            this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
+            this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
+          }
+          else{
+            //Si se movio el slider
+            if(this.areaDragged){
+              if(areas[0] > response.data.filters.areas.min && areas[0] < response.data.filters.areas.max){
+                minArea = areas[0]
+              }
+              else{
+                minArea = response.data.filters.areas.min;
+              }
+              if(areas[1] < response.data.filters.areas.max && areas[1] > response.data.filters.areas.min){
+                maxArea = areas[1]
+              }
+              else{
+                maxArea = response.data.filters.areas.max;
+              }
+              this.rangeAreas = [minArea, maxArea];
+            }
+            else{
+              this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
+            }
+            if(this.pricesDragged){
+              if(prices[0] > response.data.filters.prices.min && prices[0] < response.data.filters.prices.max){
+                minPrice = prices[0]
+              }
+              else{
+                minPrice = response.data.filters.prices.min;
+              }
+              if(prices[1] < response.data.filters.prices.max && prices[1] > response.data.filters.prices.min){
+                maxPrice = prices[1]
+              }
+              else{
+                maxPrice = response.data.filters.prices.max;
+              }
+              this.rangePrices = [minPrice, maxPrice];
+            }
+            else{
+              this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
+            }
+          }
           this.requestServer = false;
+          this.areaDragged = false;
+          this.pricesDragged = false;
         });
     }
   },
   mounted(){
-    this.updateFilter();
+    this.updateFilter(false, true);
   },
   computed: {
     minFormat: function () {

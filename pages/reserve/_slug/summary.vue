@@ -243,9 +243,9 @@
                       )
                     }}
                   </p>
-                  <div class="monto">
+                  <!--<div class="monto">
                     {{ $t("Número de orden") }}: <b>{{ customerGlobal.oi }} </b>
-                  </div>
+                  </div>-->
                   <div class="grid-center">
                     <nuxt-link
                       class="btn btn1 previous"
@@ -276,7 +276,7 @@
                 <p>
                   {{
                     $t(
-                      "Realice el pago con total seguridad recuerde que tiene 5 minutos para completar el pago."
+                      "Esta ventana se cerrará automáticamente luego de 5 minutos."
                     )
                   }}
                 </p>

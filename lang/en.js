@@ -191,5 +191,6 @@ export default {
     'Ingresa otro método de pago e intenta hacer tu pedido nuevamente': 'Enter another payment method and try to place your order again',
     'No podemos encontrar ningún inmueble que coincida con su búsqueda': 'We cannot find any property that matches your search',
     'Área': 'Area',
-    'Monto de Separación': 'Separation Amount'
+    'Monto de Separación': 'Separation Amount',
+    'Esta ventana se cerrará automáticamente luego de 5 minutos.': 'This window will close automatically after 5 minutes.'
 }
