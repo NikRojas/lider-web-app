@@ -31,21 +31,16 @@
         <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
-              <h2>{{ $t("Tu separación está confirmada") }}</h2>
+              <h2>{{ customer.name }}, {{ $t("tu separación está confirmada") }}!!!</h2>
             </div>
             <div class="grid-col">
               <div class="grid-s-12">
                 <div class="text-center">
-                  <h5>
+                  <!--<h5>
                     <b>{{ $t("Orden") }} N°: {{ customer.oi }}</b>
-                  </h5>
-                  <p>{{ $t("Hola") }} {{ customer.name }},</p>
+                  </h5>-->
                   <p>
-                    {{
-                      $t(
-                        "Usted recibira un correo con los detalles de la orden"
-                      )
-                    }}.
+                    {{ $t("En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la") }} N°: {{ customer.oi }}
                   </p>
                   <p>
                     {{ $t("Si tienes alguna duda,") }}
@@ -54,9 +49,8 @@
                     }}</nuxt-link
                     >.
                   </p>
-                  <p>{{ $t("Gracias") }},</p>
                   <p>
-                    <strong>{{ $t("El equipo Lider") }}</strong>
+                    <strong>¡{{ $t("Bienvienido a la familia Líder") }}!</strong>
                   </p>
                 </div>
                 <br><br>

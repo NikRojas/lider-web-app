@@ -192,5 +192,8 @@ export default {
     'No podemos encontrar ningún inmueble que coincida con su búsqueda': 'We cannot find any property that matches your search',
     'Área': 'Area',
     'Monto de Separación': 'Separation Amount',
-    'Esta ventana se cerrará automáticamente luego de 5 minutos.': 'This window will close automatically after 5 minutes.'
+    'Esta ventana se cerrará automáticamente luego de 5 minutos.': 'This window will close automatically after 5 minutes.',
+    'tu separación está confirmada': 'your reservation is confirmed',
+    'En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la': 'You will shortly receive an email with the details of your separation, your order is',
+    'Bienvienido a la familia Líder': 'Welcome to the Líder family'
 }
