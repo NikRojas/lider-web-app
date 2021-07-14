@@ -195,5 +195,6 @@ export default {
     'Esta ventana se cerrará automáticamente luego de 5 minutos.': 'This window will close automatically after 5 minutes.',
     'tu separación está confirmada': 'your reservation is confirmed',
     'En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la': 'You will shortly receive an email with the details of your separation, your order is',
-    'Bienvienido a la familia Líder': 'Welcome to the Líder family'
+    'Bienvienido a la familia Líder': 'Welcome to the Líder family',
+    'Descripción': 'Description'
 }

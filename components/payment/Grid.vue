@@ -94,6 +94,9 @@
               </div>
               <div class="card-body">
                 <ul>
+                  <li v-if="el.description">
+                    <strong>{{ el.description }}</strong>
+                  </li>
                   <template
                     v-if="
                       el.type_department_id &&
@@ -115,6 +118,7 @@
                   <li>
                     <b>{{ $t("Vista") }}:</b><span>{{ el.view_rel.name }}</span>
                   </li>
+                  
                   <li>
                     <b>{{ $t("Precio inmueble") }}:</b>
 

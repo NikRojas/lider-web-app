@@ -54,6 +54,12 @@
                     :alt="el.description"
                   />
                 </a>
+
+                <template v-if="el.description">
+              <strong>{{
+                el.description
+              }}</strong>
+            </template>
         </div>
         <div>
           <img
@@ -104,6 +110,7 @@
                 el.view_rel.name
               }}</span>
             </li>
+            
           </ul>
         </div>
         <div>

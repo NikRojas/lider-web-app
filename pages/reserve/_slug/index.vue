@@ -115,6 +115,14 @@
 
                   <div class="caracteristicas-pago">
                     <div class="grid-col">
+                      <div class="grid-s-12" v-if="page.data.department.description">
+                        <b>{{ $t("Descripción") }}:</b>
+                        <p class="mb-0">
+                          {{
+                            page.data.department.description
+                          }}
+                        </p>
+                      </div>
                       <div class="grid-s-12 grid-m-6 grid-l-4">
                         <b>{{ $t("Ubicación") }}:</b>
                         <p>
@@ -396,7 +404,7 @@
                       type="submit"
                       :class="requestSubmit ? 'btn--opacity' : ''"
                       :disabled="requestSubmit"
-                      class="next btn btn2"
+                      class="next btn btn2 text-transform-inherit"
                     >
                       {{
                         requestSubmit

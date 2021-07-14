@@ -107,6 +107,14 @@
                         class="logo lazyload"
                       />
                       <div class="caract-grid">
+                        <div class="" v-if="page.data.department.description">
+                          <b>{{ $t("Descripción") }}:</b>
+                          <p>
+                            {{
+                              page.data.department.description
+                            }}
+                          </p>
+                        </div>
                         <div class="">
                           <b>{{ $t("Ubicación") }}:</b>
                           <p>

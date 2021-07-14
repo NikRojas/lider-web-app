@@ -40,7 +40,7 @@
                     <b>{{ $t("Orden") }} N°: {{ customer.oi }}</b>
                   </h5>-->
                   <p>
-                    {{ $t("En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la") }} N°: {{ customer.oi }}
+                    {{ $t("En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la") }} N° {{ customer.oi }}
                   </p>
                   <p>
                     {{ $t("Si tienes alguna duda,") }}
@@ -110,6 +110,14 @@
                         class="logo lazyload"
                       />
                       <div class="caract-grid">
+                        <div class="" v-if="customer.department.description">
+                          <b>{{ $t("Descripción") }}:</b>
+                          <p>
+                            {{
+                              customer.department.description
+                            }}
+                          </p>
+                        </div>
                         <div class="">
                           <b>{{ $t("Ubicación") }}:</b>
                           <p>
