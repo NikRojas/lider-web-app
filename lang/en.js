@@ -140,7 +140,7 @@ export default {
     'Apellido Paterno': 'Lastname',
     'Apellido Materno': "Mother's last name",
     'N° de documento': 'Document number',
-    'Realizar el pago':  'Make the payment',
+    'Realizar el Pago':  'Make the Payment',
     'Cambiar inmueble': 'Change property',
     'Tipo de documento': 'Document type',
     'Datos del inmueble': 'Property data',

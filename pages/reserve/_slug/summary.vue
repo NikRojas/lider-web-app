@@ -59,36 +59,48 @@
                   </h5>
                   <div class="grid-col">
                     <div class="grid-s-12 grid-m-4 grid-l-3">
-                      <img
-                        v-if="page.data.department.image"
-                        class="plano lazyload"
-                        :data-src="
-                          storageUrl +
-                          '/img/projects/estates/' +
-                          page.data.department.image
+                      <a
+                        data-fancybox
+                        class="fancybox"
+                        :href="
+                            page.data.department.image ? 
+                              storageUrl + '/img/projects/estates/' + page.data.department.image : 
+                            page.data.department.tipology_rel.image ? 
+                            storageUrl + '/img/projects/tipologies/' + page.data.department.tipology_rel.image : 
+                            require('~/assets/img/p-no-data.png')
                         "
-                        :alt="
-                          $t('Plano') + ' ' + page.data.department.description
-                        "
-                      />
-                      <img
-                        v-else-if="page.data.department.tipology_rel.image"
-                        class="plano lazyload"
-                        :data-src="
-                          storageUrl +
-                          '/img/projects/tipologies/' +
-                          page.data.department.tipology_rel.image
-                        "
-                        :alt="$t('Plano') + ' ' + page.data.department.description"
-                      />
-                      <img
-                        v-else
-                        class="lazyload"
-                        :data-src="require('~/assets/img/p-no-data.png')"
-                        :alt="
-                          $t('Plano') + ' ' + page.data.department.description
-                        "
-                      />
+                      >
+                        <img
+                          v-if="page.data.department.image"
+                          class="plano lazyload"
+                          :data-src="
+                            storageUrl +
+                            '/img/projects/estates/' +
+                            page.data.department.image
+                          "
+                          :alt="
+                            $t('Plano') + ' ' + page.data.department.description
+                          "
+                        />
+                        <img
+                          v-else-if="page.data.department.tipology_rel.image"
+                          class="plano lazyload"
+                          :data-src="
+                            storageUrl +
+                            '/img/projects/tipologies/' +
+                            page.data.department.tipology_rel.image
+                          "
+                          :alt="$t('Plano') + ' ' + page.data.department.description"
+                        />
+                        <img
+                          v-else
+                          class="lazyload"
+                          :data-src="require('~/assets/img/p-no-data.png')"
+                          :alt="
+                            $t('Plano') + ' ' + page.data.department.description
+                          "
+                        />
+                      </a>
                     </div>
                     <div class="grid-s-12 grid-m-8 grid-l-9">
                       <img
@@ -367,6 +379,10 @@
 }
 </style>
 <script>
+if (process.client) {
+  require("/static/js/jq.fancybox.min.js");
+}
+import "/static/css/jq.fancybox.min.css";
 import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
 import Loading from "../../../components/payment/Loading";
@@ -590,6 +606,9 @@ export default {
     },
   },
   mounted() {
+    $(document).ready(function () {
+      $(".fancybox").fancybox();
+      });
     this.requestPayment = true;
     //Si no hay cliente retornar
     if (

@@ -240,7 +240,7 @@
                 >
                   <template v-if="!noAvailable">
                     <h5>{{ $t("Ingresa tus datos") }}</h5>
-                    <form @submit.prevent="submit" id="formp">
+                    <form @submit.prevent="submit" id="formp" autocomplete="off">
                       <div class="grid-col">
                         <div class="grid-s-12">
                           <div class="form-control">
@@ -409,7 +409,7 @@
                       {{
                         requestSubmit
                           ? $t("Cargando") + "..."
-                          : $t("Realizar el pago")
+                          : $t("Realizar el Pago")
                       }}
 
                       <i class="flaticon-next"></i>
