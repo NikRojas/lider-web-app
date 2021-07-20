@@ -1,3 +1,4 @@
+import Vue from 'vue'
 export const state = () => ({
     menu_open : false,
     footer: {},
@@ -5,7 +6,9 @@ export const state = () => ({
     page: {},
     customer: {},
     errorMessage: '',
-    expireLS: null 
+    expireLS: null,
+    chatMessages: [],
+    chatServerResponse: false,
 });
 
 export const mutations = {
@@ -28,6 +31,16 @@ export const mutations = {
     },
     SET_EXPIRE_LS(state, expire){
         state.expireLS = expire; 
+    },
+    //Chat
+    SET_CHAT_SERVER_RESPONSE(state) {
+        state.chatServerResponse = !state.chatServerResponse;
+    },
+    SET_CONVERSATION(state, conversation) {
+        Vue.set(state, 'chatMessages', [...conversation]);
+    },
+    SET_MESSAGE(state, chatMessage) {
+        state.chatMessages.push(chatMessage);
     },
 }
 
@@ -54,6 +67,17 @@ export const actions = {
     setExpireLS({ commit}, expire){
         commit('SET_EXPIRE_LS', expire);
     },
+    //Chat
+    setConversation({ commit }, conversation) {
+        commit('SET_CONVERSATION', conversation);
+    },
+    setMessage({ commit }, chatMessage) {
+        //const el = { date: new Date().toLocaleString, message: chatMessage };
+        commit('SET_MESSAGE', chatMessage);
+    },
+    setChatServerResponse({ commit }) {
+        commit('SET_CHAT_SERVER_RESPONSE');
+    },
 }
 
 export const getters = {
@@ -77,6 +101,13 @@ export const getters = {
     },
     getExpireLS: state => {
         return state.expireLS
+    },
+    //Chat
+    getChatMessages: state => {
+        return state.chatMessages;
+    },
+    getChatServerResponse: state => {
+        return state.chatServerResponse;
     },
 }
 

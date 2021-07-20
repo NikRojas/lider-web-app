@@ -56,6 +56,7 @@ export default {
     '@/assets/scss/main.scss',
     '@/assets/css/animate.css',
     '@/assets/css/flaticon.css',
+    'swiper/dist/css/swiper.css',
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -67,6 +68,7 @@ export default {
     { src: '~/plugins/vue-range-slider.js', mode: 'client' },
     { src: '~/plugins/vuex-persistedstate.client.js' },
     { src: '~/plugins/simplebar-vue.js', mode: 'client' },
+    { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -96,6 +98,8 @@ export default {
     'vue-social-sharing/nuxt',
     '@nuxtjs/gtm',
     '@nuxtjs/sitemap',
+    'nuxt-socket-io',
+    'cookie-universal-nuxt',
   ],
   /*gtm: {
     id: 'GTM-T6FN5PJ',
@@ -281,6 +285,18 @@ export default {
           })
         },
       }
+    ]
+  },
+  io: {
+    sockets: [
+      {
+        name: 'main',
+        //url: 'http://127.0.0.1:3001',
+        url: 'https://lider-chat.playgroup.pe',
+        //url: process.env.APP_CHAT,
+        //default: true,
+        //namespaces: { /* See next section */ }
+      },
     ]
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

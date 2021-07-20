@@ -4,6 +4,7 @@
     <Sidebar />
     <Nuxt />
     <Footer />
+    <Chat />
   </div>
 </template>
 
@@ -11,11 +12,13 @@
 import Sidebar from "../components/layout/Sidebar";
 import Menu from "../components/layout/Menu";
 import Footer from "../components/layout/Footer";
+import Chat from "../components/chat/Wrapper";
 export default {
   components: {
     Sidebar,
     Footer,
     Menu,
+    Chat
   },
   methods: {
     handleScroll(e) {

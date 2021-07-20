@@ -1,0 +1,998 @@
+<template>
+  <div
+    class="chat"
+    :class="{ active: reveal }"
+    id="pgChat"
+    v-if="!connectionError"
+  >
+    <div
+      v-for="(record, index) in recordings"
+      :key="index"
+      class="recorded-item"
+    >
+      <div class="audio-container">
+        <audio :src="record.src" controls />
+      </div>
+    </div>
+    <div class="chat__box shadow" :class="{ active: reveal }" v-show="reveal">
+      <div class="chat__header font-weight-bold">
+        <div class="grid-header-chat">
+          <div class="chat__avatar">
+            <img src="/img/avatar.png" alt />
+          </div>
+
+          <div class="chat__name">
+            <h3>{{ botName }}</h3>
+            <div class="online"><span></span>En línea</div>
+            <div>
+              <button
+                class="button button--micro"
+                @click="startRecording"
+                v-if="!recognitionActive && recognitionSupported"
+              >
+                <img
+                  src="/img/micro.png"
+                  alt="Micro"
+                  height="20"
+                  width="auto"
+                />
+                Hablar
+              </button>
+              <button
+                class="button button--micro"
+                @click="stopRecording"
+                v-if="recognitionActive && recognitionSupported"
+              >
+                <img
+                  src="/img/micro.png"
+                  alt="Micro"
+                  height="20"
+                  width="auto"
+                />
+                Detener
+              </button>
+            </div>
+          </div>
+        </div>
+        <button class="button chat__close" @click="toggleChat">
+          <CloseIcon/>
+        </button>
+      </div>
+
+      <div class="chat__body">
+        <client-only>
+          <simplebar
+            class="chat__body__wrapper"
+            data-simplebar-auto-hide="false"
+            id="chat_body_wrapper"
+          >
+            <div v-if="chatMessages.length > 0">
+              <div
+                class="chat__message"
+                :class="[
+                  el.type ? 'chat__message-server' : 'chat__message-client',
+                ]"
+                v-for="(el, i) in chatMessages"
+                :key="i"
+              >
+                <div
+                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                >
+                  <Profile v-if="el.type == 'server'"></Profile>
+
+                  <div
+                    class="chat__wrapper__texts"
+                    v-if="el.element == 'texts'"
+                  >
+                    <Message
+                      :text="el2"
+                      v-for="(el2, i) in el.content"
+                      :key="'texts' + i"
+                    ></Message>
+                  </div>
+
+                  <div
+                    class="chat__message__wrapper chat__message__wrapper--block"
+                    v-else
+                  >
+                    <Message :text="el.message"></Message>
+                  </div>
+                </div>
+
+                <div
+                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  v-if="el.message_above"
+                >
+                  <Profile v-if="el.type == 'server'"></Profile>
+                  <div
+                    class="chat__message__wrapper chat__message__wrapper--block"
+                  >
+                    <Message :text="el.message_above"></Message>
+                  </div>
+                </div>
+
+
+                <div
+                  class="chat__message__wrapper chat__message__wrapper--block chat__message__wrapper--el"
+                  v-if="el.element == 'cards'"
+                >
+                  <Card :array="el.content" @click="clickButton"></Card>
+                </div>
+                <div
+                  class="chat__message__wrapper chat__message__wrapper--block chat__message__wrapper--el"
+                  v-if="el.element == 'buttons'"
+                >
+                  <Button
+                    :triggered="el.triggered"
+                    :array="el.content"
+                    @click="clickButton"
+                  ></Button>
+                </div>
+
+               <!-- <div
+                  class="chat__message__wrapper chat__message__wrapper--block chat__message__wrapper--el"
+                  
+                >
+                  <Button
+                    :triggered="el.triggered"
+                    :array="el.content"
+                    @click="clickButton"
+                  ></Button>
+                </div>-->
+                <Qualify v-if="el.element == 'qualify'" :array="el.content" :triggered="el.triggered" @click="clickButton"/>
+
+                <!--<div
+                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  v-if="el.element == 'carousel' && el.message_above"
+                >
+                  <Profile v-if="el.type == 'server'"></Profile>
+                  <div
+                    class="chat__message__wrapper chat__message__wrapper--block"
+                  >
+                    <Message :text="el.message_above"></Message>
+                  </div>
+                </div>-->
+
+                <div
+                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  v-if="el.element == 'carousel'"
+                >
+                  <Carousel
+                    :array="el.content"
+                    @click="clickButton"
+                    :triggered="el.triggered"
+                  ></Carousel>
+                </div>
+
+                <div
+                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  v-if="el.element == 'carousel-button'"
+                >
+                  <CarouselButton
+                    :triggered="el.triggered"
+                    :array="el.content"
+                    @click="clickButton"
+                  ></CarouselButton>
+                </div>
+
+                <div
+                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  v-if="el.element == 'gallery'"
+                >
+                  <Gallery :array="el.content" @click="clickButton"></Gallery>
+                </div>
+
+                <div
+                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  v-if="el.message_below"
+                >
+                  <Profile v-if="el.type == 'server'"></Profile>
+                  <div
+                    class="chat__message__wrapper chat__message__wrapper--block"
+                  >
+                    <Message :text="el.message_below"></Message>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="chat__message chat__message-server chat__message-server-typing"
+              v-if="chatServerResponse"
+            >
+              <div
+                class="chat__message__wrapper chat__message__wrapper--block shadow"
+              >
+                <div class="chat__message__text" style="margin-left: 15px">
+                  <Typing />
+                </div>
+              </div>
+            </div>
+          </simplebar>
+        </client-only>
+      </div>
+      <div class="chat__footer">
+        <div class="ib-wrapper shadow" v-if="showInput">
+          <input
+            type="text"
+            :placeholder="
+              chooseButton
+                ? 'Seleccione una opción'
+                : recognitionActive
+                ? 'Escuchando'
+                : 'Escribir'
+            "
+            v-model="message"
+            class="input"
+            @keypress.enter="sendMessage"
+            :disabled="chatServerResponse || chooseButton"
+            ref="inputChat"
+          />
+
+          <button
+            @click.prevent="sendMessage"
+            class="button ib-wrapper__button send"
+            :disabled="recognitionActive || chooseButton"
+          >
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              enable-background="new 0 0 512.004 512.004"
+              height="512"
+              viewBox="0 0 512.004 512.004"
+              width="512"
+            >
+              <g>
+                <path
+                  d="m511.35 52.881-122 400c-3.044 9.919-14.974 13.828-23.29 7.67-7.717-5.727-203.749-151.217-214.37-159.1l-142.1-54.96c-5.79-2.24-9.6-7.81-9.59-14.02.01-6.21 3.85-11.77 9.65-13.98l482-184c5.824-2.232 12.488-.626 16.67 4.17 3.37 3.87 4.55 9.24 3.03 14.22z"
+                  fill="#94dfda"
+                />
+                <path
+                  d="m511.35 52.881-122 400c-3.044 9.919-14.974 13.828-23.29 7.67l-190.05-141.05 332.31-280.84c3.37 3.87 4.55 9.24 3.03 14.22z"
+                  fill="#61a7c5"
+                />
+                <path
+                  d="m507.89 58.821-271.49 286.4-63 125.03c-3.16 6.246-10.188 9.453-16.87 7.84-6.76-1.6-11.53-7.64-11.53-14.59v-175.3c0-4.86 2.35-9.41 6.31-12.23l337-239.69c6.29-4.48 14.95-3.45 20.01 2.38 5.07 5.83 4.88 14.56-.43 20.16z"
+                  fill="#eef4ff"
+                />
+                <path
+                  d="m507.89 58.821-271.49 286.4-63 125.03c-3.16 6.246-10.188 9.453-16.87 7.84-6.76-1.6-11.53-7.64-11.53-14.59l31.01-144 332.31-280.84c5.07 5.83 4.88 14.56-.43 20.16z"
+                  fill="#d9e6fc"
+                />
+              </g>
+            </svg>
+          </button>
+        </div>
+        <span class="chat__company">
+          Powered by
+          <a
+            rel="noopener"
+            target="_blank"
+            href="https://playgroup.pe"
+            class="font-weight-bold"
+            >PLAY Group</a
+          >
+        </span>
+      </div>
+    </div>
+
+    <div class="chat__dialog shadow" v-if="showNotification">
+      {{ messageActive }}
+    </div>
+    <div
+      class="chat__button chat__button--main shadow"
+      transition="expand"
+      v-if="!reveal"
+    >
+      <span class="chat__notification shadow" v-if="showNotification">1</span>
+      <button class="button img__wrapper" id="pgChatButton" @click="toggleChat">
+        <img src="/img/futuroso.gif" alt="Chat" />
+      </button>
+    </div>
+  </div>
+</template>
+
+
+<script>
+import Button from "./Button";
+import Message from "./Message";
+import CloseIcon from "../icons/Close";
+import Card from "./Card";
+import Carousel from "./Carousel";
+import Qualify from "./Qualify";
+import CarouselButton from "./CarouselButton";
+import Gallery from "./Gallery";
+import Profile from "./Profile";
+import Typing from "./Typing";
+export default {
+  components: {
+    Button,
+    Gallery,
+    Message,
+    Card,
+    Carousel,
+    Profile,
+    Typing,
+    CarouselButton,
+    CloseIcon,
+    Qualify
+  },
+  data() {
+    return {
+      botName: 'XBot',
+      chooseButton: false,
+      reveal: false,
+      showNotification: false,
+      message: "",
+      recordings: [],
+      showInput: true,
+      record: {
+        mediaStream: "",
+        processor: "",
+        context: "",
+      },
+      recognitionActive: false,
+      recognitionSupported: false,
+      leftchannel: [],
+      rightchannel: [],
+      recognition: null,
+      recordingLength: 0,
+      volume: null,
+      mediaStream: null,
+      sampleRate: 44100,
+      context: null,
+      firstTime: true,
+      connectionError: false,
+      host: "",
+      chatbotId: "",
+      chooseButton: false,
+      messageActive: "",
+      messagesHello: [
+        "¡Hey! Sé que estás ahí, no te olvides que yo puedo ayudarte con cualquier duda.",
+        "¿Sigues ahí? Deja tus dudas en mis peludas manos. ¡Yo te ayudo!",
+        "¡Regresaste! Acá me encontrarás si tienes cualquier problema.",
+        "¿Estás? Recuerda que yo te ayudo con cualquier duda que tengas. ¡Osito Futuroso a tu servicio!",
+      ],
+    };
+  },
+  computed: {
+    chatMessages() {
+      return this.$store.getters.getChatMessages;
+    },
+    chatServerResponse() {
+      return this.$store.getters.getChatServerResponse;
+    },
+  },
+  updated() {
+    this.scrollBottom();
+    if (this.showNotification) {
+      setTimeout(() => {
+        this.showNotification = false;
+      }, 60000);
+    }
+  },
+  mounted() {
+    this.initMicrophone();
+    this.socket = this.$nuxtSocket({
+      channel: "/chat",
+      reconnection: false,
+    });
+    /*setInterval(() => {
+      if (!this.reveal && !this.showNotification) {
+        this.messageActive = this.messagesHello[
+          Math.floor(Math.random() * this.messagesHello.length)
+        ];
+        this.showNotification = true;
+      }
+    }, 20000);*/
+    this.host = window.location.host + window.location.pathname;
+    this.socket.on("message", (resp) => {
+      this.setMessage(resp);
+      if(resp.route){
+        this.$router.push(this.localePath({ name: resp.route }));
+      }
+      if (resp.element == "buttons" || resp.element == "carousel") {
+        this.chooseButton = true;
+      }
+      let self = this;
+      setTimeout(() => {
+        self.$refs.inputChat.focus();
+      }, 300);
+      this.scrollBottom();
+    });
+
+    this.socket.on("conversation", (resp) => {
+      this.setConversation(resp);
+      this.scrollBottom();
+      let self = this;
+      setTimeout(() => {
+        self.$refs.inputChat.focus();
+      }, 300);
+    });
+
+    this.socket.on("connect_error", (resp) => {
+      this.connectionError = true;
+    });
+
+    this.socket.on("disconnect", (resp) => {
+      const el = {
+        message: "Hubo un problema de conexión con el servidor.",
+        type: "server",
+      };
+      this.setMessage(el);
+      this.$store.dispatch("setChatServerResponse");
+      this.showInput = false;
+    });
+  },
+  methods: {
+    initMicrophone() {
+      if (
+        "webkitSpeechRecognition" in window ||
+        "SpeechRecognition" in window ||
+        "webkitSpeechRecognition" in window ||
+        "mozSpeechRecognition" in window
+      ) {
+        this.recognition = new (window.SpeechRecognition ||
+          window.webkitSpeechRecognition ||
+          window.mozSpeechRecognition ||
+          window.msSpeechRecognition)();
+        this.recognition.lang = "es-PE";
+        this.recognition.interimResults = false;
+        var self = this;
+        this.recognition.onresult = function (event) {
+          //console.log("You said: ", event.results[0][0].transcript);
+          self.message = event.results[0][0].transcript;
+          self.sendMessage();
+        };
+        this.recognition.onspeechend = function (event) {};
+        this.recognition.onerror = function (e) {
+          //console.log(e);
+        };
+        self.recognitionSupported = true;
+        if (
+          /Edge/.test(window.navigator.userAgent) ||
+          /Edg/.test(window.navigator.userAgent)
+        ) {
+          this.recognitionSupported = false;
+        }
+      } else {
+        // speech recognition API not supported
+        //console.log("speech recognition API not supported");
+      }
+    },
+    startRecording() {
+      let audio = new Audio(
+        "https://freesound.org/data/previews/173/173328_2370190-lq.mp3"
+      );
+      audio.play();
+      this.recognitionActive = true;
+      this.recognition.start();
+    },
+    stopRecording() {
+      let audio = new Audio(
+        "https://freesound.org/data/previews/69/69723_866625-lq.mp3"
+      );
+      audio.play();
+      this.recognitionActive = false;
+      this.recognition.stop();
+    },
+    toggleChat() {
+      /*if (!this.reveal) {
+        this.showNotification = false;
+      }*/
+      this.reveal = !this.reveal;
+      this.showNotification = false;
+      if (this.reveal && this.firstTime) {
+        //this.showNotification = false;
+        this.$store.dispatch("setChatServerResponse");
+        this.socket.emit("join", this.chatbotId, this.host);
+      } else {
+        this.firstTime = false;
+      }
+    },
+    scrollBottom() {
+      setTimeout(() => {
+        document.querySelector(
+          "#chat_body_wrapper .simplebar-content-wrapper"
+        ).scrollTop =
+          document.querySelector(
+            "#chat_body_wrapper .simplebar-content-wrapper"
+          ).scrollHeight -
+          0 -
+          35;
+      }, 250);
+    },
+    clickButton(text, triggered = false) {
+      this.message = text;
+      this.sendMessage(triggered);
+    },
+    sendMessage(triggered = false) {
+      if (!this.message) {
+        return;
+      }
+      const el = { message: this.message };
+      this.socket.emit("message", this.chatbotId, el, triggered);
+      this.setMessage(el);
+      this.message = "";
+    },
+    setConversation(array) {
+      this.$store.dispatch("setConversation", array);
+      this.$store.dispatch("setChatServerResponse");
+    },
+    setMessage(obj) {
+      this.$store.dispatch("setMessage", obj);
+      this.$store.dispatch("setChatServerResponse");
+      this.chooseButton = false;
+    },
+  },
+  created() {
+    const ZnV0dXJhIGNoYXRib3Q = this.$cookies.get("ZnV0dXJhIGNoYXRib3Q");
+    if (!ZnV0dXJhIGNoYXRib3Q) {
+      this.chatbotId = Date.now() + Math.random().toString().slice(2) + "cGc=";
+      this.$cookies.set("ZnV0dXJhIGNoYXRib3Q", this.chatbotId);
+    } else {
+      this.chatbotId = ZnV0dXJhIGNoYXRib3Q;
+    }
+  },
+  watch: {
+    reveal: {
+      immediate: true,
+      handler(newVal, oldVal) {
+        
+      },
+    },
+    showNotification: {
+      immediate: true,
+      handler(newVal, oldVal) {
+        if (newVal) {
+          setTimeout(() => {
+            this.showNotification = false;
+          }, 5000);
+        }
+      },
+    },
+  },
+};
+</script>
+<style lang="scss">
+.shadow {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+}
+.chat__link__text {
+  display: none;
+}
+.chat {
+  /* TRANSITION */
+  /* always present */
+  .expand-transition {
+    transition: all 0.5s ease;
+  }
+  .send {
+    vertical-align: middle;
+    //margin-top: 3px;
+  }
+  /* .expand-enter defines the starting state for entering */
+  /* .expand-leave defines the ending state for leaving */
+  .expand-enter,
+  .expand-leave {
+    height: 0;
+    opacity: 0;
+  }
+  .bg {
+    background: #f6f6fc;
+  }
+  input:disabled {
+    background: #cecece;
+  }
+  .input {
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    display: inline;
+    padding: 0 45px 0 15px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+  .button {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    //font-family: 'Poppins', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    &:focus {
+      outline: 0;
+    }
+  }
+  .input {
+    //font-family: 'Poppins', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+  }
+  .font-weight-light {
+    font-weight: 300;
+  }
+  .font-weight-bold {
+    font-weight: 700;
+  }
+  .color-secondary {
+    color: darkgrey;
+  }
+}
+.chat__link {
+  background: #f33459;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 8px 20px;
+  // margin: 3px;
+  border: 0;
+  &::before {
+    content: "Elegir";
+  }
+  &.chat__link--button {
+    margin-bottom: 10px;
+    display: block;
+    .chat__link__text {
+      display: block !important;
+    }
+    &::before {
+      content: none !important;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .chat__link {
+    margin-right: 5px !important;
+  }
+}
+
+.chat__close {
+  margin-left: auto;
+  background: transparent;
+  font-size: 16px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  svg {
+    vertical-align: middle;
+    stroke-width: 30;
+    color: white;
+  }
+}
+.chat__company {
+  font-size: 11px;
+  display: block;
+  text-align: right;
+  margin-top: 7px;
+  a {
+    color: #f33459;
+    text-decoration: none;
+    font-size: 12px;
+  }
+}
+
+.chat__message__wrapper--carousel {
+  margin-left: 20px;
+}
+.chat__dialog {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  max-width: 200px;
+  border-radius: 10px;
+  font-size: 13px;
+  background: white;
+  &::before {
+    content: "";
+    position: absolute;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    /*-moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);*/
+    transform: rotate(45deg);
+    bottom: -5px;
+    right: 31px;
+    border-color: transparent #fff #fff transparent;
+    border-style: solid;
+    border-width: 5px;
+  }
+  padding: 10px 12.5px;
+}
+
+.chat__message-server-typing {
+  .chat__message__text {
+    float: left !important;
+    font-size: 20px !important;
+    letter-spacing: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+}
+
+.chat__button--main {
+  position: relative;
+  .chat__notification {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+}
+.ib-wrapper {
+  position: relative;
+  display: flex;
+  //width: calc(100% - 45px);
+  /*margin-left: 20px;
+  margin-right: 20px;*/
+  border-radius: 10px;
+}
+.chat__message__wrapper--text {
+  display: flex;
+  padding: 0 20px;
+}
+.chat__message__wrapper--el {
+  margin-left: 50px;
+}
+.ib-wrapper__button {
+  cursor: pointer;
+  background: transparent;
+  border-radius: 50%;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 23px;
+  font-weight: 700;
+  border-radius: 10px;
+  width: 64px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 10px 0;
+  background: #f33459;
+}
+
+.grid-header-chat {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  .chat__avatar img {
+    max-width: 95px;
+    vertical-align: bottom;
+    margin-right: 1rem;
+  }
+  .chat__name {
+    color: #fff;
+    h3 {
+      margin: 9px 0;
+      color: #fff;
+      font-size: 1.25rem;
+    }
+    .online {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      span {
+        width: 8px;
+        height: 8px;
+        position: relative;
+        display: block;
+        background: #3ae23f;
+        border-radius: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .chat {
+    &.active {
+      right: 0;
+      max-width: 100%;
+    }
+    .chat__box .chat__body__wrapper {
+      height: 55vh !important;
+    }
+  }
+}
+
+.chat {
+  .button--micro {
+    border-radius: 50px;
+    background-color: white;
+    padding: 5px 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    display: flex;
+    justify-items: center;
+    img {
+      margin-right: 7px;
+    }
+  }
+  position: fixed;
+  right: 80px;
+  .chat__close {
+    .icon {
+      width: 1.25em;
+      height: 1.25em;
+    }
+  }
+  .icon {
+    display: inline-block;
+    width: 1.6em;
+    height: 1.6em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+  }
+
+  input:focus {
+    //outline: none;
+    z-index: 0 !important;
+  }
+  &.active {
+    width: 100%;
+    max-width: 400px;
+    bottom: 0;
+  }
+
+  bottom: 5%;
+  z-index: 999;
+
+  .chat__button {
+    margin-left: auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    padding: 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .img__wrapper {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      height: inherit;
+      width: inherit;
+      border-radius: 50%;
+      img {
+        //height: 45px;
+        height: 80px;
+        width: auto;
+      }
+    }
+  }
+  .chat__box {
+    margin-bottom: 10px;
+    &.active {
+      margin-bottom: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      //background-image: url(https://storage.googleapis.com/playgroup-bots/wiener/img/fondo.jpg);
+    }
+    .chat__body,
+    .chat__footer {
+      background: white;
+    }
+    .chat__header {
+      background: #0091c5;
+      //background-image: url(https://storage.googleapis.com/playgroup-web/bot/images/bg-bot.jpg);
+      background-size: cover;
+      border-bottom: 1px solid #d0d0ef;
+      padding: 18px 20px 0;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      position: relative;
+      color: #fff;
+    }
+    .chat__wrapper__texts {
+      max-width: 73%;
+      .chat__message__text {
+        float: left !important;
+      }
+    }
+    .chat__message {
+      //display: flex;
+      width: 100%;
+      .chat__message__wrapper {
+        margin-bottom: 10px;
+        &.chat__message__wrapper--block {
+          //width: 75%;
+          display: block;
+          max-width: 73%;
+        }
+        &.chat__message__wrapper--full {
+          width: 100%;
+        }
+      }
+      .chat__message__text {
+        display: inline-block;
+        padding: 10px 18px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background: white;
+      }
+
+      &.chat__message-server {
+        width: 100%;
+        .chat__message__wrapper {
+          margin-right: auto;
+        }
+        .chat__message__text {
+          float: right;
+        }
+      }
+      &.chat__message-client {
+        .chat__message__wrapper {
+          margin-left: auto;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .chat__message__text {
+          background: #0091c5;
+          color: #fff;
+        }
+      }
+    }
+    .chat__body__wrapper {
+      padding: 20px 0px;
+      height: 400px;
+      //overflow: auto;
+    }
+    .chat__footer {
+      padding-bottom: 10px;
+      padding-right: 15px;
+      padding-left: 15px;
+      padding-top: 10px;
+    }
+  }
+}
+
+//logo chat bot
+.chat {
+  bottom: 5%;
+  right: 80px;
+  @media only screen and (max-width: 1650px) {
+    bottom: 3%;
+    right: 55px;
+  }
+  @media only screen and (max-width: 1300px) {
+    bottom: 3%;
+    right: 40px;
+  }
+  @media only screen and (max-width: 700px) {
+    right: 20px;
+    bottom: 1.5%;
+  }
+  .chat__button {
+    height: 56px;
+    width: 56px;
+
+    .img__wrapper img {
+      height: 56px;
+    }
+  }
+}
+</style>
