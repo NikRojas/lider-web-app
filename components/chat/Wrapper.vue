@@ -77,6 +77,7 @@
               >
                 <div
                   class="chat__message__wrapper--block chat__message__wrapper--text"
+                  v-if="el.message || el.element == 'texts'"
                 >
                   <Profile v-if="el.type == 'server'"></Profile>
 
@@ -93,7 +94,7 @@
 
                   <div
                     class="chat__message__wrapper chat__message__wrapper--block"
-                    v-else
+                    v-else-if="el.message"
                   >
                     <Message :text="el.message"></Message>
                   </div>
@@ -103,11 +104,27 @@
                   class="chat__message__wrapper--block chat__message__wrapper--text"
                   v-if="el.message_above"
                 >
-                  <Profile v-if="el.type == 'server'"></Profile>
                   <div
-                    class="chat__message__wrapper chat__message__wrapper--block"
+                    class="chat__message__wrapper chat__message__wrapper--block ml-auto"
                   >
                     <Message :text="el.message_above"></Message>
+                  </div>
+                </div>
+
+                <div
+                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  v-if="el.element != 'texts' && el.texts"
+                >
+                  <Profile v-if="el.type == 'server'"></Profile>
+
+                  <div
+                    class="chat__wrapper__texts"
+                  >
+                    <Message
+                      :text="elText"
+                      v-for="(elText, i) in el.texts"
+                      :key="'texts' + i"
+                    ></Message>
                   </div>
                 </div>
 
@@ -128,31 +145,8 @@
                     @click="clickButton"
                   ></Button>
                 </div>
-
-               <!-- <div
-                  class="chat__message__wrapper chat__message__wrapper--block chat__message__wrapper--el"
-                  
-                >
-                  <Button
-                    :triggered="el.triggered"
-                    :array="el.content"
-                    @click="clickButton"
-                  ></Button>
-                </div>-->
                 <Qualify v-if="el.element == 'qualify'" :array="el.content" :triggered="el.triggered" @click="clickButton"/>
-
-                <!--<div
-                  class="chat__message__wrapper--block chat__message__wrapper--text"
-                  v-if="el.element == 'carousel' && el.message_above"
-                >
-                  <Profile v-if="el.type == 'server'"></Profile>
-                  <div
-                    class="chat__message__wrapper chat__message__wrapper--block"
-                  >
-                    <Message :text="el.message_above"></Message>
-                  </div>
-                </div>-->
-
+                
                 <div
                   class="chat__message__wrapper chat__message__wrapper--carousel"
                   v-if="el.element == 'carousel'"
@@ -182,11 +176,12 @@
                   <Gallery :array="el.content" @click="clickButton"></Gallery>
                 </div>
 
+                
+
                 <div
-                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  class="chat__message__wrapper--block chat__message__wrapper--text ml-auto"
                   v-if="el.message_below"
                 >
-                  <Profile v-if="el.type == 'server'"></Profile>
                   <div
                     class="chat__message__wrapper chat__message__wrapper--block"
                   >
@@ -386,9 +381,11 @@ export default {
     }, 20000);*/
     this.host = window.location.host + window.location.pathname;
     this.socket.on("message", (resp) => {
+      console.log(resp);
       this.setMessage(resp);
       if(resp.route){
-        this.$router.push(this.localePath({ name: resp.route }));
+        //this.$router.push(this.localePath({ name: resp.route }));
+        this.$router.push(this.localePath(resp.route));
       }
       if (resp.element == "buttons" || resp.element == "carousel") {
         this.chooseButton = true;
@@ -993,6 +990,15 @@ export default {
     .img__wrapper img {
       height: 56px;
     }
+  }
+  .ml-auto{
+    margin-left: auto;
+  }
+  .mt-1{
+    margin-top: .5rem;
+  }
+  .mb-0{
+    margin-bottom: 0 !important;
   }
 }
 </style>
