@@ -555,6 +555,7 @@ export default {
         .then(({ KR }) =>
           KR.setFormConfig({
             formToken: formToken,
+            //"kr-language": "en-US"
           })
         )
         .then(({ KR }) =>

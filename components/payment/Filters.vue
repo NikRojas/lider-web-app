@@ -303,7 +303,7 @@
       </div>
     </div>
     <div class="grid-s-6 grid-l-2">
-      <button class="btn btn2" @click="sendFilters" style="width: 100%; margin-bottom: 10px;">
+      <button class="btn btn2" :class="requestServer ? 'btn--opacity' : ''" :disabled="requestServer" @click="sendFilters" style="width: 100%; margin-bottom: 10px;">
         {{ $t("Filtrar") }}
       </button>
       <button class="btn btn1" @click="reset" style="width: 100%">
