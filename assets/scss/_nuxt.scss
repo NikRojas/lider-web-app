@@ -486,7 +486,7 @@ form#formp select {
     text-transform: inherit;
 }
 
-/*
+
 .grid-departamentos .card-depa-grid .img img {
     height: 150px;
     object-fit: cover;
@@ -522,4 +522,13 @@ form#formp select {
     display: grid;
     align-items: center;
     text-align: justify;
-}*/
+}
+
+.card-depa-grid .card-head .card-caract {
+    margin-bottom: 6px;
+}
+.card-caract div:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
