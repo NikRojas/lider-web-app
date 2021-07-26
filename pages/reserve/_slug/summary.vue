@@ -520,7 +520,7 @@ export default {
         .then((response) => {
           this.requestPayment = false;
           if (response.data.t) {
-            this.generateForm(response.data.t, response.data.j);
+            this.generateForm(response.data.t, response.data.j, response.data.currency);
           }
         })
         .catch((error) => {
@@ -535,7 +535,7 @@ export default {
           );
         });
     },
-    generateForm(token, tokenjs) {
+    generateForm(token, tokenjs, currency) {
       const formToken = token;
       let config = {
         "merchant": {
@@ -563,6 +563,13 @@ export default {
             "kr-popin": ""
           })
         )
+        .then(({ KR }) =>{ 
+            if(currency == "USD"){
+              KR.setFormConfig({
+                "kr-language": "en-US"
+              })
+            }
+        })
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
