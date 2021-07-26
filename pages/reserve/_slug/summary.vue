@@ -536,6 +536,7 @@ export default {
         });
     },
     generateForm(token, tokenjs, currency) {
+      console.log(currency);
       const formToken = token;
       let config = {
         "merchant": {
@@ -563,13 +564,9 @@ export default {
             "kr-popin": ""
           })
         )
-        .then(({ KR }) =>{ 
-            if(currency == "USD"){
-              KR.setFormConfig({
-                "kr-language": "en-US"
-              })
-            }
-        })
+        .then(({ KR }) =>
+          (currency == "USD" ? KR.setFormConfig({ "kr-language": "en-US" }) : '' )
+        )
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
