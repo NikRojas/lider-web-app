@@ -552,6 +552,12 @@ export default {
           },
         },
       };
+      let configCurrency = {};
+      if(currency == "USD"){
+        configCurrency = {
+            "kr-language": "en-US"
+        }
+      }
       KRGlue.loadLibrary(this.endpoint, tokenjs)
         .then(({ KR }) =>
           KR.setFormConfig({
@@ -564,9 +570,7 @@ export default {
             "kr-popin": ""
           })
         )
-        .then(({ KR }) =>
-          (currency == "USD" ? KR.setFormConfig({ "kr-language": "en-US" }) : true )
-        )
+        .then(({ KR }) => KR.setFormConfig(configCurrency) )
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
