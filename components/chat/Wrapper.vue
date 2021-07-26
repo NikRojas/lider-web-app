@@ -387,6 +387,15 @@ export default {
         //this.$router.push(this.localePath({ name: resp.route }));
         this.$router.push(this.localePath(resp.route));
       }
+      if (resp.route_section) {
+        let scrollToOptions = { easing: "ease" };
+        if(resp.route_section == '#cotizar'){
+          scrollToOptions.offset = -200;
+        }
+        setTimeout(() => {
+          this.$scrollTo(resp.route_section, 1000, scrollToOptions);
+        }, 600);
+      }
       if (resp.element == "buttons" || resp.element == "carousel") {
         this.chooseButton = true;
       }
