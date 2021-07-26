@@ -580,7 +580,6 @@ export default {
           })
         )
         .then(({ KR }) => KR.setFormConfig(configCurrency) )
-        .then(({ KR }) => KR.setFormConfig(configPlaceholders) )
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
