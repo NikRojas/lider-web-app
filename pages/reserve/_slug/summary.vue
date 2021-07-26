@@ -565,7 +565,7 @@ export default {
           })
         )
         .then(({ KR }) =>
-          (currency == "USD" ? KR.setFormConfig({ "kr-language": "en-US" }) : '' )
+          (currency == "USD" ? KR.setFormConfig({ "kr-language": "en-US" }) : true )
         )
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
