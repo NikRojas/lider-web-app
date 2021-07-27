@@ -105,7 +105,7 @@
                   v-if="el.message_above"
                 >
                   <div
-                    class="chat__message__wrapper chat__message__wrapper--block ml-auto"
+                    class="chat__message__wrapper chat__message__wrapper--block"
                   >
                     <Message :text="el.message_above"></Message>
                   </div>
@@ -126,6 +126,22 @@
                       :key="'texts' + i"
                     ></Message>
                   </div>
+                </div>
+
+                <div
+                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  v-if="el.gallery"
+                >
+                  <Gallery :array="el.gallery"></Gallery>
+                </div>
+
+                <div
+                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  v-if="el.element != 'carousel' && el.carousel"
+                >
+                  <Carousel
+                    :array="el.carousel"
+                  ></Carousel>
                 </div>
 
 
@@ -173,15 +189,18 @@
                   class="chat__message__wrapper chat__message__wrapper--carousel"
                   v-if="el.element == 'gallery'"
                 >
-                  <Gallery :array="el.content" @click="clickButton"></Gallery>
+                  <Gallery :array="el.content"></Gallery>
                 </div>
 
                 
 
+                
+
                 <div
-                  class="chat__message__wrapper--block chat__message__wrapper--text ml-auto"
+                  class="chat__message__wrapper--block chat__message__wrapper--text"
                   v-if="el.message_below"
                 >
+                  <div style="width:40px;"></div>
                   <div
                     class="chat__message__wrapper chat__message__wrapper--block"
                   >

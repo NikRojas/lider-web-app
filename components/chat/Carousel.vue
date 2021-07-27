@@ -29,7 +29,7 @@
     <div class="swiper-button-next" slot="button-next">></div>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .chat__carousel {
   .swiper-button-prev {
     left: 0;
