@@ -18,39 +18,40 @@
       <div class="chat__header font-weight-bold">
         <div class="grid-header-chat">
           <div class="chat__avatar">
-            <img src="/img/avatar.png" alt />
+            <img :src="require('~/assets/img/micro.png')" alt />
           </div>
 
           <div class="chat__name">
             <h3>{{ botName }}</h3>
             <div class="online"><span></span>En línea</div>
-            <div>
+            <div v-if="!chooseButton">
               <button
                 class="button button--micro"
                 @click="startRecording"
-                v-if="!recognitionActive && recognitionSupported"
+                :disabled="recognitionActive"
+                v-if="recognitionSupported"
               >
                 <img
-                  src="/img/micro.png"
+                  :src="require('~/assets/img/micro.png')"
                   alt="Micro"
                   height="20"
                   width="auto"
                 />
-                Hablar
+                {{ recognitionActive ? 'Hablando...' : 'Hablar'}}
               </button>
-              <button
+              <!--<button
                 class="button button--micro"
                 @click="stopRecording"
                 v-if="recognitionActive && recognitionSupported"
               >
                 <img
-                  src="/img/micro.png"
+                  :src="require('~/assets/img/micro.png')"
                   alt="Micro"
                   height="20"
                   width="auto"
                 />
                 Detener
-              </button>
+              </button>-->
             </div>
           </div>
         </div>
@@ -366,6 +367,7 @@ export default {
         "¡Regresaste! Acá me encontrarás si tienes cualquier problema.",
         "¿Estás? Recuerda que yo te ayudo con cualquier duda que tengas. ¡Osito Futuroso a tu servicio!",
       ],
+      timer: "",
     };
   },
   computed: {
@@ -398,12 +400,12 @@ export default {
         this.showNotification = true;
       }
     }, 20000);*/
+    this.showMessages();
     this.host = window.location.host + window.location.pathname;
     this.socket.on("message", (resp) => {
       console.log(resp);
       this.setMessage(resp);
       if(resp.route){
-        //this.$router.push(this.localePath({ name: resp.route }));
         this.$router.push(this.localePath(resp.route));
       }
       if (resp.route_section) {
@@ -415,7 +417,7 @@ export default {
           this.$scrollTo(resp.route_section, 1000, scrollToOptions);
         }, 600);
       }
-      if (resp.element == "buttons" || resp.element == "carousel") {
+      if (resp.element == "buttons" || resp.element == "carousel" || resp.element == "qualify") {
         this.chooseButton = true;
       }
       let self = this;
@@ -449,6 +451,15 @@ export default {
     });
   },
   methods: {
+    showMessages(){
+      let self = this;
+      this.timer = setInterval(function () {
+        self.messageActive = self.messagesHello[
+          Math.floor(Math.random() * self.messagesHello.length)
+        ];
+        self.showNotification = true;
+      }, 10000); // 60 * 1000 milsec
+    },
     initMicrophone() {
       if (
         "webkitSpeechRecognition" in window ||
@@ -467,6 +478,11 @@ export default {
           //console.log("You said: ", event.results[0][0].transcript);
           self.message = event.results[0][0].transcript;
           self.sendMessage();
+          self.recognitionActive = false;
+            let audio = new Audio(
+          "https://freesound.org/data/previews/69/69723_866625-lq.mp3"
+        );
+        audio.play();
         };
         this.recognition.onspeechend = function (event) {};
         this.recognition.onerror = function (e) {
@@ -492,26 +508,20 @@ export default {
       this.recognitionActive = true;
       this.recognition.start();
     },
-    stopRecording() {
-      let audio = new Audio(
-        "https://freesound.org/data/previews/69/69723_866625-lq.mp3"
-      );
-      audio.play();
-      this.recognitionActive = false;
-      this.recognition.stop();
-    },
     toggleChat() {
-      /*if (!this.reveal) {
-        this.showNotification = false;
-      }*/
       this.reveal = !this.reveal;
       this.showNotification = false;
       if (this.reveal && this.firstTime) {
-        //this.showNotification = false;
         this.$store.dispatch("setChatServerResponse");
         this.socket.emit("join", this.chatbotId, this.host);
       } else {
         this.firstTime = false;
+      }
+      if(this.reveal){
+        clearInterval(this.timer);
+      }
+      else{
+        this.showMessages();
       }
     },
     scrollBottom() {
@@ -542,6 +552,10 @@ export default {
     setConversation(array) {
       this.$store.dispatch("setConversation", array);
       this.$store.dispatch("setChatServerResponse");
+      const [lastItem] = array.slice(-1);
+      if(lastItem.triggered === undefined  && (lastItem.element == "buttons" || lastItem.element == "carousel" || lastItem.element == "qualify")){
+        this.chooseButton = true;
+      }
     },
     setMessage(obj) {
       this.$store.dispatch("setMessage", obj);
@@ -571,7 +585,7 @@ export default {
         if (newVal) {
           setTimeout(() => {
             this.showNotification = false;
-          }, 5000);
+          }, 2000);
         }
       },
     },
@@ -837,6 +851,7 @@ export default {
 
 .chat {
   .button--micro {
+    color: #000;
     border-radius: 50px;
     background-color: white;
     padding: 5px 16px;
