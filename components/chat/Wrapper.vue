@@ -97,17 +97,6 @@
 
                 <div
                   class="chat__message__wrapper--block chat__message__wrapper--text"
-                  v-if="el.message_above"
-                >
-                  <div
-                    class="chat__message__wrapper chat__message__wrapper--block"
-                  >
-                    <Message :text="el.message_above"></Message>
-                  </div>
-                </div>
-
-                <div
-                  class="chat__message__wrapper--block chat__message__wrapper--text"
                   v-if="el.element != 'texts' && el.texts"
                 >
                   <Profile v-if="el.type == 'server'"></Profile>
@@ -120,6 +109,17 @@
                       v-for="(elText, i) in el.texts"
                       :key="'texts' + i"
                     ></Message>
+                  </div>
+                </div>
+
+                <div
+                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  v-if="el.message_above"
+                >
+                  <div
+                    class="chat__message__wrapper chat__message__wrapper--block"
+                  >
+                    <Message :text="el.message_above"></Message>
                   </div>
                 </div>
 
@@ -402,7 +402,7 @@ export default {
       if (resp.route_section) {
         let scrollToOptions = { easing: "ease" };
         if(resp.route_section == '#cotizar'){
-          scrollToOptions.offset = +75;
+          scrollToOptions.offset = +40;
         }
         setTimeout(() => {
           this.$scrollTo(resp.route_section, 1000, scrollToOptions);
@@ -559,6 +559,7 @@ export default {
       window.speechSynthesis.cancel();
     },
     async speak(phrases) {
+      window.speechSynthesis.cancel();
       let sentence;
       let voiceSpanish = window.speechSynthesis
         .getVoices()
@@ -631,16 +632,16 @@ export default {
                   } else {
                     let phrase = []
                     if(value.message) {
-                      //phrase.push(value.message);
                       phrase = [ ...phrase, value.message ];
                     }
-                    typeof value.message_below !== "undefined" ||
-                    typeof value.message_above !== "undefined"
-                      ? phrase.push(value.message_below || value.message_above)
-                      : null;
                     if(value.texts){
-                      //phrase.push(value.texts)
                       phrase = phrase.concat(value.texts);
+                    }
+                    if(typeof value.message_above !== "undefined"){
+                      phrase.push(value.message_above)
+                    }
+                    if(typeof value.message_below !== "undefined"){
+                      phrase.push(value.message_below)
                     }
                     console.log(phrase);
                     this.speak(phrase);
