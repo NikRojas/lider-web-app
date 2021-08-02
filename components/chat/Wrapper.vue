@@ -39,20 +39,14 @@
                 />
                 {{ recognitionActive ? 'Hablando...' : 'Hablar'}}
               </button>
-              <!--<button
-                class="button button--micro"
-                @click="stopRecording"
-                v-if="recognitionActive && recognitionSupported"
-              >
-                <img
-                  :src="require('~/assets/img/micro.png')"
-                  alt="Micro"
-                  height="20"
-                  width="auto"
-                />
-                Detener
-              </button>-->
             </div>
+            <button
+                class="button button--sound"
+                v-if="soundSupported"
+                @click="toggleSound"
+              >
+                {{ soundActive ? "V. ON" : "V. OFF" }}
+              </button>
           </div>
         </div>
         <button class="button chat__close" @click="toggleChat">
@@ -368,6 +362,8 @@ export default {
         "¿Estás? Recuerda que yo te ayudo con cualquier duda que tengas. ¡Osito Futuroso a tu servicio!",
       ],
       timer: "",
+      soundActive: true,
+      soundSupported: true,
     };
   },
   computed: {
@@ -387,19 +383,14 @@ export default {
     }
   },
   mounted() {
+    if (this.$device.ios) {
+      this.soundSupported = false;
+    }
     this.initMicrophone();
     this.socket = this.$nuxtSocket({
       channel: "/chat",
       reconnection: false,
     });
-    /*setInterval(() => {
-      if (!this.reveal && !this.showNotification) {
-        this.messageActive = this.messagesHello[
-          Math.floor(Math.random() * this.messagesHello.length)
-        ];
-        this.showNotification = true;
-      }
-    }, 20000);*/
     this.showMessages();
     this.host = window.location.host + window.location.pathname;
     this.socket.on("message", (resp) => {
@@ -411,7 +402,7 @@ export default {
       if (resp.route_section) {
         let scrollToOptions = { easing: "ease" };
         if(resp.route_section == '#cotizar'){
-          scrollToOptions.offset = -200;
+          scrollToOptions.offset = +75;
         }
         setTimeout(() => {
           this.$scrollTo(resp.route_section, 1000, scrollToOptions);
@@ -562,6 +553,43 @@ export default {
       this.$store.dispatch("setChatServerResponse");
       this.chooseButton = false;
     },
+    toggleSound() {
+      this.soundActive = !this.soundActive;
+      this.$cookies.set("fizFIb1Ygg", this.soundActive);
+      window.speechSynthesis.cancel();
+    },
+    async speak(phrases) {
+      let sentence;
+      let voiceSpanish = window.speechSynthesis
+        .getVoices()
+        .findIndex(function (voice) {
+          return (
+            voice.name === "Google español de Estados Unidos" ||
+            voice.lang === "es-MX" ||
+            voice.lang === "es-ES"
+          );
+        });
+      let self = this;
+      for (var i = 0; i < phrases.length; i++) {
+        let n = new window.SpeechSynthesisUtterance(
+          phrases[i].replace(/(<([^>]+)>)/gi, "")
+        );
+        n.volume = 1;
+        //n.rate = 1;
+        //n.pitch = 0;
+        n.lang = "es-ES";
+        n.voice = window.speechSynthesis.getVoices()[voiceSpanish];
+        window.speechSynthesis.speak(n);
+      }
+    },
+    initSoundBot() {
+      const cookieSound = this.$cookies.get("fizFIb1Ygg");
+      if (typeof cookieSound !== "undefined") {
+        this.soundActive = cookieSound;
+      } else {
+        this.$cookies.set("fizFIb1Ygg", this.soundActive);
+      }
+    },
   },
   created() {
     const ZnV0dXJhIGNoYXRib3Q = this.$cookies.get("ZnV0dXJhIGNoYXRib3Q");
@@ -588,6 +616,45 @@ export default {
           }, 2000);
         }
       },
+    },
+    chatMessages: {
+      handler: function (newValue) {
+        if(newValue.length > 0){
+          console.log(newValue);
+          if (!this.$device.ios) {
+            let value = newValue[newValue.length - 1];
+            if (value.type == "server") {
+              if (this.soundActive) {
+                if (typeof value.element !== "undefined") {
+                  if (value.element === "texts") {
+                    this.speak(value.content);
+                  } else {
+                    let phrase = []
+                    if(value.message) {
+                      //phrase.push(value.message);
+                      phrase = [ ...phrase, value.message ];
+                    }
+                    typeof value.message_below !== "undefined" ||
+                    typeof value.message_above !== "undefined"
+                      ? phrase.push(value.message_below || value.message_above)
+                      : null;
+                    if(value.texts){
+                      //phrase.push(value.texts)
+                      phrase = phrase.concat(value.texts);
+                    }
+                    console.log(phrase);
+                    this.speak(phrase);
+                  }
+                } else {
+                  const phrase = new Array(value.message);
+                  this.speak(phrase);
+                }
+              }
+            }
+          }
+        } 
+      },
+      deep: true,
     },
   },
 };

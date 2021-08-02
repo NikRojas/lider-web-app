@@ -69,6 +69,7 @@ export default {
     { src: '~/plugins/vuex-persistedstate.client.js' },
     { src: '~/plugins/simplebar-vue.js', mode: 'client' },
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
+    { src: '~/plugins/vue-device-detector.js', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
