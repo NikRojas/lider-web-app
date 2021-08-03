@@ -497,6 +497,18 @@ export default {
           //this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
           //this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
           this.data = Object.assign({}, response.data.filters);
+          //Borrar los codigo de ubigeo ya no obtenidos
+          let codesUbigeo = response.data.filters.departments.filter(function(obj) {
+            return !obj.is_department;
+          });
+          //console.log(codesUbigeo);          
+          let notExists = this.departments.filter( ( el ) => !codesUbigeo.map(a => a.code_ubigeo).includes( el ) );
+          let notExistsDistrict = notExists.filter((el) => el.length == 6);
+          //console.log(notExistsDistrict)
+          if(notExistsDistrict.length){
+            this.departments = this.departments.filter(g => !notExistsDistrict.includes(g));
+          }
+          
           if(init){
             this.rangeAreas = [response.data.filters.areas.min, response.data.filters.areas.max];
             this.rangePrices = [response.data.filters.prices.min, response.data.filters.prices.max];
