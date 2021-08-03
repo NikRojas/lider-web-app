@@ -18,8 +18,16 @@
             :key="'dep' + el.code_ubigeo + i"
           >
             <template v-if="el.department">
-              <input
+              <!--<input
                 @change="updateFilter('ubigeo')"
+                class="checkbox"
+                :id="'dep' + el.code_department"
+                v-model="departments"
+                type="checkbox"
+                :value="el.code_department"
+              />-->
+              <input
+                @change="handleUbigeo(el.code_department, i, true)"
                 class="checkbox"
                 :id="'dep' + el.code_department"
                 v-model="departments"
@@ -31,8 +39,16 @@
               >
             </template>
             <template v-else>
-              <input
+              <!--<input
                 @change="updateFilter('ubigeo')"
+                class="checkbox pl-1"
+                :id="'ubi' + el.code_ubigeo"
+                type="checkbox"
+                v-model="departments"
+                :value="el.code_ubigeo"
+              />-->
+              <input
+                @change="handleUbigeo(el.code_ubigeo, i, false)"
                 class="checkbox pl-1"
                 :id="'ubi' + el.code_ubigeo"
                 type="checkbox"
@@ -360,6 +376,57 @@ export default {
     handleDragEndPrice(){
       this.pricesDragged = true;
     },
+    handleUbigeo(e, index, departmentParam = false){
+      let filtered;
+      let districts;
+      let department;
+      let check;
+      let districtDepartmentCode;
+      //Setear Variable
+      let tempDepartment = this.data.departments.slice();
+      //Quitar objeto de array
+      tempDepartment.splice(index, 1);
+      if(departmentParam){
+        //Chequear si existe ya en el array
+        check = this.departments.includes(e);
+        //Obtener los distritos del departamento segun el codigo de departamento
+        filtered = tempDepartment.filter(function(obj) {
+          return obj.code_department == e;
+        });
+        //Obtener codigos de ubigeo de distritos
+        districts = filtered.map(a => a.code_ubigeo);
+        if(check){
+          //Si existe el departamento en el array, agregar los distritos
+          this.departments = this.departments.concat(districts);
+        }
+        else{
+          //Si no existe departamento en el array, se quitan todos los distritos
+          this.departments = this.departments.filter( ( el ) => !districts.includes( el ) );
+        }
+      }
+      else{
+        //Obtener departamento de codigo ubigeo
+        districtDepartmentCode = e.substring(0, 2);
+        //Obtener el departamento
+        filtered = tempDepartment.filter(function(obj) {
+          return obj.code_department == districtDepartmentCode && obj.is_department;
+        });
+        check = this.departments.includes(filtered[0].code_department);
+        //Si no existe el departamento agregarlo al array
+        if(!check){
+          department = filtered.map(a => a.code_department)
+          this.departments = this.departments.concat(department);
+        }
+        //SI NO HAY NINGUN UBIGEO DESELECCIONAR EL DEPARTAMENTO
+        let checkIfAlmostOneDistrictExist = this.departments.find(function(el) {
+          return el.length == 6 & el.substring(0, 2) == districtDepartmentCode;
+        });
+        if(checkIfAlmostOneDistrictExist == null && checkIfAlmostOneDistrictExist == undefined){
+          this.departments = this.departments.filter(g => g != districtDepartmentCode); 
+        }
+      }
+      this.updateFilter('ubigeo');
+    },
     sendFilters() {
       let filters = {
         "rangePrices" : this.rangePrices,
@@ -484,15 +551,15 @@ export default {
     },
     setFilters(){
       const { rangePrices, views, floors, departments, rooms, statuses, projects, typeDepartments, rangeAreas } = this.filters;
-      this.views = views;
-      this.floors = floors;
-      this.departments = departments;
-      this.rooms = rooms;
-      this.statuses = statuses;
-      this.projects = projects;
-      this.typeDepartments = typeDepartments;
-      this.rangePrices = rangePrices;
-      this.rangeAreas = rangeAreas;
+      if (views) this.views = views;
+      if (floors) this.floors = floors;
+      if (departments) this.departments = departments;
+      if (rooms) this.rooms = rooms;
+      if (statuses) this.statuses = statuses;
+      if (projects) this.projects = projects;
+      if (typeDepartments) this.typeDepartments = typeDepartments;
+      if (rangePrices) this.rangePrices = rangePrices;
+      if (rangeAreas) this.rangeAreas = rangeAreas;
       this.updateFilter();
     }
   },
