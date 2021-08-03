@@ -357,10 +357,22 @@ export default {
     handleDragEndArea(){
       this.areaDragged = true;
     },
-     handleDragEndPrice(){
+    handleDragEndPrice(){
       this.pricesDragged = true;
     },
     sendFilters() {
+      let filters = {
+        "rangePrices" : this.rangePrices,
+        "views" : this.views,
+        "floors" : this.floors,
+        "departments" : this.departments,
+        "rooms" : this.rooms,
+        "statuses" : this.statuses,
+        "projects" : this.projects,
+        "typeDepartments" : this.typeDepartments,
+        "rangeAreas" : this.rangeAreas
+      };
+      this.$store.dispatch("setFilters", filters);
       this.$emit(
         "set",
         1,
@@ -388,6 +400,7 @@ export default {
       this.lastSelected = '';
       setTimeout(() => {
         this.$emit("clear");
+        this.$store.dispatch("setFilters", {});
       }, 50);
       this.updateFilter();
     },
@@ -463,7 +476,24 @@ export default {
           this.requestServer = false;
           this.areaDragged = false;
           this.pricesDragged = false;
+
+          if(init){
+            this.setFilters();
+          }
         });
+    },
+    setFilters(){
+      const { rangePrices, views, floors, departments, rooms, statuses, projects, typeDepartments, rangeAreas } = this.filters;
+      this.views = views;
+      this.floors = floors;
+      this.departments = departments;
+      this.rooms = rooms;
+      this.statuses = statuses;
+      this.projects = projects;
+      this.typeDepartments = typeDepartments;
+      this.rangePrices = rangePrices.splice();
+      this.rangeAreas = rangeAreas.splice();
+      this.updateFilter();
     }
   },
   mounted(){
@@ -479,6 +509,9 @@ export default {
       if(this.rangePrices[1]){
         return "S/ " + this.rangePrices[1].toLocaleString("en");
       }
+    },
+    filters() {
+      return this.$store.getters.getFilters;
     },
   },
   watch: {

@@ -5,7 +5,7 @@ var ls = new SecureLS({ isCompression: false });
 export default ({store}) => {
   createPersistedState({
     key: 'oh22o2t7t55222t5',
-    paths: ['customer','expireLS'],
+    paths: ['customer','expireLS','filters'],
     //fetchBeforeUse: true,
     storage: {
       getItem: (key) => ls.get(key),

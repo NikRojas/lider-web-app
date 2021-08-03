@@ -4,6 +4,7 @@ export const state = () => ({
     menu: {},
     page: {},
     customer: {},
+    filters: {},
     errorMessage: '',
     expireLS: null 
 });
@@ -28,6 +29,10 @@ export const mutations = {
     },
     SET_EXPIRE_LS(state, expire){
         state.expireLS = expire; 
+    },
+    SET_FILTERS(state, filters){
+        //state.filters = filters; 
+        state.filters = Object.assign({}, filters);
     },
 }
 
@@ -54,6 +59,9 @@ export const actions = {
     setExpireLS({ commit}, expire){
         commit('SET_EXPIRE_LS', expire);
     },
+    setFilters({ commit}, filters){
+        commit('SET_FILTERS', filters);
+    },
 }
 
 export const getters = {
@@ -77,6 +85,9 @@ export const getters = {
     },
     getExpireLS: state => {
         return state.expireLS
+    },
+    getFilters: state => {
+        return state.filters
     },
 }
 
