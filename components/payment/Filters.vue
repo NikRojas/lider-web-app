@@ -491,8 +491,8 @@ export default {
       this.statuses = statuses;
       this.projects = projects;
       this.typeDepartments = typeDepartments;
-      this.rangePrices = rangePrices.splice();
-      this.rangeAreas = rangeAreas.splice();
+      this.rangePrices = rangePrices;
+      this.rangeAreas = rangeAreas;
       this.updateFilter();
     }
   },
