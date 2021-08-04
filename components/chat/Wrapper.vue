@@ -1264,6 +1264,11 @@ div#pgChat{
     }
   }
 
+  /* ESTILOS DE DESPARTAMENTOS Y DISTRITOS */
+  .chat_link_button_departamente_distrito{
+    width: auto;
+  }
+
   .faceReaction__content {
     display: flex !important;
     justify-content: space-around;
