@@ -14,43 +14,52 @@
         <audio :src="record.src" controls />
       </div>
     </div>
+
     <div class="chat__box shadow" :class="{ active: reveal }" v-show="reveal">
-      <div class="chat__header font-weight-bold">
+      <div class="chat__header font-weight-bold" id="chatHeader">
         <div class="grid-header-chat">
-          <div class="chat__avatar">
-            <img :src="require('~/assets/img/micro.png')" alt />
+
+          <div class="chat__header_avatar_name" id="chatHeader_avatar_name">
+            <div class="chat__avatar">
+              <img :src="require('~/assets/img/robotPlay.png')" alt />
+            </div>
+            <div class="chat__name">
+              <h3>{{ botName }}</h3>
+              <div class="online"><span></span><p>En línea</p></div>
+              <div v-if="!chooseButton">
+                <!--button
+                  class="button button--micro"
+                  @click="startRecording"
+                  :disabled="recognitionActive"
+                  v-if="recognitionSupported"
+                >
+                  <img
+                    :src="require('~/assets/img/micro.png')"
+                    alt="Micro"
+                    height="20"
+                    width="auto"
+                  />
+                  {{ recognitionActive ? "Hablando..." : "Hablar" }}
+                </button-->
+              </div>
+            </div>
           </div>
 
-          <div class="chat__name">
-            <h3>{{ botName }}</h3>
-            <div class="online"><span></span>En línea</div>
-            <div v-if="!chooseButton">
+          <div class="chat__sound">
+            <div class="chat__name">
               <button
-                class="button button--micro"
-                @click="startRecording"
-                :disabled="recognitionActive"
-                v-if="recognitionSupported"
-              >
-                <img
-                  :src="require('~/assets/img/micro.png')"
-                  alt="Micro"
-                  height="20"
-                  width="auto"
-                />
-                {{ recognitionActive ? 'Hablando...' : 'Hablar'}}
-              </button>
-            </div>
-            <button
                 class="button button--sound"
                 v-if="soundSupported"
                 @click="toggleSound"
               >
                 {{ soundActive ? "V. ON" : "V. OFF" }}
               </button>
+            </div>
           </div>
+          
         </div>
-        <button class="button chat__close" @click="toggleChat">
-          <CloseIcon/>
+        <button class="button chat__close" @click="toggleChat" id="buttonChat__Close">
+          <CloseIcon />
         </button>
       </div>
 
@@ -71,7 +80,9 @@
                 :key="i"
               >
                 <div
-                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  class="
+                    chat__message__wrapper--block chat__message__wrapper--text
+                  "
                   v-if="el.message || el.element == 'texts'"
                 >
                   <Profile v-if="el.type == 'server'"></Profile>
@@ -96,14 +107,14 @@
                 </div>
 
                 <div
-                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  class="
+                    chat__message__wrapper--block chat__message__wrapper--text
+                  "
                   v-if="el.element != 'texts' && el.texts"
                 >
                   <Profile v-if="el.type == 'server'"></Profile>
 
-                  <div
-                    class="chat__wrapper__texts"
-                  >
+                  <div class="chat__wrapper__texts">
                     <Message
                       :text="elText"
                       v-for="(elText, i) in el.texts"
@@ -113,7 +124,9 @@
                 </div>
 
                 <div
-                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  class="
+                    chat__message__wrapper--block chat__message__wrapper--text
+                  "
                   v-if="el.message_above"
                 >
                   <div
@@ -124,30 +137,39 @@
                 </div>
 
                 <div
-                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  class="
+                    chat__message__wrapper chat__message__wrapper--carousel
+                  "
                   v-if="el.gallery"
                 >
                   <Gallery :array="el.gallery"></Gallery>
                 </div>
 
                 <div
-                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  class="
+                    chat__message__wrapper chat__message__wrapper--carousel
+                  "
                   v-if="el.element != 'carousel' && el.carousel"
                 >
-                  <Carousel
-                    :array="el.carousel"
-                  ></Carousel>
+                  <Carousel :array="el.carousel"></Carousel>
                 </div>
 
-
                 <div
-                  class="chat__message__wrapper chat__message__wrapper--block chat__message__wrapper--el"
+                  class="
+                    chat__message__wrapper
+                    chat__message__wrapper--block
+                    chat__message__wrapper--el
+                  "
                   v-if="el.element == 'cards'"
                 >
                   <Card :array="el.content" @click="clickButton"></Card>
                 </div>
                 <div
-                  class="chat__message__wrapper chat__message__wrapper--block chat__message__wrapper--el"
+                  class="
+                    chat__message__wrapper
+                    chat__message__wrapper--block
+                    chat__message__wrapper--el
+                  "
                   v-if="el.element == 'buttons'"
                 >
                   <Button
@@ -156,10 +178,17 @@
                     @click="clickButton"
                   ></Button>
                 </div>
-                <Qualify v-if="el.element == 'qualify'" :array="el.content" :triggered="el.triggered" @click="clickButton"/>
-                
+                <Qualify
+                  v-if="el.element == 'qualify'"
+                  :array="el.content"
+                  :triggered="el.triggered"
+                  @click="clickButton"
+                />
+
                 <div
-                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  class="
+                    chat__message__wrapper chat__message__wrapper--carousel
+                  "
                   v-if="el.element == 'carousel'"
                 >
                   <Carousel
@@ -170,7 +199,9 @@
                 </div>
 
                 <div
-                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  class="
+                    chat__message__wrapper chat__message__wrapper--carousel
+                  "
                   v-if="el.element == 'carousel-button'"
                 >
                   <CarouselButton
@@ -181,21 +212,21 @@
                 </div>
 
                 <div
-                  class="chat__message__wrapper chat__message__wrapper--carousel"
+                  class="
+                    chat__message__wrapper chat__message__wrapper--carousel
+                  "
                   v-if="el.element == 'gallery'"
                 >
                   <Gallery :array="el.content"></Gallery>
                 </div>
 
-                
-
-                
-
                 <div
-                  class="chat__message__wrapper--block chat__message__wrapper--text"
+                  class="
+                    chat__message__wrapper--block chat__message__wrapper--text
+                  "
                   v-if="el.message_below"
                 >
-                  <div style="width:40px;"></div>
+                  <div style="width: 40px"></div>
                   <div
                     class="chat__message__wrapper chat__message__wrapper--block"
                   >
@@ -205,11 +236,16 @@
               </div>
             </div>
             <div
-              class="chat__message chat__message-server chat__message-server-typing"
+              class="
+                chat__message chat__message-server chat__message-server-typing
+              "
               v-if="chatServerResponse"
             >
               <div
-                class="chat__message__wrapper chat__message__wrapper--block shadow"
+                class="
+                  chat__message__wrapper chat__message__wrapper--block
+                  shadow
+                "
               >
                 <div class="chat__message__text" style="margin-left: 15px">
                   <Typing />
@@ -323,11 +359,11 @@ export default {
     Typing,
     CarouselButton,
     CloseIcon,
-    Qualify
+    Qualify,
   },
   data() {
     return {
-      botName: 'XBot',
+      botName: "LiderBot",
       chooseButton: false,
       reveal: false,
       showNotification: false,
@@ -396,19 +432,23 @@ export default {
     this.socket.on("message", (resp) => {
       console.log(resp);
       this.setMessage(resp);
-      if(resp.route){
+      if (resp.route) {
         this.$router.push(this.localePath(resp.route));
       }
       if (resp.route_section) {
         let scrollToOptions = { easing: "ease" };
-        if(resp.route_section == '#cotizar'){
+        if (resp.route_section == "#cotizar") {
           scrollToOptions.offset = +40;
         }
         setTimeout(() => {
           this.$scrollTo(resp.route_section, 1000, scrollToOptions);
         }, 600);
       }
-      if (resp.element == "buttons" || resp.element == "carousel" || resp.element == "qualify") {
+      if (
+        resp.element == "buttons" ||
+        resp.element == "carousel" ||
+        resp.element == "qualify"
+      ) {
         this.chooseButton = true;
       }
       let self = this;
@@ -442,12 +482,13 @@ export default {
     });
   },
   methods: {
-    showMessages(){
+    showMessages() {
       let self = this;
       this.timer = setInterval(function () {
-        self.messageActive = self.messagesHello[
-          Math.floor(Math.random() * self.messagesHello.length)
-        ];
+        self.messageActive =
+          self.messagesHello[
+            Math.floor(Math.random() * self.messagesHello.length)
+          ];
         self.showNotification = true;
       }, 10000); // 60 * 1000 milsec
     },
@@ -470,10 +511,10 @@ export default {
           self.message = event.results[0][0].transcript;
           self.sendMessage();
           self.recognitionActive = false;
-            let audio = new Audio(
-          "https://freesound.org/data/previews/69/69723_866625-lq.mp3"
-        );
-        audio.play();
+          let audio = new Audio(
+            "https://freesound.org/data/previews/69/69723_866625-lq.mp3"
+          );
+          audio.play();
         };
         this.recognition.onspeechend = function (event) {};
         this.recognition.onerror = function (e) {
@@ -508,10 +549,9 @@ export default {
       } else {
         this.firstTime = false;
       }
-      if(this.reveal){
+      if (this.reveal) {
         clearInterval(this.timer);
-      }
-      else{
+      } else {
         this.showMessages();
       }
     },
@@ -544,7 +584,12 @@ export default {
       this.$store.dispatch("setConversation", array);
       this.$store.dispatch("setChatServerResponse");
       const [lastItem] = array.slice(-1);
-      if(lastItem.triggered === undefined  && (lastItem.element == "buttons" || lastItem.element == "carousel" || lastItem.element == "qualify")){
+      if (
+        lastItem.triggered === undefined &&
+        (lastItem.element == "buttons" ||
+          lastItem.element == "carousel" ||
+          lastItem.element == "qualify")
+      ) {
         this.chooseButton = true;
       }
     },
@@ -604,9 +649,7 @@ export default {
   watch: {
     reveal: {
       immediate: true,
-      handler(newVal, oldVal) {
-        
-      },
+      handler(newVal, oldVal) {},
     },
     showNotification: {
       immediate: true,
@@ -620,7 +663,7 @@ export default {
     },
     chatMessages: {
       handler: function (newValue) {
-        if(newValue.length > 0){
+        if (newValue.length > 0) {
           console.log(newValue);
           if (!this.$device.ios) {
             let value = newValue[newValue.length - 1];
@@ -630,18 +673,18 @@ export default {
                   if (value.element === "texts") {
                     this.speak(value.content);
                   } else {
-                    let phrase = []
-                    if(value.message) {
-                      phrase = [ ...phrase, value.message ];
+                    let phrase = [];
+                    if (value.message) {
+                      phrase = [...phrase, value.message];
                     }
-                    if(value.texts){
+                    if (value.texts) {
                       phrase = phrase.concat(value.texts);
                     }
-                    if(typeof value.message_above !== "undefined"){
-                      phrase.push(value.message_above)
+                    if (typeof value.message_above !== "undefined") {
+                      phrase.push(value.message_above);
                     }
-                    if(typeof value.message_below !== "undefined"){
-                      phrase.push(value.message_below)
+                    if (typeof value.message_below !== "undefined") {
+                      phrase.push(value.message_below);
                     }
                     console.log(phrase);
                     this.speak(phrase);
@@ -653,13 +696,15 @@ export default {
               }
             }
           }
-        } 
+        }
       },
       deep: true,
     },
   },
 };
 </script>
+
+
 <style lang="scss">
 .shadow {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
@@ -1000,7 +1045,7 @@ export default {
       background: white;
     }
     .chat__header {
-      background: #0091c5;
+      background: #0079bb;
       //background-image: url(https://storage.googleapis.com/playgroup-web/bot/images/bg-bot.jpg);
       background-size: cover;
       border-bottom: 1px solid #d0d0ef;
@@ -1102,14 +1147,67 @@ export default {
       height: 56px;
     }
   }
-  .ml-auto{
+  .ml-auto {
     margin-left: auto;
   }
-  .mt-1{
-    margin-top: .5rem;
+  .mt-1 {
+    margin-top: 0.5rem;
   }
-  .mb-0{
+  .mb-0 {
     margin-bottom: 0 !important;
   }
 }
+
+/*===========================*/
+/*ESTILOS JOSEPH*/
+div#chatHeader{
+  padding: 18px 20px !important;
+}
+
+div#chatHeader_avatar_name {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 1px 35px 0 14px;
+    .chat__avatar{
+      img{
+        max-width: 100% !important;
+        width: 31px;
+      }
+    }
+    .chat__name{
+      padding-top: 4px;
+      h3{
+        margin: 0 !important;
+        font-weight: 100;
+        font-size: 14px;
+      }
+      .online{
+        margin-bottom: 0 !important;
+        span{
+          width: 6px !important;
+          height: 6px !important;
+        }
+        p{
+          font-size: 10px;
+          color: white;
+          margin-bottom: 0px;
+          line-height: 10px;
+          font-weight: 100;
+        }
+      }
+    }
+}
+
+div#buttonChat__Close{
+    background: rgba(255, 255, 255, 0.2);
+    padding: 11px;
+    border-radius: 5px;
+    svg{
+      font-size: 10px;
+      display: block;
+    }
+}
+
 </style>
