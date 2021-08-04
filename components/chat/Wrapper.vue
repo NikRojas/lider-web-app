@@ -39,10 +39,12 @@
               >
               <img
                 :src="require('~/assets/img/vol_off.svg')"
-                alt="Micro"
+                alt="Volumen Off"
                 height=""
                 width="auto"
+                v-if="!soundActive"
               />
+              <img src="" alt="Volumen On" v-else>
               <!--{{ soundActive ? "V. ON" : "V. OFF" }}-->
               </button>
             </div>
@@ -54,7 +56,18 @@
         </button>
       </div>
 
-      <div class="chat__body">
+      <div>
+        <button style="display:inline-block" @click="setBlock('chat')">
+          Chat
+        </button>
+        <button style="display:inline-block" @click="setBlock('faq')">
+          Preguntas Frecuentes
+        </button>
+      </div>
+      <div class="chat__body" v-show="block == 'faq'">
+        <Faq/>
+      </div>
+      <div class="chat__body" v-show="block == 'chat'">
         <client-only>
           <simplebar
             class="chat__body__wrapper"
@@ -246,9 +259,9 @@
           </simplebar>
         </client-only>
       </div>
-      <div class="chat__footer">
+      <div class="chat__footer"  v-show="block == 'chat'">
         <div class="ib-wrapper" v-if="showInput">          
-          <div id="buttonMicro_voz" class="shadow" v-if="!chooseButton">
+          <div id="buttonMicro_voz" class="shadow" v-if="!chooseButton" :class="recognitionActive ? 'button--disabled' : ''">
             <button
               class="button button--micro"
               @click="startRecording"
@@ -276,7 +289,7 @@
             v-model="message"
             class="input  shadow"
             @keypress.enter="sendMessage"
-            :disabled="chatServerResponse || chooseButton"
+            :disabled="chatServerResponse || chooseButton || recognitionActive"
             ref="inputChat"
           />
 
@@ -356,6 +369,7 @@ import CarouselButton from "./CarouselButton";
 import Gallery from "./Gallery";
 import Profile from "./Profile";
 import Typing from "./Typing";
+import Faq from "./Faq";
 export default {
   components: {
     Button,
@@ -368,6 +382,7 @@ export default {
     CarouselButton,
     CloseIcon,
     Qualify,
+    Faq
   },
   data() {
     return {
@@ -378,21 +393,21 @@ export default {
       message: "",
       recordings: [],
       showInput: true,
-      record: {
+      /*record: {
         mediaStream: "",
         processor: "",
         context: "",
-      },
+      },*/
       recognitionActive: false,
       recognitionSupported: false,
-      leftchannel: [],
-      rightchannel: [],
+      //leftchannel: [],
+      //rightchannel: [],
       recognition: null,
-      recordingLength: 0,
+      //recordingLength: 0,
       volume: null,
-      mediaStream: null,
-      sampleRate: 44100,
-      context: null,
+      //mediaStream: null,
+      //sampleRate: 44100,
+      //context: null,
       firstTime: true,
       connectionError: false,
       host: "",
@@ -408,6 +423,7 @@ export default {
       timer: "",
       soundActive: true,
       soundSupported: true,
+      block: "chat"
     };
   },
   computed: {
@@ -490,6 +506,9 @@ export default {
     });
   },
   methods: {
+    setBlock(data){
+      this.block = data;
+    },
     showMessages() {
       let self = this;
       this.timer = setInterval(function () {
@@ -714,6 +733,11 @@ export default {
 
 
 <style lang="scss">
+#pgChat{
+  .button--disabled{
+    opacity: .6;
+  }
+}
 .shadow {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
 }

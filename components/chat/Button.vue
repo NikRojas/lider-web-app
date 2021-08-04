@@ -3,6 +3,7 @@
     <template v-if="!triggered && !hide">
       <button
         class="chat__link chat__link--button shadow"
+        :class="el.classes"
         v-for="(el, i) in array"
         :key="'button'+i"
         @click.prevent="click(el.text)"
