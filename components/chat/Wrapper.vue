@@ -248,7 +248,7 @@
       </div>
       <div class="chat__footer">
         <div class="ib-wrapper" v-if="showInput">          
-          <div id="buttonMicro_voz" class="shadow" v-if="!chooseButton">
+          <div id="buttonMicro_voz" class="buttonMicro_voz shadow" v-if="!chooseButton">
             <button
               class="button button--micro"
               @click="startRecording"
@@ -832,7 +832,7 @@ export default {
 }
 
 .chat__message__wrapper--carousel {
-  margin-left: 20px;
+  /*margin-left: 20px;*/
 }
 .chat__dialog {
   position: relative;
@@ -1168,7 +1168,141 @@ export default {
 
 /*===========================*/
 /*ESTILOS JOSEPH*/
-div#chatHeader{
+
+div#pgChat{
+  .chat__header{
+    padding: 18px 20px !important;
+  }
+
+  .chat__header_avatar_name{
+    display: grid  !important;
+    grid-template-columns: auto 1fr !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 5px;
+    padding: 1px 35px 0 14px;
+    .chat__avatar{
+      img{
+        max-width: 100% !important;
+        width: 31px !important;
+      }
+    }
+    .chat__name{
+      padding-top: 4px !important;
+      h3{
+        margin: 0 !important;
+        font-weight: 100 !important;
+        font-size: 14px !important;
+      }
+      .online{
+        margin-bottom: 0 !important;
+        span{
+          width: 6px !important;
+          height: 6px !important;
+        }
+        p{
+          font-size: 10px !important;
+          color: white !important;
+          margin-bottom: 0px !important;
+          line-height: 10px !important;
+          font-weight: 100 !important;
+        }
+      }
+    }
+  }
+
+  .button--sound{    
+    margin-left: 10px;
+    padding: 10px;
+    display: grid;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+  }
+
+  .chat__close{
+    background: rgba(255, 255, 255, 0.2) !important;
+    padding: 11px;
+    border-radius: 5px;
+    position: initial;
+    svg{
+      font-size: 10px;
+      display: block;
+    }
+  }
+
+  .ib-wrapper__button{    
+    background: #0079BB;
+  }
+
+  .buttonMicro_voz{
+    background: #0079bb;
+    margin-right: 10px;
+    border-radius: 5px;
+    display: grid;
+    .button--micro{
+      background: none;
+      align-items: center;
+      align-content: center;
+      img{
+        margin-right: 0 !important;
+        width: 21px;
+      }
+    }
+  }
+
+  .chat__link--button{    
+    display: inline-block;
+    background: none;
+    color: #F15F23;
+    font-size: 12px;
+    border: 1px solid #F15F23;
+    border-radius: 5px;
+    margin-right: 8px;
+    width: 100%;
+    &:hover{
+      background: #F15F23;
+      color: white;
+    }
+  }
+
+  .faceReaction__content {
+    display: flex !important;
+    justify-content: space-around;
+    .face_reaction {
+      width: auto !important;
+      border: none;      
+      padding: 6px;
+      margin-bottom: 0;
+      margin-right: 0;
+      &:hover{
+        background: none !important;
+      }
+      img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+    /* clases de Caras */
+    .face_veryBad{
+      border: 1px solid #FF4A4A; 
+    }
+    .face_Bad{
+      border: 1px solid #F15F23; 
+    }
+    .face_regular{
+      border: 1px solid #E3D01E;   
+    }
+    .face_god{
+      border: 1px solid #77E351;     
+    }
+    .face_verygod{
+      border: 1px solid #189F0C;     
+    }
+
+  }
+}
+
+/*div#chatHeader{
   padding: 18px 20px !important;
 }
 
@@ -1246,5 +1380,20 @@ div#buttonMicro_voz {
       }
     }
 }
+
+button#chat__buttonLink {
+    display: inline-block;
+    background: none;
+    color: #F15F23;
+    font-size: 12px;
+    border: 1px solid #F15F23 !important;
+    border-radius: 5px;
+    margin-right: 8px;
+    width: 100%;
+    &:hover{
+      background: #F15F23;
+      color: white;
+    }
+}*/
 
 </style>
