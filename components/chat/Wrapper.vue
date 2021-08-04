@@ -26,22 +26,6 @@
             <div class="chat__name">
               <h3>{{ botName }}</h3>
               <div class="online"><span></span><p>En línea</p></div>
-              <div v-if="!chooseButton">
-                <!--button
-                  class="button button--micro"
-                  @click="startRecording"
-                  :disabled="recognitionActive"
-                  v-if="recognitionSupported"
-                >
-                  <img
-                    :src="require('~/assets/img/micro.png')"
-                    alt="Micro"
-                    height="20"
-                    width="auto"
-                  />
-                  {{ recognitionActive ? "Hablando..." : "Hablar" }}
-                </button-->
-              </div>
             </div>
           </div>
 
@@ -49,10 +33,17 @@
             <div class="chat__name">
               <button
                 class="button button--sound"
+                id="buttonSound_chat"
                 v-if="soundSupported"
                 @click="toggleSound"
               >
-                {{ soundActive ? "V. ON" : "V. OFF" }}
+              <img
+                :src="require('~/assets/img/vol_off.svg')"
+                alt="Micro"
+                height=""
+                width="auto"
+              />
+              <!--{{ soundActive ? "V. ON" : "V. OFF" }}-->
               </button>
             </div>
           </div>
@@ -256,7 +247,23 @@
         </client-only>
       </div>
       <div class="chat__footer">
-        <div class="ib-wrapper shadow" v-if="showInput">
+        <div class="ib-wrapper" v-if="showInput">          
+          <div id="buttonMicro_voz" class="shadow" v-if="!chooseButton">
+            <button
+              class="button button--micro"
+              @click="startRecording"
+              :disabled="recognitionActive"
+              v-if="recognitionSupported"
+            >
+              <img
+                :src="require('~/assets/img/Micro_voz.png')"
+                alt="Micro"
+                height=""
+                width="auto"
+              />
+              <!--{{ recognitionActive ? "Hablando..." : "Hablar" }}-->
+            </button>
+          </div>
           <input
             type="text"
             :placeholder="
@@ -264,10 +271,10 @@
                 ? 'Seleccione una opción'
                 : recognitionActive
                 ? 'Escuchando'
-                : 'Escribir'
+                : 'Escribe tu mensaje aqui'
             "
             v-model="message"
-            class="input"
+            class="input  shadow"
             @keypress.enter="sendMessage"
             :disabled="chatServerResponse || chooseButton"
             ref="inputChat"
@@ -276,6 +283,7 @@
           <button
             @click.prevent="sendMessage"
             class="button ib-wrapper__button send"
+            id="button__sendMessage"
             :disabled="recognitionActive || chooseButton"
           >
             <svg
@@ -307,7 +315,7 @@
             </svg>
           </button>
         </div>
-        <span class="chat__company">
+        <!--span class="chat__company">
           Powered by
           <a
             rel="noopener"
@@ -316,7 +324,7 @@
             class="font-weight-bold"
             >PLAY Group</a
           >
-        </span>
+        </span-->
       </div>
     </div>
 
@@ -1082,10 +1090,10 @@ export default {
       .chat__message__text {
         display: inline-block;
         padding: 10px 18px;
-        font-size: 14px;
+        font-size: 12px;
         margin-bottom: 10px;
         border-radius: 5px;
-        background: white;
+        background: #E8F4FF;
       }
 
       &.chat__message-server {
@@ -1200,13 +1208,42 @@ div#chatHeader_avatar_name {
     }
 }
 
-div#buttonChat__Close{
-    background: rgba(255, 255, 255, 0.2);
+button#buttonSound_chat {
+    margin-left: 10px;
+    padding: 10px;
+    display: grid;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+button#buttonChat__Close{
+    background: rgba(255, 255, 255, 0.2) !important;
     padding: 11px;
     border-radius: 5px;
+    position: initial;
     svg{
       font-size: 10px;
       display: block;
+    }
+}
+
+button#button__sendMessage {
+    background: #0079BB;
+}
+
+div#buttonMicro_voz {
+    background: #0079bb;
+    margin-right: 10px;
+    border-radius: 5px;
+    display: grid;
+    .button--micro{
+      background: none;
+      align-items: center;
+      align-content: center;
+      img{
+        margin-right: 0 !important;
+        width: 21px;
+      }
     }
 }
 
