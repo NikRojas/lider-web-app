@@ -1,5 +1,5 @@
 <template>
-  <span class="chat__profile shadow" id="chatProfile">
+  <span class="chat__profile" id="chatProfile">
     <img :src="require('~/assets/img/robotPlay.png')" alt />
   </span>
 </template>

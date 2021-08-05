@@ -39,11 +39,14 @@ export default {
 };
 </script>
 <style lang="scss">
-.chat__card {
+#pgChat{
+  .chat__card {
     border: 1px solid gray;
     .chat__card__header {
       text-align: left;
       padding: 5px;
     }
   }
+}
+
 </style>

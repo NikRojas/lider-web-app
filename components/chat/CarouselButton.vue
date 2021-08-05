@@ -17,7 +17,8 @@
   </div>
 </template>
 <style lang="scss">
-.chat__carousel-button {
+#pgChat{
+  .chat__carousel-button {
   &.swiper-container {
     width: 100%;
     height: 100%;
@@ -31,6 +32,7 @@
   .swiper-slide {
     width: auto !important;
   }
+}
 }
 </style>
 <script>

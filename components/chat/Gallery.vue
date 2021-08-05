@@ -6,7 +6,11 @@
     >
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(el, i) in array" :key="el.src + i">
-          <img :src="el.src" :alt="el.caption ? el.caption : ''" @click="index = i" />
+          <img
+            :src="el.src"
+            :alt="el.caption ? el.caption : ''"
+            @click="index = i"
+          />
         </div>
       </div>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -17,16 +21,17 @@
   </div>
 </template>
 <style lang="scss">
-.chat__card__gallery__wrapper{
-  .tinybox__thumbs__item{
-    opacity: .3 ;
-    &.tinybox__thumbs__item--active{
+#pgChat {
+  .chat__card__gallery__wrapper {
+  .tinybox__thumbs__item {
+    opacity: 0.3;
+    &.tinybox__thumbs__item--active {
       opacity: 1;
     }
   }
 }
-.chat__carousel__gallery{
-.swiper-container {
+.chat__carousel__gallery {
+  .swiper-container {
     width: 100%;
     height: 100%;
     padding-bottom: 35px !important;
@@ -74,10 +79,11 @@
     background-position: 50%;
     background-repeat: no-repeat;
   }
-img {
-  width: 100%;
-  height: auto;
-  cursor: pointer;
+  img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
 }
 }
 
@@ -86,10 +92,10 @@ img {
 import Tinybox from "vue-tinybox";
 export default {
   props: {
-    array: Array
+    array: Array,
   },
   components: {
-    Tinybox
+    Tinybox,
   },
   data() {
     return {
@@ -100,7 +106,7 @@ export default {
         //spaceBetween: 30,
         navigation: {
           nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          prevEl: ".swiper-button-prev",
         },
         /*pagination: {
             el: '.swiper-pagination'
@@ -109,16 +115,16 @@ export default {
         autoWidth: true,
         breakpoints: {
           700: {
-            slidesPerView: 1
+            slidesPerView: 1,
             //spaceBetween: 30,
           },
           1440: {
-            slidesPerView: 2
+            slidesPerView: 2,
             //spaceBetween: 30,
-          }
-        }
-      }
+          },
+        },
+      },
     };
-  }
+  },
 };
 </script>

@@ -2,7 +2,7 @@
   <div>
     <template v-if="!triggered && !hide">
       <button
-        class="chat__link chat__link--button shadow"
+        class="chat__link chat__link--button"
         :class="el.classes"
         id="chat__buttonLink"
         v-for="(el, i) in array"
