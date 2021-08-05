@@ -14,7 +14,7 @@
           <div class="chat__carousel__title font-weight-bold">
             {{ el.title }}
           </div>
-          <!--<div class="chat__carousel__desc color-secondary" v-if="el.desc">{{ el.desc }}</div>-->
+          <div class="chat__carousel__desc" v-if="el.description" v-html="el.description"></div>
           <template v-if="!triggered && !hide">
             <div class="chat__carousel__button" v-if="el.button">
               <button class="chat__link" id="chat__carouselButton" @click.prevent="click(el.button)">
