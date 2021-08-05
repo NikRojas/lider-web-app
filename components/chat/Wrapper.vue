@@ -1233,6 +1233,10 @@ div#pgChat {
     padding: 18px 20px !important;
   }
 
+  .chat__body {
+      padding-top: 10px;
+  }
+
   .chat__header_avatar_name {
     display: grid !important;
     grid-template-columns: auto 1fr !important;
