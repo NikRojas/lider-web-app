@@ -15,6 +15,7 @@
       </div>
     </div>
 
+    <transition name="slide">
     <div class="chat__box shadow" :class="{ active: reveal }" v-show="reveal">
       <div class="chat__header font-weight-bold" id="chatHeader">
         <div class="grid-header-chat">
@@ -261,7 +262,7 @@
         </client-only>
       </div>
       <div class="chat__footer"  v-show="block == 'chat'">
-        <div class="ib-wrapper" v-if="showInput">          
+        <div class="ib-wrapper" v-if="showInput && !chooseButton">          
           <div id="buttonMicro_voz" class="buttonMicro_voz shadow" v-if="!chooseButton" :class="recognitionActive ? 'button--disabled' : ''">
             <button
               class="button button--micro"
@@ -341,23 +342,58 @@
         </span-->
       </div>
     </div>
+    </transition>
 
     <div class="chat__dialog shadow" v-if="showNotification">
       {{ messageActive }}
     </div>
-    <div
-      class="chat__button chat__button--main shadow"
-      transition="expand"
-      v-if="!reveal"
-    >
-      <span class="chat__notification shadow" v-if="showNotification">1</span>
-      <button class="button img__wrapper" id="pgChatButton" @click="toggleChat">
-        <img src="/img/futuroso.gif" alt="Chat" />
-      </button>
-    </div>
+    
+      <div
+        class="chat__button chat__button--main shadow"
+        v-if="!reveal"
+      >
+        <span class="chat__notification shadow" v-if="showNotification">1</span>
+        <button class="button img__wrapper" id="pgChatButton" @click="toggleChat">
+          <img src="/img/futuroso.gif" alt="Chat" />
+        </button>
+      </div>
   </div>
 </template>
+<style scoped>
+@-webkit-keyframes slide-in-fwd-center {
+  0% {
+    -webkit-transform: translateZ(-1400px);
+            transform: translateZ(-1400px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-fwd-center {
+  0% {
+    -webkit-transform: translateZ(-1400px);
+            transform: translateZ(-1400px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+}
+.slide-enter-active{
+  -webkit-animation: slide-in-fwd-center 0.35s both;
+	        animation: slide-in-fwd-center 0.35s both;
+}
 
+.slide-leave{
+  opacity: 0;
+  animation: none;
+}
+</style>
 
 <script>
 import Button from "./Button";
@@ -447,6 +483,7 @@ export default {
     if (this.$device.ios) {
       this.soundSupported = false;
     }
+    this.initSoundBot();
     this.initMicrophone();
     this.socket = this.$nuxtSocket({
       channel: "/chat",
@@ -478,7 +515,7 @@ export default {
       }
       let self = this;
       setTimeout(() => {
-        self.$refs.inputChat.focus();
+        if(self.$refs.inputChat) self.$refs.inputChat.focus();
       }, 300);
       this.scrollBottom();
     });
@@ -488,7 +525,7 @@ export default {
       this.scrollBottom();
       let self = this;
       setTimeout(() => {
-        self.$refs.inputChat.focus();
+        if(self.$refs.inputChat) self.$refs.inputChat.focus();
       }, 300);
     });
 

@@ -9,7 +9,9 @@
         <div
           class="chat__carousel__image"
           :style="{ backgroundImage: `url(${el.image})` }"
-        ></div>
+        >
+        <img :src="el.logo" v-if="el.logo" alt="">
+        </div>
         <div class="chat__carousel__footer shadow">
           <div class="chat__carousel__title font-weight-bold">
             {{ el.title }}
