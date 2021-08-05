@@ -5,7 +5,7 @@
     id="pgChat"
     v-if="!connectionError"
   >
-    <div
+    <!--<div
       v-for="(record, index) in recordings"
       :key="index"
       class="recorded-item"
@@ -13,7 +13,7 @@
       <div class="audio-container">
         <audio :src="record.src" controls />
       </div>
-    </div>
+    </div>-->
 
     <transition name="slide">
     <div class="chat__box shadow" :class="{ active: reveal }" v-show="reveal">
@@ -394,7 +394,6 @@
   animation: none;
 }
 </style>
-
 <script>
 import Button from "./Button";
 import Message from "./Message";
@@ -428,23 +427,11 @@ export default {
       reveal: false,
       showNotification: false,
       message: "",
-      recordings: [],
       showInput: true,
-      /*record: {
-        mediaStream: "",
-        processor: "",
-        context: "",
-      },*/
       recognitionActive: false,
       recognitionSupported: false,
-      //leftchannel: [],
-      //rightchannel: [],
       recognition: null,
-      //recordingLength: 0,
       volume: null,
-      //mediaStream: null,
-      //sampleRate: 44100,
-      //context: null,
       firstTime: true,
       connectionError: false,
       host: "",
@@ -457,7 +444,11 @@ export default {
         "¡Regresaste! Acá me encontrarás si tienes cualquier problema.",
         "¿Estás? Recuerda que yo te ayudo con cualquier duda que tengas. ¡Osito Futuroso a tu servicio!",
       ],
-      timer: "",
+      messagesHelloProject: [
+        "Esto es un proyecto",
+        "Departamentos",
+      ],
+      timerNotification: "",
       soundActive: true,
       soundSupported: true,
       block: "chat"
@@ -470,14 +461,18 @@ export default {
     chatServerResponse() {
       return this.$store.getters.getChatServerResponse;
     },
+    routeName() {
+      return this.$route.name
+    }  
   },
   updated() {
     this.scrollBottom();
-    if (this.showNotification) {
+    //console.log($nuxt.$route.name)
+    /*if (this.showNotification) {
       setTimeout(() => {
         this.showNotification = false;
       }, 60000);
-    }
+    }*/
   },
   mounted() {
     if (this.$device.ios) {
@@ -549,13 +544,20 @@ export default {
     },
     showMessages() {
       let self = this;
-      this.timer = setInterval(function () {
+      this.timerNotification = setInterval(function () {
+        let messages
+        if($nuxt.$route.name == 'project___es' || $nuxt.$route.name == 'project___en' ){
+          messages = 'messagesHelloProject'
+        }
+        else{
+          messages = 'messagesHello'
+        }
         self.messageActive =
-          self.messagesHello[
-            Math.floor(Math.random() * self.messagesHello.length)
+          self[messages][
+            Math.floor(Math.random() * self[messages].length)
           ];
         self.showNotification = true;
-      }, 10000); // 60 * 1000 milsec
+      }, 15000); // 60 * 1000 milsec
     },
     initMicrophone() {
       if (
@@ -615,7 +617,7 @@ export default {
         this.firstTime = false;
       }
       if (this.reveal) {
-        clearInterval(this.timer);
+        clearInterval(this.timerNotification);
       } else {
         this.showMessages();
       }
@@ -716,13 +718,19 @@ export default {
       immediate: true,
       handler(newVal, oldVal) {},
     },
+    /*routeName:{
+      immediate: true,
+      handler(newVal, oldVal) {
+        console.log(newVal);
+      },
+    },*/
     showNotification: {
       immediate: true,
       handler(newVal, oldVal) {
         if (newVal) {
           setTimeout(() => {
             this.showNotification = false;
-          }, 2000);
+          }, 3000);
         }
       },
     },
