@@ -18,14 +18,16 @@
     <div class="chat__box shadow" :class="{ active: reveal }" v-show="reveal">
       <div class="chat__header font-weight-bold" id="chatHeader">
         <div class="grid-header-chat">
-
           <div class="chat__header_avatar_name" id="chatHeader_avatar_name">
             <div class="chat__avatar">
               <img :src="require('~/assets/img/robotPlay.png')" alt />
             </div>
             <div class="chat__name">
               <h3>{{ botName }}</h3>
-              <div class="online"><span></span><p>En línea</p></div>
+              <div class="online">
+                <span></span>
+                <p>En línea</p>
+              </div>
             </div>
           </div>
 
@@ -37,35 +39,39 @@
                 v-if="soundSupported"
                 @click="toggleSound"
               >
-              <img
-                :src="require('~/assets/img/vol_off.svg')"
-                alt="Volumen Off"
-                height=""
-                width="auto"
-                v-if="!soundActive"
-              />
-              <img src="" alt="Volumen On" v-else>
-              <!--{{ soundActive ? "V. ON" : "V. OFF" }}-->
+                <img
+                  :src="require('~/assets/img/vol_off.svg')"
+                  alt="Volumen Off"
+                  height=""
+                  width="auto"
+                  v-if="!soundActive"
+                />
+                <img src="" alt="Volumen On" v-else />
+                <!--{{ soundActive ? "V. ON" : "V. OFF" }}-->
               </button>
             </div>
           </div>
-          
         </div>
-        <button class="button chat__close" @click="toggleChat" id="buttonChat__Close">
+        <button
+          class="button chat__close"
+          @click="toggleChat"
+          id="buttonChat__Close"
+        >
           <CloseIcon />
         </button>
       </div>
 
-      <div>
-        <button style="display:inline-block" @click="setBlock('chat')">
-          Chat
+      <div class="chat__tab">
+        <button class="tabActivo" id="buttonTab_chatRobot" style="display: inline-block" @click="setBlock('chat')">
+          <img :src="require('~/assets/img/chat_robot.png')" alt=""> Chat
         </button>
-        <button style="display:inline-block" @click="setBlock('faq')">
-          Preguntas Frecuentes
+        <button class="" id="buttonTab_chatFAQ" style="display: inline-block" @click="setBlock('faq')">
+          <img :src="require('~/assets/img/pregunta.png')" alt=""> Preguntas Frecuentes
         </button>
       </div>
+
       <div class="chat__body" v-show="block == 'faq'">
-        <Faq/>
+        <Faq />  
       </div>
       <div class="chat__body" v-show="block == 'chat'">
         <client-only>
@@ -103,7 +109,7 @@
                   </div>
 
                   <div
-                    class="chat__message__wrapper chat__message__wrapper--block "
+                    class="chat__message__wrapper chat__message__wrapper--block"
                     v-else-if="el.message"
                   >
                     <Message :text="el.message"></Message>
@@ -134,9 +140,12 @@
                   v-if="el.message_above"
                 >
                   <div
-                    class="chat__message__wrapper chat__message__wrapper--block chat__message--ml-auto"
+                    class="
+                      chat__message__wrapper
+                      chat__message__wrapper--block
+                      chat__message--ml-auto
+                    "
                   >
-                    
                     <Message :text="el.message_above"></Message>
                   </div>
                 </div>
@@ -231,9 +240,12 @@
                   "
                   v-if="el.message_below"
                 >
-                  
                   <div
-                    class="chat__message__wrapper chat__message__wrapper--block chat__message--ml-auto"
+                    class="
+                      chat__message__wrapper
+                      chat__message__wrapper--block
+                      chat__message--ml-auto
+                    "
                   >
                     <Message :text="el.message_below"></Message>
                   </div>
@@ -260,9 +272,14 @@
           </simplebar>
         </client-only>
       </div>
-      <div class="chat__footer"  v-show="block == 'chat'">
-        <div class="ib-wrapper" v-if="showInput">          
-          <div id="buttonMicro_voz" class="buttonMicro_voz shadow" v-if="!chooseButton" :class="recognitionActive ? 'button--disabled' : ''">
+      <div class="chat__footer" v-show="block == 'chat'">
+        <div class="ib-wrapper" v-if="showInput">
+          <div
+            id="buttonMicro_voz"
+            class="buttonMicro_voz shadow"
+            v-if="!chooseButton"
+            :class="recognitionActive ? 'button--disabled' : ''"
+          >
             <button
               class="button button--micro"
               @click="startRecording"
@@ -288,7 +305,7 @@
                 : 'Escribe tu mensaje aqui'
             "
             v-model="message"
-            class="input  shadow"
+            class="input shadow chat_input_message"
             @keypress.enter="sendMessage"
             :disabled="chatServerResponse || chooseButton || recognitionActive"
             ref="inputChat"
@@ -300,7 +317,8 @@
             id="button__sendMessage"
             :disabled="recognitionActive || chooseButton"
           >
-            <svg
+          <img :src="require('~/assets/img/send_Mensaje.png')" alt="">
+            <!--svg
               class="icon"
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 512.004 512.004"
@@ -326,7 +344,7 @@
                   fill="#d9e6fc"
                 />
               </g>
-            </svg>
+            </svg-->
           </button>
         </div>
         <!--span class="chat__company">
@@ -383,7 +401,7 @@ export default {
     CarouselButton,
     CloseIcon,
     Qualify,
-    Faq
+    Faq,
   },
   data() {
     return {
@@ -424,7 +442,7 @@ export default {
       timer: "",
       soundActive: true,
       soundSupported: true,
-      block: "chat"
+      block: "chat",
     };
   },
   computed: {
@@ -507,8 +525,17 @@ export default {
     });
   },
   methods: {
-    setBlock(data){
+    setBlock(data) {
       this.block = data;
+      var btnFAQ = $("#buttonTab_chatFAQ");
+      var btnChat = $("#buttonTab_chatRobot");
+      if(btnFAQ.hasClass('tabActivo')){
+        btnFAQ.removeClass("tabActivo");
+        btnChat.addClass("tabActivo");
+      }else{
+        btnFAQ.addClass("tabActivo");
+        btnChat.removeClass("tabActivo");
+      }
     },
     showMessages() {
       let self = this;
@@ -734,11 +761,11 @@ export default {
 
 
 <style lang="scss">
-#pgChat{
-  .button--disabled{
-    opacity: .6;
+#pgChat {
+  .button--disabled {
+    opacity: 0.6;
   }
-  .chat__message--ml-auto{
+  .chat__message--ml-auto {
     margin-left: auto;
   }
 }
@@ -1084,7 +1111,7 @@ export default {
       background: #0079bb;
       //background-image: url(https://storage.googleapis.com/playgroup-web/bot/images/bg-bot.jpg);
       background-size: cover;
-      border-bottom: 1px solid #d0d0ef;
+      /*border-bottom: 1px solid #d0d0ef;*/
       padding: 18px 20px 0;
       display: -webkit-box;
       display: flex;
@@ -1121,7 +1148,7 @@ export default {
         font-size: 12px;
         margin-bottom: 10px;
         border-radius: 5px;
-        background: #E8F4FF;
+        background: #e8f4ff;
       }
 
       &.chat__message-server {
@@ -1197,37 +1224,41 @@ export default {
 /*===========================*/
 /*ESTILOS JOSEPH*/
 
-div#pgChat{
-  .chat__header{
+.relative{
+  position: relative;
+}
+
+div#pgChat {
+  .chat__header {
     padding: 18px 20px !important;
   }
 
-  .chat__header_avatar_name{
-    display: grid  !important;
+  .chat__header_avatar_name {
+    display: grid !important;
     grid-template-columns: auto 1fr !important;
     background: rgba(255, 255, 255, 0.3) !important;
     border-radius: 5px;
     padding: 1px 35px 0 14px;
-    .chat__avatar{
-      img{
+    .chat__avatar {
+      img {
         max-width: 100% !important;
         width: 31px !important;
       }
     }
-    .chat__name{
+    .chat__name {
       padding-top: 4px !important;
-      h3{
+      h3 {
         margin: 0 !important;
         font-weight: 100 !important;
         font-size: 14px !important;
       }
-      .online{
+      .online {
         margin-bottom: 0 !important;
-        span{
+        span {
           width: 6px !important;
           height: 6px !important;
         }
-        p{
+        p {
           font-size: 10px !important;
           color: white !important;
           margin-bottom: 0px !important;
@@ -1238,7 +1269,7 @@ div#pgChat{
     }
   }
 
-  .button--sound{    
+  .button--sound {
     margin-left: 10px;
     padding: 10px;
     display: grid;
@@ -1246,54 +1277,68 @@ div#pgChat{
     border-radius: 5px;
   }
 
-  .chat__close{
+  .chat__close {
     background: rgba(255, 255, 255, 0.2) !important;
     padding: 11px;
     border-radius: 5px;
     position: initial;
-    svg{
+    svg {
       font-size: 10px;
       display: block;
     }
   }
 
-  .ib-wrapper__button{    
-    background: #0079BB;
+  .ib-wrapper__button {
+    background: #0079bb;
+    height: 38px;
+    width: 42px;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
   }
 
-  .buttonMicro_voz{
+  .buttonMicro_voz {
     background: #0079bb;
     margin-right: 10px;
     border-radius: 5px;
     display: grid;
-    .button--micro{
+    .button--micro {
       background: none;
       align-items: center;
       align-content: center;
-      img{
+      img {
         margin-right: 0 !important;
         width: 21px;
       }
     }
   }
 
-  .chat__link--button{    
+  .chat_input_message{
+    height: 38px;
+    min-height: 38px;
+    font-size: 13px;
+    border-radius: 5px;
+  }
+
+  .chat__link--button {
     display: inline-block;
     background: none;
-    color: #F15F23;
+    color: #f15f23;
     font-size: 12px;
-    border: 1px solid #F15F23;
+    border: 1px solid #f15f23;
     border-radius: 5px;
     margin-right: 8px;
     width: 100%;
-    &:hover{
-      background: #F15F23;
+    margin-left: 17px;
+    &:hover {
+      background: #f15f23;
       color: white;
     }
   }
 
   /* ESTILOS DE DESPARTAMENTOS Y DISTRITOS */
-  .chat_link_button_departamente_distrito{
+  .chat_link_button_departamente_distrito {
     width: auto;
   }
 
@@ -1302,131 +1347,65 @@ div#pgChat{
     justify-content: space-around;
     .face_reaction {
       width: auto !important;
-      border: none;      
+      border: none;
       padding: 6px;
       margin-bottom: 0;
       margin-right: 0;
-      &:hover{
+      &:hover {
         background: none !important;
       }
-      img{
+      img {
         width: 100%;
         height: auto;
         display: block;
       }
     }
     /* clases de Caras */
-    .face_veryBad{
-      border: 1px solid #FF4A4A; 
+    .face_veryBad {
+      border: 1px solid #ff4a4a;
     }
-    .face_Bad{
-      border: 1px solid #F15F23; 
+    .face_Bad {
+      border: 1px solid #f15f23;
     }
-    .face_regular{
-      border: 1px solid #E3D01E;   
+    .face_regular {
+      border: 1px solid #e3d01e;
     }
-    .face_god{
-      border: 1px solid #77E351;     
+    .face_god {
+      border: 1px solid #77e351;
     }
-    .face_verygod{
-      border: 1px solid #189F0C;     
+    .face_verygod {
+      border: 1px solid #189f0c;
     }
+  }
 
+  /* ESTILOS DEL TAB */
+  .chat__tab {
+    display: inline-flex;
+    background: #f9f9f9;
+    padding: 12px 0 0 22px;
+    width: 100%;
+    button {
+      background: none;
+      color: #353535;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 28px;
+      margin-right: 12px;
+      &.tabActivo{
+        background: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-top: 1px solid #eeeeee;
+        border-left: 1px solid #eeeeee;
+        border-right: 1px solid #eeeeee;
+      }
+    }
+    /*
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-top: 1px solid #eeeeee;
+      border-left: 1px solid #eeeeee;
+      border-right: 1px solid #eeeeee;*/
   }
 }
-
-/*div#chatHeader{
-  padding: 18px 20px !important;
-}
-
-div#chatHeader_avatar_name {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    padding: 1px 35px 0 14px;
-    .chat__avatar{
-      img{
-        max-width: 100% !important;
-        width: 31px;
-      }
-    }
-    .chat__name{
-      padding-top: 4px;
-      h3{
-        margin: 0 !important;
-        font-weight: 100;
-        font-size: 14px;
-      }
-      .online{
-        margin-bottom: 0 !important;
-        span{
-          width: 6px !important;
-          height: 6px !important;
-        }
-        p{
-          font-size: 10px;
-          color: white;
-          margin-bottom: 0px;
-          line-height: 10px;
-          font-weight: 100;
-        }
-      }
-    }
-}
-
-button#buttonSound_chat {
-    margin-left: 10px;
-    padding: 10px;
-    display: grid;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-}
-
-button#buttonChat__Close{
-    background: rgba(255, 255, 255, 0.2) !important;
-    padding: 11px;
-    border-radius: 5px;
-    position: initial;
-    svg{
-      font-size: 10px;
-      display: block;
-    }
-}
-
-button#button__sendMessage {
-    background: #0079BB;
-}
-
-div#buttonMicro_voz {
-    background: #0079bb;
-    margin-right: 10px;
-    border-radius: 5px;
-    display: grid;
-    .button--micro{
-      background: none;
-      align-items: center;
-      align-content: center;
-      img{
-        margin-right: 0 !important;
-        width: 21px;
-      }
-    }
-}
-
-button#chat__buttonLink {
-    display: inline-block;
-    background: none;
-    color: #F15F23;
-    font-size: 12px;
-    border: 1px solid #F15F23 !important;
-    border-radius: 5px;
-    margin-right: 8px;
-    width: 100%;
-    &:hover{
-      background: #F15F23;
-      color: white;
-    }
-}*/
-
 </style>
