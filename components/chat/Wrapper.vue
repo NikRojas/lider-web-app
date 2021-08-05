@@ -831,9 +831,9 @@ export default {
   }
 }
 
-.chat__message__wrapper--carousel {
-  /*margin-left: 20px;*/
-}
+/*.chat__message__wrapper--carousel {
+  margin-left: 20px;
+}*/
 .chat__dialog {
   position: relative;
   display: inline-block;
