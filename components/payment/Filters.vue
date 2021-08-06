@@ -438,7 +438,7 @@ export default {
       }
       this.updateFilter("ubigeo");
     },
-    sendFilters() {
+    sendFilters(e = false, firstTime = false) {
       let filters = {
         rangePrices: this.rangePrices,
         views: this.views,
@@ -462,7 +462,8 @@ export default {
         this.statuses,
         this.projects,
         this.typeDepartments,
-        this.rangeAreas
+        this.rangeAreas,
+        firstTime
       );
     },
     reset() {
@@ -542,7 +543,7 @@ export default {
                 response.data.filters.areas.max,
               ];
             }
-            this.sendFilters();
+            this.sendFilters(false, true);
           } else {
             //Si se movio el slider
             if (this.areaDragged) {
