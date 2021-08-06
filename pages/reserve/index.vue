@@ -36,7 +36,7 @@
               <Filters
                 @set="getEls"
                 @clear="clear"
-                :data="page.data.filters"
+                :filtersParent="page.data.filters"
               ></Filters>
             </div>
             <div class="grid-btn-orden" id="buttons">
