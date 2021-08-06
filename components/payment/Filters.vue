@@ -524,7 +524,7 @@ export default {
 
           if (init) {
             const { rangePrices, rangeAreas } = this.filters;
-            if (rangePrices.length) {
+            if (rangePrices && rangePrices.length) {
               this.rangePrices = rangePrices;
             }
             else{
@@ -533,7 +533,7 @@ export default {
                 response.data.filters.prices.max,
               ];
             }
-            if (rangeAreas.length) {
+            if (rangeAreas && rangeAreas.length) {
               this.rangeAreas = rangeAreas;
             }
             else{
