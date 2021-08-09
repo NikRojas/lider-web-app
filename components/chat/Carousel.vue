@@ -10,7 +10,7 @@
           class="chat__carousel__image"
           :style="{ backgroundImage: `url(${el.image})` }"
         >
-        <img :src="el.logo" v-if="el.logo" alt="">
+        <img class="logo__carousel" :src="el.logo" v-if="el.logo" alt="">
         </div>
         <div class="chat__carousel__footer shadow">
           <div class="chat__carousel__title font-weight-bold">
@@ -68,6 +68,7 @@
     //background: rgba(0, 84, 148, 0.75);
     background: white;
     padding: 15px 12px;
+    
     position: absolute;
     top: 49%;
     /*width: 42px;
@@ -120,6 +121,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    .logo__carousel{
+      width: 92px;
+      margin: 15px;
+    }
   }
 }
 

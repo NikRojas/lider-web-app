@@ -62,22 +62,30 @@
   }
   .swiper-button-next,
   .swiper-button-prev {
-    color: #ffffff;
+    //color: #ffffff;
+    color: #F15F23;
     font-size: 20px;
-    top: 23% !important;
-    background: rgba(0, 84, 148, 0.75);
+    //top: 23% !important;
+    top: 50% !important;
+    //background: rgba(0, 84, 148, 0.75);
+    background: white;
     padding: 15px 12px;
 
     position: absolute;
     top: 49%;
-    width: 42px;
-    height: 50px;
+    /*width: 42px;
+    height: 50px;*/
+    width: 32px;
+    height: 64px;
     margin-top: -34px;
     z-index: 10;
     cursor: pointer;
     background-size: 27px 44px;
     background-position: 50%;
     background-repeat: no-repeat;
+    
+    display: grid;
+    align-items: center;
   }
   img {
     width: 100%;
