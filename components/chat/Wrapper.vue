@@ -1384,19 +1384,19 @@ div#pgChat {
     }
     /* clases de Caras */
     .face_veryBad {
-      border: 1px solid #ff4a4a;
+      //border: 1px solid #ff4a4a;
     }
     .face_Bad {
-      border: 1px solid #f15f23;
+      //border: 1px solid #f15f23;
     }
     .face_regular {
-      border: 1px solid #e3d01e;
+      //border: 1px solid #e3d01e;
     }
     .face_god {
-      border: 1px solid #77e351;
+      //border: 1px solid #77e351;
     }
     .face_verygod {
-      border: 1px solid #189f0c;
+      //border: 1px solid #189f0c;
     }
   }
 
