@@ -42,7 +42,10 @@
 
           <div v-else>
             <div class="content__button_Question">              
-              No se encontraron resultados
+              <div class="without_results">
+                <img :src="require('~/assets/img/p-no-results.png')" alt="">
+                <p>No se encontraron resultados</p>
+              </div>              
             </div>
           </div>
         </simplebar>
@@ -158,6 +161,15 @@
         color: #353535;
         line-height: 15px;
         margin: 0;
+      }
+    }
+    .without_results{
+      text-align: center;
+      img{
+        width: 120px;
+      }
+      p{
+        font-weight: 500;
       }
     }
   }
