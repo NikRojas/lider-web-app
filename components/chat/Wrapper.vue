@@ -47,7 +47,14 @@
                     width="auto"
                     v-if="!soundActive"
                   />
-                  <img src="" alt="Volumen On" v-else />
+                  <img
+                    :src="require('~/assets/img/vol_on.png')"
+                    alt="Volumen On"
+                    height=""
+                    width="auto"
+                    v-else
+                  />
+                  <!--img src="" alt="Volumen On" v-else /-->
                   <!--{{ soundActive ? "V. ON" : "V. OFF" }}-->
                 </button>
               </div>
@@ -1189,7 +1196,7 @@ export default {
         height: 400px;
         //overflow: auto;
       }
-      .chat__footer {
+      .chat__footer, .chat__search {
         padding-bottom: 10px;
         padding-right: 15px;
         padding-left: 15px;
@@ -1286,15 +1293,16 @@ div#pgChat {
 
   .button--sound {
     margin-left: 10px;
-    padding: 10px;
+    padding: 10px !important;
     display: grid;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
+    width: 39px;
   }
 
   .chat__close {
     background: rgba(255, 255, 255, 0.2) !important;
-    padding: 11px;
+    padding: 7px 9px !important;
     border-radius: 5px;
     position: initial;
     svg {
@@ -1329,10 +1337,10 @@ div#pgChat {
   }
 
   .chat_input_message {
-    height: 38px;
-    min-height: 38px;
-    font-size: 13px;
-    border-radius: 5px;
+    height: 38px !important;
+    min-height: 38px !important;
+    font-size: 13px !important;
+    border-radius: 5px !important;
   }
 
   .chat__link--button {
@@ -1414,12 +1422,6 @@ div#pgChat {
         border-right: 1px solid #eeeeee;
       }
     }
-    /*
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-      border-top: 1px solid #eeeeee;
-      border-left: 1px solid #eeeeee;
-      border-right: 1px solid #eeeeee;*/
   }
 }
 </style>
