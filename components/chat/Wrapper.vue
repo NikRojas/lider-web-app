@@ -48,7 +48,7 @@
                     v-if="!soundActive"
                   />
                   <img
-                    :src="require('~/assets/img/vol_on.png')"
+                    :src="require('~/assets/img/vol_on.svg')"
                     alt="Volumen On"
                     height=""
                     width="auto"
