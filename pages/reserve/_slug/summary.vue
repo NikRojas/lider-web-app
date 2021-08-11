@@ -536,10 +536,11 @@ export default {
         });
     },
     onFormCreated(event){
-      var valueText = "<span style='display:block;'>PAGAR "+this.page.data.department.project_rel
-                                  .price_separation_format+"</span>";
+      var valueText = "PAGAR "+this.page.data.department.project_rel
+                                  .price_separation_format;
       var botonpopin = document.getElementsByClassName("kr-payment-button");
-      botonpopin[0].innerHTML = valueText;
+      var spanBotonPopin = botonpopin[0].getElementsByTagName('span');
+      spanBotonPopin[0].textContent = valueText;
       var valueText2 = "<strong>PAGAR "+this.page.data.department.project_rel
                                   .price_separation_format+"</strong>";
       var botonform = document.getElementsByClassName("kr-popin-button");
