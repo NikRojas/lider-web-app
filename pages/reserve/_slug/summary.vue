@@ -536,7 +536,7 @@ export default {
         });
     },
     onFormCreated(event){
-      var valueText = "<span>PAGAR "+this.page.data.department.project_rel
+      var valueText = "<span style='display:block;'>PAGAR "+this.page.data.department.project_rel
                                   .price_separation_format+"</span>";
       var botonpopin = document.getElementsByClassName("kr-payment-button");
       botonpopin[0].innerHTML = valueText;
