@@ -540,8 +540,10 @@ export default {
                                   .price_separation_format+"</strong>";
       var botonpopin = document.getElementsByClassName("kr-payment-button");
       botonpopin[0].innerHTML = valueText;
+      var valueText2 = "<span>PAGAR "+this.page.data.department.project_rel
+                                  .price_separation_format+"</span>";
       var botonform = document.getElementsByClassName("kr-popin-button");
-      botonform[0].innerHTML = valueText;
+      botonform[0].innerHTML = valueText2;
     },
     generateForm(token, tokenjs, currency) {
       console.log(currency);
