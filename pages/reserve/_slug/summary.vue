@@ -535,6 +535,14 @@ export default {
           );
         });
     },
+    onFormCreated(event){
+      var valueText = "<strong>PAGAR "+this.page.data.department.project_rel
+                                  .price_separation_format+"</strong>";
+      var botonpopin = document.getElementsByClassName("kr-payment-button");
+      botonpopin[0].innerHTML = valueText;
+      var botonform = document.getElementsByClassName("kr-popin-button");
+      botonform[0].innerHTML = valueText;
+    },
     generateForm(token, tokenjs, currency) {
       console.log(currency);
       const formToken = token;
@@ -589,6 +597,7 @@ export default {
         .then(({ KR }) => KR.closePopin()) /* create a payment form */
         .then(({ KR }) => KR.onSubmit(this.pay))
         .then(({ KR }) => KR.onError(this.handleError))
+        .then(({ KR }) => KR.onFormCreated(this.onFormCreated))
         //El formToken válido por 5 minutos.
         //Establecer limite de LS 5m
         .then(({ KR }) => this.setExpireLS(60 * 6000))
