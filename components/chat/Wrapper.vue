@@ -869,6 +869,8 @@ export default {
       display: block;
       .chat__link__text {
         display: block !important;
+        text-transform: initial;
+        font-weight: 500;
       }
       &::before {
         content: none !important;
@@ -886,7 +888,6 @@ export default {
     background: transparent;
     font-size: 16px;
     position: absolute;
-    top: 20px;
     right: 20px;
     svg {
       vertical-align: middle;
@@ -1040,7 +1041,7 @@ export default {
         max-width: 100%;
       }
       .chat__box .chat__body__wrapper {
-        height: 55vh !important;
+        height: 65vh !important;
       }
     }
   }
@@ -1136,8 +1137,8 @@ export default {
         display: flex;
         -webkit-box-align: center;
         align-items: center;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
         position: relative;
         color: #fff;
       }
@@ -1164,7 +1165,7 @@ export default {
         .chat__message__text {
           display: inline-block;
           padding: 10px 18px;
-          font-size: 12px;
+          font-size: 0.85rem;
           margin-bottom: 10px;
           border-radius: 5px;
           background: #e8f4ff;
@@ -1193,8 +1194,11 @@ export default {
       }
       .chat__body__wrapper {
         padding: 20px 0px;
-        height: 400px;
+        //max-height: 70vh;
         //overflow: auto;
+      }
+      .answer_wrapper {
+          height: 500px !important;
       }
       .chat__footer, .chat__search {
         padding-bottom: 10px;
@@ -1248,7 +1252,7 @@ div#pgChat {
     position: relative;
   }
   .chat__header {
-    padding: 18px 20px !important;
+    padding: 10px 20px !important;
   }
 
   .chat__body {
@@ -1260,19 +1264,19 @@ div#pgChat {
     grid-template-columns: auto 1fr !important;
     background: rgba(255, 255, 255, 0.3) !important;
     border-radius: 5px;
-    padding: 1px 35px 0 14px;
+    padding: 0px 35px 0 14px;
     .chat__avatar {
       img {
         max-width: 100% !important;
-        width: 31px !important;
+        //width: 31px !important;
       }
     }
     .chat__name {
-      padding-top: 4px !important;
+      padding-top: 8px !important;
       h3 {
         margin: 0 !important;
         font-weight: 100 !important;
-        font-size: 14px !important;
+        font-size: 0.85rem !important;
       }
       .online {
         margin-bottom: 0 !important;
@@ -1293,18 +1297,20 @@ div#pgChat {
 
   .button--sound {
     margin-left: 10px;
-    padding: 10px !important;
     display: grid;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
-    width: 39px;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
   }
 
   .chat__close {
     background: rgba(255, 255, 255, 0.2) !important;
-    padding: 7px 9px !important;
-    border-radius: 5px;
-    position: initial;
+    border-radius: 5px;    
+    width: 42px;
+    height: 42px;
     svg {
       font-size: 10px;
       display: block;
@@ -1341,13 +1347,14 @@ div#pgChat {
     min-height: 38px !important;
     font-size: 13px !important;
     border-radius: 5px !important;
+    box-shadow: 0px 2px 40px rgb(0 0 0 / 10%);
   }
 
   .chat__link--button {
     display: inline-block;
     background: none;
     color: #f15f23;
-    font-size: 12px;
+    font-size: 0.8rem;
     border: 1px solid #f15f23;
     border-radius: 5px;
     margin-right: 8px;
@@ -1409,7 +1416,7 @@ div#pgChat {
     button {
       background: none;
       color: #353535;
-      font-size: 12px;
+      font-size: 0.85rem;
       font-weight: 500;
       padding: 6px 28px;
       margin-right: 12px;
@@ -1423,5 +1430,19 @@ div#pgChat {
       }
     }
   }
+}
+
+@media screen and (max-width: 1366px) {
+    #pgChat.chat {
+      .chat__box{
+        .chat__body__wrapper{
+          padding: 20px 0px;
+          height: 70vh;
+        }
+        .answer_wrapper {
+            height: 76vh !important;
+        }
+      }
+    }
 }
 </style>
