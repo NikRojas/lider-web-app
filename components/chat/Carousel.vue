@@ -122,8 +122,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     .logo__carousel{
-      width: 92px;
+      width: auto;
       margin: 15px;
+      max-height: 40px;
     }
   }
 }

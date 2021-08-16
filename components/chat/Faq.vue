@@ -6,7 +6,7 @@
           type="text"
           placeholder="Buscar por palabra clave"
           v-model="search"
-          class="input shadow chat_input_message"
+          class="input chat_input_message"
         />
         <button class="button ib-wrapper__button button_search">
           <img :src="require('~/assets/img/icon_search.png')" alt="" />
@@ -56,7 +56,7 @@
       <client-only>
         <simplebar
           data-simplebar-auto-hide="false"
-          class="chat__body__wrapper"
+          class="chat__body__wrapper answer_wrapper"
           id="chat_body_wrapper__faq"
         >
           <div class="content__Answer relative ">
@@ -145,6 +145,9 @@
       padding-left: 20px;
       padding-right: 20px;
       width: 100%;
+      &:hover{
+        box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+      }
       h1.title_FAQ {
         color: #0079bb;
         font-size: 14px;
@@ -153,7 +156,7 @@
           right: 0;
           bottom: 50%;
           transform: translate(0, 50%);
-          width: 9px;
+          width: 14px;
         }
       }
       p {
