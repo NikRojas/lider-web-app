@@ -12,7 +12,7 @@
           <img :src="require('~/assets/img/icon_search.png')" alt="" />
         </button>
       </div>
-
+      <!--<div class="overlay-faq" v-if="block == 'element'"></div>-->
       <client-only>
         <simplebar
           data-simplebar-auto-hide="false"
@@ -52,7 +52,7 @@
       </client-only>
     </div>
 <!-- v-if="block == 'element'" -->
-    <div  class="faq-element shadow" id="id_faq_element">
+    <div class="faq-element shadow" id="id_faq_element">
       <client-only>
         <simplebar
           data-simplebar-auto-hide="false"
@@ -73,6 +73,17 @@
 </template>
 <style lang="scss">
 #pgChat {
+  .overlay-faq{
+    height: 100%;
+    width: 100%;
+    background: black;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
   .faq-element {
     width: 100%;
     position: absolute;
@@ -215,10 +226,11 @@ export default {
   },
   computed: {
     filteredList() {
+      let search = this.search.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       return this.questions.filter((el) => {
         return (
-          el.question.toLowerCase().includes(this.search.toLowerCase()) ||
-          el.answer.toLowerCase().includes(this.search.toLowerCase())
+          el.question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(search) ||
+          el.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(search)
         );
       });
     },
