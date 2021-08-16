@@ -343,28 +343,17 @@
               <img :src="require('~/assets/img/send_Mensaje.png')" alt="" />
             </button>
           </div>
-          <!--span class="chat__company">
-          Powered by
-          <a
-            rel="noopener"
-            target="_blank"
-            href="https://playgroup.pe"
-            class="font-weight-bold"
-            >PLAY Group</a
-          >
-        </span-->
         </div>
       </div>
     </transition>
 
-    <div class="chat__dialog shadow" v-if="showNotification">
-      {{ messageActive }}
+    <div class="chat__dialog shadow" v-if="showNotification" v-html="messageActive">
     </div>
 
     <div class="chat__button chat__button--main shadow" v-if="!reveal">
       <span class="chat__notification shadow" v-if="showNotification">1</span>
       <button class="button img__wrapper" id="pgChatButton" @click="toggleChat">
-        <img src="/img/futuroso.gif" alt="Chat" />
+        <img :src="require('~/assets/img/robotPlay.png')" alt="Chat" />
       </button>
     </div>
   </div>
@@ -495,6 +484,7 @@ export default {
     this.host = window.location.host + window.location.pathname;
     this.socket.on("message", (resp) => {
       console.log(resp);
+      let self = this;
       this.setMessage(resp);
       if (resp.route) {
         this.$router.push(this.localePath(resp.route));
@@ -515,7 +505,17 @@ export default {
       ) {
         this.chooseButton = true;
       }
-      let self = this;
+      if (resp.notification) {
+        this.reveal = false;
+        this.messageActive = resp.notification;
+        this.showNotification = true;
+        setTimeout(() => {
+          self.showNotification = false;  
+        }, 80000);
+        setTimeout(() => {
+          this.showMessages(); 
+        }, 80500);
+      }
       setTimeout(() => {
         if (self.$refs.inputChat) self.$refs.inputChat.focus();
       }, 300);
@@ -594,10 +594,10 @@ export default {
           self.message = event.results[0][0].transcript;
           self.sendMessage();
           self.recognitionActive = false;
-          let audio = new Audio(
+          /*let audio = new Audio(
             "https://freesound.org/data/previews/69/69723_866625-lq.mp3"
           );
-          audio.play();
+          audio.play();*/
         };
         this.recognition.onspeechend = function (event) {};
         this.recognition.onerror = function (e) {
@@ -616,10 +616,10 @@ export default {
       }
     },
     startRecording() {
-      let audio = new Audio(
+      /*let audio = new Audio(
         "https://freesound.org/data/previews/173/173328_2370190-lq.mp3"
       );
-      audio.play();
+      audio.play();*/
       this.recognitionActive = true;
       this.recognition.start();
     },
@@ -794,9 +794,9 @@ export default {
 </script>
 <style lang="scss">
 #pgChat {
-  .simplebar-content{
+  /*.simplebar-content{
     padding: 15px 0 5px 0 !important;
-  }
+  }*/
   .button--disabled {
     opacity: 0.6;
   }
