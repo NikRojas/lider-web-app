@@ -798,7 +798,7 @@ export default {
     opacity: 0.6;
   }
   .chat__message--ml-auto {
-    margin-left: auto;
+    margin-left: 45px;
   }
   &.chat {
     .send {
@@ -862,7 +862,7 @@ export default {
     // margin: 3px;
     border: 0;
     &::before {
-      content: "Elegir";
+      content: "Ve Proyecto";
     }
     &.chat__link--button {
       margin-bottom: 10px;
@@ -1146,6 +1146,9 @@ export default {
         max-width: 73%;
         .chat__message__text {
           float: left !important;
+          a{
+            color: #f15f23;
+          }
         }
       }
       .chat__message {
@@ -1369,6 +1372,8 @@ div#pgChat {
   /* ESTILOS DE DESPARTAMENTOS Y DISTRITOS */
   .chat_link_button_departamente_distrito {
     width: auto;
+    display: inline-block !important;
+    margin-right: 0px !important;
   }
 
   .faceReaction__content {
@@ -1390,7 +1395,7 @@ div#pgChat {
       }
     }
     /* clases de Caras */
-    .face_veryBad {
+    /*.face_veryBad {
       //border: 1px solid #ff4a4a;
     }
     .face_Bad {
@@ -1404,7 +1409,7 @@ div#pgChat {
     }
     .face_verygod {
       //border: 1px solid #189f0c;
-    }
+    }*/
   }
 
   /* ESTILOS DEL TAB */
