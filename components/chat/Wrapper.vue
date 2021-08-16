@@ -1197,7 +1197,7 @@ export default {
       }
       .chat__body__wrapper {
         padding: 20px 0px;
-        //max-height: 70vh;
+        max-height: 70vh;
         //overflow: auto;
       }
       .answer_wrapper {
