@@ -1201,7 +1201,8 @@ export default {
         //overflow: auto;
       }
       .answer_wrapper {
-          height: 500px !important;
+          height: 55vh !important;
+          //height: 500px !important;
       }
       .chat__footer, .chat__search {
         padding-bottom: 10px;
