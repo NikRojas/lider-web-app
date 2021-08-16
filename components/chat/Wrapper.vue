@@ -794,6 +794,9 @@ export default {
 </script>
 <style lang="scss">
 #pgChat {
+  .simplebar-content{
+    padding: 15px 0 5px 0 !important;
+  }
   .button--disabled {
     opacity: 0.6;
   }
