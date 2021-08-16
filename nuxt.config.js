@@ -293,8 +293,8 @@ export default {
       {
         name: 'main',
         //url: 'http://127.0.0.1:3001',
-        url: 'https://lider-chat.playgroup.pe',
-        //url: process.env.APP_CHAT,
+        //url: 'https://lider-chat.playgroup.pe',
+        url: process.env.APP_CHAT,
         //default: true,
         //namespaces: { /* See next section */ }
       },

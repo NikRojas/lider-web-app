@@ -438,12 +438,12 @@ export default {
       chooseButton: false,
       messageActive: "",
       messagesHello: [
-        "¡Hey! Sé que estás ahí, no te olvides que yo puedo ayudarte con cualquier duda.",
-        "¿Sigues ahí? Deja tus dudas en mis peludas manos. ¡Yo te ayudo!",
-        "¡Regresaste! Acá me encontrarás si tienes cualquier problema.",
-        "¿Estás? Recuerda que yo te ayudo con cualquier duda que tengas. ¡Osito Futuroso a tu servicio!",
+        "Hola, ¿puedo ayudarte?",
+        "Hola, yo te ayudo.",
+        "Bienvenido, déjame ayudarte."
       ],
-      messagesHelloProject: ["Esto es un proyecto", "Departamentos"],
+      messagesHelloProject: ["Este proyecto es uno de los mejores en su zona.", "Este proyecto es uno de los más solicitados."],
+      messagesHelloBlog: ["Adquirir un departamento es una decisión muy importante.", "Yo también puedo resolver tus dudas."],
       timerNotification: "",
       soundActive: true,
       soundSupported: true,
@@ -463,12 +463,6 @@ export default {
   },
   updated() {
     this.scrollBottom();
-    //console.log($nuxt.$route.name)
-    /*if (this.showNotification) {
-      setTimeout(() => {
-        this.showNotification = false;
-      }, 60000);
-    }*/
   },
   mounted() {
     if (this.$device.ios) {
@@ -567,6 +561,10 @@ export default {
           $nuxt.$route.name == "project___en"
         ) {
           messages = "messagesHelloProject";
+        }
+        else if($nuxt.$route.name == "blog-category-category-post___es" ||
+          $nuxt.$route.name == "blog-category-category-post___en" || "blog-category-category___es" || "blog-category-category___en" || "blog___es" || "blog___en") {
+          messages = "messagesHelloBlog";
         } else {
           messages = "messagesHello";
         }
@@ -734,12 +732,6 @@ export default {
       immediate: true,
       handler(newVal, oldVal) {},
     },
-    /*routeName:{
-      immediate: true,
-      handler(newVal, oldVal) {
-        console.log(newVal);
-      },
-    },*/
     showNotification: {
       immediate: true,
       handler(newVal, oldVal) {
@@ -775,7 +767,7 @@ export default {
                     if (typeof value.message_below !== "undefined") {
                       phrase.push(value.message_below);
                     }
-                    console.log(phrase);
+                    //console.log(phrase);
                     this.speak(phrase);
                   }
                 } else {
