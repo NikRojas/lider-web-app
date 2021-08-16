@@ -563,7 +563,7 @@ export default {
           messages = "messagesHelloProject";
         }
         else if($nuxt.$route.name == "blog-category-category-post___es" ||
-          $nuxt.$route.name == "blog-category-category-post___en" || "blog-category-category___es" || "blog-category-category___en" || "blog___es" || "blog___en") {
+          $nuxt.$route.name == "blog-category-category-post___en" || $nuxt.$route.name == "blog-category-category___es" || $nuxt.$route.name == "blog-category-category___en" || $nuxt.$route.name == "blog___es" || $nuxt.$route.name == "blog___en") {
           messages = "messagesHelloBlog";
         } else {
           messages = "messagesHello";
