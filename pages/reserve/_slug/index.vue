@@ -329,7 +329,7 @@
                               >{{ $t("N° de documento") }}*</label
                             >
                             <input
-                              type="text"
+                              type="number"
                               id="document_number"
                               v-model="customer.document_number"
                             />
