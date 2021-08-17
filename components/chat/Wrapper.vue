@@ -474,7 +474,7 @@ export default {
       channel: "/chat",
       reconnection: false,
     });
-    this.showMessages();
+    this.showMessages(true);
     this.host = window.location.host + window.location.pathname;
     this.socket.on("message", (resp) => {
       console.log(resp);
@@ -505,10 +505,11 @@ export default {
         this.showNotification = true;
         setTimeout(() => {
           self.showNotification = false;  
-        }, 80000);
+        }, 15 * 1000);
         setTimeout(() => {
-          this.showMessages(); 
-        }, 80500);
+          self.showMessages(); 
+          console.log("showMessage")
+        }, 15.5 * 1000);
       }
       setTimeout(() => {
         if (self.$refs.inputChat) self.$refs.inputChat.focus();
@@ -552,26 +553,46 @@ export default {
         btnChat.removeClass("tabActivo");
       }
     },
-    showMessages() {
+    showMessages(first = false) {
       let self = this;
+      if(first){
+        setTimeout(() => {
+          var messages;
+          if (
+              $nuxt.$route.name == "project___es" ||
+              $nuxt.$route.name == "project___en"
+            ) {
+              messages = "messagesHelloProject";
+            }
+            else if($nuxt.$route.name == "blog-category-category-post___es" ||
+              $nuxt.$route.name == "blog-category-category-post___en" || $nuxt.$route.name == "blog-category-category___es" || $nuxt.$route.name == "blog-category-category___en" || $nuxt.$route.name == "blog___es" || $nuxt.$route.name == "blog___en") {
+              messages = "messagesHelloBlog";
+            } else {
+              messages = "messagesHello";
+            }
+            self.messageActive =
+              self[messages][Math.floor(Math.random() * self[messages].length)];
+            self.showNotification = true;
+        }, 3 * 1000);
+      }
       this.timerNotification = setInterval(function () {
-        let messages;
+        let messages2;
         if (
           $nuxt.$route.name == "project___es" ||
           $nuxt.$route.name == "project___en"
         ) {
-          messages = "messagesHelloProject";
+          messages2 = "messagesHelloProject";
         }
         else if($nuxt.$route.name == "blog-category-category-post___es" ||
           $nuxt.$route.name == "blog-category-category-post___en" || $nuxt.$route.name == "blog-category-category___es" || $nuxt.$route.name == "blog-category-category___en" || $nuxt.$route.name == "blog___es" || $nuxt.$route.name == "blog___en") {
-          messages = "messagesHelloBlog";
+          messages2 = "messagesHelloBlog";
         } else {
-          messages = "messagesHello";
+          messages2 = "messagesHello";
         }
-        self.messageActive =
-          self[messages][Math.floor(Math.random() * self[messages].length)];
-        self.showNotification = true;
-      }, 15000); // 60 * 1000 milsec
+          self.messageActive =
+            self[messages2][Math.floor(Math.random() * self[messages2].length)];
+          self.showNotification = true;
+      }, 50 * 1000);
     },
     initMicrophone() {
       if (
@@ -738,7 +759,7 @@ export default {
         if (newVal) {
           setTimeout(() => {
             this.showNotification = false;
-          }, 3000);
+          }, 15 * 1000);
         }
       },
     },
