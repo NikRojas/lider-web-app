@@ -563,7 +563,7 @@ export default {
           },
         },
       };
-      let configCurrency = {};
+      /*let configCurrency = {};
       if(currency == "USD"){
         configCurrency = {
             "kr-language": "en-US"
@@ -573,7 +573,7 @@ export default {
         configCurrency = {
             "kr-language": "es-ES"
         }
-      }
+      }*/
       /*let configPlaceholders = {
         "kr-placeholder-expiry" : 'MM/AA',
         "kr-placeholder-pan": "Número de tarjeta",
@@ -590,7 +590,7 @@ export default {
             "kr-popin": ""
           })
         )
-        .then(({ KR }) => KR.setFormConfig(configCurrency) )
+        //.then(({ KR }) => KR.setFormConfig(configCurrency) )
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
