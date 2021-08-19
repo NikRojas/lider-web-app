@@ -555,44 +555,49 @@ export default {
     },
     showMessages(first = false) {
       let self = this;
-      if(first){
-        setTimeout(() => {
-          var messages;
+        if(first){
+          setTimeout(() => {
+            var messages;
+            if (
+                $nuxt.$route.name == "project___es" ||
+                $nuxt.$route.name == "project___en"
+              ) {
+                messages = "messagesHelloProject";
+              }
+              else if($nuxt.$route.name == "blog-category-category-post___es" ||
+                $nuxt.$route.name == "blog-category-category-post___en" || $nuxt.$route.name == "blog-category-category___es" || $nuxt.$route.name == "blog-category-category___en" || $nuxt.$route.name == "blog___es" || $nuxt.$route.name == "blog___en") {
+                messages = "messagesHelloBlog";
+              } else {
+                messages = "messagesHello";
+              }
+              if(!this.reveal){
+                self.messageActive =
+                  self[messages][Math.floor(Math.random() * self[messages].length)];
+                self.showNotification = true;
+              }
+          }, 3 * 1000);
+        }
+        this.timerNotification = setInterval(function () {
+          let messages2;
           if (
-              $nuxt.$route.name == "project___es" ||
-              $nuxt.$route.name == "project___en"
-            ) {
-              messages = "messagesHelloProject";
-            }
-            else if($nuxt.$route.name == "blog-category-category-post___es" ||
-              $nuxt.$route.name == "blog-category-category-post___en" || $nuxt.$route.name == "blog-category-category___es" || $nuxt.$route.name == "blog-category-category___en" || $nuxt.$route.name == "blog___es" || $nuxt.$route.name == "blog___en") {
-              messages = "messagesHelloBlog";
-            } else {
-              messages = "messagesHello";
-            }
+            $nuxt.$route.name == "project___es" ||
+            $nuxt.$route.name == "project___en"
+          ) {
+            messages2 = "messagesHelloProject";
+          }
+          else if($nuxt.$route.name == "blog-category-category-post___es" ||
+            $nuxt.$route.name == "blog-category-category-post___en" || $nuxt.$route.name == "blog-category-category___es" || $nuxt.$route.name == "blog-category-category___en" || $nuxt.$route.name == "blog___es" || $nuxt.$route.name == "blog___en") {
+            messages2 = "messagesHelloBlog";
+          } else {
+            messages2 = "messagesHello";
+          }
+          if(!this.reveal){
             self.messageActive =
-              self[messages][Math.floor(Math.random() * self[messages].length)];
+              self[messages2][Math.floor(Math.random() * self[messages2].length)];
             self.showNotification = true;
-        }, 3 * 1000);
-      }
-      this.timerNotification = setInterval(function () {
-        let messages2;
-        if (
-          $nuxt.$route.name == "project___es" ||
-          $nuxt.$route.name == "project___en"
-        ) {
-          messages2 = "messagesHelloProject";
-        }
-        else if($nuxt.$route.name == "blog-category-category-post___es" ||
-          $nuxt.$route.name == "blog-category-category-post___en" || $nuxt.$route.name == "blog-category-category___es" || $nuxt.$route.name == "blog-category-category___en" || $nuxt.$route.name == "blog___es" || $nuxt.$route.name == "blog___en") {
-          messages2 = "messagesHelloBlog";
-        } else {
-          messages2 = "messagesHello";
-        }
-          self.messageActive =
-            self[messages2][Math.floor(Math.random() * self[messages2].length)];
-          self.showNotification = true;
-      }, 50 * 1000);
+          }
+        }, 50 * 1000);
+      
     },
     initMicrophone() {
       if (
