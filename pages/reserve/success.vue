@@ -223,7 +223,7 @@
                             {{ customer.department.project_rel.has_parking || customer.department.project_rel.has_warehouse ? '* El proyecto cuenta con' : '' }} 
                             {{ customer.department.project_rel.has_parking ? customer.department.project_rel.stock_parking+' estacionamientos' : ''}} 
                             {{ customer.department.project_rel.has_parking && customer.department.project_rel.has_warehouse ? 'y' : ''}} 
-                            {{ customer.department.project_rel.has_warehouse ? customer.department.project_rel.stock_warehouse+' depósitos' : ''}}
+                            {{ customer.department.project_rel.has_warehouse ? customer.department.project_rel.stock_warehouse+' depósitos' : ''}} disponibles
                           </template>
                           </i>
                       </div>

@@ -242,7 +242,7 @@
                               {{ page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse ? '* El proyecto cuenta con' : '' }} 
                               {{ page.data.department.project_rel.has_parking ? page.data.department.project_rel.stock_parking+' estacionamientos' : ''}} 
                               {{ page.data.department.project_rel.has_parking && page.data.department.project_rel.has_warehouse ? 'y' : ''}} 
-                              {{ page.data.department.project_rel.has_warehouse ? page.data.department.project_rel.stock_warehouse+' depósitos' : ''}}
+                              {{ page.data.department.project_rel.has_warehouse ? page.data.department.project_rel.stock_warehouse+' depósitos' : ''}} disponibles
                             </template>
                           </i>
                         </div>
