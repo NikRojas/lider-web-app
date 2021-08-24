@@ -211,6 +211,22 @@
                           </p>
                         </div>
                       </div>
+                      <div v-if="customer.department.project_rel.reservation_in_package" v-html="customer.department.project_rel.package_description"  class="mt-2">
+                      </div>
+                      <div v-if="customer.department.project_rel.has_parking || customer.department.project_rel.has_warehouse">
+                          <i>
+                          <template v-if="customer.department.project_rel.has_parking && customer.department.project_rel.stock_parking == 0 &&
+                          customer.department.project_rel.has_warehouse && customer.department.project_rel.stock_warehouse == 0">
+                              * El proyecto no cuenta con estacionamientos ni depósitos disponibles
+                          </template>
+                          <template v-else>
+                            {{ customer.department.project_rel.has_parking || customer.department.project_rel.has_warehouse ? '* El proyecto cuenta con' : '' }} 
+                            {{ customer.department.project_rel.has_parking ? customer.department.project_rel.stock_parking+' estacionamientos' : ''}} 
+                            {{ customer.department.project_rel.has_parking && customer.department.project_rel.has_warehouse ? 'y' : ''}} 
+                            {{ customer.department.project_rel.has_warehouse ? customer.department.project_rel.stock_warehouse+' depósitos' : ''}}
+                          </template>
+                          </i>
+                      </div>
                     </div>
                   </div>
                   <br /><br />

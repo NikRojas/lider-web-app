@@ -229,6 +229,24 @@
                           }}</strong>
                         </p>
                       </div>
+                      <div class="grid-s-12" >
+                        <div v-if="page.data.department.project_rel.reservation_in_package" v-html="page.data.department.project_rel.package_description">
+                        </div>
+                        <div v-if="page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse">
+                          <i>
+                            <template v-if="page.data.department.project_rel.has_parking && page.data.department.project_rel.stock_parking == 0 &&
+                            page.data.department.project_rel.has_warehouse && page.data.department.project_rel.stock_warehouse == 0">
+                                * El proyecto no cuenta con estacionamientos ni depósitos disponibles
+                            </template>
+                            <template v-else>
+                              {{ page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse ? '* El proyecto cuenta con' : '' }} 
+                              {{ page.data.department.project_rel.has_parking ? page.data.department.project_rel.stock_parking+' estacionamientos' : ''}} 
+                              {{ page.data.department.project_rel.has_parking && page.data.department.project_rel.has_warehouse ? 'y' : ''}} 
+                              {{ page.data.department.project_rel.has_warehouse ? page.data.department.project_rel.stock_warehouse+' depósitos' : ''}}
+                            </template>
+                          </i>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -559,7 +577,7 @@ export default {
     },
   },
   mounted() {
-    this.getAvailable();
+    //this.getAvailable();
   },
   computed: {
     customerGlobal() {
