@@ -131,6 +131,9 @@
               {{ $t("No disponible") }}
             </template></strong
           >
+          <span v-if="el.project_rel.reservation_in_package">
+             <span v-html="el.project_rel.package_description"></span>
+          </span>
         </div>
         <div class="">
           <nuxt-link

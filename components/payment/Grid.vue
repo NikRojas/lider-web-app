@@ -132,6 +132,9 @@
                         </template>
                       </span>
                     </li>
+                    <li v-if="el.project_rel.reservation_in_package">
+                      <span v-html="el.project_rel.package_description"></span>
+                    </li>
                   </ul>
                 </div>
               </div>

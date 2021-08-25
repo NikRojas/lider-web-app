@@ -8,7 +8,7 @@
       <i class="flaticon-back"></i>
     </button>
 
-    <ul class="pagination--list">
+   <!-- <ul class="pagination--list">
       <li v-for="page in data.last_page" :key="'p' + page">
         <button
           v-bind:class="[page == data.current_page ? 'active' : '']"
@@ -17,7 +17,7 @@
           {{ page }}
         </button>
       </li>
-    </ul>
+    </ul>-->
 
     <select
       v-model="pageActive"

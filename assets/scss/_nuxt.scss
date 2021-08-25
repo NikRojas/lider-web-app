@@ -421,8 +421,9 @@ i.flaticon-linkedin {
 .pagination--select{
     margin: 5px;
     min-height: 43px;
+    display: block;
 }
-@media only screen and (max-width: 1150px) {
+/*@media only screen and (max-width: 1150px) {
     .pagination--list{
         display: none !important;
     }
@@ -439,7 +440,7 @@ i.flaticon-linkedin {
     .pagination--select{
         display: none;
     }
-}
+}*/
 
 .checkbox {
     position: absolute;
