@@ -537,3 +537,42 @@ form#formp select {
 .mt-2{
     margin-top: 1rem;
 }
+
+.card-depa-grid .card-body ul li:first-child {
+    height: 40px!important;
+}
+.card-depa-grid .card-caract {
+    margin-bottom: 6px!important;
+}
+.card-depa-grid .body {
+    overflow-y: auto;
+    max-height: initial!important;
+}
+.card-depa-grid .card-body {
+    height: 152px;
+    align-items: center;
+    display: grid;
+}
+.card-depa-grid .card-body ul li p {
+    margin: 0;
+}
+.card-depa-grid .card-body ul li p em, .grid-listado p em {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    color: #f15f23;
+}
+.grid-listado {
+    grid-template-columns: 2fr 1fr 2fr 78px 58px 156px 180px!important;
+}
+.caracteristicas-pago .grid-col {
+    grid-gap: 10px;
+}
+.sized-container .content-bg em, .caracteristicas-pago em {
+    color: #f15f23;
+    font-weight: 500;
+}
+.sized-container .content-bg i ,.caracteristicas-pago em, .caracteristicas-pago i {
+    font-style: normal;
+color: #474747;
+}
