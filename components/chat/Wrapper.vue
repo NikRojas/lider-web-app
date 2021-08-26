@@ -883,7 +883,7 @@ export default {
     // margin: 3px;
     border: 0;
     &::before {
-      content: "Ve Proyecto";
+      content: "Ver Proyecto";
     }
     &.chat__link--button {
       margin-bottom: 10px;
