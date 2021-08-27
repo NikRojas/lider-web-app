@@ -211,6 +211,7 @@
                       :triggered="el.triggered"
                       :array="el.content"
                       @click="clickButton"
+                      @toggle="toggleChat"
                     ></Button>
                   </div>
                   <Qualify
