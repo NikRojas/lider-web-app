@@ -27,6 +27,10 @@ export default {
   },
   methods: {
     click(text) {
+      if(text == 'Cerrar Chat'){
+        this.$emit("toggle");
+        return
+      }
       this.hide = true;
       this.$emit("click", text, true);
     }
