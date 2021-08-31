@@ -477,7 +477,7 @@ export default {
     this.showMessages(true);
     this.host = window.location.host + window.location.pathname;
     this.socket.on("message", (resp) => {
-      console.log(resp);
+      //console.log(resp);
       let self = this;
       this.setMessage(resp);
       if (resp.route) {
@@ -508,7 +508,7 @@ export default {
         }, 15 * 1000);
         setTimeout(() => {
           self.showMessages(); 
-          console.log("showMessage")
+          //console.log("showMessage")
         }, 15.5 * 1000);
       }
       setTimeout(() => {
@@ -724,8 +724,11 @@ export default {
         });
       let self = this;
       for (var i = 0; i < phrases.length; i++) {
+        let filterEmojis = phrases[i].replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "");
+        let filterPhrase = filterEmojis.replace(/(<([^>]+)>)/gi, "");
         let n = new window.SpeechSynthesisUtterance(
-          phrases[i].replace(/(<([^>]+)>)/gi, "")
+          //phrases[i].replace(/(<([^>]+)>)/gi, "")
+          filterPhrase
         );
         n.volume = 1;
         //n.rate = 1;
@@ -771,7 +774,7 @@ export default {
     chatMessages: {
       handler: function (newValue) {
         if (newValue.length > 0) {
-          console.log(newValue);
+          //console.log(newValue);
           if (!this.$device.ios) {
             let value = newValue[newValue.length - 1];
             if (value.type == "server") {
