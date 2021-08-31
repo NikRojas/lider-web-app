@@ -121,15 +121,15 @@
         </div>
         <div>
           <strong
-            ><template v-if="el.price_foreign">
+            ><template v-if="el.project_rel.master_currency_id == 1">
+              {{ el.price_format  }}
+            </template>
+            <template v-else-if="el.project_rel.master_currency_id == 2">
               {{ el.price_foreign_format }}
             </template>
-            <template v-if="!el.price_foreign && el.price">
-              {{ el.price_format }}
-            </template>
-            <template v-if="!el.price && !el.price_foreign">
+            <!--<template v-if="!el.price && !el.price_foreign">
               {{ $t("No disponible") }}
-            </template></strong
+            </template>--></strong
           >
           <span v-if="el.project_rel.reservation_in_package">
              <span v-html="el.project_rel.package_description"></span>

@@ -193,17 +193,14 @@
                           <p>
                             <strong
                               ><template
-                                v-if="page.data.department.price_foreign"
-                              >
-                                {{ page.data.department.price_foreign_format }}
-                              </template>
-                              <template
-                                v-if="
-                                  !page.data.department.price_foreign &&
-                                  page.data.department.price
-                                "
+                                v-if="page.data.department.project_rel.master_currency_id == 1"
                               >
                                 {{ page.data.department.price_format }}
+                              </template>
+                              <template
+                                v-else-if="page.data.department.project_rel.master_currency_id == 2"
+                              >
+                                {{ page.data.department.price_foreign_format }}
                               </template></strong
                             >
                           </p>

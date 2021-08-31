@@ -124,11 +124,11 @@
                       <b>{{ $t("Precio inmueble") }}:</b>
 
                       <span>
-                        <template v-if="el.price_foreign">
-                          {{ el.price_foreign_format }}
-                        </template>
-                        <template v-if="!el.price_foreign && el.price">
+                        <template v-if="el.project_rel.master_currency_id == 1">
                           {{ el.price_format }}
+                        </template>
+                        <template v-else-if="el.project_rel.master_currency_id == 2">
+                          {{ el.price_foreign_format }}
                         </template>
                       </span>
                     </li>

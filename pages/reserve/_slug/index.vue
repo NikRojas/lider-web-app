@@ -187,29 +187,23 @@
                         <b>{{ $t("Precio del inmueble") }}:</b>
                         <p>
                           <strong v-if="!departmentUpdated">
-                            <template v-if="page.data.department.price_foreign">
-                              {{ page.data.department.price_foreign_format }}
+                            <template v-if="page.data.department.project_rel.master_currency_id == 1">
+                              {{ page.data.department.price_format }}
                             </template>
                             <template
-                              v-if="
-                                !page.data.department.price_foreign &&
-                                page.data.department.price
-                              "
+                              v-else-if="el.project_rel.master_currency_id == 2"
                             >
-                              {{ page.data.department.price_format }}
+                              {{ page.data.department.price_foreign_format }}
                             </template>
                           </strong>
                           <strong v-else>
-                            <template v-if="departmentAvailable.price_foreign">
-                              {{ departmentAvailable.price_foreign_format }}
+                            <template v-if="departmentAvailable.project_rel.master_currency_id == 1">
+                              {{ departmentAvailable.price_format }}
                             </template>
                             <template
-                              v-if="
-                                !departmentAvailable.price_foreign &&
-                                departmentAvailable.price
-                              "
+                              v-else-if="el.project_rel.master_currency_id == 2"
                             >
-                              {{ departmentAvailable.price_format }}
+                              {{ departmentAvailable.price_foreign_format }}
                             </template>
                           </strong>
                           <span v-if="departmentUpdated" style="color: #3ddc97; display:block;"
@@ -577,7 +571,7 @@ export default {
     },
   },
   mounted() {
-    //this.getAvailable();
+    this.getAvailable();
   },
   computed: {
     customerGlobal() {
