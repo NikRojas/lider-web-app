@@ -191,7 +191,7 @@
                               {{ page.data.department.price_format }}
                             </template>
                             <template
-                              v-else-if="el.project_rel.master_currency_id == 2"
+                              v-else-if="page.data.department.project_rel.master_currency_id == 2"
                             >
                               {{ page.data.department.price_foreign_format }}
                             </template>
@@ -201,7 +201,7 @@
                               {{ departmentAvailable.price_format }}
                             </template>
                             <template
-                              v-else-if="el.project_rel.master_currency_id == 2"
+                              v-else-if="departmentAvailable.project_rel.master_currency_id == 2"
                             >
                               {{ departmentAvailable.price_foreign_format }}
                             </template>
