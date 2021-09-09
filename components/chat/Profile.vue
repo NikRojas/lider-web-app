@@ -1,6 +1,6 @@
 <template>
   <span class="chat__profile" id="chatProfile">
-    <img :src="require('~/assets/img/robotPlay.png')" alt />
+    <img :src="require('~/assets/img/bot.png')" alt />
   </span>
 </template>
 <style scoped>

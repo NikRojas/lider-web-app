@@ -21,7 +21,7 @@
           <div class="grid-header-chat">
             <div class="chat__header_avatar_name" id="chatHeader_avatar_name">
               <div class="chat__avatar">
-                <img :src="require('~/assets/img/robotPlay.png')" alt />
+                <img height="45" :src="require('~/assets/img/bot.png')" alt />
               </div>
               <div class="chat__name">
                 <h3>{{ botName }}</h3>
@@ -354,7 +354,7 @@
     <div class="chat__button chat__button--main shadow" v-if="!reveal">
       <span class="chat__notification shadow" v-if="showNotification">1</span>
       <button class="button img__wrapper" id="pgChatButton" @click="toggleChat">
-        <img :src="require('~/assets/img/robotPlay.png')" alt="Chat" />
+        <img :src="require('~/assets/img/bot.png')" alt="Chat" />
       </button>
     </div>
   </div>
@@ -422,7 +422,7 @@ export default {
   },
   data() {
     return {
-      botName: "LiderBot",
+      botName: "LIDIA",
       chooseButton: false,
       reveal: false,
       showNotification: false,
@@ -449,6 +449,7 @@ export default {
       soundActive: true,
       soundSupported: true,
       block: "chat",
+      voiceSpanish: ''
     };
   },
   computed: {
@@ -509,7 +510,7 @@ export default {
         }, 15 * 1000);
         setTimeout(() => {
           self.showMessages(); 
-          //console.log("showMessage")
+          console.log("showMessageNotification")
         }, 15.5 * 1000);
       }
       setTimeout(() => {
@@ -527,17 +528,35 @@ export default {
       }, 300);
     });
 
+    this.socket.on("error", (resp) => {
+      //this.connectionError = true;
+      const el = {
+        message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
+        type: "server",
+      };
+      this.setMessage(el);
+      this.$store.dispatch("setValueChatServerResponse", false);
+      this.showInput = false;
+    });
+
     this.socket.on("connect_error", (resp) => {
-      this.connectionError = true;
+      //this.connectionError = true;
+      const el = {
+        message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
+        type: "server",
+      };
+      this.setMessage(el);
+      this.$store.dispatch("setValueChatServerResponse", false);
+      this.showInput = false;
     });
 
     this.socket.on("disconnect", (resp) => {
       const el = {
-        message: "Hubo un problema de conexión con el servidor.",
+        message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
         type: "server",
       };
       this.setMessage(el);
-      this.$store.dispatch("setChatServerResponse");
+      this.$store.dispatch("setValueChatServerResponse", false);
       this.showInput = false;
     });
   },
@@ -571,7 +590,7 @@ export default {
               } else {
                 messages = "messagesHello";
               }
-              if(!this.reveal){
+              if(!self.reveal){
                 self.messageActive =
                   self[messages][Math.floor(Math.random() * self[messages].length)];
                 self.showNotification = true;
@@ -592,7 +611,8 @@ export default {
           } else {
             messages2 = "messagesHello";
           }
-          if(!this.reveal){
+          console.log("Show Message cHAT ESTA "+self.reveal);
+          if(!self.reveal){
             self.messageActive =
               self[messages2][Math.floor(Math.random() * self[messages2].length)];
             self.showNotification = true;
@@ -660,6 +680,7 @@ export default {
       if (this.reveal) {
         clearInterval(this.timerNotification);
       } else {
+        window.speechSynthesis.cancel();
         this.showMessages();
       }
     },
@@ -714,15 +735,20 @@ export default {
     async speak(phrases) {
       window.speechSynthesis.cancel();
       let sentence;
-      let voiceSpanish = window.speechSynthesis
-        .getVoices()
-        .findIndex(function (voice) {
-          return (
-            voice.name === "Google español de Estados Unidos" ||
-            voice.lang === "es-MX" ||
-            voice.lang === "es-ES"
-          );
-        });
+      console.log(window.speechSynthesis
+        .getVoices());
+      if(!this.voiceSpanish){
+         this.voiceSpanish = window.speechSynthesis
+          .getVoices()
+          .findIndex(function (voice) {
+            return (
+              /*voice.name === "Google español de Estados Unidos" ||*/
+              voice.lang === "es-US" ||
+              voice.lang === "es-MX" ||
+              voice.lang === "es-ES"
+            );
+          });
+      }
       let self = this;
       for (var i = 0; i < phrases.length; i++) {
         let filterEmojis = phrases[i].replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "");
@@ -735,7 +761,7 @@ export default {
         //n.rate = 1;
         //n.pitch = 0;
         n.lang = "es-ES";
-        n.voice = window.speechSynthesis.getVoices()[voiceSpanish];
+        n.voice = window.speechSynthesis.getVoices()[this.voiceSpanish];
         window.speechSynthesis.speak(n);
       }
     },
@@ -1471,7 +1497,7 @@ div#pgChat {
           height: 70vh;
         }
         .answer_wrapper {
-            height: 76vh !important;
+            height: 78vh !important;
         }
       }
     }

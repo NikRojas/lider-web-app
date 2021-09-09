@@ -36,6 +36,9 @@ export const mutations = {
     SET_CHAT_SERVER_RESPONSE(state) {
         state.chatServerResponse = !state.chatServerResponse;
     },
+    SET_VALUE_CHAT_SERVER_RESPONSE(state, value) {
+        state.chatServerResponse = value;
+    },
     SET_CONVERSATION(state, conversation) {
         Vue.set(state, 'chatMessages', [...conversation]);
     },
@@ -77,6 +80,9 @@ export const actions = {
     },
     setChatServerResponse({ commit }) {
         commit('SET_CHAT_SERVER_RESPONSE');
+    },
+    setValueChatServerResponse({ commit, value }) {
+        commit('SET_VALUE_CHAT_SERVER_RESPONSE', value);
     },
 }
 
