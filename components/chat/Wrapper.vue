@@ -510,7 +510,6 @@ export default {
         }, 15 * 1000);
         setTimeout(() => {
           self.showMessages(); 
-          console.log("showMessageNotification")
         }, 15.5 * 1000);
       }
       setTimeout(() => {
@@ -611,7 +610,6 @@ export default {
           } else {
             messages2 = "messagesHello";
           }
-          console.log("Show Message cHAT ESTA "+self.reveal);
           if(!self.reveal){
             self.messageActive =
               self[messages2][Math.floor(Math.random() * self[messages2].length)];
@@ -734,35 +732,37 @@ export default {
     },
     async speak(phrases) {
       window.speechSynthesis.cancel();
-      let sentence;
-      console.log(window.speechSynthesis
-        .getVoices());
-      if(!this.voiceSpanish){
-         this.voiceSpanish = window.speechSynthesis
-          .getVoices()
-          .findIndex(function (voice) {
-            return (
-              /*voice.name === "Google español de Estados Unidos" ||*/
-              voice.lang === "es-US" ||
-              voice.lang === "es-MX" ||
-              voice.lang === "es-ES"
-            );
-          });
-      }
-      let self = this;
-      for (var i = 0; i < phrases.length; i++) {
-        let filterEmojis = phrases[i].replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "");
-        let filterPhrase = filterEmojis.replace(/(<([^>]+)>)/gi, "");
-        let n = new window.SpeechSynthesisUtterance(
-          //phrases[i].replace(/(<([^>]+)>)/gi, "")
-          filterPhrase
-        );
-        n.volume = 1;
-        //n.rate = 1;
-        //n.pitch = 0;
-        n.lang = "es-ES";
-        n.voice = window.speechSynthesis.getVoices()[this.voiceSpanish];
-        window.speechSynthesis.speak(n);
+      if(this.reveal){
+        let sentence;
+        console.log(window.speechSynthesis
+          .getVoices());
+        if(!this.voiceSpanish){
+          this.voiceSpanish = window.speechSynthesis
+            .getVoices()
+            .findIndex(function (voice) {
+              return (
+                voice.name === "Google español de Estados Unidos" ||
+                /*voice.lang === "es-US" ||*/
+                voice.lang === "es-MX" ||
+                voice.lang === "es-ES"
+              );
+            });
+        }
+        let self = this;
+        for (var i = 0; i < phrases.length; i++) {
+          let filterEmojis = phrases[i].replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "");
+          let filterPhrase = filterEmojis.replace(/(<([^>]+)>)/gi, "");
+          let n = new window.SpeechSynthesisUtterance(
+            //phrases[i].replace(/(<([^>]+)>)/gi, "")
+            filterPhrase
+          );
+          n.volume = 1;
+          //n.rate = 1;
+          //n.pitch = 0;
+          n.lang = "es-ES";
+          n.voice = window.speechSynthesis.getVoices()[this.voiceSpanish];
+          window.speechSynthesis.speak(n);
+        }
       }
     },
     initSoundBot() {
