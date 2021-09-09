@@ -1330,7 +1330,7 @@ div#pgChat {
       padding-top: 8px !important;
       h3 {
         margin: 0 !important;
-        font-weight: 100 !important;
+        //font-weight: 100 !important;
         font-size: 0.85rem !important;
       }
       .online {
