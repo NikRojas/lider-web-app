@@ -126,7 +126,7 @@ export default {
     'Características': 'Features',
     'Precio inmueble': 'Property price',
     'Precio separación': 'Reservation price',
-    'dormitorio(s)': 'room(s)',
+    'dormitorios': 'rooms',
     'Precios': 'Prices',
     'Tipo departamento': 'Department type',
     'To': 'To',
@@ -196,5 +196,6 @@ export default {
     'tu separación está confirmada': 'your reservation is confirmed',
     'En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la': 'You will shortly receive an email with the details of your separation, your order is',
     'Bienvienido a la familia Líder': 'Welcome to the Líder family',
-    'Descripción': 'Description'
+    'Descripción': 'Description',
+    'dormitorio': 'room',
 }

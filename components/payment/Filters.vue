@@ -126,7 +126,7 @@
     <div class="grid-s-6 grid-m-4 grid-l-2">
       <div class="card-filter">
         <h5>
-          <b>{{ $t("Tipo de departamento") }}:</b>
+          <b>{{ $t("Tipo") }}:</b>
         </h5>
         <template v-if="!requestServer || lastSelected == 'types'">
           <client-only>
@@ -233,7 +233,7 @@
                   v-model="rooms"
                 />
                 <label :for="'room' + el"
-                  >{{ el }} {{ $t("dormitorio(s)") }}</label
+                  >{{ el }} {{ el == 1 ? $t("dormitorio") : $t("dormitorios") }}</label
                 >
               </div>
             </simplebar>

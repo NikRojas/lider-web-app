@@ -127,7 +127,7 @@ export default {
     'Precio inmueble': 'Precio inmueble',
     'Precio separación': 'Precio separación',
     'piso': 'piso',
-    'dormitorio(s)': 'dormitorio(s)',
+    'dormitorios': 'dormitorios',
     'Precios': 'Precios',
     'Tipo de departamento': 'Tipo de departamento',
     'Hasta': 'Hasta',
@@ -195,5 +195,6 @@ export default {
     'tu separación está confirmada': 'tu separación está confirmada',
     'En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la': 'En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la',
     'Bienvienido a la familia Líder': 'Bienvienido a la familia Líder',
-    'Descripción': 'Descripción'
+    'Descripción': 'Descripción',
+    'dormitorio': 'dormitorio',
 }
