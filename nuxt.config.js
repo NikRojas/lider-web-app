@@ -288,8 +288,8 @@ export default {
   },
   proxy: {
     '/api/': {
-      //target: 'https://admin.lider.com.pe/api/',
-      target: 'https://lider-admin.playgroup.pe/api/',
+      target: 'https://admin.lider.com.pe/api/',
+      //target: 'https://lider-admin.playgroup.pe/api/',
       pathRewrite: { '^/api/': '' },
     }
   },
