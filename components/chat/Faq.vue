@@ -73,6 +73,10 @@
 </template>
 <style lang="scss">
 #pgChat {
+  
+  div#id_faq_element {
+    height: calc(100% - 130px);
+  }
   .overlay-faq{
     height: 100%;
     width: 100%;
