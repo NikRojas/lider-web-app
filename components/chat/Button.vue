@@ -31,6 +31,10 @@ export default {
         this.$emit("toggle");
         return
       }
+      else if(text == 'Refrescar'){
+        window.location.reload();
+        return
+      }
       this.hide = true;
       this.$emit("click", text, true);
     }
