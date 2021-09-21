@@ -531,9 +531,12 @@ export default {
       console.log("error");
       //this.connectionError = true;
       const el = {
-        message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
+        message: "Parece que tu internet tiene problemas de conexión, por favor verifícalo y refresca la página.",
+        element: "buttons",
+        content: [ { "text": "Refrescar"} ],
         type: "server",
       };
+      
       this.setMessage(el);
       this.$store.dispatch("setValueChatServerResponse", false);
       this.showInput = false;
@@ -543,7 +546,9 @@ export default {
       console.log("connect_error");
       //this.connectionError = true;
       const el = {
-        message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
+        message: "Parece que tu internet tiene problemas de conexión, por favor verifícalo y refresca la página.",
+        element: "buttons",
+        content: [ { "text": "Refrescar"} ],
         type: "server",
       };
       this.setMessage(el);
@@ -554,7 +559,9 @@ export default {
     this.socket.on("disconnect", (resp) => {
       console.log("disconnect");
       const el = {
-        message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
+        message: "Parece que tu internet tiene problemas de conexión, por favor verifícalo y refresca la página.",
+        element: "buttons",
+        content: [ { "text": "Refrescar"} ],
         type: "server",
       };
       this.setMessage(el);
