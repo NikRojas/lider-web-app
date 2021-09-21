@@ -289,7 +289,6 @@ export default {
     ]
   },
   io: {
-    transports: ["websocket", "polling"],
     sockets: [
       {
         name: 'main',

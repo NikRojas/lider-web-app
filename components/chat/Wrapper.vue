@@ -473,6 +473,7 @@ export default {
     this.initSoundBot();
     this.initMicrophone();
     this.socket = this.$nuxtSocket({
+      transports: ["websocket", "polling"],
       channel: "/chat",
       reconnection: false,
     });
