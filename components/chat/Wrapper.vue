@@ -528,6 +528,7 @@ export default {
     });
 
     this.socket.on("error", (resp) => {
+      console.log("error");
       //this.connectionError = true;
       const el = {
         message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
@@ -539,6 +540,7 @@ export default {
     });
 
     this.socket.on("connect_error", (resp) => {
+      console.log("connect_error");
       //this.connectionError = true;
       const el = {
         message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
@@ -550,6 +552,7 @@ export default {
     });
 
     this.socket.on("disconnect", (resp) => {
+      console.log("disconnect");
       const el = {
         message: "He tenido problemas para conectarme con el servidor, por favor regresa en unos minutos.",
         type: "server",
