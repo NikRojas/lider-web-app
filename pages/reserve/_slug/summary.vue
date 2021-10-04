@@ -32,7 +32,7 @@
         <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
-              <h2>{{ $t("Resumen de reserva") }}</h2>
+              <h2>{{ $t("Resumen de separación") }}</h2>
             </div>
             <div class="grid-col">
               <div class="grid-s-12" v-if="requestAvailable">
