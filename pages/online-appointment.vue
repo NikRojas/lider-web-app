@@ -139,6 +139,13 @@
                           </option>
                         </select>-->
                         <div id="calendar"></div>
+                        <span
+                          style="margin-top: 12px; display: block;"
+                          class="error error-red"
+                          v-if="errors && errors.schedule"
+                          for="schedule"
+                          >{{ $t(errors.schedule[0]) }}</span
+                        >
                       </div>
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
@@ -437,14 +444,8 @@ export default {
   methods: {
     updateCalendarProject(ref){
       let idProject;
-      if(ref.target){
         idProject = ref.target.value;
-      }
-      else{
-        idProject = ref;
-      }
       let project = this.page.data.projects.find(x => x.id == idProject)
-      //console.log(project.sap_code)
       let actLead = {
             grupo: project.sap_code,
           };
@@ -468,6 +469,12 @@ export default {
         this.form.utm_term = this.$route.query.utm_term;
       if (this.$route.query.utm_content)
         this.form.utm_content = this.$route.query.utm_content;
+
+      let scheduleLead = document.getElementById("calendar").calLidLead('opcion','obtenerLead')
+      console.log(scheduleLead);
+      if(scheduleLead){
+        //this.form.schedule = 
+      }
       this.request = true;
       this.$axios
         .$post("/api/post/lead/online-appointment", this.form)
@@ -489,9 +496,13 @@ export default {
   },
   mounted() {
     //window.addEventListener("load", (e) => {
-    if (this.page.data.project)
-    this.form.project_id = this.page.data.project.id;
-    this.updateCalendarProject(this.form.project_id);
+      let projectCode = "";
+    if (this.page.data.project){
+      this.form.project_id = this.page.data.project.id;
+      let project = this.page.data.projects.find(x => x.id == this.form.project_id)
+      projectCode = project.sap_code;
+      console.log(projectCode);
+    }
       let cal = {
         lead: {
           tipoDocumento: "",
@@ -505,7 +516,7 @@ export default {
           fechaRecepcion: "",
           medio: 2,
           canal: "",
-          grupo: "",
+          grupo: projectCode,
           proyecto: "",
           comentario: "",
           source: "",
@@ -522,8 +533,9 @@ export default {
         formato24Horas: false,
         muestraFormulario: false,
         muestraBoton: false,
-        idioma: 'es'
-        /*finalizoCarga: function (args) {},
+        idioma: 'es',
+        /*finalizoCarga: function (args) {
+        },
         seleccionoFecha: function (fIni, fFin) {},
         finalizoRegistro: function (args) {},*/
       };
@@ -551,6 +563,10 @@ export default {
 
       document.getElementById('calendar').calLidLead(cal)
     //});
+    /*if (this.page.data.project){
+      this.updateCalendarProject(this.form.project_id);
+    }*/
+
   },
 };
 </script>
