@@ -1,0 +1,148 @@
+.callid-bloq {
+	background-color: rgba(0, 0, 0, .5);
+	text-align: center;
+	min-height: 150px;
+}
+.callid-bloq span {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	color: #fff;
+}
+.callid-cntfrm .callid-tdtit, .callid-cntcal .callid-tdtit, .callid-cntsto .callid-tdtit {
+	font-style: italic;
+}
+.callid-cntfrm table.frm-tabla {
+
+}
+.callid-cntfrm table.callid-frm label.callid-lbl {
+
+}
+.callid-cntfrm table.callid-frm input.callid-txt {
+
+}
+.callid-cntbtn input.callid-btn {
+
+}
+.callid-cntcal {
+
+}
+.callid-cntmes {
+	width: 55%;
+	background-color: #544f75;
+}
+.callid-cntmes table.callid-calbtn, .callid-cntmes table.callid-calmes {
+	border-collapse: collapse;
+}
+.callid-cntmes table.callid-calbtn {
+	margin: 10px 0;
+}
+.callid-cntmes table.callid-calbtn td, .callid-cntmes table.callid-calmes td {
+	text-align: center;
+}
+.callid-cntmes table.callid-calbtn td, .callid-cntmes table.callid-calbtn a {
+	color: #fff;
+	font-size: 11px;
+}
+.callid-cntmes table.callid-calbtn a {
+	text-decoration: none;
+}
+.callid-cntmes table.callid-calmes {
+	margin-bottom: 10px;
+}
+.callid-cntmes table.callid-calmes th {
+	height: 24px;
+	text-align: center;
+	color: #fff;
+	font-size: 11px;
+}
+.callid-cntmes table.callid-calmes td span {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 11px;
+}
+.callid-cntmes td.td-dia {
+	color: #fff;
+}
+.callid-cntmes td.td-dia-inhab {
+	color: #9692a5;
+}
+.callid-cntmes td.td-no-dia {
+	color: #333;
+}
+.callid-cntmes td.td-dia-sel span {
+	background-color: #fff;
+	border-radius: 12px;
+	color: #544f75;
+	font-weight: bold;
+}
+.callid-cntsto {
+	text-align: center;
+	width: 45%;
+	float: right;
+}
+.callid-cntsto table.callid-tbsgto {
+	border-collapse: collapse;
+	padding: 0 10px;
+	width: 80%;
+}
+.callid-cntsto table.callid-tbsgto td {
+	height: 18px;
+	font-size: 11px;
+}
+.callid-cntsto td.callid-tdtit {
+	text-align: left;
+}
+.callid-cntsto td.td-segto {
+	border: 1px solid #ccc;
+	text-align: center;
+}
+.callid-cntsto td.td-segto-sel {
+	background-color: #544f75;
+	color: #fff;
+}
+.callid-cntdia table.callid-caldia {
+	width: 85%;
+	margin-left: 12px;
+}
+.callid-cntdia td.td-hora {
+	text-align: center;
+	border: 1px solid #ccc;
+	height: 20px;
+	line-height: 20px;
+	font-size: 11px;
+}
+.callid-cntdia td.td-hora-sel {
+	background-color: #544f75;
+	color: #fff;
+}
+.callid-cntdia {
+	/*Estilos estándar experimentales (Principalmente Firefox)*/
+	scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+	scrollbar-width: thin;
+}
+.callid-cntdia::-webkit-scrollbar {
+	-webkit-appearance: none;
+}
+.callid-cntdia::-webkit-scrollbar:vertical {
+	width:10px;
+}
+.callid-cntdia::-webkit-scrollbar-button:increment,.callid-cntdia::-webkit-scrollbar-button {
+	display: none;
+}
+.callid-cntdia::-webkit-scrollbar:horizontal {
+	height: 10px;
+}
+.callid-cntdia::-webkit-scrollbar-thumb {
+	background-color: #544f75;
+	border-radius: 20px;
+	border: 2px solid #9692a5;
+}
+.callid-cntdia::-webkit-scrollbar-track {
+	border-radius: 10px;  
+}		

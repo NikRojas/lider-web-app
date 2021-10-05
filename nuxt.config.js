@@ -38,10 +38,10 @@ export default {
       { src: '/js/facebook-sdk.js', defer: true, async: true },
     ],
   },
-  /*server: {
-    port: 3000, // default: 3000
+  server: {
+    port: 9248, // default: 3000
     host: '0.0.0.0', // default: localhost
-  },*/
+  },
   loading: {
     color: '#0B6FA6',
     //duration: 3000,
@@ -288,8 +288,9 @@ export default {
   },
   proxy: {
     '/api/': {
-      target: 'https://admin.lider.com.pe/api/',
+      //target: 'https://admin.lider.com.pe/api/',
       //target: 'https://lider-admin.playgroup.pe/api/',
+      target: 'http://127.0.0.1:9000/api/',
       pathRewrite: { '^/api/': '' },
     }
   },

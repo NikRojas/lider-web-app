@@ -1,35 +1,94 @@
 <template>
   <main class="online-appointment">
-    <Banner :banner="page.data.content[
-                  page.data.content.findIndex((x) => x.name === 'Banner')
-                ].content_formatted.includes('image') ? 
-                page.data.content[
-                  page.data.content.findIndex((x) => x.name === 'Banner')
-                ].content.find((x) => x.field === 'image').value : ''" :title="page.data.content[page.data.content.findIndex(x => x.name === 'Banner')].content_formatted.includes('title')
-            && page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale] ?
-            page.data.content[page.data.content.findIndex(el => el.name === 'Banner')].content.find(x => x.field === 'title')['value_'+$i18n.locale]
-            : ''"> </Banner>
+    <Banner
+      :banner="
+        page.data.content[
+          page.data.content.findIndex((x) => x.name === 'Banner')
+        ].content_formatted.includes('image')
+          ? page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Banner')
+            ].content.find((x) => x.field === 'image').value
+          : ''
+      "
+      :title="
+        page.data.content[
+          page.data.content.findIndex((x) => x.name === 'Banner')
+        ].content_formatted.includes('title') &&
+        page.data.content[
+          page.data.content.findIndex((el) => el.name === 'Banner')
+        ].content.find((x) => x.field === 'title')['value_' + $i18n.locale]
+          ? page.data.content[
+              page.data.content.findIndex((el) => el.name === 'Banner')
+            ].content.find((x) => x.field === 'title')['value_' + $i18n.locale]
+          : ''
+      "
+    >
+    </Banner>
     <section class="section section-contacto">
       <div class="container">
         <div class="grid-col">
           <div class="grid-s-12 grid-m-12 grid-l-6">
             <div class="content wow fadeInUp">
-              <h2 v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Información')].content_formatted.includes('title')
-            && page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'title')['value_'+$i18n.locale]"
-            ><b>{{ page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'title')['value_'+$i18n.locale] }}</b>
-          </h2>
-              <div v-if="page.data.content[page.data.content.findIndex(x => x.name === 'Información')].content_formatted.includes('description')
-            && page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'description')['value_'+$i18n.locale]"
-                      v-html="
-                        page.data.content[page.data.content.findIndex(el => el.name === 'Información')].content.find(x => x.field === 'description')['value_'+$i18n.locale]
-                      "></div>
+              <h2
+                v-if="
+                  page.data.content[
+                    page.data.content.findIndex((x) => x.name === 'Información')
+                  ].content_formatted.includes('title') &&
+                  page.data.content[
+                    page.data.content.findIndex(
+                      (el) => el.name === 'Información'
+                    )
+                  ].content.find((x) => x.field === 'title')[
+                    'value_' + $i18n.locale
+                  ]
+                "
+              >
+                <b>{{
+                  page.data.content[
+                    page.data.content.findIndex(
+                      (el) => el.name === "Información"
+                    )
+                  ].content.find((x) => x.field === "title")[
+                    "value_" + $i18n.locale
+                  ]
+                }}</b>
+              </h2>
+              <div
+                v-if="
+                  page.data.content[
+                    page.data.content.findIndex((x) => x.name === 'Información')
+                  ].content_formatted.includes('description') &&
+                  page.data.content[
+                    page.data.content.findIndex(
+                      (el) => el.name === 'Información'
+                    )
+                  ].content.find((x) => x.field === 'description')[
+                    'value_' + $i18n.locale
+                  ]
+                "
+                v-html="
+                  page.data.content[
+                    page.data.content.findIndex(
+                      (el) => el.name === 'Información'
+                    )
+                  ].content.find((x) => x.field === 'description')[
+                    'value_' + $i18n.locale
+                  ]
+                "
+              ></div>
               <transition name="slide-fade">
                 <div v-if="success" key="true" class="form__text-success-2">
-                    <h3>
-                        <b>¡{{$t('Excelente')}}!</b>
-                    </h3>
-                    <p>{{ $t('Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo')}}.</p>
-                    <b>{{ $t('¡Gracias por solicitar información!')}}</b>
+                  <h3>
+                    <b>¡{{ $t("Excelente") }}!</b>
+                  </h3>
+                  <p>
+                    {{
+                      $t(
+                        "Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo"
+                      )
+                    }}.
+                  </p>
+                  <b>{{ $t("¡Gracias por solicitar información!") }}</b>
                 </div>
                 <form v-else key="false" @submit.prevent="submit">
                   <div class="grid-col">
@@ -43,6 +102,7 @@
                           v-model="form.project_id"
                           id="project_id"
                           class="form-control"
+                          @change="updateCalendarProject($event)"
                         >
                           <option
                             :value="el.id"
@@ -64,7 +124,7 @@
                     <div class="grid-s-12">
                       <div class="form-control">
                         <label for="schedule">{{ $t("Horario") }}*</label>
-                        <select
+                        <!--<select
                           name="schedule"
                           id="schedule"
                           v-model="form.schedule"
@@ -77,7 +137,8 @@
                           >
                             {{ el.name }}
                           </option>
-                        </select>
+                        </select>-->
+                        <div id="calendar"></div>
                       </div>
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
@@ -95,7 +156,11 @@
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
                         <label for="name">{{ $t("Apellido") }}*</label>
-                        <input type="text" id="lastname" v-model="form.lastname" />
+                        <input
+                          type="text"
+                          id="lastname"
+                          v-model="form.lastname"
+                        />
                         <span
                           class="error error-red"
                           v-if="errors && errors.lastname"
@@ -155,9 +220,10 @@
                         />
                         <label for="accepted"
                           >{{ $t("He leído y acepto los") }}
-                          <Terms :content="page.data.terms"></Terms> {{ $t("y") }}
-                          <Policies :content="page.data.privacy"></Policies></label
-                        >
+                          <Terms :content="page.data.terms"></Terms>
+                          {{ $t("y") }}
+                          <Policies :content="page.data.privacy"></Policies
+                        ></label>
                         <span
                           class="error error-red"
                           v-if="errors && errors.accepted"
@@ -183,12 +249,26 @@
           </div>
         </div>
       </div>
-      <div class="banner-contact wow fadeInRight" data-wow-delay="1.5s" v-if=" page.data.content[
-                  page.data.content.findIndex((x) => x.name === 'Información')
-                ].content_formatted.includes('image')">
-        <img class="lazyload" :data-src="storageUrl+'/img/content/'+page.data.content[
-                  page.data.content.findIndex((x) => x.name === 'Información')
-                ].content.find((x) => x.field === 'image').value" alt="" />
+      <div
+        class="banner-contact wow fadeInRight"
+        data-wow-delay="1.5s"
+        v-if="
+          page.data.content[
+            page.data.content.findIndex((x) => x.name === 'Información')
+          ].content_formatted.includes('image')
+        "
+      >
+        <img
+          class="lazyload"
+          :data-src="
+            storageUrl +
+            '/img/content/' +
+            page.data.content[
+              page.data.content.findIndex((x) => x.name === 'Información')
+            ].content.find((x) => x.field === 'image').value
+          "
+          alt=""
+        />
       </div>
     </section>
   </main>
@@ -197,6 +277,7 @@
 import Banner from "../components/Banner";
 import Terms from "../components/modals/Terms";
 import Policies from "../components/modals/Policies";
+import "../assets/scss/_calendar.scss";
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/online-appointment", {
@@ -204,91 +285,109 @@ export default {
     });
     return { page: data };
   },
-  
+
   head() {
-    return { 
+    return {
       htmlAttrs: {
-        lang: this.$i18n.locale == 'en' ? this.$i18n.locale+'_US' : this.$i18n.locale+'_PE'
+        lang:
+          this.$i18n.locale == "en"
+            ? this.$i18n.locale + "_US"
+            : this.$i18n.locale + "_PE",
       },
-      title: this.page.data.page["title_"+this.$i18n.locale] ? this.page.data.page["title_"+this.$i18n.locale] : "",
+      title: this.page.data.page["title_" + this.$i18n.locale]
+        ? this.page.data.page["title_" + this.$i18n.locale]
+        : "",
+      script: [
+        {
+          src: "/js/callider.min.js",
+          "clid-llave":
+            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
+        },
+      ],
       meta: [
         {
           hid: "description",
           name: "description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           itemprop: "name",
-          content: this.page.data.page['title_'+this.$i18n.locale] ? this.page.data.page['title_'+this.$i18n.locale] : ""
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
         },
         {
           itemprop: "description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           itemprop: "image",
-          content: this.page.data.page['seo_image']
+          content: this.page.data.page["seo_image"]
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.page['seo_image']
-            : ""
+              this.page.data.page["seo_image"]
+            : "",
         },
         {
           name: "keywords",
-          content: this.page.data.page['seo_keywords_'+this.$i18n.locale]
-            ? this.page.data.page['seo_keywords_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_keywords_" + this.$i18n.locale]
+            ? this.page.data.page["seo_keywords_" + this.$i18n.locale]
+            : "",
         },
-        { name: "og:url", content: process.env.BASE_URL+this.$route.path  },
+        { name: "og:url", content: process.env.BASE_URL + this.$route.path },
         { name: "og:type", content: "website" },
         {
           name: "og:title",
-          content: this.page.data.page['title_'+this.$i18n.locale] ? this.page.data.page['title_'+this.$i18n.locale] : ""
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "og:description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "og:image",
-          content: this.page.data.page['seo_image']
+          content: this.page.data.page["seo_image"]
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.page['seo_image']
-            : ""
+              this.page.data.page["seo_image"]
+            : "",
         },
         { name: "twitter:card", content: "summary_large_image" },
         {
           name: "twitter:title",
-          content: this.page.data.page['title_'+this.$i18n.locale] ? this.page.data.page['title_'+this.$i18n.locale] : ""
+          content: this.page.data.page["title_" + this.$i18n.locale]
+            ? this.page.data.page["title_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "twitter:description",
-          content: this.page.data.page['seo_description_'+this.$i18n.locale]
-            ? this.page.data.page['seo_description_'+this.$i18n.locale]
-            : ""
+          content: this.page.data.page["seo_description_" + this.$i18n.locale]
+            ? this.page.data.page["seo_description_" + this.$i18n.locale]
+            : "",
         },
         {
           name: "twitter:image",
-          content: this.page.data.page['seo_image']
+          content: this.page.data.page["seo_image"]
             ? process.env.STORAGE_URL +
               "/img/pages/" +
-              this.page.data.page['seo_image']
-            : ""
-        }
-      ]
+              this.page.data.page["seo_image"]
+            : "",
+        },
+      ],
     };
   },
   components: {
     Banner,
     Terms,
-    Policies
+    Policies,
   },
   nuxtI18n: {
     paths: {
@@ -318,34 +417,57 @@ export default {
       page: {},
       form: {
         project_id: null,
-        utm_source: '',
-        utm_medium: '',
-        utm_campaign: '',
-        utm_term: '',
-        utm_content: ''
+        utm_source: "",
+        utm_medium: "",
+        utm_campaign: "",
+        utm_term: "",
+        utm_content: "",
       },
       request: false,
       success: false,
     };
   },
   created() {
-    if (this.page.data.project)
+    /*if (this.page.data.project)
       this.form.project_id = this.page.data.project.id;
     this.page.data.timeDay.length
       ? (this.form.schedule = this.page.data.timeDay[0].name)
-      : "";
+      : "";*/
   },
   methods: {
+    updateCalendarProject(ref){
+      let idProject;
+      if(ref.target){
+        idProject = ref.target.value;
+      }
+      else{
+        idProject = ref;
+      }
+      let project = this.page.data.projects.find(x => x.id == idProject)
+      //console.log(project.sap_code)
+      let actLead = {
+            grupo: project.sap_code,
+          };
+          document
+            .getElementById("calendar")
+            .calLidLead("opcion", "actualizarLead", actLead);
+            document.getElementById("calendar").calLidLead("refrescar");
+    },
     restore() {
       this.errors = {};
       this.form = {};
     },
     submit() {
-      if(this.$route.query.utm_source) this.form.utm_source = this.$route.query.utm_source;
-      if(this.$route.query.utm_medium) this.form.utm_medium = this.$route.query.utm_medium;
-      if(this.$route.query.utm_campaign) this.form.utm_campaign = this.$route.query.utm_campaign;
-      if(this.$route.query.utm_term) this.form.utm_term = this.$route.query.utm_term;
-      if(this.$route.query.utm_content) this.form.utm_content = this.$route.query.utm_content;
+      if (this.$route.query.utm_source)
+        this.form.utm_source = this.$route.query.utm_source;
+      if (this.$route.query.utm_medium)
+        this.form.utm_medium = this.$route.query.utm_medium;
+      if (this.$route.query.utm_campaign)
+        this.form.utm_campaign = this.$route.query.utm_campaign;
+      if (this.$route.query.utm_term)
+        this.form.utm_term = this.$route.query.utm_term;
+      if (this.$route.query.utm_content)
+        this.form.utm_content = this.$route.query.utm_content;
       this.request = true;
       this.$axios
         .$post("/api/post/lead/online-appointment", this.form)
@@ -364,6 +486,71 @@ export default {
           this.restore();
         });
     },
+  },
+  mounted() {
+    //window.addEventListener("load", (e) => {
+    if (this.page.data.project)
+    this.form.project_id = this.page.data.project.id;
+    this.updateCalendarProject(this.form.project_id);
+      let cal = {
+        lead: {
+          tipoDocumento: "",
+          nroDocumento: "",
+          nombres: "",
+          apellidoPaterno: "",
+          apellidoMaterno: "",
+          correo: "",
+          telefono1: "",
+          telefono2: "",
+          fechaRecepcion: "",
+          medio: 2,
+          canal: "",
+          grupo: "",
+          proyecto: "",
+          comentario: "",
+          source: "",
+          medium: "",
+          campaign: "",
+          term: "",
+          content: "",
+          fechaInicio: "",
+          fechaFin: "",
+        },
+        alto: "260px",
+        ancho: "100%",
+        lunesPrimero: true,
+        formato24Horas: false,
+        muestraFormulario: false,
+        muestraBoton: false,
+        idioma: 'es'
+        /*finalizoCarga: function (args) {},
+        seleccionoFecha: function (fIni, fFin) {},
+        finalizoRegistro: function (args) {},*/
+      };
+
+      /*document
+        .getElementById("slcGroup")
+        .addEventListener("change", function () {
+          let actLead = {
+            grupo: this.value,
+          };
+          document
+            .getElementById("calendar")
+            .calLidLead("opcion", "actualizarLead", actLead);
+          document.getElementById("calendar").calLidLead("refrescar");
+        });
+
+      document.getElementById("btnRef").addEventListener("click", function () {
+        document.getElementById("calendar").calLidLead("refrescar");
+      });
+
+      document.getElementById("btnVer").addEventListener("click", function () {
+        var lead = document.getElementById("calendar").calLidLead("opcion",'obtenerLead');
+        console.log(lead);
+      });*/
+
+      document.getElementById('calendar').calLidLead(cal)
+    //});
   },
 };
 </script>
