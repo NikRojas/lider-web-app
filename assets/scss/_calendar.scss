@@ -1,3 +1,24 @@
+$color_2:#0E5983;
+$font-family: 'Roboto', sans-serif;
+
+#calendar{
+	line-height: 1;
+	font-family: $font_family;
+	margin-top: -12px;
+	
+}
+
+.callid-cntdia{
+	input{
+		display: none !important;
+	}
+}
+
+.callid-tbsgto > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1){
+	padding-top: 5px;
+	height: 22px;
+}
+
 .callid-bloq {
 	background-color: rgba(0, 0, 0, .5);
 	text-align: center;
@@ -32,7 +53,7 @@
 }
 .callid-cntmes {
 	width: 55%;
-	background-color: #544f75;
+	background-color: $color_2;
 }
 .callid-cntmes table.callid-calbtn, .callid-cntmes table.callid-calmes {
 	border-collapse: collapse;
@@ -45,7 +66,7 @@
 }
 .callid-cntmes table.callid-calbtn td, .callid-cntmes table.callid-calbtn a {
 	color: #fff;
-	font-size: 11px;
+	font-size: 12px;
 }
 .callid-cntmes table.callid-calbtn a {
 	text-decoration: none;
@@ -57,14 +78,14 @@
 	height: 24px;
 	text-align: center;
 	color: #fff;
-	font-size: 11px;
+	font-size: 12px;
 }
 .callid-cntmes table.callid-calmes td span {
 	display: inline-block;
 	width: 24px;
 	height: 24px;
 	line-height: 24px;
-	font-size: 11px;
+	font-size: 12px;
 }
 .callid-cntmes td.td-dia {
 	color: #fff;
@@ -78,7 +99,7 @@
 .callid-cntmes td.td-dia-sel span {
 	background-color: #fff;
 	border-radius: 12px;
-	color: #544f75;
+	color: $color_2;
 	font-weight: bold;
 }
 .callid-cntsto {
@@ -92,8 +113,8 @@
 	width: 80%;
 }
 .callid-cntsto table.callid-tbsgto td {
-	height: 18px;
-	font-size: 11px;
+	height: 20px;
+	font-size: 12px;
 }
 .callid-cntsto td.callid-tdtit {
 	text-align: left;
@@ -101,9 +122,10 @@
 .callid-cntsto td.td-segto {
 	border: 1px solid #ccc;
 	text-align: center;
+	vertical-align: middle;
 }
 .callid-cntsto td.td-segto-sel {
-	background-color: #544f75;
+	background-color: $color_2;
 	color: #fff;
 }
 .callid-cntdia table.callid-caldia {
@@ -115,10 +137,10 @@
 	border: 1px solid #ccc;
 	height: 20px;
 	line-height: 20px;
-	font-size: 11px;
+	font-size: 12px;
 }
 .callid-cntdia td.td-hora-sel {
-	background-color: #544f75;
+	background-color: $color_2;
 	color: #fff;
 }
 .callid-cntdia {
@@ -139,7 +161,7 @@
 	height: 10px;
 }
 .callid-cntdia::-webkit-scrollbar-thumb {
-	background-color: #544f75;
+	background-color: $color_2;
 	border-radius: 20px;
 	border: 2px solid #9692a5;
 }

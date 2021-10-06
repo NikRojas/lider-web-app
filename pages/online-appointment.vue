@@ -429,6 +429,7 @@ export default {
         utm_campaign: "",
         utm_term: "",
         utm_content: "",
+        accepted: false,
       },
       request: false,
       success: false,
@@ -448,6 +449,8 @@ export default {
       let project = this.page.data.projects.find(x => x.id == idProject)
       let actLead = {
             grupo: project.sap_code,
+            fechaInicio: "",
+            fechaFin: "",
           };
           document
             .getElementById("calendar")
@@ -456,24 +459,62 @@ export default {
     },
     restore() {
       this.errors = {};
-      this.form = {};
+      this.form = {
+        accepted: false
+      };
     },
     submit() {
-      if (this.$route.query.utm_source)
+      let utm_source, utm_medium, utm_campaign, utm_term, utm_content;
+      utm_source = utm_medium = utm_campaign = utm_term = utm_content = "desconocido";
+      if (this.$route.query.utm_source){
         this.form.utm_source = this.$route.query.utm_source;
-      if (this.$route.query.utm_medium)
+        utm_source = this.form.utm_source;
+      }
+      if (this.$route.query.utm_medium){
         this.form.utm_medium = this.$route.query.utm_medium;
-      if (this.$route.query.utm_campaign)
+        utm_medium = this.form.utm_medium;
+      }
+      if (this.$route.query.utm_campaign){
         this.form.utm_campaign = this.$route.query.utm_campaign;
-      if (this.$route.query.utm_term)
+        utm_campaign = this.form.utm_campaign;
+      }
+      if (this.$route.query.utm_term){
         this.form.utm_term = this.$route.query.utm_term;
-      if (this.$route.query.utm_content)
+        utm_term = this.form.utm_term;
+      }
+      if (this.$route.query.utm_content){
         this.form.utm_content = this.$route.query.utm_content;
-
+        utm_content = this.form.utm_content;
+      }
+      
+      let utms = {
+        source: utm_source,
+        medium: utm_medium,
+        campaign: utm_campaign,
+        term: utm_term,
+        content: utm_content,
+        tipoDocumento: "D",
+        nroDocumento: this.form.document_number,
+        apellidoPaterno: this.form.lastname,
+        apellidoMaterno: this.form.lastname,
+        nombres: this.form.name,
+        correo: this.form.email,
+        telefono1: this.form.mobile
+      };
+      document.getElementById('calendar').calLidLead('opcion', 'actualizarLead', utms);
       let scheduleLead = document.getElementById("calendar").calLidLead('opcion','obtenerLead')
       console.log(scheduleLead);
-      if(scheduleLead){
-        //this.form.schedule = 
+      console.log(scheduleLead.fechaInicio);
+      console.log(scheduleLead.fechaFin);
+      if(scheduleLead.fechaInicio != ''){
+        let fIni = scheduleLead.fechaInicio;
+        let fFin = scheduleLead.fechaFin;
+        fIni = fIni.toString();
+        fFin = fFin.toString();
+        this.form.schedule = fIni.substr(6, 2)+'/'+fIni.substr(4, 2)+'/'+fIni.substr(0, 4)+' '+fIni.substr(8, 2)+':'+fIni.substr(10, 2)+' - '+fFin.substr(6, 2)+'/'+fFin.substr(4, 2)+'/'+fFin.substr(0, 4)+' '+fFin.substr(8, 2)+':'+fFin.substr(10, 2)
+      }
+      else{
+        this.form.schedule = "";
       }
       this.request = true;
       this.$axios
@@ -481,7 +522,9 @@ export default {
         .then((response) => {
           this.request = false;
           this.success = true;
-
+          if(this.success){
+            document.getElementById('calendar').calLidLead('opcion', 'registrarLead'); 
+          }
           this.restore();
         })
         .catch((error) => {
