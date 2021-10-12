@@ -23,6 +23,7 @@ $font-family: 'Roboto', sans-serif;
 	background-color: rgba(0, 0, 0, .5);
 	text-align: center;
 	min-height: 150px;
+	//margin-top: 15px;
 }
 .callid-bloq span {
 	margin: 0;
@@ -32,6 +33,7 @@ $font-family: 'Roboto', sans-serif;
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	color: #fff;
+	text-transform: capitalize;
 }
 .callid-cntfrm .callid-tdtit, .callid-cntcal .callid-tdtit, .callid-cntsto .callid-tdtit {
 	font-style: italic;
