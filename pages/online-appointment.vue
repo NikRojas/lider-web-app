@@ -138,7 +138,7 @@
                             {{ el.name }}
                           </option>
                         </select>-->
-                        <div id="calendar"></div>
+                        <div id="calendario"></div>
                         <span
                           style="margin-top: 12px; display: block;"
                           class="error error-red"
@@ -285,6 +285,9 @@ import Banner from "../components/Banner";
 import Terms from "../components/modals/Terms";
 import Policies from "../components/modals/Policies";
 import "../assets/scss/_calendar.scss";
+/*if (process.client) {
+  require("/static/js/callider.min.js")("V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR");
+}*/
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/online-appointment", {
@@ -306,7 +309,11 @@ export default {
         : "",
       script: [
         {
+          hid: 'extscript',
           src: "/js/callider.min.js",
+          //async: true,
+          //callback: () => (this.externalLoaded = true),
+          callback: () => (this.createCalendar()),
           /*"clid-llave":
             "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",*/
           "clid-llave":
@@ -435,6 +442,7 @@ export default {
       },
       request: false,
       success: false,
+      externalLoaded: false,
     };
   },
   created() {
@@ -538,16 +546,16 @@ export default {
           this.restore();
         });
     },
-  },
-  mounted() {
-    //window.addEventListener("load", (e) => {
-      let projectCode = "";
-    if (this.page.data.project){
-      this.form.project_id = this.page.data.project.id;
-      let project = this.page.data.projects.find(x => x.id == this.form.project_id)
-      projectCode = project.sap_code;
-      console.log(projectCode);
-    }
+    createCalendar(){
+      //console.log("createdcalendar");
+      let self = this;
+        let projectCode = "";
+        if (self.page.data.project){
+        self.form.project_id = self.page.data.project.id;
+        let project = self.page.data.projects.find(x => x.id == self.form.project_id)
+        projectCode = project.sap_code;
+        console.log(projectCode);
+      }
       let cal = {
         lead: {
           tipoDocumento: "",
@@ -578,40 +586,66 @@ export default {
         formato24Horas: false,
         muestraFormulario: false,
         muestraBoton: false,
-        idioma: 'es',
-        /*finalizoCarga: function (args) {
-        },
-        seleccionoFecha: function (fIni, fFin) {},
-        finalizoRegistro: function (args) {},*/
+        idioma: 'es'
       };
-
-      /*document
-        .getElementById("slcGroup")
-        .addEventListener("change", function () {
-          let actLead = {
-            grupo: this.value,
-          };
-          document
-            .getElementById("calendar")
-            .calLidLead("opcion", "actualizarLead", actLead);
-          document.getElementById("calendar").calLidLead("refrescar");
-        });
-
-      document.getElementById("btnRef").addEventListener("click", function () {
-        document.getElementById("calendar").calLidLead("refrescar");
-      });
-
-      document.getElementById("btnVer").addEventListener("click", function () {
-        var lead = document.getElementById("calendar").calLidLead("opcion",'obtenerLead');
-        console.log(lead);
-      });*/
-
-      document.getElementById('calendar').calLidLead(cal)
+        document.getElementById('calendario').calLidLead(cal);
+    }
+  },
+  mounted() {
+    let self = this;
+    //$(function () {
+    //  setTimeout(() => {
+    
+       
+   
     //});
-    /*if (this.page.data.project){
-      this.updateCalendarProject(this.form.project_id);
-    }*/
+    
 
   },
+  /*updated(){
+    if(this.externalLoaded){
+         let projectCode = "";
+        if (self.page.data.project){
+        self.form.project_id = self.page.data.project.id;
+        let project = self.page.data.projects.find(x => x.id == self.form.project_id)
+        projectCode = project.sap_code;
+        console.log(projectCode);
+      }
+      let cal = {
+        lead: {
+          tipoDocumento: "",
+          nroDocumento: "",
+          nombres: "",
+          apellidoPaterno: "",
+          apellidoMaterno: "",
+          correo: "",
+          telefono1: "",
+          telefono2: "",
+          fechaRecepcion: "",
+          medio: 2,
+          canal: "",
+          grupo: projectCode,
+          proyecto: "",
+          comentario: "",
+          source: "",
+          medium: "",
+          campaign: "",
+          term: "",
+          content: "",
+          fechaInicio: "",
+          fechaFin: "",
+        },
+        alto: "260px",
+        ancho: "100%",
+        lunesPrimero: true,
+        formato24Horas: false,
+        muestraFormulario: false,
+        muestraBoton: false,
+        idioma: 'es'
+      };
+        document.getElementById('calendario').calLidLead(cal);
+      //}, 100);
+      }
+  }*/
 };
 </script>
