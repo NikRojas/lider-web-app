@@ -463,9 +463,9 @@ export default {
             fechaFin: "",
           };
           document
-            .getElementById("calendar")
+            .getElementById("calendario")
             .calLidLead("opcion", "actualizarLead", actLead);
-            document.getElementById("calendar").calLidLead("refrescar");
+            document.getElementById("calendario").calLidLead("refrescar");
     },
     restore() {
       this.errors = {};
@@ -511,8 +511,8 @@ export default {
         correo: this.form.email,
         telefono1: this.form.mobile
       };
-      document.getElementById('calendar').calLidLead('opcion', 'actualizarLead', utms);
-      let scheduleLead = document.getElementById("calendar").calLidLead('opcion','obtenerLead')
+      document.getElementById('calendario').calLidLead('opcion', 'actualizarLead', utms);
+      let scheduleLead = document.getElementById("calendario").calLidLead('opcion','obtenerLead')
       console.log(scheduleLead);
       console.log(scheduleLead.fechaInicio);
       console.log(scheduleLead.fechaFin);
@@ -533,7 +533,7 @@ export default {
           this.request = false;
           this.success = true;
           if(this.success){
-            document.getElementById('calendar').calLidLead('opcion', 'registrarLead'); 
+            document.getElementById('calendario').calLidLead('opcion', 'registrarLead'); 
           }
           this.restore();
         })
