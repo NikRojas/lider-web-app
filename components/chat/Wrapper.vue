@@ -446,7 +446,7 @@ export default {
       messagesHelloProject: ["Este proyecto es uno de los mejores en su zona.", "Este proyecto es uno de los más solicitados."],
       messagesHelloBlog: ["Adquirir un departamento es una decisión muy importante.", "Yo también puedo resolver tus dudas."],
       timerNotification: "",
-      soundActive: true,
+      soundActive: false,
       soundSupported: true,
       block: "chat",
       voiceSpanish: ''
@@ -529,7 +529,7 @@ export default {
     });
 
     this.socket.on("error", (resp) => {
-      console.log("error");
+      //console.log("error");
       //this.connectionError = true;
       const el = {
         message: "Parece que tu internet tiene problemas de conexión, por favor verifícalo y refresca la página.",
@@ -544,7 +544,7 @@ export default {
     });
 
     this.socket.on("connect_error", (resp) => {
-      console.log("connect_error");
+      //console.log("connect_error");
       //this.connectionError = true;
       const el = {
         message: "Parece que tu internet tiene problemas de conexión, por favor verifícalo y refresca la página.",
@@ -558,7 +558,7 @@ export default {
     });
 
     this.socket.on("disconnect", (resp) => {
-      console.log("disconnect");
+      //console.log("disconnect");
       const el = {
         message: "Parece que tu internet tiene problemas de conexión, por favor verifícalo y refresca la página.",
         element: "buttons",
@@ -745,8 +745,8 @@ export default {
       window.speechSynthesis.cancel();
       if(this.reveal){
         let sentence;
-        console.log(window.speechSynthesis
-          .getVoices());
+        /*console.log(window.speechSynthesis
+          .getVoices());*/
         if(!this.voiceSpanish){
           this.voiceSpanish = window.speechSynthesis
             .getVoices()
@@ -1183,7 +1183,6 @@ export default {
         margin-bottom: 0;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-        //background-image: url(https://storage.googleapis.com/playgroup-bots/wiener/img/fondo.jpg);
       }
       .chat__body,
       .chat__footer {
@@ -1191,7 +1190,6 @@ export default {
       }
       .chat__header {
         background: #0079bb;
-        //background-image: url(https://storage.googleapis.com/playgroup-web/bot/images/bg-bot.jpg);
         background-size: cover;
         /*border-bottom: 1px solid #d0d0ef;*/
         padding: 18px 20px 0;
