@@ -56,82 +56,87 @@
                   />
                 </a>
               </div>
-              <div class="card-head">
-                <div class="logo">
-                  <img
-                    :data-src="
-                      storageUrl + '/img/projects/' + el.project_rel.logo_colour
-                    "
-                    :alt="
-                      $t('Proyecto') +
-                      ' ' +
-                      el.project_rel['name_' + $i18n.locale] +
-                      ' ' +
-                      i
-                    "
-                    class="lazyload"
-                  />
+              <div class="body">
+                <div class="card-head">
+                  <div class="logo">
+                    <img
+                      :data-src="
+                        storageUrl + '/img/projects/' + el.project_rel.logo_colour
+                      "
+                      :alt="
+                        $t('Proyecto') +
+                        ' ' +
+                        el.project_rel['name_' + $i18n.locale] +
+                        ' ' +
+                        i
+                      "
+                      class="lazyload"
+                    />
 
-                  <strong>{{
-                    el.project_rel.status_rel["name_" + $i18n.locale]
-                  }}</strong>
+                    <strong>{{
+                      el.project_rel.status_rel["name_" + $i18n.locale]
+                    }}</strong>
+                  </div>
+                  <div class="card-caract">
+                    <div>
+                      <i class="flaticon-ubicacion"> </i>
+                      {{ el.project_rel.ubigeo_rel.district }} -
+                      {{ el.project_rel.ubigeo_rel.department }}
+                    </div>
+                    <div>
+                      <i class="flaticon-blueprint"> </i>
+                      {{ el.area_format }}m2
+                    </div>
+                    <div>
+                      <i class="flaticon-cama-matrimonial"> </i>
+                      {{ el.tipology_rel.room }}
+                    </div>
+                  </div>
                 </div>
-                <div class="card-caract">
-                  <div>
-                    <i class="flaticon-ubicacion"> </i>
-                    {{ el.project_rel.ubigeo_rel.district }} -
-                    {{ el.project_rel.ubigeo_rel.department }}
-                  </div>
-                  <div>
-                    <i class="flaticon-blueprint"> </i>
-                    {{ el.area_format }}m2
-                  </div>
-                  <div>
-                    <i class="flaticon-cama-matrimonial"> </i>
-                    {{ el.tipology_rel.room }}
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <ul>
-                  <li v-if="el.description">
-                    <strong>{{ el.description }}</strong>
-                  </li>
-                  <template
-                    v-if="
-                      el.type_department_id &&
-                      el.tipology_rel &&
-                      el.tipology_rel.parent_type_department_id
-                    "
-                  >
-                    <li>
-                      <b>{{ $t("Tipo") }}:</b>
-                      <span>{{
-                        el.tipology_rel.parent_type_department_rel.name
-                      }}</span>
+                <div class="card-body">
+                  <ul>
+                    <li v-if="el.description">
+                      <strong>{{ el.description }}</strong>
                     </li>
-                  </template>
-                  <li>
-                    <b>{{ $t("Piso") }}:</b
-                    ><span>{{ el.floor }}° {{ $t("piso") }}</span>
-                  </li>
-                  <li>
-                    <b>{{ $t("Vista") }}:</b><span>{{ el.view_rel.name }}</span>
-                  </li>
-                  
-                  <li>
-                    <b>{{ $t("Precio inmueble") }}:</b>
+                    <template
+                      v-if="
+                        el.type_department_id &&
+                        el.tipology_rel &&
+                        el.tipology_rel.parent_type_department_id
+                      "
+                    >
+                      <li>
+                        <b>{{ $t("Tipo") }}:</b>
+                        <span>{{
+                          el.tipology_rel.parent_type_department_rel.name
+                        }}</span>
+                      </li>
+                    </template>
+                    <li>
+                      <b>{{ $t("Piso") }}:</b
+                      ><span>{{ el.floor }}° {{ $t("piso") }}</span>
+                    </li>
+                    <li>
+                      <b>{{ $t("Vista") }}:</b><span>{{ el.view_rel.name }}</span>
+                    </li>
+                    
+                    <li>
+                      <b>{{ $t("Precio inmueble") }}:</b>
 
-                    <span>
-                      <template v-if="el.price_foreign">
-                        {{ el.price_foreign_format }}
-                      </template>
-                      <template v-if="!el.price_foreign && el.price">
-                        {{ el.price_format }}
-                      </template>
-                    </span>
-                  </li>
-                </ul>
+                      <span>
+                        <template v-if="el.project_rel.master_currency_id == 1">
+                          {{ el.price_format }}
+                        </template>
+                        <template v-else-if="el.project_rel.master_currency_id == 2">
+                          {{ el.price_foreign_format }}
+                        </template>
+                      </span>
+                    </li>
+                    <li v-if="el.project_rel.reservation_in_package">
+                      <span v-html="el.project_rel.package_description"></span>
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div class="">
                 <nuxt-link

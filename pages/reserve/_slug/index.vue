@@ -31,7 +31,7 @@
         <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
-              <h2>{{ $t("Datos de reserva") }}</h2>
+              <h2>{{ $t("Datos de separación") }}</h2>
             </div>
             <div class="grid-col">
               <div class="grid-s-12 grid-m-12 grid-l-6">
@@ -187,29 +187,23 @@
                         <b>{{ $t("Precio del inmueble") }}:</b>
                         <p>
                           <strong v-if="!departmentUpdated">
-                            <template v-if="page.data.department.price_foreign">
-                              {{ page.data.department.price_foreign_format }}
+                            <template v-if="page.data.department.project_rel.master_currency_id == 1">
+                              {{ page.data.department.price_format }}
                             </template>
                             <template
-                              v-if="
-                                !page.data.department.price_foreign &&
-                                page.data.department.price
-                              "
+                              v-else-if="page.data.department.project_rel.master_currency_id == 2"
                             >
-                              {{ page.data.department.price_format }}
+                              {{ page.data.department.price_foreign_format }}
                             </template>
                           </strong>
                           <strong v-else>
-                            <template v-if="departmentAvailable.price_foreign">
-                              {{ departmentAvailable.price_foreign_format }}
+                            <template v-if="departmentAvailable.project_rel.master_currency_id == 1">
+                              {{ departmentAvailable.price_format }}
                             </template>
                             <template
-                              v-if="
-                                !departmentAvailable.price_foreign &&
-                                departmentAvailable.price
-                              "
+                              v-else-if="departmentAvailable.project_rel.master_currency_id == 2"
                             >
-                              {{ departmentAvailable.price_format }}
+                              {{ departmentAvailable.price_foreign_format }}
                             </template>
                           </strong>
                           <span v-if="departmentUpdated" style="color: #3ddc97; display:block;"
@@ -228,6 +222,26 @@
                               .price_separation_format
                           }}</strong>
                         </p>
+                      </div>
+                      <div class="grid-s-12" >
+                        <div v-if="page.data.department.project_rel.reservation_in_package" v-html="page.data.department.project_rel.package_description">
+                        </div>
+                        <div v-else>
+                          <div v-if="page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse">
+                            <i>
+                              <template v-if="page.data.department.project_rel.has_parking && page.data.department.project_rel.stock_parking == 0 &&
+                              page.data.department.project_rel.has_warehouse && page.data.department.project_rel.stock_warehouse == 0">
+                                  * El proyecto no cuenta con estacionamientos ni depósitos disponibles
+                              </template>
+                              <template v-else>
+                                {{ page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse ? '* El proyecto cuenta con' : '' }} 
+                                {{ page.data.department.project_rel.has_parking ? page.data.department.project_rel.stock_parking+' estacionamientos' : ''}} 
+                                {{ page.data.department.project_rel.has_parking && page.data.department.project_rel.has_warehouse ? 'y' : ''}} 
+                                {{ page.data.department.project_rel.has_warehouse ? page.data.department.project_rel.stock_warehouse+' depósitos' : ''}} disponibles
+                              </template>
+                            </i>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -329,7 +343,7 @@
                               >{{ $t("N° de documento") }}*</label
                             >
                             <input
-                              type="text"
+                              type="number"
                               id="document_number"
                               v-model="customer.document_number"
                             />

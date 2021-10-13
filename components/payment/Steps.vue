@@ -17,7 +17,7 @@
                         <div class="progress-bar"></div>
                     </div>
                     <div class="indicator"  :class="active == 'summary' ? 'active' : ''">
-                        <div class="tag">{{ $t('Resumen de reserva') }}</div>
+                        <div class="tag">{{ $t('Resumen de separación') }}</div>
                     </div>
                     <div class="progress-bar-container">
                         <div class="progress-bar"></div>

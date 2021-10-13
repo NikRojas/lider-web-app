@@ -36,7 +36,7 @@
               <Filters
                 @set="getEls"
                 @clear="clear"
-                :data="page.data.filters"
+                :filtersParent="page.data.filters"
               ></Filters>
             </div>
             <div class="grid-btn-orden" id="buttons">
@@ -252,10 +252,11 @@ export default {
       projects = false,
       type = false,
       areas = false,
+      firstTime = false,
     ) {
       this.loadingEls = true;
       if (page) this.pageActive = page;
-      this.$scrollTo(document.getElementById("buttons"), 900, { offset: -100 });
+      if(!firstTime) this.$scrollTo(document.getElementById("buttons"), 900, { offset: -100 });
       if (range) this.range = range;
       if (views) this.views = views;
       if (floors) this.floors = floors;

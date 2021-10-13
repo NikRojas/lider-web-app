@@ -126,7 +126,7 @@ export default {
     'Características': 'Features',
     'Precio inmueble': 'Property price',
     'Precio separación': 'Reservation price',
-    'dormitorio(s)': 'room(s)',
+    'dormitorios': 'rooms',
     'Precios': 'Prices',
     'Tipo departamento': 'Department type',
     'To': 'To',
@@ -136,6 +136,7 @@ export default {
     'inmuebles': 'properties',
     'Ver': 'Show',
     'Datos de reserva': 'Reservation data',
+    'Datos de separación': 'Reservation data',
     'Ingresa tus datos': 'Enter your details',
     'Apellido Paterno': 'Lastname',
     'Apellido Materno': "Mother's last name",
@@ -149,6 +150,7 @@ export default {
     'Regresar': 'Go Back',
     'Elige tu inmueble': 'Choose your property',
     'Resumen de reserva': 'Reservation Summary',
+    'Resumen de separación': 'Reservation Summary',
     'Realiza el pago': 'Make the payment',
     'Filtrar': 'Filter',
     'Borrar Filtrado': 'Clear Filtering',
@@ -196,5 +198,6 @@ export default {
     'tu separación está confirmada': 'your reservation is confirmed',
     'En breve recibirás un correo electrónico con el detalle de tu separación, tu orden es la': 'You will shortly receive an email with the details of your separation, your order is',
     'Bienvienido a la familia Líder': 'Welcome to the Líder family',
-    'Descripción': 'Description'
+    'Descripción': 'Description',
+    'dormitorio': 'room',
 }

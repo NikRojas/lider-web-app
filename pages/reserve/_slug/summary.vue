@@ -32,7 +32,7 @@
         <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
-              <h2>{{ $t("Resumen de reserva") }}</h2>
+              <h2>{{ $t("Resumen de separación") }}</h2>
             </div>
             <div class="grid-col">
               <div class="grid-s-12" v-if="requestAvailable">
@@ -193,17 +193,14 @@
                           <p>
                             <strong
                               ><template
-                                v-if="page.data.department.price_foreign"
-                              >
-                                {{ page.data.department.price_foreign_format }}
-                              </template>
-                              <template
-                                v-if="
-                                  !page.data.department.price_foreign &&
-                                  page.data.department.price
-                                "
+                                v-if="page.data.department.project_rel.master_currency_id == 1"
                               >
                                 {{ page.data.department.price_format }}
+                              </template>
+                              <template
+                                v-else-if="page.data.department.project_rel.master_currency_id == 2"
+                              >
+                                {{ page.data.department.price_foreign_format }}
                               </template></strong
                             >
                           </p>
@@ -220,11 +217,29 @@
                           </p>
                         </div>
                       </div>
+                      <div v-if="page.data.department.project_rel.reservation_in_package" v-html="page.data.department.project_rel.package_description"  class="mt-2">
+                      </div>
+                      <div v-else>
+                        <div v-if="page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse">
+                            <i>
+                            <template v-if="page.data.department.project_rel.has_parking && page.data.department.project_rel.stock_parking == 0 &&
+                            page.data.department.project_rel.has_warehouse && page.data.department.project_rel.stock_warehouse == 0">
+                                * El proyecto no cuenta con estacionamientos ni depósitos disponibles
+                            </template>
+                            <template v-else>
+                              {{ page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse ? '* El proyecto cuenta con' : '' }} 
+                              {{ page.data.department.project_rel.has_parking ? page.data.department.project_rel.stock_parking+' estacionamientos' : ''}} 
+                              {{ page.data.department.project_rel.has_parking && page.data.department.project_rel.has_warehouse ? 'y' : ''}} 
+                              {{ page.data.department.project_rel.has_warehouse ? page.data.department.project_rel.stock_warehouse+' depósitos' : ''}} disponibles
+                            </template>
+                            </i>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div v-if="Object.entries(customerGlobal).length === 0"></div>
+              <div v-if="Object.entries(customerGlobal).length === 0" class="grid-s-12"></div>
               <div class="grid-s-12" v-else>
                 <div class="content-bg">
                   <h5>
@@ -520,7 +535,7 @@ export default {
         .then((response) => {
           this.requestPayment = false;
           if (response.data.t) {
-            this.generateForm(response.data.t, response.data.j);
+            this.generateForm(response.data.t, response.data.j, response.data.currency);
           }
         })
         .catch((error) => {
@@ -535,7 +550,19 @@ export default {
           );
         });
     },
-    generateForm(token, tokenjs) {
+    onFormCreated(event){
+      var valueText = "PAGAR "+this.page.data.department.project_rel
+                                  .price_separation_format;
+      var botonpopin = document.getElementsByClassName("kr-payment-button");
+      var spanBotonPopin = botonpopin[0].getElementsByTagName('span');
+      spanBotonPopin[0].textContent = valueText;
+      var valueText2 = "<strong>PAGAR "+this.page.data.department.project_rel
+                                  .price_separation_format+"</strong>";
+      var botonform = document.getElementsByClassName("kr-popin-button");
+      botonform[0].innerHTML = valueText2;
+    },
+    generateForm(token, tokenjs, currency) {
+      console.log(currency);
       const formToken = token;
       let config = {
         "merchant": {
@@ -551,10 +578,26 @@ export default {
           },
         },
       };
+      /*let configCurrency = {};
+      if(currency == "USD"){
+        configCurrency = {
+            "kr-language": "en-US"
+        }
+      }
+      else{
+        configCurrency = {
+            "kr-language": "es-ES"
+        }
+      }*/
+      /*let configPlaceholders = {
+        "kr-placeholder-expiry" : 'MM/AA',
+        "kr-placeholder-pan": "Número de tarjeta",
+      }*/
       KRGlue.loadLibrary(this.endpoint, tokenjs)
         .then(({ KR }) =>
           KR.setFormConfig({
             formToken: formToken,
+            //"kr-language": "en-US"
           })
         )
         .then(({ KR }) =>
@@ -562,6 +605,7 @@ export default {
             "kr-popin": ""
           })
         )
+        //.then(({ KR }) => KR.setFormConfig(configCurrency) )
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
@@ -571,6 +615,7 @@ export default {
         .then(({ KR }) => KR.closePopin()) /* create a payment form */
         .then(({ KR }) => KR.onSubmit(this.pay))
         .then(({ KR }) => KR.onError(this.handleError))
+        .then(({ KR }) => KR.onFormCreated(this.onFormCreated))
         //El formToken válido por 5 minutos.
         //Establecer limite de LS 5m
         .then(({ KR }) => this.setExpireLS(60 * 6000))

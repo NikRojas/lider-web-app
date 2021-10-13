@@ -421,8 +421,9 @@ i.flaticon-linkedin {
 .pagination--select{
     margin: 5px;
     min-height: 43px;
+    display: block;
 }
-@media only screen and (max-width: 1150px) {
+/*@media only screen and (max-width: 1150px) {
     .pagination--list{
         display: none !important;
     }
@@ -439,7 +440,7 @@ i.flaticon-linkedin {
     .pagination--select{
         display: none;
     }
-}
+}*/
 
 .checkbox {
     position: absolute;
@@ -484,4 +485,101 @@ form#formp select {
 
 .text-transform-inherit{
     text-transform: inherit;
+}
+
+
+.grid-departamentos .card-depa-grid .img img {
+    height: 150px;
+    object-fit: cover;
+}
+.card-depa-grid .body {
+    overflow-y: auto;
+    max-height: 234px;
+}
+.card-depa-grid .card-head .card-caract {
+    grid-gap: 6px;
+}
+.card-depa-grid .body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 2px;
+	background-color: #F5F5F5;
+}
+
+.card-depa-grid .body::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F7f7f7;
+}
+
+.card-depa-grid .body::-webkit-scrollbar-thumb
+{
+	border-radius: 2px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #999;
+}
+.card-depa-grid .card-body ul li:first-child {
+    height: 38px;
+    display: grid;
+    align-items: center;
+    text-align: justify;
+}
+
+.card-depa-grid .card-head .card-caract {
+    margin-bottom: 6px;
+}
+.card-caract div:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mt-2{
+    margin-top: 1rem;
+}
+
+.card-depa-grid .card-body ul li:first-child {
+    height: 40px!important;
+}
+.card-depa-grid .card-caract {
+    margin-bottom: 6px!important;
+}
+.card-depa-grid .body {
+    overflow-y: auto;
+    max-height: initial!important;
+}
+.card-depa-grid .card-body {
+    height: 152px;
+    align-items: center;
+    display: grid;
+}
+.card-depa-grid .card-body ul li p {
+    margin: 0;
+}
+.card-depa-grid .card-body ul li p em, .grid-listado p em {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    color: #f15f23;
+}
+.grid-listado {
+    grid-template-columns: 2fr 1fr 2fr 78px 58px 156px 180px!important;
+}
+.caracteristicas-pago .grid-col {
+    grid-gap: 10px;
+}
+.sized-container .content-bg em, .caracteristicas-pago em {
+    color: #f15f23;
+    font-weight: 500;
+}
+.sized-container .content-bg i ,.caracteristicas-pago em, .caracteristicas-pago i {
+    font-style: normal;
+color: #474747;
+}
+
+@media only screen and (max-width: 638px) {
+    a.nav-separa {
+        padding: 12px 20px !important;
+        width: 95px;
+    }
 }

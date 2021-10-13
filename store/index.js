@@ -5,6 +5,7 @@ export const state = () => ({
     menu: {},
     page: {},
     customer: {},
+    filters: {},
     errorMessage: '',
     expireLS: null,
     chatMessages: [],
@@ -45,6 +46,10 @@ export const mutations = {
     SET_MESSAGE(state, chatMessage) {
         state.chatMessages.push(chatMessage);
     },
+    SET_FILTERS(state, filters){
+        //state.filters = filters; 
+        state.filters = Object.assign({}, filters);
+    },
 }
 
 export const actions = {
@@ -84,6 +89,9 @@ export const actions = {
     setValueChatServerResponse({ commit, value }) {
         commit('SET_VALUE_CHAT_SERVER_RESPONSE', value);
     },
+    setFilters({ commit}, filters){
+        commit('SET_FILTERS', filters);
+    },
 }
 
 export const getters = {
@@ -114,6 +122,9 @@ export const getters = {
     },
     getChatServerResponse: state => {
         return state.chatServerResponse;
+    },
+    getFilters: state => {
+        return state.filters
     },
 }
 
