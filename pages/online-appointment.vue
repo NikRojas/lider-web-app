@@ -506,16 +506,16 @@ export default {
         tipoDocumento: "D",
         nroDocumento: this.form.document_number,
         apellidoPaterno: this.form.lastname,
-        apellidoMaterno: this.form.lastname,
+        //apellidoMaterno: "",
         nombres: this.form.name,
         correo: this.form.email,
         telefono1: this.form.mobile
       };
       document.getElementById('calendario').calLidLead('opcion', 'actualizarLead', utms);
       let scheduleLead = document.getElementById("calendario").calLidLead('opcion','obtenerLead')
-      console.log(scheduleLead);
+      /*console.log(scheduleLead);
       console.log(scheduleLead.fechaInicio);
-      console.log(scheduleLead.fechaFin);
+      console.log(scheduleLead.fechaFin);*/
       if(scheduleLead.fechaInicio != ''){
         let fIni = scheduleLead.fechaInicio;
         let fFin = scheduleLead.fechaFin;
@@ -554,7 +554,7 @@ export default {
         self.form.project_id = self.page.data.project.id;
         let project = self.page.data.projects.find(x => x.id == self.form.project_id)
         projectCode = project.sap_code;
-        console.log(projectCode);
+        //console.log(projectCode);
       }
       let cal = {
         lead: {
