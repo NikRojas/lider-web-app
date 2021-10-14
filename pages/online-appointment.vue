@@ -285,9 +285,6 @@ import Banner from "../components/Banner";
 import Terms from "../components/modals/Terms";
 import Policies from "../components/modals/Policies";
 import "../assets/scss/_calendar.scss";
-/*if (process.client) {
-  require("/static/js/callider.min.js")("V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR");
-}*/
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/online-appointment", {
@@ -314,10 +311,10 @@ export default {
           //async: true,
           //callback: () => (this.externalLoaded = true),
           callback: () => (this.createCalendar()),
-          /*"clid-llave":
-            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",*/
           "clid-llave":
-            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
+            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
+          /*"clid-llave":
+            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",*/
         },
       ],
       meta: [
@@ -591,61 +588,8 @@ export default {
         document.getElementById('calendario').calLidLead(cal);
     }
   },
-  mounted() {
+  /*mounted() {
     let self = this;
-    //$(function () {
-    //  setTimeout(() => {
-    
-       
-   
-    //});
-    
-
-  },
-  /*updated(){
-    if(this.externalLoaded){
-         let projectCode = "";
-        if (self.page.data.project){
-        self.form.project_id = self.page.data.project.id;
-        let project = self.page.data.projects.find(x => x.id == self.form.project_id)
-        projectCode = project.sap_code;
-        console.log(projectCode);
-      }
-      let cal = {
-        lead: {
-          tipoDocumento: "",
-          nroDocumento: "",
-          nombres: "",
-          apellidoPaterno: "",
-          apellidoMaterno: "",
-          correo: "",
-          telefono1: "",
-          telefono2: "",
-          fechaRecepcion: "",
-          medio: 2,
-          canal: "",
-          grupo: projectCode,
-          proyecto: "",
-          comentario: "",
-          source: "",
-          medium: "",
-          campaign: "",
-          term: "",
-          content: "",
-          fechaInicio: "",
-          fechaFin: "",
-        },
-        alto: "260px",
-        ancho: "100%",
-        lunesPrimero: true,
-        formato24Horas: false,
-        muestraFormulario: false,
-        muestraBoton: false,
-        idioma: 'es'
-      };
-        document.getElementById('calendario').calLidLead(cal);
-      //}, 100);
-      }
-  }*/
+  },*/
 };
 </script>
