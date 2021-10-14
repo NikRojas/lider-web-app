@@ -610,6 +610,7 @@ export default {
           }
           else{
             self.messageError = "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
+            self.request = true;
           }
         }
       };
