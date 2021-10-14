@@ -449,7 +449,8 @@ export default {
       soundActive: false,
       soundSupported: true,
       block: "chat",
-      voiceSpanish: ''
+      voiceSpanish: '',
+      socket: '',
     };
   },
   computed: {
