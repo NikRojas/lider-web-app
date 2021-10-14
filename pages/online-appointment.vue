@@ -77,18 +77,25 @@
                 "
               ></div>
               <transition name="slide-fade">
-                <div v-if="success" key="true" class="form__text-success-2">
+                <div v-if="success && successApi" key="true" class="form__text-success-2">
                   <h3>
                     <b>¡{{ $t("Excelente") }}!</b>
                   </h3>
-                  <p>
+                  <!--<p>
                     {{
                       $t(
                         "Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo"
                       )
                     }}.
                   </p>
-                  <b>{{ $t("¡Gracias por solicitar información!") }}</b>
+                  <b>{{ $t("¡Gracias por solicitar información!") }}</b>-->
+
+                  <p>{{  $t("Hemos registrado tu Cita para el") }} {{ form.schedule_init }} {{ $t('con')}} <span style="text-transform: capitalize;">{{ dataFromApi.desUsuarioAsignado }}</span>.
+                  {{  $t("En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.") }}
+
+                  </p>
+
+                  <b>{{ $t("¡Gracias por contactarse con nosotros!") }}</b>
                 </div>
                 <form v-else key="false" @submit.prevent="submit">
                   <div class="grid-col">
@@ -237,6 +244,12 @@
                           for="accepted"
                           >{{ $t(errors.accepted[0]) }}</span
                         >
+                        <span
+                          class="error error-red"
+                          v-if="messageError"
+                          for="accepted"
+                          >{{ messageError }}</span
+                        >
                       </div>
                     </div>
                     <div class="grid-s-12">
@@ -308,13 +321,12 @@ export default {
         {
           hid: 'extscript',
           src: "/js/callider.min.js",
-          //async: true,
-          //callback: () => (this.externalLoaded = true),
+          //defer: true,
           callback: () => (this.createCalendar()),
-          "clid-llave":
-            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
           /*"clid-llave":
-            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",*/
+            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",*/
+          "clid-llave":
+            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
         },
       ],
       meta: [
@@ -426,6 +438,7 @@ export default {
   data() {
     return {
       storageUrl: process.env.STORAGE_URL,
+      messageError: '',
       errors: {},
       page: {},
       form: {
@@ -440,6 +453,8 @@ export default {
       request: false,
       success: false,
       externalLoaded: false,
+      successApi: false,
+      dataFromApi: {}
     };
   },
   created() {
@@ -471,6 +486,7 @@ export default {
       };
     },
     submit() {
+      this.messageError = "";
       let utm_source, utm_medium, utm_campaign, utm_term, utm_content;
       utm_source = utm_medium = utm_campaign = utm_term = utm_content = "desconocido";
       if (this.$route.query.utm_source){
@@ -518,21 +534,21 @@ export default {
         let fFin = scheduleLead.fechaFin;
         fIni = fIni.toString();
         fFin = fFin.toString();
+        this.form.schedule_init = fIni.substr(6, 2)+'-'+fIni.substr(4, 2)+'-'+fIni.substr(0, 4)+' a las '+fIni.substr(8, 2)+':'+fIni.substr(10, 2);
         this.form.schedule = fIni.substr(6, 2)+'/'+fIni.substr(4, 2)+'/'+fIni.substr(0, 4)+' '+fIni.substr(8, 2)+':'+fIni.substr(10, 2)+' - '+fFin.substr(6, 2)+'/'+fFin.substr(4, 2)+'/'+fFin.substr(0, 4)+' '+fFin.substr(8, 2)+':'+fFin.substr(10, 2)
       }
       else{
         this.form.schedule = "";
+        this.form.schedule_init = "";
       }
       this.request = true;
       this.$axios
         .$post("/api/post/lead/online-appointment", this.form)
         .then((response) => {
-          this.request = false;
+          //this.request = false;
+          document.getElementById('calendario').calLidLead('opcion', 'registrarLead'); 
           this.success = true;
-          if(this.success){
-            document.getElementById('calendario').calLidLead('opcion', 'registrarLead'); 
-          }
-          this.restore();
+          //this.restore();
         })
         .catch((error) => {
           this.request = false;
@@ -583,13 +599,25 @@ export default {
         formato24Horas: false,
         muestraFormulario: false,
         muestraBoton: false,
-        idioma: 'es'
+        idioma: 'es',
+        finalizoRegistro: function(res){
+          console.log(res);
+          /*console.log(res.exito);*/
+          if(res.exito){
+            self.dataFromApi = Object.assign({}, res.lead);
+            self.successApi = true;
+            self.request = true;
+          }
+          else{
+            self.messageError = "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
+          }
+        }
       };
         document.getElementById('calendario').calLidLead(cal);
     }
   },
-  /*mounted() {
-    let self = this;
-  },*/
+  mounted() {
+    //let self = this;
+  },
 };
 </script>

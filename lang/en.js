@@ -200,4 +200,8 @@ export default {
     'Bienvienido a la familia Líder': 'Welcome to the Líder family',
     'Descripción': 'Description',
     'dormitorio': 'room',
+    'con': 'with',
+    '¡Gracias por contactarse con nosotros!': '¡Thank you for contacting us!',
+    'Hemos registrado tu Cita para el': 'We have registered your Appointment for',
+    'En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.': 'In the Notification of the Appointment email you will find the contact information of your Business Advisor.'
 }

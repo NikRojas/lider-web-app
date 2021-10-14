@@ -199,4 +199,8 @@ export default {
     'Bienvienido a la familia Líder': 'Bienvienido a la familia Líder',
     'Descripción': 'Descripción',
     'dormitorio': 'dormitorio',
+    'con': 'con',
+    '¡Gracias por contactarse con nosotros!': '¡Gracias por contactarse con nosotros!',
+    'Hemos registrado tu Cita para el': 'Hemos registrado tu Cita para el',
+    'En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.': 'En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.'
 }
