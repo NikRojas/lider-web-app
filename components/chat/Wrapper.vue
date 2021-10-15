@@ -197,7 +197,7 @@
                     "
                     v-if="el.element == 'cards'"
                   >
-                    <Card :array="el.content" @click="clickButton"></Card>
+                    <ChatCard :array="el.content" @click="clickButton"></ChatCard>
                   </div>
                   <div
                     class="
@@ -398,7 +398,7 @@
 import Button from "./Button";
 import Message from "./Message";
 import CloseIcon from "../icons/Close";
-import Card from "./Card";
+import ChatCard from "./ChatCard";
 import Carousel from "./Carousel";
 import Qualify from "./Qualify";
 import CarouselButton from "./CarouselButton";
@@ -411,7 +411,7 @@ export default {
     Button,
     Gallery,
     Message,
-    Card,
+    ChatCard,
     Carousel,
     Profile,
     Typing,
