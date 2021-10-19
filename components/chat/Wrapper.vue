@@ -698,8 +698,6 @@ export default {
         var items = document.querySelectorAll(
           "#chat_body_wrapper .chat__message-server"
         )
-        console.log(items[items.length -1])
-
         document.querySelector(
           "#chat_body_wrapper .simplebar-content-wrapper"
         ).scrollTop =
