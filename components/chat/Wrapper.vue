@@ -698,14 +698,16 @@ export default {
         var items = document.querySelectorAll(
           "#chat_body_wrapper .chat__message-server"
         )
-        document.querySelector(
-          "#chat_body_wrapper .simplebar-content-wrapper"
-        ).scrollTop =
+        if(items && items.length){
           document.querySelector(
-            "#chat_body_wrapper .simplebar-content-wrapper"
-          ).scrollHeight -
-          45 -
-          items[items.length -1].scrollHeight;
+          "#chat_body_wrapper .simplebar-content-wrapper"
+          ).scrollTop =
+            document.querySelector(
+              "#chat_body_wrapper .simplebar-content-wrapper"
+            ).scrollHeight -
+            45 -
+            items[items.length -1].scrollHeight;
+        }
       }, 250);
     },
     clickButton(text, triggered = false) {
