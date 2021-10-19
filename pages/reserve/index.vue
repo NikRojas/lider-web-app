@@ -79,6 +79,8 @@ import Banner from "../../components/Banner";
 import Steps from "../../components/payment/Steps";
 import Filters from "../../components/payment/Filters";
 import Pagination from "../../components/payment/Pagination";
+import Datatable from "../../components/payment/Datatable";
+import Grid from "../../components/payment/Grid";
 export default {
   name: "ReserveIndex",
   head() {
@@ -198,6 +200,8 @@ export default {
     Steps,
     Filters,
     Pagination,
+    Datatable,
+    Grid
   },
   data() {
     return {
