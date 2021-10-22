@@ -31,7 +31,7 @@
         <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
-              <h2>{{ customer.name }}, {{ $t("tu separación está confirmada") }}!</h2>
+              <h2>{{customer.name.trim()}}, {{ $t("tu separación está confirmada") }}!</h2>
             </div>
             <div class="grid-col">
               <div class="grid-s-12">
@@ -292,6 +292,7 @@ export default {
   data() {
     return {
       customer: {
+        name: '',
           department: {
               tipology_rel: {
                   parent_type_department_rel: {},

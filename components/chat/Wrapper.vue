@@ -864,6 +864,9 @@ export default {
   /*.simplebar-content{
     padding: 15px 0 5px 0 !important;
   }*/
+  #pgChatButton{
+    background: white;
+  }
   .button--disabled {
     opacity: 0.6;
   }
