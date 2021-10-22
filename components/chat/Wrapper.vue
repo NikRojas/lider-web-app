@@ -756,14 +756,17 @@ export default {
           this.voiceSpanish = window.speechSynthesis
             .getVoices()
             .findIndex(function (voice) {
+              //console.log(voice);
               return (
                 voice.name === "Google español de Estados Unidos" ||
-                /*voice.lang === "es-US" ||*/
-                voice.lang === "es-MX" ||
+                voice.name === "Google español" ||
+                //voice.lang === "es-US" ||
+                //voice.lang === "es-MX" ||
                 voice.lang === "es-ES"
               );
             });
         }
+        //console.log(this.voiceSpanish);
         let self = this;
         for (var i = 0; i < phrases.length; i++) {
           let filterEmojis = phrases[i].replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "");

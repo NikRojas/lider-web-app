@@ -31,7 +31,7 @@
         <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
-              <h2>{{ customer.name }}, {{ $t("tu separación está confirmada") }}!!!</h2>
+              <h2>{{ customer.name }}, {{ $t("tu separación está confirmada") }}!</h2>
             </div>
             <div class="grid-col">
               <div class="grid-s-12">
