@@ -351,7 +351,7 @@
     <div class="chat__dialog shadow" v-if="showNotification" v-html="messageActive">
     </div>
 
-    <div class="chat__button chat__button--main shadow" v-if="!reveal">
+    <div class="chat__button chat__button--main" v-if="!reveal">
       <span class="chat__notification shadow" v-if="showNotification">1</span>
       <button class="button img__wrapper" id="pgChatButton" @click="toggleChat">
         <img :src="require('~/assets/img/bot.png')" alt="Chat" />
@@ -861,6 +861,15 @@ export default {
 </script>
 <style lang="scss">
 #pgChat {
+  #pgChatButton{
+    background: transparent !important;
+  }
+  .chat__button--main{
+    background: transparent !important;
+  }
+  .chat__button.chat__button--main{
+    background: transparent !important;
+  }
   /*.simplebar-content{
     padding: 15px 0 5px 0 !important;
   }*/
@@ -1180,7 +1189,7 @@ export default {
         align-items: center;
         height: inherit;
         width: inherit;
-        border-radius: 50%;
+        //border-radius: 50%;
         img {
           //height: 45px;
           height: 80px;
@@ -1285,26 +1294,33 @@ export default {
   }
   //logo chat bot
   &.chat {
-    bottom: 5%;
-    right: 80px;
+    bottom: 0;
+    //bottom: 5%;
+    right: 30px;
     @media only screen and (max-width: 1650px) {
-      bottom: 3%;
-      right: 55px;
+      //bottom: 3%;
+      right: 20px;
     }
     @media only screen and (max-width: 1300px) {
-      bottom: 3%;
-      right: 40px;
+      //bottom: 3%;
+      right: 20px;
     }
     @media only screen and (max-width: 700px) {
-      right: 20px;
-      bottom: 1.5%;
+      right: 8px;
+      //bottom: 1.5%;
     }
     .chat__button {
-      height: 56px;
-      width: 56px;
+      height: 80px;
+      width: 80px;
+      @media only screen and (max-width: 650px) {
+        height: 70px;
+      }
 
       .img__wrapper img {
-        height: 56px;
+        height: 80px;
+        @media only screen and (max-width: 650px) {
+        height: 70px;
+      }
       }
     }
     .ml-auto {

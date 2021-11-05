@@ -5,22 +5,24 @@
 </template>
 <style scoped>
 .chat__profile {
-  height: 36px;
-  width: 36px;
+  height: 42px;
+  width: 42px;
   display: inline-block;
   border-radius: 0;
   margin-right: 10px;
-  background: #e8f4ff;
+  background: #0079bb;
   position: relative;
   border-radius: 5px;
-  border: 1px solid #336181;
+  /*border: 1px solid #336181;*/
 }
 span#chatProfile img{
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0);
-  width: 30px;
+  /*width: 36px;*/
+  height: 41px;
+  vertical-align: bottom;
 }
 #pgChat.chat .chat__button {
     background: white!important;
