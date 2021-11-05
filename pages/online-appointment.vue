@@ -77,23 +77,24 @@
                 "
               ></div>
               <transition name="slide-fade">
-                <div v-if="success && successApi" key="true" class="form__text-success-2">
+                <!--<div v-if="success && successApi" key="true" class="form__text-success-2">-->
+                <div v-if="success" key="true" class="form__text-success-2">
                   <h3>
                     <b>¡{{ $t("Excelente") }}!</b>
                   </h3>
-                  <!--<p>
+                  <p>
                     {{
                       $t(
                         "Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo"
                       )
                     }}.
                   </p>
-                  <b>{{ $t("¡Gracias por solicitar información!") }}</b>-->
+                  <b>{{ $t("¡Gracias por solicitar información!") }}</b>
 
-                  <p>{{  $t("Hemos registrado tu Cita para el") }} {{ form.schedule_init }} {{ $t('con')}} <span style="text-transform: capitalize;">{{ dataFromApi.desUsuarioAsignado }}</span>.
+                  <!--<p>{{  $t("Hemos registrado tu Cita para el") }} {{ form.schedule_init }} {{ $t('con')}} <span style="text-transform: capitalize;">{{ dataFromApi.desUsuarioAsignado }}</span>.
                   {{  $t("En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.") }}
 
-                  </p>
+                  </p>-->
 
                   <b>{{ $t("¡Gracias por contactarse con nosotros!") }}</b>
                 </div>
@@ -104,12 +105,18 @@
                         <label for="project_id"
                           >{{ $t("Proyecto de interés") }}*</label
                         >
-                        <select
+                        <!--<select
                           name="project_id"
                           v-model="form.project_id"
                           id="project_id"
                           class="form-control"
                           @change="updateCalendarProject($event)"
+                        >-->
+                        <select
+                          name="project_id"
+                          v-model="form.project_id"
+                          id="project_id"
+                          class="form-control"
                         >
                           <option
                             :value="el.id"
@@ -131,7 +138,7 @@
                     <div class="grid-s-12">
                       <div class="form-control">
                         <label for="schedule">{{ $t("Horario") }}*</label>
-                        <!--<select
+                        <select
                           name="schedule"
                           id="schedule"
                           v-model="form.schedule"
@@ -144,8 +151,8 @@
                           >
                             {{ el.name }}
                           </option>
-                        </select>-->
-                        <div id="calendario"></div>
+                        </select>
+                        <!--<div id="calendario"></div>-->
                         <span
                           style="margin-top: 12px; display: block;"
                           class="error error-red"
@@ -317,18 +324,18 @@ export default {
       title: this.page.data.page["title_" + this.$i18n.locale]
         ? this.page.data.page["title_" + this.$i18n.locale]
         : "",
-      script: [
+      /*script: [
         {
           hid: 'extscript',
           src: "/js/callider.min.js",
           //defer: true,
           callback: () => (this.createCalendar()),
-          /*"clid-llave":
-            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",*/
+          "clid-llave":
+            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
           "clid-llave":
             "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
         },
-      ],
+      ],*/
       meta: [
         {
           hid: "description",
@@ -458,11 +465,11 @@ export default {
     };
   },
   created() {
-    /*if (this.page.data.project)
+    if (this.page.data.project)
       this.form.project_id = this.page.data.project.id;
     this.page.data.timeDay.length
       ? (this.form.schedule = this.page.data.timeDay[0].name)
-      : "";*/
+      : "";
   },
   methods: {
     updateCalendarProject(ref){
@@ -510,7 +517,7 @@ export default {
         utm_content = this.form.utm_content;
       }
       
-      let utms = {
+      /*let utms = {
         source: utm_source,
         medium: utm_medium,
         campaign: utm_campaign,
@@ -526,9 +533,7 @@ export default {
       };
       document.getElementById('calendario').calLidLead('opcion', 'actualizarLead', utms);
       let scheduleLead = document.getElementById("calendario").calLidLead('opcion','obtenerLead')
-      /*console.log(scheduleLead);
-      console.log(scheduleLead.fechaInicio);
-      console.log(scheduleLead.fechaFin);*/
+      
       if(scheduleLead.fechaInicio != ''){
         let fIni = scheduleLead.fechaInicio;
         let fFin = scheduleLead.fechaFin;
@@ -540,15 +545,16 @@ export default {
       else{
         this.form.schedule = "";
         this.form.schedule_init = "";
-      }
+      }*/
       this.request = true;
       this.$axios
         .$post("/api/post/lead/online-appointment", this.form)
         .then((response) => {
-          //this.request = false;
-          document.getElementById('calendario').calLidLead('opcion', 'registrarLead'); 
+          this.request = false;
+          this.restore();
           this.success = true;
-          //this.restore();
+          /*document.getElementById('calendario').calLidLead('opcion', 'registrarLead'); 
+          this.success = true;*/
         })
         .catch((error) => {
           this.request = false;
