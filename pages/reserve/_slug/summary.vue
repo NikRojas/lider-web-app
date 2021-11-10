@@ -63,15 +63,29 @@
                         data-fancybox
                         class="fancybox"
                         :href="
+                          page.data.isPackage && page.data.department.data_package.image ?
+                          storageUrl + '/img/projects/combos/' + page.data.department.data_package.image  :
                             page.data.department.image ? 
                               storageUrl + '/img/projects/estates/' + page.data.department.image : 
                             page.data.department.tipology_rel.image ? 
                             storageUrl + '/img/projects/tipologies/' + page.data.department.tipology_rel.image : 
                             require('~/assets/img/p-no-data.png')
                         "
-                      >
+                      > 
                         <img
-                          v-if="page.data.department.image"
+                          v-if="page.data.isPackage && page.data.department.data_package.image"
+                          class="plano lazyload"
+                          :data-src="
+                            storageUrl +
+                            '/img/projects/combos/' +
+                            page.data.department.data_package.image
+                          "
+                          :alt="
+                            $t('Plano') + ' ' + page.data.department.description
+                          "
+                        />
+                        <img
+                          v-else-if="page.data.department.image"
                           class="plano lazyload"
                           :data-src="
                             storageUrl +
@@ -122,6 +136,10 @@
                         <div class="" v-if="page.data.department.description">
                           <b>{{ $t("Descripción") }}:</b>
                           <p>
+                            <template v-if="page.data.isPackage">
+                            <!--<strong v-for="pack in page.data.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
+                            PQ
+                          </template> 
                             {{
                               page.data.department.description
                             }}
@@ -165,7 +183,7 @@
                         </div>
                         <div class="">
                           <b>{{ $t("Metraje") }}:</b>
-                          <p>{{ page.data.department.area_format }}m2</p>
+                          <p>{{ page.data.isPackage ? page.data.department.area_format_package : page.data.department.area_format }}m2</p>
                         </div>
                         <div
                           class=""
@@ -195,12 +213,12 @@
                               ><template
                                 v-if="page.data.department.project_rel.master_currency_id == 1"
                               >
-                                {{ page.data.department.price_format }}
+                                {{ page.data.isPackage ? page.data.department.price_package_format : page.data.department.price_format }}
                               </template>
                               <template
                                 v-else-if="page.data.department.project_rel.master_currency_id == 2"
                               >
-                                {{ page.data.department.price_foreign_format }}
+                                {{ page.data.isPackage ? page.data.department.price_foreign_package_format : page.data.department.price_foreign_format }}
                               </template></strong
                             >
                           </p>

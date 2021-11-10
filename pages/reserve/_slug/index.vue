@@ -57,7 +57,17 @@
                     <b>{{ $t("Datos del inmueble") }}</b>
                   </h5>
                   <img
-                    v-if="page.data.department.image"
+                    v-if="page.data.isPackage && page.data.department.data_package.image"
+                    class="plano lazyload"
+                    :data-src="
+                      storageUrl +
+                      '/img/projects/combos/' +
+                      page.data.department.data_package.image
+                    "
+                    :alt="$t('Plano') + ' ' + page.data.department.description"
+                  />
+                  <img
+                    v-else-if="page.data.department.image"
                     class="plano lazyload"
                     :data-src="
                       storageUrl +
@@ -118,6 +128,10 @@
                       <div class="grid-s-12" v-if="page.data.department.description">
                         <b>{{ $t("Descripción") }}:</b>
                         <p class="mb-0">
+                          <template v-if="page.data.isPackage">
+                            <!--<strong v-for="pack in page.data.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
+                            PQ
+                          </template> 
                           {{
                             page.data.department.description
                           }}
@@ -160,7 +174,7 @@
                       </div>
                       <div class="grid-s-12 grid-m-6 grid-l-4">
                         <b>{{ $t("Metraje") }}:</b>
-                        <p>{{ page.data.department.area_format }}m2</p>
+                        <p>{{ page.data.isPackage ? page.data.department.area_format_package : page.data.department.area_format }}m2</p>
                       </div>
                       <div
                         class="grid-s-12 grid-m-6 grid-l-4"
@@ -186,29 +200,41 @@
                       <div class="grid-s-12 grid-m-6 grid-l-4">
                         <b>{{ $t("Precio del inmueble") }}:</b>
                         <p>
-                          <strong v-if="!departmentUpdated">
-                            <template v-if="page.data.department.project_rel.master_currency_id == 1">
-                              {{ page.data.department.price_format }}
-                            </template>
-                            <template
-                              v-else-if="page.data.department.project_rel.master_currency_id == 2"
+                          <template v-if="page.data.isPackage">
+                             <template v-if="page.data.department.project_rel.master_currency_id == 1">
+                                {{ page.data.isPackage ? page.data.department.price_package_format : page.data.department.price_format }}
+                              </template>
+                              <template
+                                v-else-if="page.data.department.project_rel.master_currency_id == 2"
+                              >
+                                {{ page.data.isPackage ? page.data.department.price_foreign_package_format : page.data.department.price_foreign_format }}
+                              </template>
+                          </template>
+                          <template v-else>
+                            <strong v-if="!departmentUpdated">
+                              <template v-if="page.data.department.project_rel.master_currency_id == 1">
+                                {{ page.data.department.price_format }}
+                              </template>
+                              <template
+                                v-else-if="page.data.department.project_rel.master_currency_id == 2"
+                              >
+                                {{ page.data.department.price_foreign_format }}
+                              </template>
+                            </strong>
+                            <strong v-else>
+                              <template v-if="departmentAvailable.project_rel.master_currency_id == 1">
+                                {{ departmentAvailable.price_format }}
+                              </template>
+                              <template
+                                v-else-if="departmentAvailable.project_rel.master_currency_id == 2"
+                              >
+                                {{ departmentAvailable.price_foreign_format }}
+                              </template>
+                            </strong>
+                            <span v-if="departmentUpdated" style="color: #3ddc97; display:block;"
+                              >{{ $t("Monto actualizado") }}!</span
                             >
-                              {{ page.data.department.price_foreign_format }}
-                            </template>
-                          </strong>
-                          <strong v-else>
-                            <template v-if="departmentAvailable.project_rel.master_currency_id == 1">
-                              {{ departmentAvailable.price_format }}
-                            </template>
-                            <template
-                              v-else-if="departmentAvailable.project_rel.master_currency_id == 2"
-                            >
-                              {{ departmentAvailable.price_foreign_format }}
-                            </template>
-                          </strong>
-                          <span v-if="departmentUpdated" style="color: #3ddc97; display:block;"
-                            >{{ $t("Monto actualizado") }}!</span
-                          >
+                          </template>
                         </p>
                       </div>
                       <div
