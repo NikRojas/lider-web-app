@@ -18,10 +18,25 @@
         :key="el.sap_code + i"
       >
         <div class="img">
+
+             <a
+            data-fancybox
+            v-if="el.package_rel && el.package_rel.image"
+            class="fancybox"
+            :href="storageUrl + '/img/projects/combos/' + el.package_rel.image"
+          >
+            <img
+              class="lazyload"
+              :data-src="storageUrl + '/img/projects/combos/' + el.package_rel.image"
+              :alt="el.description"
+            />
+          </a>
+
+
           <a
             data-fancybox
             class="fancybox"
-            v-if="el.image"
+            v-else-if="el.image"
             :href="storageUrl + '/img/projects/estates/' + el.image"
           >
             <img
@@ -55,11 +70,20 @@
                   />
                 </a>
 
-                <template v-if="el.description">
+              <!--  <template v-if="el.description">
               <strong>{{
                 el.description
               }}</strong>
             </template>
+              -->
+
+              <template v-if="el.package_rel && el.package_rel.id">
+                      <!--<strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
+                      <strong v-if="el.description">PQ {{ el.description }}</strong>
+                    </template>
+                    <template v-else-if="el.description">
+                      <strong>{{ el.description }}</strong>
+                    </template>
         </div>
         <div>
           <img

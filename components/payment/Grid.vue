@@ -22,7 +22,19 @@
                 <a
                   data-fancybox
                   class="fancybox"
-                  v-if="el.image"
+                  v-if="el.package_rel && el.package_rel.image"
+                  :href="storageUrl + '/img/projects/combos/' + el.package_rel.image"
+                >
+                  <img
+                    class="lazyload"
+                    :data-src="storageUrl + '/img/projects/combos/' + el.package_rel.image"
+                    :alt="el.description"
+                  />
+                </a>
+                <a
+                  data-fancybox
+                  class="fancybox"
+                  v-else-if="el.image"
                   :href="storageUrl + '/img/projects/estates/' + el.image"
                 >
                   <img
@@ -95,7 +107,11 @@
                 </div>
                 <div class="card-body">
                   <ul>
-                    <li v-if="el.description">
+                    <li v-if="el.package_rel && el.package_rel.id">
+                      <!--<strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
+                      <strong v-if="el.description">PQ {{ el.description }}</strong>
+                    </li>
+                    <li v-else-if="el.description">
                       <strong>{{ el.description }}</strong>
                     </li>
                     <template

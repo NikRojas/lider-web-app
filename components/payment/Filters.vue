@@ -10,11 +10,11 @@
             <simplebar class="scroll-filter" data-simplebar-auto-hide="false">
               <div
                 class="form-control"
-                :class="el.department ? '' : 'pl-1'"
+                :class="el.is_department ? '' : 'pl-1'"
                 v-for="(el, i) in data.departments"
                 :key="'dep' + el.code_ubigeo + i"
               >
-                <template v-if="el.department">
+                <template v-if="el.is_department">
                   <!--<input
                 @change="updateFilter('ubigeo')"
                 class="checkbox"
