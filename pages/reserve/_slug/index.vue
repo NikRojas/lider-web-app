@@ -563,6 +563,10 @@ export default {
       if (this.$route.query.adv) {
         this.customer.adv = this.$route.query.adv;
       }
+      this.customer.is_package = this.page.data.isPackage;
+      if(this.customer.is_package){
+        this.customer.real_state_package_id = this.page.data.department.data_package.id;
+      }
       this.$axios
         .$post("/api/reserve/customer", this.customer)
         .then((response) => {
