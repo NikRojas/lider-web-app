@@ -129,12 +129,13 @@
                         <b>{{ $t("Descripción") }}:</b>
                         <p class="mb-0">
                           <template v-if="page.data.isPackage">
-                            <!--<strong v-for="pack in page.data.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
-                            PQ
+                            <span v-for="(pack,key) in page.data.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}
+                              <b class="separator-description" v-if="key+1 != page.data.department.data_package.departments_rel.length"> | </b>
+                            </span>
                           </template> 
-                          {{
-                            page.data.department.description
-                          }}
+                          <template v-else>
+                            {{ page.data.department.description }}
+                          </template>
                         </p>
                       </div>
                       <div class="grid-s-12 grid-m-6 grid-l-4">
@@ -249,7 +250,7 @@
                           }}</strong>
                         </p>
                       </div>
-                      <div class="grid-s-12" >
+                      <!--<div class="grid-s-12" >
                         <div v-if="page.data.department.project_rel.reservation_in_package" v-html="page.data.department.project_rel.package_description">
                         </div>
                         <div v-else>
@@ -268,7 +269,7 @@
                             </i>
                           </div>
                         </div>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>

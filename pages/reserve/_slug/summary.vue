@@ -133,16 +133,15 @@
                         class="logo lazyload"
                       />
                       <div class="caract-grid">
-                        <div class="" v-if="page.data.department.description">
+                        <div class="" v-if="page.data.department.description" :class="page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length ? 'col-width-100' : ''">
                           <b>{{ $t("Descripción") }}:</b>
                           <p>
-                            <template v-if="page.data.isPackage">
-                            <!--<strong v-for="pack in page.data.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
-                            PQ
+                            <template v-if="page.data.isPackage && page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length">
+                            <span v-for="(pack, key) in page.data.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}<b class="separator-description" v-if="key+1 != page.data.department.data_package.departments_rel.length"> | </b></span>
                           </template> 
-                            {{
-                              page.data.department.description
-                            }}
+                          <template v-else>
+                              {{ page.data.department.description}}
+                          </template>
                           </p>
                         </div>
                         <div class="">
@@ -235,7 +234,7 @@
                           </p>
                         </div>
                       </div>
-                      <div v-if="page.data.department.project_rel.reservation_in_package" v-html="page.data.department.project_rel.package_description"  class="mt-2">
+                      <!--<div v-if="page.data.department.project_rel.reservation_in_package" v-html="page.data.department.project_rel.package_description"  class="mt-2">
                       </div>
                       <div v-else>
                         <div v-if="page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse">
@@ -252,7 +251,7 @@
                             </template>
                             </i>
                         </div>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>

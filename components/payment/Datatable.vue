@@ -78,8 +78,8 @@
               -->
 
               <template v-if="el.package_rel && el.package_rel.id">
-                      <!--<strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
-                      <strong v-if="el.description">PQ {{ el.description }}</strong>
+                     <strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>
+                      <!-- <strong v-if="el.description">PQ {{ el.description }}</strong>-->
                     </template>
                     <template v-else-if="el.description">
                       <strong>{{ el.description }}</strong>
@@ -155,9 +155,9 @@
               {{ $t("No disponible") }}
             </template>--></strong
           >
-          <span v-if="el.project_rel.reservation_in_package">
+          <!--<span v-if="el.project_rel.reservation_in_package">
              <span v-html="el.project_rel.package_description"></span>
-          </span>
+          </span>-->
         </div>
         <div class="">
           <nuxt-link

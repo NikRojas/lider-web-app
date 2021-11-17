@@ -61,7 +61,19 @@
                   <div class="grid-col">
                     <div class="grid-s-12 grid-m-4 grid-l-3">
                       <img
-                        v-if="customer.department.image"
+                        v-if="customer.department.data_package && customer.department.data_package.image"
+                        class="plano lazyload"
+                        :data-src="
+                          storageUrl +
+                          '/img/projects/combos/' +
+                          customer.department.data_package.image
+                        "
+                        :alt="
+                          $t('Plano')
+                        "
+                      />
+                      <img
+                        v-else-if="customer.department.image"
                         class="plano lazyload"
                         :data-src="
                           storageUrl +
@@ -69,7 +81,7 @@
                           customer.department.image
                         "
                         :alt="
-                          $t('Plano') + ' ' + customer.department.description
+                          $t('Plano')
                         "
                       />
                       <img
@@ -81,7 +93,7 @@
                           customer.department.tipology_rel.image
                         "
                         :alt="
-                          $t('Plano') + ' ' + customer.department.description
+                          $t('Plano')
                         "
                       />
                       <img
@@ -89,7 +101,7 @@
                         class="lazyload"
                         :data-src="require('~/assets/img/p-no-data.png')"
                         :alt="
-                          $t('Plano') + ' ' + customer.department.description
+                          $t('Plano')
                         "
                       />
                     </div>
@@ -110,13 +122,20 @@
                         class="logo lazyload"
                       />
                       <div class="caract-grid">
-                        <div class="" v-if="customer.department.description">
+                        <div class="" :class="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length ? 'col-width-100' : ''" v-if="customer.department.description" >
                           <b>{{ $t("Descripción") }}:</b>
                           <p>
-                            {{
+                             <template v-if="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length">
+                              <span v-for="(pack,key) in customer.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}<b class="separator" v-if="key+1 != customer.department.data_package.departments_rel.length"> | </b></span>
+                            </template> 
+                            <template v-else-if="customer.department.description">
+                              {{ customer.department.description }}
+                            </template>
+                           <!-- {{
                               customer.department.description
-                            }}
+                            }}-->
                           </p>
+                          
                         </div>
                         <div class="">
                           <b>{{ $t("Ubicación") }}:</b>
@@ -156,7 +175,10 @@
                         </div>
                         <div class="">
                           <b>{{ $t("Metraje") }}:</b>
-                          <p>{{ customer.department.area_format }}m2</p>
+                          <p>
+                            <!--{{ customer.department.area_format }}m2-->
+                            {{ customer.department.data_package && customer.department.data_package.id ? customer.department.area_format_package : customer.department.area_format }}m2
+                          </p>
                         </div>
                         <div
                           class=""
@@ -186,12 +208,14 @@
                               ><template
                                 v-if="customer.department.project_rel.master_currency_id == 1"
                               >
-                                {{ customer.department.price_format }}
+                                <!--{{ customer.department.price_format }}-->
+                                 {{ customer.department.data_package && customer.department.data_package.id ? customer.department.price_package_format : customer.department.price_format }}
                               </template>
                               <template
                                 v-else-if="customer.department.project_rel.master_currency_id == 2"
                               >
-                                {{ customer.department.price_foreign_format }}
+                                <!--{{ customer.department.price_foreign_format }}-->
+                                 {{ customer.department.data_package && customer.department.data_package.id ? customer.department.price_foreign_package_format : customer.department.price_foreign_format }}
                               </template></strong
                             >
                           </p>
@@ -208,7 +232,7 @@
                           </p>
                         </div>
                       </div>
-                      <div v-if="customer.department.project_rel.reservation_in_package" v-html="customer.department.project_rel.package_description"  class="mt-2">
+                      <!--<div v-if="customer.department.project_rel.reservation_in_package" v-html="customer.department.project_rel.package_description"  class="mt-2">
                       </div>
                       <div v-else>
                         <div v-if="customer.department.project_rel.has_parking || customer.department.project_rel.has_warehouse">
@@ -225,7 +249,7 @@
                             </template>
                             </i>
                         </div>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                   <br /><br />

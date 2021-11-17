@@ -108,8 +108,8 @@
                 <div class="card-body">
                   <ul>
                     <li v-if="el.package_rel && el.package_rel.id">
-                      <!--<strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>-->
-                      <strong v-if="el.description">PQ {{ el.description }}</strong>
+                      <strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>
+                      <!--<strong v-if="el.description">PQ {{ el.description }}</strong>-->
                     </li>
                     <li v-else-if="el.description">
                       <strong>{{ el.description }}</strong>
@@ -148,9 +148,9 @@
                         </template>
                       </span>
                     </li>
-                    <li v-if="el.project_rel.reservation_in_package">
+                    <!--<li v-if="el.project_rel.reservation_in_package">
                       <span v-html="el.project_rel.package_description"></span>
-                    </li>
+                    </li>-->
                   </ul>
                 </div>
               </div>
