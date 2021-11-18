@@ -107,7 +107,7 @@
                 </div>
                 <div class="card-body">
                   <ul>
-                    <li v-if="el.package_rel && el.package_rel.id">
+                    <li v-if="el.package_rel && el.package_rel.id" class="li-row">
                       <strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>
                       <!--<strong v-if="el.description">PQ {{ el.description }}</strong>-->
                     </li>

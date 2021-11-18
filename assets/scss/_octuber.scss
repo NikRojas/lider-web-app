@@ -16,3 +16,8 @@ font-weight: bold;
 font-size: 20px;
 margin: 0 2px;
 }
+
+.li-row{
+    grid-template-columns: 1fr !important;
+    grid-gap: 0 !important;
+}
