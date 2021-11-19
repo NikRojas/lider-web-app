@@ -49,7 +49,9 @@
                     <div class="line"></div>
                     <div class="line"></div>
                   </div>
-                  <h4><b>{{ $t("Obteniendo Disponibilidad") }}</b></h4>
+                  <h4>
+                    <b>{{ $t("Obteniendo Disponibilidad") }}</b>
+                  </h4>
                 </div>
 
                 <div class="content-bg">
@@ -57,7 +59,10 @@
                     <b>{{ $t("Datos del inmueble") }}</b>
                   </h5>
                   <img
-                    v-if="page.data.isPackage && page.data.department.data_package.image"
+                    v-if="
+                      page.data.isPackage &&
+                      page.data.department.data_package.image
+                    "
                     class="plano lazyload"
                     :data-src="
                       storageUrl +
@@ -125,16 +130,61 @@
 
                   <div class="caracteristicas-pago">
                     <div class="grid-col">
-                      <div class="grid-s-12" v-if="page.data.department.description">
+                      <div
+                        class="grid-s-12"
+                        v-if="page.data.department.description"
+                      >
                         <b>{{ $t("Descripción") }}:</b>
                         <p class="mb-0">
+                          <strong class="d-block">{{
+                            page.data.department.description
+                          }}</strong>
                           <template v-if="page.data.isPackage">
-                            <span v-for="(pack,key) in page.data.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}
-                              <b class="separator-description" v-if="key+1 != page.data.department.data_package.departments_rel.length"> | </b>
-                            </span>
-                          </template> 
-                          <template v-else>
-                            {{ page.data.department.description }}
+                            <template
+                              v-if="
+                                page.data.department.parkings &&
+                                page.data.department.parkings.length > 1
+                              "
+                            >
+                              <span class="d-block"
+                                >ESTACIONAMIENTO(S)
+                                <span
+                                  v-for="(pack, key) in page.data.department
+                                    .parkings"
+                                  :key="'packdes' + pack.id"
+                                  >{{ pack.parking_text_format
+                                  }}<template
+                                    v-if="
+                                      key + 1 !=
+                                      page.data.department.parkings.length && page.data.department.parkings.length > 1
+                                    "
+                                    >,
+                                  </template>
+                                </span>
+                              </span>
+                            </template>
+                            <template
+                              v-if="
+                                page.data.department.warehouses &&
+                                page.data.department.warehouses.length > 1
+                              "
+                            >
+                              <span class="d-block"
+                                >DEPÓSITO(S)
+                                <span
+                                  v-for="(pack, key) in page.data.department
+                                    .warehouses"
+                                  :key="'packware' + pack.id"
+                                  >{{ pack.warehouse_text_format }}<template
+                                    v-if="
+                                      key + 1 !=
+                                      page.data.department.warehouses.length && page.data.department.warehouses.length > 1
+                                    "
+                                    >,
+                                  </template>
+                                </span>
+                              </span>
+                            </template>
                           </template>
                         </p>
                       </div>
@@ -175,7 +225,13 @@
                       </div>
                       <div class="grid-s-12 grid-m-6 grid-l-4">
                         <b>{{ $t("Metraje") }}:</b>
-                        <p>{{ page.data.isPackage ? page.data.department.area_format_package : page.data.department.area_format }}m2</p>
+                        <p>
+                          {{
+                            page.data.isPackage
+                              ? page.data.department.area_format_package
+                              : page.data.department.area_format
+                          }}m2
+                        </p>
                       </div>
                       <div
                         class="grid-s-12 grid-m-6 grid-l-4"
@@ -199,40 +255,75 @@
                         </p>
                       </div>
                       <div class="grid-s-12 grid-m-6 grid-l-4">
-                        <b>{{ $t("Precio del inmueble") }}:</b>
+                        <b>{{ $t("Precio total") }}:</b>
                         <p>
                           <template v-if="page.data.isPackage">
-                             <template v-if="page.data.department.project_rel.master_currency_id == 1">
-                                {{ page.data.isPackage ? page.data.department.price_package_format : page.data.department.price_format }}
-                              </template>
-                              <template
-                                v-else-if="page.data.department.project_rel.master_currency_id == 2"
-                              >
-                                {{ page.data.isPackage ? page.data.department.price_foreign_package_format : page.data.department.price_foreign_format }}
-                              </template>
+                            <template
+                              v-if="
+                                page.data.department.project_rel
+                                  .master_currency_id == 1
+                              "
+                            >
+                              {{
+                                page.data.isPackage
+                                  ? page.data.department.price_package_format
+                                  : page.data.department.price_format
+                              }}
+                            </template>
+                            <template
+                              v-else-if="
+                                page.data.department.project_rel
+                                  .master_currency_id == 2
+                              "
+                            >
+                              {{
+                                page.data.isPackage
+                                  ? page.data.department
+                                      .price_foreign_package_format
+                                  : page.data.department.price_foreign_format
+                              }}
+                            </template>
                           </template>
                           <template v-else>
                             <strong v-if="!departmentUpdated">
-                              <template v-if="page.data.department.project_rel.master_currency_id == 1">
+                              <template
+                                v-if="
+                                  page.data.department.project_rel
+                                    .master_currency_id == 1
+                                "
+                              >
                                 {{ page.data.department.price_format }}
                               </template>
                               <template
-                                v-else-if="page.data.department.project_rel.master_currency_id == 2"
+                                v-else-if="
+                                  page.data.department.project_rel
+                                    .master_currency_id == 2
+                                "
                               >
                                 {{ page.data.department.price_foreign_format }}
                               </template>
                             </strong>
                             <strong v-else>
-                              <template v-if="departmentAvailable.project_rel.master_currency_id == 1">
+                              <template
+                                v-if="
+                                  departmentAvailable.project_rel
+                                    .master_currency_id == 1
+                                "
+                              >
                                 {{ departmentAvailable.price_format }}
                               </template>
                               <template
-                                v-else-if="departmentAvailable.project_rel.master_currency_id == 2"
+                                v-else-if="
+                                  departmentAvailable.project_rel
+                                    .master_currency_id == 2
+                                "
                               >
                                 {{ departmentAvailable.price_foreign_format }}
                               </template>
                             </strong>
-                            <span v-if="departmentUpdated" style="color: #3ddc97; display:block;"
+                            <span
+                              v-if="departmentUpdated"
+                              style="color: #3ddc97; display: block"
                               >{{ $t("Monto actualizado") }}!</span
                             >
                           </template>
@@ -281,7 +372,11 @@
                 >
                   <template v-if="!noAvailable">
                     <h5>{{ $t("Ingresa tus datos") }}</h5>
-                    <form @submit.prevent="submit" id="formp" autocomplete="off">
+                    <form
+                      @submit.prevent="submit"
+                      id="formp"
+                      autocomplete="off"
+                    >
                       <div class="grid-col">
                         <div class="grid-s-12">
                           <div class="form-control">
@@ -556,7 +651,7 @@ export default {
       this.requestSubmit = true;
       this.customer.slug = this.$route.params.slug;
       //Si se cambia de inmueble
-      if(this.customerGlobal.slug != this.customer.slug){
+      if (this.customerGlobal.slug != this.customer.slug) {
         this.customer.oi = "";
       }
       this.customer.price = this.page.data.department.price;
@@ -564,8 +659,9 @@ export default {
         this.customer.adv = this.$route.query.adv;
       }
       this.customer.is_package = this.page.data.isPackage;
-      if(this.customer.is_package){
-        this.customer.real_state_package_id = this.page.data.department.data_package.id;
+      if (this.customer.is_package) {
+        this.customer.real_state_package_id =
+          this.page.data.department.data_package.id;
       }
       this.$axios
         .$post("/api/reserve/customer", this.customer)

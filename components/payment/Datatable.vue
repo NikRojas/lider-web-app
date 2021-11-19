@@ -6,7 +6,7 @@
       <b>{{ $t("Características") }}</b>
       <b>{{ $t("Metraje") }}</b>
       <b>{{ $t("Dorm.") }}</b>
-      <b>{{ $t("Precio inmueble") }}</b>
+      <b>{{ $t("Precio total") }}</b>
       <b>{{ $t("Separación") }}</b>
     </div>
 

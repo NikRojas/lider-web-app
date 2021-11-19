@@ -21,3 +21,39 @@ margin: 0 2px;
     grid-template-columns: 1fr !important;
     grid-gap: 0 !important;
 }
+
+.card-depa-grid .card-body ul li strong:first-child {
+    font-size: 14px;
+    line-height: 15px;
+    font-weight: 600 !important;
+}
+
+.card-depa-grid .card-body ul li strong {
+    font-size: 11px;
+    line-height: 12px;
+    font-weight: 500;
+}
+
+.card-depa-grid .body {
+    overflow-y: auto;
+    max-height: none !important;
+    max-height: initial !important;
+}
+
+.card-depa-grid .card-body {
+    padding-bottom: 10px;
+}
+
+.card-depa-grid .card-body ul li:first-child {
+    min-height: 36px !important;
+    //margin-bottom: 4px;
+    margin-bottom: 13px;
+}
+
+.d-block{
+    display: block;
+}
+
+.item-states{
+    font-size: 12px;
+}

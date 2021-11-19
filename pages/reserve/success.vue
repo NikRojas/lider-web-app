@@ -124,18 +124,23 @@
                       <div class="caract-grid">
                         <div class="" :class="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length ? 'col-width-100' : ''" v-if="customer.department.description" >
                           <b>{{ $t("Descripción") }}:</b>
-                          <p>
-                             <template v-if="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length">
-                              <span v-for="(pack,key) in customer.department.data_package.departments_rel" :key="'packdes'+pack.id">{{ pack.description }}<b class="separator" v-if="key+1 != customer.department.data_package.departments_rel.length"> | </b></span>
-                            </template> 
-                            <template v-else-if="customer.department.description">
-                              {{ customer.department.description }}
-                            </template>
-                           <!-- {{
+                          <p class="mb-0">
+                              <strong class="d-block">
+                                {{
                               customer.department.description
-                            }}-->
+                            }}
+                              </strong>
+                             <template v-if="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length">
+                              
+                              <template v-if="customer.department.parkings && customer.department.parkings.length">
+                                <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in customer.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != customer.department.parkings.length && customer.department.parkings.length > 1">, </template>
+                                  </span> </span>
+                              </template>
+                              <template v-if="customer.department.warehouses && customer.department.warehouses.length">
+                                <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in customer.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != customer.department.warehouses.length && customer.department.warehouses.length > 1">, </template></span> </span>
+                              </template>
+                            </template> 
                           </p>
-                          
                         </div>
                         <div class="">
                           <b>{{ $t("Ubicación") }}:</b>
@@ -202,7 +207,7 @@
                           </p>
                         </div>
                         <div class="">
-                          <b>{{ $t("Precio del inmueble") }}:</b>
+                          <b>{{ $t("Precio total") }}:</b>
                           <p>
                             <strong
                               ><template

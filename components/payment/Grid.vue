@@ -107,12 +107,17 @@
                 </div>
                 <div class="card-body">
                   <ul>
-                    <li v-if="el.package_rel && el.package_rel.id" class="li-row">
-                      <strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>
-                      <!--<strong v-if="el.description">PQ {{ el.description }}</strong>-->
-                    </li>
-                    <li v-else-if="el.description">
-                      <strong>{{ el.description }}</strong>
+                    <li class="li-row">
+                       <strong>{{ el.description }}</strong>
+                       <template v-if="el.package_rel && el.package_rel.id">
+                         <template v-if="el.parkings && el.parkings.length">
+                          <span>ESTACIONAMIENTO(S) <span v-for="(pack, key) in el.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != el.parkings.length && el.parkings.length > 1">, </template>
+                            </span> </span>
+                         </template>
+                         <template v-if="el.warehouses && el.warehouses.length">
+                          <span>DEPÓSITO(S) <span v-for="(pack, key) in el.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != el.warehouses.length && el.warehouses.length > 1">, </template></span> </span>
+                         </template>
+                       </template>
                     </li>
                     <template
                       v-if="
@@ -137,7 +142,7 @@
                     </li>
                     
                     <li>
-                      <b>{{ $t("Precio inmueble") }}:</b>
+                      <b>{{ $t("Precio total") }}:</b>
 
                       <span>
                         <template v-if="el.project_rel.master_currency_id == 1">
