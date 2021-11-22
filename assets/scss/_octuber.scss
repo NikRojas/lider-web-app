@@ -45,9 +45,9 @@ margin: 0 2px;
 }
 
 .card-depa-grid .card-body ul li:first-child {
-    min-height: 36px !important;
+    //min-height: 36px !important;
     //margin-bottom: 4px;
-    margin-bottom: 13px;
+    //margin-bottom: 13px;
 }
 
 .d-block{
@@ -56,4 +56,32 @@ margin: 0 2px;
 
 .item-states{
     font-size: 12px;
+}
+
+.card-depa-grid {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+.card-depa-grid .img a img {
+    display: block;
+}
+.card-depa-grid .card-head .card-caract {
+    margin: 0!important;
+    margin-bottom: 0!important;
+}
+.card-depa-grid .card-head .logo {
+    margin: 8px 0;
+}
+.card-depa-grid .card-body {
+    height: auto!important;
+}
+.card-depa-grid .card-body ul li:first-child {
+    min-height: 40px!important;
+    height: auto!important;
+    padding: 10px 0;
+}
+.card-depa-grid .card-body ul li.li-row span {
+    font-size: 0.7rem;
+    line-height: 16px;
 }
