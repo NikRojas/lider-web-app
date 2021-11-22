@@ -133,11 +133,11 @@
                              <template v-if="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length">
                               
                               <template v-if="customer.department.parkings && customer.department.parkings.length">
-                                <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in customer.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != customer.department.parkings.length && customer.department.parkings.length > 1">, </template>
+                                <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in customer.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != customer.department.parkings.length && customer.department.parkings.length > 0">, </template>
                                   </span> </span>
                               </template>
                               <template v-if="customer.department.warehouses && customer.department.warehouses.length">
-                                <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in customer.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != customer.department.warehouses.length && customer.department.warehouses.length > 1">, </template></span> </span>
+                                <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in customer.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != customer.department.warehouses.length && customer.department.warehouses.length > 0">, </template></span> </span>
                               </template>
                             </template> 
                           </p>

@@ -139,11 +139,11 @@
                             <strong class="d-block">{{ page.data.department.description}}</strong>
                             <template v-if="page.data.isPackage && page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length">
                               <template v-if="page.data.department.parkings && page.data.department.parkings.length">
-                                <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in page.data.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != page.data.department.parkings.length && page.data.department.parkings.length > 1">, </template>
+                                <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in page.data.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != page.data.department.parkings.length && page.data.department.parkings.length > 0">, </template>
                                   </span> </span>
                               </template>
                               <template v-if="page.data.department.warehouses && page.data.department.warehouses.length">
-                                <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in page.data.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != page.data.department.warehouses.length && page.data.department.warehouses.length > 1">, </template></span> </span>
+                                <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in page.data.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != page.data.department.warehouses.length && page.data.department.warehouses.length > 0">, </template></span> </span>
                               </template>
                             </template> 
                           </p>

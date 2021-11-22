@@ -143,7 +143,7 @@
                             <template
                               v-if="
                                 page.data.department.parkings &&
-                                page.data.department.parkings.length > 1
+                                page.data.department.parkings.length > 0
                               "
                             >
                               <span class="d-block"
@@ -156,7 +156,7 @@
                                   }}<template
                                     v-if="
                                       key + 1 !=
-                                      page.data.department.parkings.length && page.data.department.parkings.length > 1
+                                      page.data.department.parkings.length && page.data.department.parkings.length > 0
                                     "
                                     >,
                                   </template>
@@ -166,7 +166,7 @@
                             <template
                               v-if="
                                 page.data.department.warehouses &&
-                                page.data.department.warehouses.length > 1
+                                page.data.department.warehouses.length > 0
                               "
                             >
                               <span class="d-block"
@@ -178,7 +178,7 @@
                                   >{{ pack.warehouse_text_format }}<template
                                     v-if="
                                       key + 1 !=
-                                      page.data.department.warehouses.length && page.data.department.warehouses.length > 1
+                                      page.data.department.warehouses.length && page.data.department.warehouses.length > 0
                                     "
                                     >,
                                   </template>
