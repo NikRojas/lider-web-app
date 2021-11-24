@@ -238,24 +238,6 @@
                           </p>
                         </div>
                       </div>
-                      <!--<div v-if="page.data.department.project_rel.reservation_in_package" v-html="page.data.department.project_rel.package_description"  class="mt-2">
-                      </div>
-                      <div v-else>
-                        <div v-if="page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse">
-                            <i>
-                            <template v-if="page.data.department.project_rel.has_parking && page.data.department.project_rel.stock_parking == 0 &&
-                            page.data.department.project_rel.has_warehouse && page.data.department.project_rel.stock_warehouse == 0">
-                                * El proyecto no cuenta con estacionamientos ni depósitos disponibles
-                            </template>
-                            <template v-else>
-                              {{ page.data.department.project_rel.has_parking || page.data.department.project_rel.has_warehouse ? '* El proyecto cuenta con' : '' }} 
-                              {{ page.data.department.project_rel.has_parking ? page.data.department.project_rel.stock_parking+' estacionamientos' : ''}} 
-                              {{ page.data.department.project_rel.has_parking && page.data.department.project_rel.has_warehouse ? 'y' : ''}} 
-                              {{ page.data.department.project_rel.has_warehouse ? page.data.department.project_rel.stock_warehouse+' depósitos' : ''}} disponibles
-                            </template>
-                            </i>
-                        </div>
-                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -299,9 +281,6 @@
                       )
                     }}
                   </p>
-                  <!--<div class="monto">
-                    {{ $t("Número de orden") }}: <b>{{ customerGlobal.oi }} </b>
-                  </div>-->
                   <div class="grid-center">
                     <nuxt-link
                       class="btn btn1 previous"
@@ -424,7 +403,7 @@ import Steps from "../../../components/payment/Steps";
 import Loading from "../../../components/payment/Loading";
 import KRGlue from "@lyracom/embedded-form-glue";
 export default {
-  name: "ReserveSlugSummary",
+  name: "ReserveReserveSummary",
   head() {
     return {
       meta: [{ hid: "robots", name: "robots", content: "noindex, nofollow" }],
@@ -448,26 +427,14 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      es: "/separa-tu-depa/:slug/resumen",
-      en: "/reserve-your-department/:slug/summary",
+      es: "/separa-tu-depa/reserva/:slug/resumen",
+      en: "/reserve-your-department/reserve/:slug/summary",
     },
   },
-  async validate({ params, $axios, app, store, redirect }) {
-    const data = await $axios.$get("/api/page/reserve/summary/" + params.slug, {
+  async asyncData({ params, $axios, app, store, redirect }) {
+    let { data } = await $axios.get("/api/page/reserve/advisor", {
       params: { locale: app.i18n.locale },
     });
-    if (data.success) {
-      return true;
-    }
-    return false;
-  },
-  async asyncData({ params, $axios, app, store, redirect }) {
-    let { data } = await $axios.get(
-      "/api/page/reserve/summary/" + params.slug,
-      {
-        params: { locale: app.i18n.locale },
-      }
-    );
     return { page: data };
   },
   data() {
@@ -599,26 +566,10 @@ export default {
           },
         },
       };
-      /*let configCurrency = {};
-      if(currency == "USD"){
-        configCurrency = {
-            "kr-language": "en-US"
-        }
-      }
-      else{
-        configCurrency = {
-            "kr-language": "es-ES"
-        }
-      }*/
-      /*let configPlaceholders = {
-        "kr-placeholder-expiry" : 'MM/AA',
-        "kr-placeholder-pan": "Número de tarjeta",
-      }*/
       KRGlue.loadLibrary(this.endpoint, tokenjs)
         .then(({ KR }) =>
           KR.setFormConfig({
             formToken: formToken,
-            //"kr-language": "en-US"
           })
         )
         .then(({ KR }) =>
@@ -626,7 +577,6 @@ export default {
             "kr-popin": ""
           })
         )
-        //.then(({ KR }) => KR.setFormConfig(configCurrency) )
         .then(({ KR }) => KR.setFormConfig(config))
         .then(({ KR }) => KR.addForm("#payfo")) /* create a payment form */
         .then(({ KR, result }) => KR.showForm(result.formId))
@@ -649,16 +599,10 @@ export default {
     getAvailable() {
       this.requestAvailable = true;
       this.$axios
-        .$get("/api/reserve/available/" + this.page.data.department.slug)
+        .$get("/api/reserve/reserve-departments/" + this.$route.params.slug)
         .then((response) => {
           //Verificar si esta disponible el inmueble
-          if (response.data[0]["available"]) {
-            //Verificar si se actualizo el precio del inmueble
-            if (response.data[0]["price"] != this.page.data.department.price) {
-              this.departmentAvailable = response.data[0];
-              this.departmentUpdated = true;
-            }
-          } else {
+          if (!response.data[0]["available"]) {
             //Si no esta disponible el inmueble poner No Disponible
             this.noAvailable = true;
           }
