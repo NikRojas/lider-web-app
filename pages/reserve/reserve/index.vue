@@ -204,14 +204,19 @@
                             <div
                               v-for="park in department.parkings"
                               :key="park.id + 'park'"
+                              class="grid-col grid-col--parkingwarehouse"
                             >
-                              {{ park.description }} <br />
-                              {{ park.area_format }}m2
-                              <ModalParkingWarehouse
-                                v-show="park.floorView"
-                                :floorData="park.floorView"
-                                :estate="park"
-                              />
+                              <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                {{ park.description }} <br />
+                                {{ park.area_format }}m2
+                              </div>
+                              <div class="grid-s-4 text-right">
+                                <ModalParkingWarehouse
+                                  v-show="park.floorView"
+                                  :floorData="park.floorView"
+                                  :estate="park"
+                                />
+                              </div>
                             </div>
                           </div>
                           <div
@@ -224,14 +229,19 @@
                             <div
                               v-for="ware in department.warehouses"
                               :key="ware.id + 'ware'"
+                              class="grid-col grid-col--parkingwarehouse"
                             >
+                              <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
                               {{ ware.description }} <br />
                               {{ ware.area_format }}m2
-                              <ModalParkingWarehouse
-                                v-show="ware.floorView"
-                                :floorData="ware.floorView"
-                                :estate="ware"
-                              />
+                              </div>
+                              <div class="grid-s-4 text-right">
+                                <ModalParkingWarehouse
+                                  v-show="ware.floorView"
+                                  :floorData="ware.floorView"
+                                  :estate="ware"
+                                />
+                              </div>
                             </div>
                           </div>
                           <div class="grid-s-12 grid-m-6 grid-l-4">
@@ -304,34 +314,7 @@
                           <div class="grid-s-12 grid-m-6 grid-l-4">
                             <b>{{ $t("Precio total") }}:</b>
                             <p>
-                              <template v-if="department.deps.isPackage">
-                                <template
-                                  v-if="
-                                    department.deps.project_rel
-                                      .master_currency_id == 1
-                                  "
-                                >
-                                  {{
-                                    department.deps.isPackage
-                                      ? department.deps.price_package_format
-                                      : department.deps.price_format
-                                  }}
-                                </template>
-                                <template
-                                  v-else-if="
-                                    department.deps.project_rel
-                                      .master_currency_id == 2
-                                  "
-                                >
-                                  {{
-                                    department.deps.isPackage
-                                      ? department.deps
-                                          .price_foreign_package_format
-                                      : department.deps.price_foreign_format
-                                  }}
-                                </template>
-                              </template>
-                              <template v-else>
+                              
                                 <strong>
                                   <template
                                     v-if="
@@ -350,7 +333,6 @@
                                     {{ department.deps.price_foreign_format }}
                                   </template>
                                 </strong>
-                              </template>
                             </p>
                           </div>
                           <div
@@ -650,7 +632,7 @@ export default {
       if (this.customerGlobal.slug != this.customer.slug) {
         this.customer.oi = "";
       }
-      this.customer.price = this.page.data.department.price;
+      this.customer.department = this.department;
       this.customer.project_id = this.department.deps.project_id;
       this.customer.allEstates = this.department.allEstates;
       this.$axios
@@ -660,7 +642,7 @@ export default {
           this.customer.oi = response.data.order_id;
           this.customer.department = Object.assign(
             {},
-            this.page.data.department
+            this.department
           );
           this.$store.dispatch("setCustomer", this.customer);
           this.$router.push(

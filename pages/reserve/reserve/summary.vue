@@ -29,7 +29,7 @@
       <div>
         <Steps active="summary" />
 
-        <div class="viewport full-width-container">
+        <!--<div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
               <h2>{{ $t("Resumen de separación") }}</h2>
@@ -331,7 +331,7 @@
             </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </section>
   </main>
@@ -519,7 +519,7 @@ export default {
     },
     checkout() {
       this.$axios
-        .$post("/api/reserve/payment/init", this.customerGlobal)
+        .$post("/api/reserve/payment/platform-commercial/init", this.customerGlobal)
         .then((response) => {
           this.requestPayment = false;
           if (response.data.t) {

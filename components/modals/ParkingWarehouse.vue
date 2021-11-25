@@ -1,6 +1,6 @@
 <template>
     <div style="display: inline-block">
-    <a href="#" @click.prevent="showModal">
+    <a href="#" class="btn btn--parkingwarehouse" @click.prevent="showModal">
       {{ $t("Ver Piso") }}
     </a>
     <client-only>
