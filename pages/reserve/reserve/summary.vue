@@ -29,13 +29,13 @@
       <div>
         <Steps active="summary" />
 
-        <!--<div class="viewport full-width-container">
+        <div class="viewport full-width-container">
           <div class="sized-container">
             <div class="title center">
               <h2>{{ $t("Resumen de separación") }}</h2>
             </div>
             <div class="grid-col">
-              <div class="grid-s-12" v-if="requestAvailable">
+              <!--<div class="grid-s-12" v-if="requestAvailable">
                 <div
                   class="
                     content-bg
@@ -51,7 +51,7 @@
                   </div>
                   <h4><b>{{ $t("Obteniendo Disponibilidad") }}</b></h4>
                 </div>
-              </div>
+              </div>-->
               <div class="grid-s-12">
                 <div class="content-bg">
                   <h5>
@@ -63,55 +63,41 @@
                         data-fancybox
                         class="fancybox"
                         :href="
-                          page.data.isPackage && page.data.department.data_package.image ?
-                          storageUrl + '/img/projects/combos/' + page.data.department.data_package.image  :
-                            page.data.department.image ? 
-                              storageUrl + '/img/projects/estates/' + page.data.department.image : 
-                            page.data.department.tipology_rel.image ? 
-                            storageUrl + '/img/projects/tipologies/' + page.data.department.tipology_rel.image : 
+                          customer.department.deps.image ? 
+                              storageUrl + '/img/projects/estates/' + customer.department.deps.image : 
+                            customer.department.deps.tipology_rel.image ? 
+                            storageUrl + '/img/projects/tipologies/' + customer.department.deps.tipology_rel.image : 
                             require('~/assets/img/p-no-data.png')
                         "
                       > 
                         <img
-                          v-if="page.data.isPackage && page.data.department.data_package.image"
-                          class="plano lazyload"
-                          :data-src="
-                            storageUrl +
-                            '/img/projects/combos/' +
-                            page.data.department.data_package.image
-                          "
-                          :alt="
-                            $t('Plano') + ' ' + page.data.department.description
-                          "
-                        />
-                        <img
-                          v-else-if="page.data.department.image"
+                          v-if="customer.department.deps.image"
                           class="plano lazyload"
                           :data-src="
                             storageUrl +
                             '/img/projects/estates/' +
-                            page.data.department.image
+                            customer.department.deps.image
                           "
                           :alt="
-                            $t('Plano') + ' ' + page.data.department.description
+                            $t('Plano') + ' ' + customer.department.deps.description
                           "
                         />
                         <img
-                          v-else-if="page.data.department.tipology_rel.image"
+                          v-else-if="customer.department.deps.tipology_rel.image"
                           class="plano lazyload"
                           :data-src="
                             storageUrl +
                             '/img/projects/tipologies/' +
-                            page.data.department.tipology_rel.image
+                            customer.department.deps.tipology_rel.image
                           "
-                          :alt="$t('Plano') + ' ' + page.data.department.description"
+                          :alt="$t('Plano') + ' ' + customer.department.deps.description"
                         />
                         <img
                           v-else
                           class="lazyload"
                           :data-src="require('~/assets/img/p-no-data.png')"
                           :alt="
-                            $t('Plano') + ' ' + page.data.department.description
+                            $t('Plano') + ' ' + customer.department.deps.description
                           "
                         />
                       </a>
@@ -121,38 +107,81 @@
                         :data-src="
                           storageUrl +
                           '/img/projects/' +
-                          page.data.department.project_rel.logo_colour
+                          customer.department.deps.project_rel.logo_colour
                         "
                         :alt="
                           $t('Proyecto') +
                           ' ' +
-                          page.data.department.project_rel[
+                          customer.department.deps.project_rel[
                             'name_' + $i18n.locale
                           ]
                         "
                         class="logo lazyload"
                       />
                       <div class="caract-grid">
-                        <div class="" v-if="page.data.department.description" :class="page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length ? 'col-width-100' : ''">
+                        <div class="col-width-100">
                           <b>{{ $t("Descripción") }}:</b>
                           <p class="mb-0">
-                            <strong class="d-block">{{ page.data.department.description}}</strong>
-                            <template v-if="page.data.isPackage && page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length">
-                              <template v-if="page.data.department.parkings && page.data.department.parkings.length">
-                                <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in page.data.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != page.data.department.parkings.length && page.data.department.parkings.length > 0">, </template>
-                                  </span> </span>
-                              </template>
-                              <template v-if="page.data.department.warehouses && page.data.department.warehouses.length">
-                                <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in page.data.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != page.data.department.warehouses.length && page.data.department.warehouses.length > 0">, </template></span> </span>
-                              </template>
-                            </template> 
+                            <strong class="d-block">{{ customer.department.deps.description}}</strong>
+                           
                           </p>
+                          <div class="mt-2">
+                             <div
+                            class="grid-s-12"
+                            v-if="
+                              customer.department.parkings && customer.department.parkings.length
+                            "
+                          >
+                            <div
+                              v-for="park in customer.department.parkings"
+                              :key="park.id + 'park'"
+                              class="grid-col grid-col--parkingwarehouse"
+                            >
+                              <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                {{ park.description }} <br />
+                                {{ park.area_format }}m2
+                              </div>
+                              <div class="grid-s-4 text-right">
+                                <ModalParkingWarehouse
+                                  v-show="park.floorView"
+                                  :floorData="park.floorView"
+                                  :estate="park"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="grid-s-12"
+                            v-if="
+                              customer.department.warehouses &&
+                              customer.department.warehouses.length
+                            "
+                          >
+                            <div
+                              v-for="ware in customer.department.warehouses"
+                              :key="ware.id + 'ware'"
+                              class="grid-col grid-col--parkingwarehouse"
+                            >
+                              <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                              {{ ware.description }} <br />
+                              {{ ware.area_format }}m2
+                              </div>
+                              <div class="grid-s-4 text-right">
+                                <ModalParkingWarehouse
+                                  v-show="ware.floorView"
+                                  :floorData="ware.floorView"
+                                  :estate="ware"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          </div>
                         </div>
                         <div class="">
                           <b>{{ $t("Ubicación") }}:</b>
                           <p>
                             {{
-                              page.data.department.project_rel.ubigeo_rel
+                              customer.department.deps.project_rel.ubigeo_rel
                                 .district
                             }}
                           </p>
@@ -161,7 +190,7 @@
                           <b>{{ $t("Estatus") }}:</b>
                           <p>
                             {{
-                              page.data.department.project_rel.status_rel[
+                              customer.department.deps.project_rel.status_rel[
                                 "name_" + $i18n.locale
                               ]
                             }}
@@ -170,68 +199,74 @@
                         <div
                           class=""
                           v-if="
-                            page.data.department.type_department_id &&
-                            page.data.department.tipology_rel &&
-                            page.data.department.tipology_rel
+                            customer.department.deps.type_department_id &&
+                            customer.department.deps.tipology_rel &&
+                            customer.department.deps.tipology_rel
                               .parent_type_department_id
                           "
                         >
                           <b>{{ $t("Tipo") }}:</b>
                           <p>
                             {{
-                              page.data.department.tipology_rel
+                              customer.department.deps.tipology_rel
                                 .parent_type_department_rel.name
                             }}
                           </p>
                         </div>
                         <div class="">
                           <b>{{ $t("Metraje") }}:</b>
-                          <p>{{ page.data.isPackage ? page.data.department.area_format_package : page.data.department.area_format }}m2</p>
+                          <p>{{ customer.department.deps.area_format }}m2</p>
                         </div>
                         <div
                           class=""
                           v-if="
-                            page.data.department.type_department_id &&
-                            page.data.department.tipology_rel &&
-                            page.data.department.tipology_rel.room
+                            customer.department.deps.type_department_id &&
+                            customer.department.deps.tipology_rel &&
+                            customer.department.deps.tipology_rel.room
                           "
                         >
                           <b>{{ $t("Dormitorios") }}:</b>
-                          <p>{{ page.data.department.tipology_rel.room }}</p>
+                          <p>{{ customer.department.deps.tipology_rel.room }}</p>
                         </div>
                         <div class="">
                           <b> {{ $t("Vista") }}:</b>
-                          <p>{{ page.data.department.view_rel.name }}</p>
+                          <p>{{ customer.department.deps.view_rel.name }}</p>
                         </div>
                         <div class="">
                           <b>{{ $t("Piso") }}:</b>
                           <p>
-                            {{ page.data.department.floor }}° {{ $t("piso") }}
+                            {{ customer.department.deps.floor }}° {{ $t("piso") }}
                           </p>
                         </div>
                         <div class="">
                           <b>{{ $t("Precio total") }}:</b>
                           <p>
-                            <strong
-                              ><template
-                                v-if="page.data.department.project_rel.master_currency_id == 1"
-                              >
-                                {{ page.data.isPackage ? page.data.department.price_package_format : page.data.department.price_format }}
-                              </template>
-                              <template
-                                v-else-if="page.data.department.project_rel.master_currency_id == 2"
-                              >
-                                {{ page.data.isPackage ? page.data.department.price_foreign_package_format : page.data.department.price_foreign_format }}
-                              </template></strong
-                            >
+                            <strong>
+                                  <template
+                                    v-if="
+                                      customer.department.deps.project_rel
+                                        .master_currency_id == 1
+                                    "
+                                  >
+                                    {{ customer.department.deps.price_format }}
+                                  </template>
+                                  <template
+                                    v-else-if="
+                                      customer.department.deps.project_rel
+                                        .master_currency_id == 2
+                                    "
+                                  >
+                                    {{ customer.department.deps.price_foreign_format }}
+                                  </template>
+                                </strong>
                           </p>
                         </div>
-                        <div class="" v-if="page.data.department.project_rel">
+                        <div class="" v-if="customer.department.deps.project_rel">
                           <b>{{ $t("Monto de Separación") }}:</b>
                           <p>
                             <strong>
                               {{
-                                page.data.department.project_rel
+                                customer.department.deps.project_rel
                                   .price_separation_format
                               }}
                             </strong>
@@ -242,7 +277,7 @@
                   </div>
                 </div>
               </div>
-              <div v-if="Object.entries(customerGlobal).length === 0" class="grid-s-12"></div>
+              <div v-if="Object.entries(customer).length === 0" class="grid-s-12"></div>
               <div class="grid-s-12" v-else>
                 <div class="content-bg">
                   <h5>
@@ -253,21 +288,21 @@
                     <div class="grid-s-12 grid-m-4 grid-l-2">
                       <b>{{ $t("Nombre") }}:</b>
                       <p>
-                        {{ customerGlobal.name }} {{ customerGlobal.lastname }}
-                        {{ customerGlobal.lastname_2 }}
+                        {{ customer.name }} {{ customer.lastname }}
+                        {{ customer.lastname_2 }}
                       </p>
                     </div>
                     <div class="grid-s-12 grid-m-4 grid-l-2">
-                      <b>{{ customerGlobal.type_document_id }}:</b>
-                      <p>{{ customerGlobal.document_number }}</p>
+                      <b>{{ customer.type_document_id }}:</b>
+                      <p>{{ customer.document_number }}</p>
                     </div>
                     <div class="grid-s-12 grid-m-4 grid-l-2">
                       <b>{{ $t("Teléfono") }}:</b>
-                      <p>{{ customerGlobal.mobile }}</p>
+                      <p>{{ customer.mobile }}</p>
                     </div>
                     <div class="grid-s-12 grid-m-4 grid-l-2">
                       <b>{{ $t("Correo") }}:</b>
-                      <p>{{ customerGlobal.email }}</p>
+                      <p>{{ customer.email }}</p>
                     </div>
                   </div>
                 </div>
@@ -331,7 +366,7 @@
             </div>
             </div>
           </div>
-        </div>-->
+        </div>
       </div>
     </section>
   </main>
@@ -402,6 +437,7 @@ import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
 import Loading from "../../../components/payment/Loading";
 import KRGlue from "@lyracom/embedded-form-glue";
+import ModalParkingWarehouse from "../../../components/modals/ParkingWarehouse";
 export default {
   name: "ReserveReserveSummary",
   head() {
@@ -424,6 +460,7 @@ export default {
     Banner,
     Steps,
     Loading,
+    ModalParkingWarehouse
   },
   nuxtI18n: {
     paths: {
@@ -449,6 +486,36 @@ export default {
       noAvailable: false,
       departmentUpdated: false,
       departmentAvailable: {},
+      customer:{
+        department: {
+        available: true,
+        deps: {
+          image: "",
+          project_rel: {
+            logo_colour: "",
+            ubigeo_rel: {
+              district: "",
+              department: "",
+              province: "",
+            },
+            status_rel: {
+              name_es: "",
+            },
+          },
+          tipology_rel: {
+            name: "",
+            image: "",
+            parent_type_department_rel: {},
+          },
+          view_rel: {
+            name_es: "",
+          },
+          parkings: [],
+          warehouses: [],
+          allEstates: [],
+        },
+      },
+      }
     };
   },
   methods: {
@@ -539,12 +606,12 @@ export default {
         });
     },
     onFormCreated(event){
-      var valueText = "PAGAR "+this.page.data.department.project_rel
+      var valueText = "PAGAR "+this.customer.department.deps.project_rel
                                   .price_separation_format;
       var botonpopin = document.getElementsByClassName("kr-payment-button");
       var spanBotonPopin = botonpopin[0].getElementsByTagName('span');
       spanBotonPopin[0].textContent = valueText;
-      var valueText2 = "<strong>PAGAR "+this.page.data.department.project_rel
+      var valueText2 = "<strong>PAGAR "+this.customer.department.deps.project_rel
                                   .price_separation_format+"</strong>";
       var botonform = document.getElementsByClassName("kr-popin-button");
       botonform[0].innerHTML = valueText2;
@@ -596,7 +663,7 @@ export default {
           this.promiseError = error + " (see console for more details)";
         });
     },
-    getAvailable() {
+    /*getAvailable() {
       this.requestAvailable = true;
       this.$axios
         .$get("/api/reserve/reserve-departments/" + this.$route.params.slug)
@@ -613,7 +680,7 @@ export default {
           //Si no esta disponible el inmueble poner No Disponible
           this.noAvailable = true;
         });
-    },
+    },*/
   },
   mounted() {
     $(document).ready(function () {
@@ -630,12 +697,13 @@ export default {
       //Generar Token
       this.checkout();
       //Verificar Disponibilidad
-      this.getAvailable();
+      //this.getAvailable();
       //Verificar Tiempo ExpireLS
+      this.customer = Object.assign({}, this.customerGlobal);
       let self = this;
-      this.timer = setInterval(function () {
+      /*this.timer = setInterval(function () {
         self.checkExpireLS();
-      }, 1000); // 60 * 1000 milsec
+      }, 1000); // 60 * 1000 milsec*/
     }
   },
   beforeDestroy() {
