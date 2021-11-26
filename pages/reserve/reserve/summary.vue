@@ -321,9 +321,9 @@
                       class="btn btn1 previous"
                       :to="
                         localePath({
-                          name: 'reserve-slug',
+                          name: 'reserve-reserve',
                           params: { slug: $route.params.slug },
-                          query: { ...$route.query, adv: $route.query.adv },
+                          query: { ...$route.query },
                         })
                       "
                       >{{ $t("Editar datos") }}</nuxt-link
@@ -663,24 +663,6 @@ export default {
           this.promiseError = error + " (see console for more details)";
         });
     },
-    /*getAvailable() {
-      this.requestAvailable = true;
-      this.$axios
-        .$get("/api/reserve/reserve-departments/" + this.$route.params.slug)
-        .then((response) => {
-          //Verificar si esta disponible el inmueble
-          if (!response.data[0]["available"]) {
-            //Si no esta disponible el inmueble poner No Disponible
-            this.noAvailable = true;
-          }
-          this.requestAvailable = false;
-        })
-        .catch((error) => {
-          this.requestAvailable = false;
-          //Si no esta disponible el inmueble poner No Disponible
-          this.noAvailable = true;
-        });
-    },*/
   },
   mounted() {
     $(document).ready(function () {
@@ -694,14 +676,13 @@ export default {
     ) {
       this.$router.push(this.localePath({ name: "index" }));
     } else {
+      //Setear datos del cliente y departamentos
+      this.customer = Object.assign({}, this.customerGlobal);
       //Generar Token
       this.checkout();
-      //Verificar Disponibilidad
-      //this.getAvailable();
       //Verificar Tiempo ExpireLS
-      this.customer = Object.assign({}, this.customerGlobal);
       let self = this;
-      /*this.timer = setInterval(function () {
+      this.timer = setInterval(function () {
         self.checkExpireLS();
       }, 1000); // 60 * 1000 milsec*/
     }
