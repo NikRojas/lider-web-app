@@ -29,9 +29,16 @@
       <div>
         <Steps active="reserve" />
         <div class="viewport full-width-container">
-          <div class="sized-container">
+          <div class="sized-container" v-if="codeNotFound">   
+              <div class="title center">
+              <img height="110" :data-src="require('~/assets/img/id-card-no-available.png')" class="lazyload mb-3" src="" alt="">
+              <h2>Link de reserva no encontrado</h2>
+            </div>
+          </div>
+          <div class="sized-container" v-else>
             <div class="title center">
-              <h2>{{ $t("Datos de separación") }}</h2>
+              <img height="110" :data-src="require('~/assets/img/id-card-no-available.png')" class="lazyload mb-3" v-if="!department.available" src="" alt="">
+              <h2>{{ !department.available ? $t('Tu link de reserva ha caducado') : $t("Datos de separación") }}</h2>
             </div>
             <div class="grid-col">
               <div
@@ -53,8 +60,56 @@
                   <b>{{ $t("Obteniendo Disponibilidad") }}</b>
                 </h4>
               </div>
-              <div class="grid-s-12 text-center" v-if="!department.available">
-                No disponible
+              <div v-if="!department.available" class="grid-s-12 reserve-confirmed-no-available">
+                <div class="text-center">
+                  <p>
+                    {{ $t('Hola') }} <strong>{{ department.customer.name }}</strong>,
+                  </p>
+                  <p class="mb-4">
+                    {{ $t('Ponte en contacto con tu asesor asignado para que te habilite un nuevo link de reserva') }}.
+                  </p>
+                </div>
+                <div class="grid-col">
+                  <div class="grid-s-12 mb-2">
+                    <div class="text-center">
+                      <b>{{ $t('Asesor asignado') }}</b>
+                    </div>
+                    <div class="card-advisor">
+                      <div class="card-advisor__wrapper_name">
+                          <div class="card-advisor__avatar">
+                            <img v-if="department.advisor.avatar" :src="storageUrl + '/img/advisors/' +department.advisor.avatar " alt="">
+                            <strong v-else>{{ department.advisor.avatar_initials }}</strong>
+                          </div>
+                      </div>
+                      <div>
+                          <h3 class="card-advisor__name">{{ department.advisor.name }}</h3>
+                          <a class="card-advisor__email" :href="'mailto:'+department.advisor.email" target="_blank">
+                            <img height="11" :src="require('~/assets/img/email1.png')" alt="">
+                            <span>
+                              {{ department.advisor.email }}
+                            </span>
+                            </a>
+                          <a class="card-advisor__phone" target="_blank" @click="sendToWhatsapp(department.advisor.mobile)" >
+                            <i class="flaticon-telefono-movil"></i>
+                             <span>{{ department.advisor.mobile_masked }}</span>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="grid-s-12 text-center mb-2">
+                    Gracias, <br>
+                    <strong>El equipo Lider</strong>
+                  </div>
+                  <div class="grid-s-12 text-center">
+                    <nuxt-link
+                        style="display:inline-block"
+                        class="btn btn2"
+                        :to="localePath({ name: 'index' })"
+                      >
+                        {{ $t("Ir a página principal") }}
+                      </nuxt-link>
+                  </div>
+                </div>
               </div>
               <template v-else>
                 <div class="grid-s-12 grid-m-12 grid-l-6">
@@ -64,21 +119,29 @@
                     </h5>
 
                     <template v-if="requestAvailable">
+                      <client-only>
                       <PuSkeleton height="300px"></PuSkeleton>
+                      </client-only>
                       <div class="grid-col">
                         <div class="grid-s-4" style="margin-top: 4px">
+                          <client-only>
                           <PuSkeleton height="40px"></PuSkeleton>
+                          </client-only>
                         </div>
                         <div class="grid-s-8"></div>
                         <div class="grid-s-12">
+                          <client-only>
                           <PuSkeleton height="50px"></PuSkeleton>
+                          </client-only>
                         </div>
                         <div
                           class="grid-s-12 grid-m-6 grid-l-4"
                           v-for="i in 9"
                           :key="i + 'ps'"
                         >
+                          <client-only>
                           <PuSkeleton height="50px"></PuSkeleton>
+                          </client-only>
                         </div>
                       </div>
                     </template>
@@ -210,7 +273,7 @@
                                 {{ park.description }} <br />
                                 {{ park.area_format }}m2
                               </div>
-                              <div class="grid-s-4 text-right">
+                              <div class="grid-s-4 text-right" v-if="park.floorView">
                                 <ModalParkingWarehouse
                                   v-show="park.floorView"
                                   :floorData="park.floorView"
@@ -235,7 +298,7 @@
                               {{ ware.description }} <br />
                               {{ ware.area_format }}m2
                               </div>
-                              <div class="grid-s-4 text-right">
+                              <div class="grid-s-4 text-right"  v-if="ware.floorView">
                                 <ModalParkingWarehouse
                                   v-show="ware.floorView"
                                   :floorData="ware.floorView"
@@ -357,7 +420,7 @@
                     <h5>{{ $t("Ingresa tus datos") }}</h5>
                     <form
                       @submit.prevent="submit"
-                      id="formp"
+                      id="formp2"
                       autocomplete="off"
                     >
                       <div class="grid-col">
@@ -518,7 +581,7 @@
                       </div>
                     </form>
                     <button
-                      form="formp"
+                      form="formp2"
                       type="submit"
                       :class="requestSubmit ? 'btn--opacity' : ''"
                       :disabled="requestSubmit"
@@ -569,6 +632,8 @@ export default {
       },
       department: {
         available: true,
+        advisor: {},
+        customer: {},
         deps: {
           image: "",
           project_rel: {
@@ -598,6 +663,7 @@ export default {
       requestSubmit: false,
       storageUrl: process.env.STORAGE_URL,
       requestAvailable: true,
+      codeNotFound: false,
     };
   },
   nuxtI18n: {
@@ -607,6 +673,13 @@ export default {
     },
   },
   methods: {
+    sendToWhatsapp(mobile){
+      let number = mobile;
+      let link = `https://wa.me/+51${number}?text=${encodeURIComponent(
+                "Hola quisiera información"
+      )}`;
+      window.open(link, "_blank");
+    },
     clearData() {
       this.$store.dispatch("setExpireLS", null);
       this.$store.dispatch("setCustomer", {});
@@ -616,13 +689,13 @@ export default {
       this.$axios
         .$get("/api/reserve/reserve-departments/" + this.$route.params.slug)
         .then((response) => {
-          //setTimeout(() => {
           this.department = Object.assign({}, response.data);
+          this.customer = Object.assign({}, response.data.customer );
           this.requestAvailable = false;
-          //}, 5000);
         })
         .catch((error) => {
           this.requestAvailable = false;
+          this.codeNotFound = true;
         });
     },
     submit() {
@@ -635,6 +708,7 @@ export default {
       this.customer.department = this.department;
       this.customer.project_id = this.department.deps.project_id;
       this.customer.allEstates = this.department.allEstates;
+      this.customer.advisor_id = this.department.advisor.id;
       this.$axios
         .$post("/api/reserve/platform-commercial/customer", this.customer)
         .then((response) => {
@@ -661,7 +735,7 @@ export default {
         });
     },
   },
-  mounted() {
+  created() {
     this.getAvailable();
   },
   computed: {

@@ -203,5 +203,9 @@ export default {
     '¡Gracias por contactarse con nosotros!': '¡Gracias por contactarse con nosotros!',
     'Hemos registrado tu Cita para el': 'Hemos registrado tu Cita para el',
     'En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.': 'En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.',
-    'Precio total': 'Precio total'
+    'Precio total': 'Precio total',
+    'Tu link de reserva ha caducado': 'Tu link de reserva ha caducado',
+    'Ponte en contacto con tu asesor asignado para que te habilite un nuevo link de reserva': 'Ponte en contacto con tu asesor asignado para que te habilite un nuevo link de reserva',
+    'Asesor asignado': 'Asesor asignado',
+    'Ir a página principal': 'Ir a página principal'
 }

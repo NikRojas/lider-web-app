@@ -204,5 +204,9 @@ export default {
     '¡Gracias por contactarse con nosotros!': '¡Thank you for contacting us!',
     'Hemos registrado tu Cita para el': 'We have registered your Appointment for',
     'En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.': 'In the Notification of the Appointment email you will find the contact information of your Business Advisor.',
-    'Precio total': 'Total price'
+    'Precio total': 'Total price',
+    'Tu link de reserva ha caducado': 'Your booking link has expired',
+    'Ponte en contacto con tu asesor asignado para que te habilite un nuevo link de reserva': 'Get in touch with your assigned advisor to get a new booking link for you',
+    'Asesor asignado': 'Assigned advisor',
+    'Ir a página principal': 'Go to Home'
 }
