@@ -70,20 +70,23 @@
                   />
                 </a>
 
-              <!--  <template v-if="el.description">
-              <strong>{{
-                el.description
-              }}</strong>
-            </template>
-              -->
-
-              <template v-if="el.package_rel && el.package_rel.id">
+              <!--<template v-if="el.package_rel && el.package_rel.id">
                      <strong v-for="pack in el.package_rel.departmentsRel" :key="'packdes'+pack.id">{{ pack.description }}</strong>
-                      <!-- <strong v-if="el.description">PQ {{ el.description }}</strong>-->
                     </template>
                     <template v-else-if="el.description">
-                      <strong>{{ el.description }}</strong>
-                    </template>
+                      <strong v-html="el.description.replace(' EDIFICIO', '<br />EDIFICIO')"></strong>
+                    </template>-->
+
+                     <strong style="display: block;" v-html="el.description.replace(' EDIFICIO', '<br />EDIFICIO')"></strong>
+                    <template v-if="el.package_rel && el.package_rel.id">
+                         <template v-if="el.parkings && el.parkings.length">
+                          <span>ESTACIONAMIENTO(S) <span v-for="(pack, key) in el.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != el.parkings.length && el.parkings.length > 0">, </template>
+                            </span> </span>
+                         </template>
+                         <template v-if="el.warehouses && el.warehouses.length">
+                          <span>DEPÓSITO(S) <span v-for="(pack, key) in el.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != el.warehouses.length && el.warehouses.length > 0">, </template></span> </span>
+                         </template>
+                       </template>
         </div>
         <div>
           <img

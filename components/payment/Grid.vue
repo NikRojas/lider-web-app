@@ -108,7 +108,7 @@
                 <div class="card-body">
                   <ul>
                     <li class="li-row">
-                       <strong>{{ el.description }}</strong>
+                       <strong v-html="el.description.replace(' EDIFICIO', '<br />EDIFICIO')"></strong>
                        <template v-if="el.package_rel && el.package_rel.id">
                          <template v-if="el.parkings && el.parkings.length">
                           <span>ESTACIONAMIENTO(S) <span v-for="(pack, key) in el.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != el.parkings.length && el.parkings.length > 0">, </template>

@@ -133,11 +133,11 @@
                         class="logo lazyload"
                       />
                       <div class="caract-grid">
-                        <div class="" v-if="page.data.department.description" :class="page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length ? 'col-width-100' : ''">
+                        <div class="" :class="page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length ? 'col-width-100' : ''">
                           <b>{{ $t("Descripción") }}:</b>
                           <p class="mb-0">
-                            <strong class="d-block">{{ page.data.department.description}}</strong>
-                            <template v-if="page.data.isPackage && page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length">
+                            <strong class="d-block" v-if="page.data.department.description" >{{ page.data.department.description}}</strong>
+                            <!--<template v-if="page.data.isPackage && page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length">
                               <template v-if="page.data.department.parkings && page.data.department.parkings.length">
                                 <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in page.data.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != page.data.department.parkings.length && page.data.department.parkings.length > 0">, </template>
                                   </span> </span>
@@ -145,7 +145,60 @@
                               <template v-if="page.data.department.warehouses && page.data.department.warehouses.length">
                                 <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in page.data.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != page.data.department.warehouses.length && page.data.department.warehouses.length > 0">, </template></span> </span>
                               </template>
-                            </template> 
+                            </template> -->
+                            <template v-if="page.data.isPackage && page.data.department.data_package && page.data.department.data_package.departments_rel && page.data.department.data_package.departments_rel.length">
+                              <div class="grid-col">
+                              <div
+                                  class="grid-s-12"
+                                  v-if="
+                                    page.data.department.parkings && page.data.department.parkings.length
+                                  "
+                                >
+                                  <div
+                                    v-for="park in page.data.department.parkings"
+                                    :key="park.id + 'park'"
+                                    class="grid-col grid-col--parkingwarehouse"
+                                  >
+                                    <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                      {{ park.description }} <br />
+                                      {{ park.area_format }}m2
+                                    </div>
+                                    <div class="grid-s-4 text-right" v-if="park.floorView">
+                                      <ModalParkingWarehouse
+                                        v-show="park.floorView"
+                                        :floorData="park.floorView"
+                                        :estate="park"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="grid-s-12"
+                                  v-if="
+                                    page.data.department.warehouses &&
+                                    page.data.department.warehouses.length
+                                  "
+                                >
+                                  <div
+                                    v-for="ware in page.data.department.warehouses"
+                                    :key="ware.id + 'ware'"
+                                    class="grid-col grid-col--parkingwarehouse"
+                                  >
+                                    <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                    {{ ware.description }} <br />
+                                    {{ ware.area_format }}m2
+                                    </div>
+                                    <div class="grid-s-4 text-right"  v-if="ware.floorView">
+                                      <ModalParkingWarehouse
+                                        v-show="ware.floorView"
+                                        :floorData="ware.floorView"
+                                        :estate="ware"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            </template>
                           </p>
                         </div>
                         <div class="">
@@ -423,6 +476,7 @@ import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
 import Loading from "../../../components/payment/Loading";
 import KRGlue from "@lyracom/embedded-form-glue";
+import ModalParkingWarehouse from "../../../components/modals/ParkingWarehouse";
 export default {
   name: "ReserveSlugSummary",
   head() {
@@ -445,6 +499,7 @@ export default {
     Banner,
     Steps,
     Loading,
+    ModalParkingWarehouse
   },
   nuxtI18n: {
     paths: {

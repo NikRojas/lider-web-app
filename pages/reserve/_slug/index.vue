@@ -58,7 +58,77 @@
                   <h5>
                     <b>{{ $t("Datos del inmueble") }}</b>
                   </h5>
-                  <img
+                  <a
+                    data-fancybox
+                    class="fancybox"
+                    v-if="
+                        page.data.isPackage &&
+                        page.data.department.data_package.image
+                      "
+                    :href="storageUrl +
+                        '/img/projects/combos/' +
+                        page.data.department.data_package.image"
+                  >
+                    <img
+                      class="plano lazyload"
+                      :data-src="
+                        storageUrl +
+                        '/img/projects/combos/' +
+                        page.data.department.data_package.image
+                      "
+                      :alt="$t('Plano') + ' ' + page.data.department.description"
+                    />
+                  </a>
+                  <a
+                    data-fancybox
+                    class="fancybox"
+                    v-else-if="page.data.department.image"
+                    :href="storageUrl +
+                        '/img/projects/estates/' +
+                        page.data.department.image"
+                  >
+                    <img
+                      
+                      class="plano lazyload"
+                      :data-src="
+                        storageUrl +
+                        '/img/projects/estates/' +
+                        page.data.department.image
+                      "
+                      :alt="$t('Plano') + ' ' + page.data.department.description"
+                    />
+                  </a>
+                  <a
+                    data-fancybox
+                    class="fancybox"
+                    v-else-if="page.data.department.tipology_rel.image"
+                    :href="storageUrl +
+                        '/img/projects/tipologies/' +
+                        page.data.department.tipology_rel.image"
+                  >
+                    <img
+                      class="plano lazyload"
+                      :data-src="
+                        storageUrl +
+                        '/img/projects/tipologies/' +
+                        page.data.department.tipology_rel.image
+                      "
+                      :alt="$t('Plano') + ' ' + page.data.department.description"
+                    />
+                  </a>
+                  <a
+                    data-fancybox
+                    class="fancybox"
+                    v-else
+                    :href="require('~/assets/img/p-no-data.png')"
+                  >
+                    <img
+                      class="lazyload"
+                      :data-src="require('~/assets/img/p-no-data.png')"
+                      :alt="$t('Plano') + ' ' + page.data.department.description"
+                    />
+                  </a>
+                  <!--<img
                     v-if="
                       page.data.isPackage &&
                       page.data.department.data_package.image
@@ -96,7 +166,7 @@
                     class="lazyload"
                     :data-src="require('~/assets/img/p-no-data.png')"
                     :alt="$t('Plano') + ' ' + page.data.department.description"
-                  />
+                  />-->
                   <div class="grid-col">
                     <div class="grid-s-6 grid-m-3 grid-l-3">
                       <img
@@ -140,7 +210,59 @@
                             page.data.department.description
                           }}</strong>
                           <template v-if="page.data.isPackage">
-                            <template
+
+                            <div class="grid-col">
+                              <div
+                                  class="grid-s-12"
+                                  v-if="
+                                    page.data.department.parkings && page.data.department.parkings.length
+                                  "
+                                >
+                                  <div
+                                    v-for="park in page.data.department.parkings"
+                                    :key="park.id + 'park'"
+                                    class="grid-col grid-col--parkingwarehouse"
+                                  >
+                                    <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                      {{ park.description }} <br />
+                                      {{ park.area_format }}m2
+                                    </div>
+                                    <div class="grid-s-4 text-right" v-if="park.floorView">
+                                      <ModalParkingWarehouse
+                                        v-show="park.floorView"
+                                        :floorData="park.floorView"
+                                        :estate="park"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="grid-s-12"
+                                  v-if="
+                                    page.data.department.warehouses &&
+                                    page.data.department.warehouses.length
+                                  "
+                                >
+                                  <div
+                                    v-for="ware in page.data.department.warehouses"
+                                    :key="ware.id + 'ware'"
+                                    class="grid-col grid-col--parkingwarehouse"
+                                  >
+                                    <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                    {{ ware.description }} <br />
+                                    {{ ware.area_format }}m2
+                                    </div>
+                                    <div class="grid-s-4 text-right"  v-if="ware.floorView">
+                                      <ModalParkingWarehouse
+                                        v-show="ware.floorView"
+                                        :floorData="ware.floorView"
+                                        :estate="ware"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <!--<template
                               v-if="
                                 page.data.department.parkings &&
                                 page.data.department.parkings.length > 0
@@ -184,7 +306,7 @@
                                   </template>
                                 </span>
                               </span>
-                            </template>
+                            </template>-->
                           </template>
                         </p>
                       </div>
@@ -574,13 +696,19 @@
 </template>
       
 <script>
+if (process.client) {
+  require("/static/js/jq.fancybox.min.js");
+}
+import "/static/css/jq.fancybox.min.css";
 import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
+import ModalParkingWarehouse from "../../../components/modals/ParkingWarehouse";
 export default {
   name: "ReserveSlug",
   components: {
     Banner,
     Steps,
+    ModalParkingWarehouse
   },
   async validate({ params, $axios, app }) {
     const data = await $axios.$get("/api/page/reserve/" + params.slug, {
@@ -700,6 +828,9 @@ export default {
     },
   },
   mounted() {
+    $(document).ready(function () {
+      $(".fancybox").fancybox();
+      });
     this.getAvailable();
   },
   computed: {

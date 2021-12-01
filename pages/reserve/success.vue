@@ -122,23 +122,76 @@
                         class="logo lazyload"
                       />
                       <div class="caract-grid">
-                        <div class="" :class="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length ? 'col-width-100' : ''" v-if="customer.department.description" >
+                        <div class="" :class="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length ? 'col-width-100' : ''" >
                           <b>{{ $t("Descripción") }}:</b>
                           <p class="mb-0">
-                              <strong class="d-block">
+                              <strong  v-if="customer.department.description" class="d-block">
                                 {{
                               customer.department.description
                             }}
                               </strong>
                              <template v-if="customer.department.data_package && customer.department.data_package.departments_rel && customer.department.data_package.departments_rel.length">
                               
-                              <template v-if="customer.department.parkings && customer.department.parkings.length">
+                              <!--<template v-if="customer.department.parkings && customer.department.parkings.length">
                                 <span class="d-block">ESTACIONAMIENTO(S) <span v-for="(pack, key) in customer.department.parkings" :key="'packdes'+pack.id">{{ pack.parking_text_format }}<template v-if="key+1 != customer.department.parkings.length && customer.department.parkings.length > 0">, </template>
                                   </span> </span>
                               </template>
                               <template v-if="customer.department.warehouses && customer.department.warehouses.length">
                                 <span class="d-block">DEPÓSITO(S) <span v-for="(pack, key) in customer.department.warehouses" :key="'packware'+pack.id">{{ pack.warehouse_text_format }}<template v-if="key+1 != customer.department.warehouses.length && customer.department.warehouses.length > 0">, </template></span> </span>
-                              </template>
+                              </template>-->
+
+                               <div class="grid-col">
+                              <div
+                                  class="grid-s-12"
+                                  v-if="
+                                    customer.department.parkings && customer.department.parkings.length
+                                  "
+                                >
+                                  <div
+                                    v-for="park in customer.department.parkings"
+                                    :key="park.id + 'park'"
+                                    class="grid-col grid-col--parkingwarehouse"
+                                  >
+                                    <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                      {{ park.description }} <br />
+                                      {{ park.area_format }}m2
+                                    </div>
+                                    <div class="grid-s-4 text-right" v-if="park.floorView">
+                                      <ModalParkingWarehouse
+                                        v-show="park.floorView"
+                                        :floorData="park.floorView"
+                                        :estate="park"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="grid-s-12"
+                                  v-if="
+                                    customer.department.warehouses &&
+                                    customer.department.warehouses.length
+                                  "
+                                >
+                                  <div
+                                    v-for="ware in customer.department.warehouses"
+                                    :key="ware.id + 'ware'"
+                                    class="grid-col grid-col--parkingwarehouse"
+                                  >
+                                    <div class="grid-s-8 grid-col--parkingwarehouse__descriptions">
+                                    {{ ware.description }} <br />
+                                    {{ ware.area_format }}m2
+                                    </div>
+                                    <div class="grid-s-4 text-right"  v-if="ware.floorView">
+                                      <ModalParkingWarehouse
+                                        v-show="ware.floorView"
+                                        :floorData="ware.floorView"
+                                        :estate="ware"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+
                             </template> 
                           </p>
                         </div>
@@ -295,6 +348,7 @@
 <script>
 import Banner from "../../components/Banner";
 import Steps from "../../components/payment/Steps";
+import ModalParkingWarehouse from "../../components/modals/ParkingWarehouse";
 export default {
   name: "ReserveSuccess",
   head() {
@@ -311,6 +365,7 @@ export default {
   components: {
     Steps,
     Banner,
+    ModalParkingWarehouse
   },
   nuxtI18n: {
     paths: {
