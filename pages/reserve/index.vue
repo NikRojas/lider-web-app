@@ -34,6 +34,7 @@
             </div>
             <div class="content-bg">
               <Filters
+                ref="filterComponente"
                 @set="getEls"
                 @clear="clear"
                 :filtersParent="page.data.filters"
@@ -290,6 +291,10 @@ export default {
         .then((response) => {
           this.page.data.departments = Object.assign({}, response);
           this.loadingEls = false;
+          //Verificar si esta vacio
+          if(this.page.data.departments.data.length == 0){
+            this.$refs.filterComponente.reset();
+          }
         });
     },
     toggleShow() {
