@@ -207,5 +207,6 @@ export default {
     'Tu link de reserva ha caducado': 'Tu link de reserva ha caducado',
     'Ponte en contacto con tu asesor asignado para que te habilite un nuevo link de reserva': 'Ponte en contacto con tu asesor asignado para que te habilite un nuevo link de reserva',
     'Asesor asignado': 'Asesor asignado',
-    'Ir a página principal': 'Ir a página principal'
+    'Ir a página principal': 'Ir a página principal',
+    'Ver Piso': 'Ver Piso',
 }

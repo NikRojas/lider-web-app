@@ -146,7 +146,7 @@
                       </div>
                     </template>
                     <template v-else>
-                      <img
+                      <!--<img
                         v-if="department.deps.image"
                         class="plano lazyload"
                         :data-src="
@@ -171,7 +171,55 @@
                         class="lazyload"
                         :data-src="require('~/assets/img/p-no-data.png')"
                         :alt="$t('Plano') + ' ' + department.deps.description"
-                      />
+                      />-->
+                      <a
+                        data-fancybox
+                        class="fancybox"
+                        v-if="department.deps.image"
+                        :href="storageUrl +
+                            '/img/projects/estates/' +
+                            department.deps.image"
+                      >
+                        <img
+                          class="plano lazyload"
+                          :data-src="
+                            storageUrl +
+                            '/img/projects/estates/' +
+                            department.deps.image
+                          "
+                          :alt="$t('Plano') + ' ' + department.deps.description"
+                        />
+                      </a>
+                      <a
+                        data-fancybox
+                        class="fancybox"
+                        v-else-if="department.deps.tipology_rel.image"
+                        :href="storageUrl +
+                            '/img/projects/tipologies/' +
+                            department.deps.tipology_rel.image"
+                      >
+                        <img
+                          class="plano lazyload"
+                          :data-src="
+                            storageUrl +
+                            '/img/projects/tipologies/' +
+                            department.deps.tipology_rel.image
+                          "
+                          :alt="$t('Plano') + ' ' + department.deps.description"
+                        />
+                      </a>
+                      <a
+                        data-fancybox
+                        class="fancybox"
+                        v-else
+                        :href="require('~/assets/img/p-no-data.png')"
+                      >
+                        <img
+                          class="lazyload"
+                          :data-src="require('~/assets/img/p-no-data.png')"
+                          :alt="$t('Plano') + ' ' + department.deps.description"
+                        />
+                      </a>
                       <div class="grid-col">
                         <div
                           class="grid-s-6 grid-m-3 grid-l-3"
@@ -607,6 +655,10 @@
 </template>
       
 <script>
+if (process.client) {
+  require("/static/js/jq.fancybox.min.js");
+}
+import "/static/css/jq.fancybox.min.css";
 import Banner from "../../../components/Banner";
 import Steps from "../../../components/payment/Steps";
 import ModalParkingWarehouse from "../../../components/modals/ParkingWarehouse";
@@ -736,6 +788,9 @@ export default {
     },
   },
   created() {
+    $(document).ready(function () {
+      $(".fancybox").fancybox();
+      });
     this.getAvailable();
   },
   computed: {

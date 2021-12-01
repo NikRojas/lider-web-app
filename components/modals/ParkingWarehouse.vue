@@ -6,10 +6,10 @@
     <client-only>
         <modal
         :name="'modal'+modalId"
-        class="modal--terms"
-        height="auto"
+        class="modal--parkingswarehouses"
+        height="70%"
         width="95%"
-        :max-width="800"
+        :max-width="1100"
         :adaptive="true"
         >
         <button
