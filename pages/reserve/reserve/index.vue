@@ -787,10 +787,12 @@ export default {
         });
     },
   },
-  created() {
+  mounted(){
     $(document).ready(function () {
       $(".fancybox").fancybox();
-      });
+    });
+  },
+  created() {
     this.getAvailable();
   },
   computed: {
