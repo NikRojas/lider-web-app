@@ -173,6 +173,18 @@ margin: 0 2px;
 }
 
 .modal--parkingswarehouses{
+    .content-modal div {
+        height: auto!important;
+    }
+    .v--modal-box.v--modal {
+        height: auto!important;
+        top: 0!important;
+        max-height: 100vh!important;
+    }
+    .v--modal-background-click {
+        display: grid;
+        align-items: center;
+    }
     .container{
         padding-top: 2rem;
         padding-bottom: 2rem;
