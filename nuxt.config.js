@@ -35,7 +35,7 @@ export default {
       {
         src: "/js/wow.min.js",
       },
-      //{ src: '/js/facebook-sdk.js', defer: true, async: true },
+      { src: '/js/facebook-sdk.js', defer: true, async: true },
     ],
   },
   /*server: {
@@ -101,11 +101,11 @@ export default {
     'nuxt-socket-io',
     'cookie-universal-nuxt',
   ],
-  /*gtm: {
+  gtm: {
     id: 'GTM-T6FN5PJ',
     //debug: true,
     enabled: true
-  },*/
+  },
 
   i18n: {
     locales: ['en', 'es'],
@@ -305,8 +305,8 @@ export default {
   },
   proxy: {
     '/api/': {
-      //target: 'https://admin.lider.com.pe/api/',
-      target: 'https://lider-admin.playgroup.pe/api/',
+      target: 'https://admin.lider.com.pe/api/',
+      //target: 'https://lider-admin.playgroup.pe/api/',
       //target: 'http://127.0.0.1:9000/api/',
       pathRewrite: { '^/api/': '' },
     }
