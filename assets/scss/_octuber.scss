@@ -219,3 +219,16 @@ margin: 0 2px;
         box-shadow: -3px 1px 6px 0 rgb(0 0 0 / 10%);
     }
 }
+
+.body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+.card-body ul {
+    display: grid;
+    grid-template-rows: 1fr auto auto auto auto;
+    height: 100%;
+}
+.card-depa-grid .card-body ul li:first-child {
+    align-items: start!important;
+}
