@@ -45,7 +45,7 @@
           $route.name != 'reserve-slug___en' &&
            $route.name != 'reserve___es' &&
           $route.name != 'reserve___en'" class="nav-separa" :to="localePath({name: 'reserve'})">
-            {{ $t('Separa tu depa')}}
+            {{ $t('Separa tu inmueble')}}
           </nuxt-link>
           <Dropdown
             :right="true"

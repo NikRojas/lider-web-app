@@ -244,3 +244,29 @@ margin: 0 2px;
 .card-depa-grid .card-body ul li:first-child {
     align-items: start!important;
 }
+
+.header1 a.nav-separa:hover, .header2 a.nav-separa:hover {
+    border-color: #f15f23!important;
+    color: white!important;
+}
+
+@media only screen and (max-width: 638px){
+    a.nav-separa {
+        padding: 4px 4px!important;
+        width: 90px;
+    }
+}
+
+a.nav-separa {
+    display: grid!important;
+    color: #fff;
+    font-weight: 600;
+    margin: 0 5px;
+    line-height: 16px!important;
+    padding: 6px 12px!important;
+    align-items: center;
+    text-align: center;
+    height: 52px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+    border: 2px solid hsla(0,0%,100%,0);
+}

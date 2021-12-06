@@ -209,4 +209,5 @@ export default {
     'Asesor asignado': 'Asesor asignado',
     'Ir a página principal': 'Ir a página principal',
     'Ver Piso': 'Ver Piso',
+    'Separa tu inmueble': 'Separa tu inmueble',
 }
