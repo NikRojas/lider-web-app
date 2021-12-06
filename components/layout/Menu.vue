@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="nav wow fadeIn" data-wow-delay="0.2s">
-          <!--<nuxt-link v-if="$route.name != 'reserve-success___es' && 
+          <nuxt-link v-if="$route.name != 'reserve-success___es' && 
           $route.name != 'reserve-success___en' &&
           $route.name != 'reserve-error___es' &&
           $route.name != 'reserve-error___en' &&
@@ -46,7 +46,7 @@
            $route.name != 'reserve___es' &&
           $route.name != 'reserve___en'" class="nav-separa" :to="localePath({name: 'reserve'})">
             {{ $t('Separa tu depa')}}
-          </nuxt-link>-->
+          </nuxt-link>
           <Dropdown
             :right="true"
             classWrapper="dropdown-width"

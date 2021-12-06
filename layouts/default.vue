@@ -4,7 +4,7 @@
     <Sidebar />
     <Nuxt />
     <Footer />
-    <!--<Chat />-->
+    <Chat />
   </div>
 </template>
 
