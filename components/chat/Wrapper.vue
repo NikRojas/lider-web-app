@@ -488,12 +488,24 @@ export default {
       }
       if (resp.route_section) {
         let scrollToOptions = { easing: "ease" };
-        if (resp.route_section == "#cotizar") {
-          scrollToOptions.offset = +40;
+        if(typeof resp.route_section === 'string' || resp.route_section instanceof String){
+          setTimeout(() => {
+            this.$scrollTo(resp.route_section, 1000, scrollToOptions);
+          }, 600);
         }
-        setTimeout(() => {
-          this.$scrollTo(resp.route_section, 1000, scrollToOptions);
-        }, 600);
+        else{
+          if (resp.route_section.value == "#cotizar") {
+            scrollToOptions.offset = +40;
+            if(this.$route.name != 'project___es' || this.$route.name != 'project___en'){
+              this.$router.push(this.localePath(resp.route_section.go_to), () => setTimeout(() => { this.$scrollTo(resp.route_section.value, 1000, scrollToOptions)}, 600) );
+            }
+            else{
+              setTimeout(() => {
+              this.$scrollTo(resp.route_section.value, 1000, scrollToOptions);
+              }, 600);
+            }
+          }
+        } 
       }
       if (
         resp.element == "buttons" ||
