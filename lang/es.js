@@ -146,7 +146,7 @@ export default {
     'Tipo de documento': 'Tipo de documento',
     'Datos del inmueble': 'Datos del inmueble',
     'Monto a pagar': 'Monto a pagar',
-    'Datos de la persona a reservar': 'Datos de la persona a reservar',
+    'Datos del cliente': 'Datos del cliente',
     'Regresar': 'Regresar',
     'Elige tu inmueble': 'Elige tu inmueble',
     'Resumen de reserva': 'Resumen de reserva',

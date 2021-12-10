@@ -281,7 +281,7 @@
               <div class="grid-s-12" v-else>
                 <div class="content-bg">
                   <h5>
-                    <b>{{ $t("Datos de la persona a reservar") }}</b>
+                    <b>{{ $t("Datos del cliente") }}</b>
                   </h5>
 
                   <div class="grid-col">

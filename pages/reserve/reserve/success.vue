@@ -280,7 +280,7 @@
                   </div>
                   <br /><br />
                   <h5>
-                    <b>{{ $t("Datos de la persona a reservar") }}</b>
+                    <b>{{ $t("Datos del cliente") }}</b>
                   </h5>
                   <div class="grid-col">
                     <div class="grid-s-12 grid-m-4 grid-l-2">
