@@ -623,7 +623,17 @@ export default {
     },
   },
   mounted() {
-    this.setFilters();
+    if(this.$route.query.project){
+      let projectSlug = this.$route.query.project;
+      if(this.filtersParent.projects.length){
+        let project = this.filtersParent.projects.find( el => el.slug_es == projectSlug);
+        this.projects.push(project.id);
+        this.updateFilter('projects');
+      }
+    }
+    else{
+      this.setFilters();
+    }
   },
   computed: {
     minFormat: function () {
