@@ -794,7 +794,7 @@
                                             <strong>
                                             {{
                                               page.data.lead.project_rel.name_es
-                                            }} - {{ page.data.lead.project_rel.ubigeo_rel.district}}
+                                            }} - DISTRITO
                                             </strong>
                                           </p>
                                           <table
@@ -855,8 +855,10 @@
                                           <table
                                             class="callout"
                                             style="
+                                              margin-bottom: 16px;
                                               border-collapse: collapse;
                                               border-spacing: 0;
+                                              margin-bottom: 16px;
                                               padding-bottom: 0;
                                               padding-left: 0;
                                               padding-right: 0;
@@ -878,11 +880,12 @@
                                                 "
                                               >
                                                 <th
-                                                  class="callout-inner"
+                                                  class="callout-inner callout-project"
                                                   style="
                                                     -moz-hyphens: auto;
                                                     -webkit-hyphens: auto;
                                                     margin: 0;
+                                                    background: #f9f9f9;
                                                     border: 0 !important;
                                                     border-collapse: collapse !important;
                                                     color: #0a0a0a;
@@ -904,6 +907,154 @@
                                                     word-wrap: break-word;
                                                   "
                                                 >
+                                                  <table
+                                                    class="spacer"
+                                                    style="
+                                                      border-collapse: collapse;
+                                                      border-spacing: 0;
+                                                      padding-bottom: 0;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                      padding-top: 0;
+                                                      text-align: left;
+                                                      vertical-align: top;
+                                                      width: 100%;
+                                                    "
+                                                  >
+                                                    <tbody>
+                                                      <tr
+                                                        style="
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                        "
+                                                      >
+                                                        <td
+                                                          height="16"
+                                                          style="
+                                                            -moz-hyphens: auto;
+                                                            -webkit-hyphens: auto;
+                                                            margin: 0;
+                                                            border-collapse: collapse !important;
+                                                            color: #0a0a0a;
+                                                            font-family: Helvetica,
+                                                              Arial, sans-serif;
+                                                            font-size: 16px;
+                                                            font-weight: 400;
+                                                            hyphens: auto;
+                                                            line-height: 16px;
+                                                            margin: 0;
+                                                            mso-line-height-rule: exactly;
+                                                            padding-bottom: 0;
+                                                            padding-left: 0;
+                                                            padding-right: 0;
+                                                            padding-top: 0;
+                                                            text-align: left;
+                                                            vertical-align: top;
+                                                            word-wrap: break-word;
+                                                          "
+                                                        >
+                                                          &nbsp;
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                  <p
+                                                    style="
+                                                      margin: 0;
+                                                      margin-bottom: 10px;
+                                                      color: #0a0a0a;
+                                                      font-family: Helvetica,
+                                                        Arial, sans-serif;
+                                                      font-size: 16px;
+                                                      font-weight: 400;
+                                                      line-height: 1.3;
+                                                      margin: 0;
+                                                      margin-bottom: 10px;
+                                                      padding-bottom: 0;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                      padding-top: 0;
+                                                      text-align: left;
+                                                    "
+                                                  >
+                                                    <span
+                                                      class="project-status"
+                                                      style="
+                                                        background-color: #f15f23;
+                                                        color: #fff;
+                                                        font-size: 14px;
+                                                        font-weight: 500;
+                                                        padding: 5px;
+                                                        text-transform: uppercase;
+                                                      "
+                                                      >{{
+                                                        page.data.lead
+                                                          .project_rel
+                                                          .status_rel[
+                                                          "name_" + $i18n.locale
+                                                        ]
+                                                      }}</span
+                                                    >
+                                                  </p>
+                                                  <table
+                                                    class="spacer"
+                                                    style="
+                                                      border-collapse: collapse;
+                                                      border-spacing: 0;
+                                                      padding-bottom: 0;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                      padding-top: 0;
+                                                      text-align: left;
+                                                      vertical-align: top;
+                                                      width: 100%;
+                                                    "
+                                                  >
+                                                    <tbody>
+                                                      <tr
+                                                        style="
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                        "
+                                                      >
+                                                        <td
+                                                          height="12"
+                                                          style="
+                                                            -moz-hyphens: auto;
+                                                            -webkit-hyphens: auto;
+                                                            margin: 0;
+                                                            border-collapse: collapse !important;
+                                                            color: #0a0a0a;
+                                                            font-family: Helvetica,
+                                                              Arial, sans-serif;
+                                                            font-size: 12px;
+                                                            font-weight: 400;
+                                                            hyphens: auto;
+                                                            line-height: 12px;
+                                                            margin: 0;
+                                                            mso-line-height-rule: exactly;
+                                                            padding-bottom: 0;
+                                                            padding-left: 0;
+                                                            padding-right: 0;
+                                                            padding-top: 0;
+                                                            text-align: left;
+                                                            vertical-align: top;
+                                                            word-wrap: break-word;
+                                                          "
+                                                        >
+                                                          &nbsp;
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
                                                   <table
                                                     class="row"
                                                     style="
@@ -947,6 +1098,7 @@
                                                             hyphens: auto;
                                                             line-height: 1.3;
                                                             margin: 0 auto;
+                                                            padding-bottom: 16px;
                                                             padding-left: 0 !important;
                                                             padding-right: 0 !important;
                                                             padding-top: 0;
@@ -1077,6 +1229,143 @@
                                                       </tr>
                                                     </tbody>
                                                   </table>
+                                                  <table
+                                                    class="spacer"
+                                                    style="
+                                                      border-collapse: collapse;
+                                                      border-spacing: 0;
+                                                      padding-bottom: 0;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                      padding-top: 0;
+                                                      text-align: left;
+                                                      vertical-align: top;
+                                                      width: 100%;
+                                                    "
+                                                  >
+                                                    <tbody>
+                                                      <tr
+                                                        style="
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                        "
+                                                      >
+                                                        <td
+                                                          height="12"
+                                                          style="
+                                                            -moz-hyphens: auto;
+                                                            -webkit-hyphens: auto;
+                                                            margin: 0;
+                                                            border-collapse: collapse !important;
+                                                            color: #0a0a0a;
+                                                            font-family: Helvetica,
+                                                              Arial, sans-serif;
+                                                            font-size: 12px;
+                                                            font-weight: 400;
+                                                            hyphens: auto;
+                                                            line-height: 12px;
+                                                            margin: 0;
+                                                            mso-line-height-rule: exactly;
+                                                            padding-bottom: 0;
+                                                            padding-left: 0;
+                                                            padding-right: 0;
+                                                            padding-top: 0;
+                                                            text-align: left;
+                                                            vertical-align: top;
+                                                            word-wrap: break-word;
+                                                          "
+                                                        >
+                                                          &nbsp;
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                  <div
+                                                    v-if="
+                                                      page.data.lead.project_rel
+                                                        .excerpt_quotation
+                                                    "
+                                                    style="
+                                                      margin: 0;
+                                                      margin-bottom: 10px;
+                                                      color: #0a0a0a;
+                                                      font-family: Helvetica,
+                                                        Arial, sans-serif;
+                                                      font-size: 16px;
+                                                      font-weight: 400;
+                                                      line-height: 1.3;
+                                                      margin: 0;
+                                                      margin-bottom: 10px;
+                                                      padding-bottom: 0;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                      padding-top: 0;
+                                                      text-align: left;
+                                                    "
+                                                    v-html="
+                                                      page.data.lead.project_rel
+                                                        .excerpt_quotation
+                                                    "
+                                                  ></div>
+                                                  <table
+                                                    class="spacer"
+                                                    style="
+                                                      border-collapse: collapse;
+                                                      border-spacing: 0;
+                                                      padding-bottom: 0;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                      padding-top: 0;
+                                                      text-align: left;
+                                                      vertical-align: top;
+                                                      width: 100%;
+                                                    "
+                                                  >
+                                                    <tbody>
+                                                      <tr
+                                                        style="
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                        "
+                                                      >
+                                                        <td
+                                                          height="4"
+                                                          style="
+                                                            -moz-hyphens: auto;
+                                                            -webkit-hyphens: auto;
+                                                            margin: 0;
+                                                            border-collapse: collapse !important;
+                                                            color: #0a0a0a;
+                                                            font-family: Helvetica,
+                                                              Arial, sans-serif;
+                                                            font-size: 4px;
+                                                            font-weight: 400;
+                                                            hyphens: auto;
+                                                            line-height: 4px;
+                                                            margin: 0;
+                                                            mso-line-height-rule: exactly;
+                                                            padding-bottom: 0;
+                                                            padding-left: 0;
+                                                            padding-right: 0;
+                                                            padding-top: 0;
+                                                            text-align: left;
+                                                            vertical-align: top;
+                                                            word-wrap: break-word;
+                                                          "
+                                                        >
+                                                          &nbsp;
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
                                                 </th>
                                                 <th
                                                   class="expander"
@@ -1116,7 +1405,2154 @@
                               </tr>
                             </tbody>
                           </table>
-                          
+                          <table
+                            class="row"
+                            style="
+                              max-width: 600px;
+                              border-collapse: collapse;
+                              border-spacing: 0;
+                              display: table;
+                              padding: 0;
+                              padding-bottom: 0;
+                              padding-left: 0;
+                              padding-right: 0;
+                              padding-top: 0;
+                              position: relative;
+                              text-align: left;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr
+                                style="
+                                  padding-bottom: 0;
+                                  padding-left: 0;
+                                  padding-right: 0;
+                                  padding-top: 0;
+                                  text-align: left;
+                                  vertical-align: top;
+                                "
+                              >
+                                <th
+                                  class="small-12 large-12 columns first last"
+                                  style="
+                                    -moz-hyphens: auto;
+                                    -webkit-hyphens: auto;
+                                    margin: 0 auto;
+                                    border-collapse: collapse !important;
+                                    color: #0a0a0a;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    hyphens: auto;
+                                    line-height: 1.3;
+                                    margin: 0 auto;
+                                    padding-bottom: 16px;
+                                    padding-left: 30px;
+                                    padding-right: 30px;
+                                    padding-top: 0;
+                                    text-align: left;
+                                    vertical-align: top;
+                                    width: 550px;
+                                    word-wrap: break-word;
+                                  "
+                                >
+                                  <table
+                                    style="
+                                      border-collapse: collapse;
+                                      border-spacing: 0;
+                                      padding-bottom: 0;
+                                      padding-left: 0;
+                                      padding-right: 0;
+                                      padding-top: 0;
+                                      text-align: left;
+                                      vertical-align: top;
+                                      width: 100%;
+                                    "
+                                  >
+                                    <tbody>
+                                      <tr
+                                        style="
+                                          padding-bottom: 0;
+                                          padding-left: 0;
+                                          padding-right: 0;
+                                          padding-top: 0;
+                                          text-align: left;
+                                          vertical-align: top;
+                                        "
+                                      >
+                                        <th
+                                          style="
+                                            -moz-hyphens: auto;
+                                            -webkit-hyphens: auto;
+                                            margin: 0;
+                                            border-collapse: collapse !important;
+                                            color: #0a0a0a;
+                                            font-family: Helvetica, Arial,
+                                              sans-serif;
+                                            font-size: 16px;
+                                            font-weight: 400;
+                                            hyphens: auto;
+                                            line-height: 1.3;
+                                            margin: 0;
+                                            padding-bottom: 0;
+                                            padding-left: 0;
+                                            padding-right: 0;
+                                            padding-top: 0;
+                                            text-align: left;
+                                            vertical-align: top;
+                                            word-wrap: break-word;
+                                          "
+                                        >
+                                          <h5
+                                            class="text-primary"
+                                            style="
+                                              margin: 0;
+                                              margin-bottom: 10px;
+                                              color: #0b6fa6;
+                                              font-family: Helvetica, Arial,
+                                                sans-serif;
+                                              font-size: 20px;
+                                              font-weight: 400;
+                                              line-height: 1.3;
+                                              margin: 0;
+                                              margin-bottom: 0;
+                                              padding-bottom: 0;
+                                              padding-left: 0;
+                                              padding-right: 0;
+                                              padding-top: 0;
+                                              text-align: left;
+                                              word-wrap: normal;
+                                            "
+                                          >
+                                            <strong>Inmueble Elegido</strong>
+                                          </h5>
+                                        </th>
+                                        <th
+                                          class="expander"
+                                          style="
+                                            -moz-hyphens: auto;
+                                            -webkit-hyphens: auto;
+                                            margin: 0;
+                                            border-collapse: collapse !important;
+                                            color: #0a0a0a;
+                                            font-family: Helvetica, Arial,
+                                              sans-serif;
+                                            font-size: 16px;
+                                            font-weight: 400;
+                                            hyphens: auto;
+                                            line-height: 1.3;
+                                            margin: 0;
+                                            padding: 0 !important;
+                                            padding-bottom: 0;
+                                            padding-left: 0;
+                                            padding-right: 0;
+                                            padding-top: 0;
+                                            text-align: left;
+                                            vertical-align: top;
+                                            visibility: hidden;
+                                            width: 0;
+                                            word-wrap: break-word;
+                                          "
+                                        ></th>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </th>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table
+                            class="row"
+                            style="
+                              max-width: 600px;
+                              border-collapse: collapse;
+                              border-spacing: 0;
+                              display: table;
+                              padding: 0;
+                              padding-bottom: 0;
+                              padding-left: 0;
+                              padding-right: 0;
+                              padding-top: 0;
+                              position: relative;
+                              text-align: left;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr
+                                style="
+                                  padding-bottom: 0;
+                                  padding-left: 0;
+                                  padding-right: 0;
+                                  padding-top: 0;
+                                  text-align: left;
+                                  vertical-align: top;
+                                "
+                              >
+                                <th
+                                  class="small-12 large-12 columns first last"
+                                  style="
+                                    -moz-hyphens: auto;
+                                    -webkit-hyphens: auto;
+                                    margin: 0 auto;
+                                    border-collapse: collapse !important;
+                                    color: #0a0a0a;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    hyphens: auto;
+                                    line-height: 1.3;
+                                    margin: 0 auto;
+                                    padding-bottom: 16px;
+                                    padding-left: 30px;
+                                    padding-right: 30px;
+                                    padding-top: 0;
+                                    text-align: left;
+                                    vertical-align: top;
+                                    width: 550px;
+                                    word-wrap: break-word;
+                                  "
+                                >
+                                  <table
+                                    style="
+                                      border-collapse: collapse;
+                                      border-spacing: 0;
+                                      padding-bottom: 0;
+                                      padding-left: 0;
+                                      padding-right: 0;
+                                      padding-top: 0;
+                                      text-align: left;
+                                      vertical-align: top;
+                                      width: 100%;
+                                    "
+                                  >
+                                    <tbody>
+                                      <tr
+                                        style="
+                                          padding-bottom: 0;
+                                          padding-left: 0;
+                                          padding-right: 0;
+                                          padding-top: 0;
+                                          text-align: left;
+                                          vertical-align: top;
+                                        "
+                                      >
+                                        <th
+                                          style="
+                                            -moz-hyphens: auto;
+                                            -webkit-hyphens: auto;
+                                            margin: 0;
+                                            border-collapse: collapse !important;
+                                            color: #0a0a0a;
+                                            font-family: Helvetica, Arial,
+                                              sans-serif;
+                                            font-size: 16px;
+                                            font-weight: 400;
+                                            hyphens: auto;
+                                            line-height: 1.3;
+                                            margin: 0;
+                                            padding-bottom: 0;
+                                            padding-left: 0;
+                                            padding-right: 0;
+                                            padding-top: 0;
+                                            text-align: left;
+                                            vertical-align: top;
+                                            word-wrap: break-word;
+                                          "
+                                        >
+                                          <table
+                                            style="
+                                              border-collapse: collapse;
+                                              border-spacing: 0;
+                                              padding-bottom: 0;
+                                              padding-left: 0;
+                                              padding-right: 0;
+                                              padding-top: 0;
+                                              text-align: left;
+                                              vertical-align: top;
+                                              width: 100%;
+                                            "
+                                          >
+                                            <tr
+                                              style="
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: left;
+                                                vertical-align: top;
+                                              "
+                                            >
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #7c7c7c;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  width: 40%;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                Tipo de Inmueble:
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #0a0a0a;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                <strong
+                                                  v-if="
+                                                    page.data.lead
+                                                      .project_type_department_rel
+                                                  "
+                                                  >Departamento
+                                                  {{
+                                                    page.data.lead
+                                                      .project_type_department_rel
+                                                      .name
+                                                  }}</strong
+                                                >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr
+                                              style="
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: left;
+                                                vertical-align: top;
+                                              "
+                                            >
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #7c7c7c;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  width: 40%;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                Metraje desde:
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #0a0a0a;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                <strong
+                                                  v-if="
+                                                    page.data.lead
+                                                      .project_type_department_rel
+                                                  "
+                                                  >{{
+                                                    page.data.lead
+                                                      .project_type_department_rel
+                                                      .area
+                                                  }}
+                                                  m2</strong
+                                                >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr
+                                              style="
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: left;
+                                                vertical-align: top;
+                                              "
+                                            >
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #7c7c7c;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  width: 40%;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                N° de Dormitorios:
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #0a0a0a;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                <strong>{{
+                                                  page.data.lead
+                                                    .project_type_department_rel
+                                                    .room
+                                                }}</strong>
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr
+                                              style="
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: left;
+                                                vertical-align: top;
+                                              "
+                                            >
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #7c7c7c;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  width: 40%;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                Precio dpto. desde:
+                                                <template
+                                                  v-if="
+                                                    page.data.lead.project_rel
+                                                      .commentary_quotation
+                                                  "
+                                                  >*</template
+                                                >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #0a0a0a;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                <strong>{{
+                                                  page.data.lead
+                                                    .project_type_department_rel
+                                                    .price_format
+                                                }}</strong>
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr
+                                              v-if="
+                                                page.data.lead.project_rel
+                                                  .price_parking
+                                              "
+                                              style="
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: left;
+                                                vertical-align: top;
+                                              "
+                                            >
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #7c7c7c;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  width: 40%;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                Precio Estacionamiento:
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #0a0a0a;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                <pre
+                                                  v-html="
+                                                    page.data.lead.project_rel
+                                                      .price_parking
+                                                  "
+                                                ></pre>
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr
+                                              v-if="
+                                                page.data.lead.project_rel
+                                                  .commentary_quotation
+                                              "
+                                              style="
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: left;
+                                                vertical-align: top;
+                                              "
+                                            >
+                                              <td
+                                                colspan="2"
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #0a0a0a;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                <i
+                                                  style="
+                                                    font-size: 14px;
+                                                    color: #7c7c7c;
+                                                  "
+                                                  >(*)
+                                                  {{
+                                                    page.data.lead.project_rel
+                                                      .commentary_quotation
+                                                  }}</i
+                                                >
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </th>
+                                        <th
+                                          class="expander"
+                                          style="
+                                            -moz-hyphens: auto;
+                                            -webkit-hyphens: auto;
+                                            margin: 0;
+                                            border-collapse: collapse !important;
+                                            color: #0a0a0a;
+                                            font-family: Helvetica, Arial,
+                                              sans-serif;
+                                            font-size: 16px;
+                                            font-weight: 400;
+                                            hyphens: auto;
+                                            line-height: 1.3;
+                                            margin: 0;
+                                            padding: 0 !important;
+                                            padding-bottom: 0;
+                                            padding-left: 0;
+                                            padding-right: 0;
+                                            padding-top: 0;
+                                            text-align: left;
+                                            vertical-align: top;
+                                            visibility: hidden;
+                                            width: 0;
+                                            word-wrap: break-word;
+                                          "
+                                        ></th>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </th>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table
+                            class="spacer"
+                            style="
+                              border-collapse: collapse;
+                              border-spacing: 0;
+                              padding-bottom: 0;
+                              padding-left: 0;
+                              padding-right: 0;
+                              padding-top: 0;
+                              text-align: left;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr
+                                style="
+                                  padding-bottom: 0;
+                                  padding-left: 0;
+                                  padding-right: 0;
+                                  padding-top: 0;
+                                  text-align: left;
+                                  vertical-align: top;
+                                "
+                              >
+                                <td
+                                  height="16"
+                                  style="
+                                    -moz-hyphens: auto;
+                                    -webkit-hyphens: auto;
+                                    margin: 0;
+                                    border-collapse: collapse !important;
+                                    color: #0a0a0a;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    hyphens: auto;
+                                    line-height: 16px;
+                                    margin: 0;
+                                    mso-line-height-rule: exactly;
+                                    padding-bottom: 0;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    padding-top: 0;
+                                    text-align: left;
+                                    vertical-align: top;
+                                    word-wrap: break-word;
+                                  "
+                                >
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table
+                            class="row"
+                            style="
+                              max-width: 600px;
+                              border-collapse: collapse;
+                              border-spacing: 0;
+                              display: table;
+                              padding: 0;
+                              padding-bottom: 0;
+                              padding-left: 0;
+                              padding-right: 0;
+                              padding-top: 0;
+                              position: relative;
+                              text-align: left;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr
+                                style="
+                                  padding-bottom: 0;
+                                  padding-left: 0;
+                                  padding-right: 0;
+                                  padding-top: 0;
+                                  text-align: left;
+                                  vertical-align: top;
+                                "
+                              >
+                                <th
+                                  class="small-12 large-12 columns first last"
+                                  style="
+                                    -moz-hyphens: auto;
+                                    -webkit-hyphens: auto;
+                                    margin: 0 auto;
+                                    border-collapse: collapse !important;
+                                    color: #0a0a0a;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    hyphens: auto;
+                                    line-height: 1.3;
+                                    margin: 0 auto;
+                                    padding-bottom: 0;
+                                    padding-left: 30px;
+                                    padding-right: 30px;
+                                    padding-top: 0;
+                                    text-align: left;
+                                    vertical-align: top;
+                                    width: 550px;
+                                    word-wrap: break-word;
+                                  "
+                                >
+                                  <table
+                                    style="
+                                      border-collapse: collapse;
+                                      border-spacing: 0;
+                                      padding-bottom: 0;
+                                      padding-left: 0;
+                                      padding-right: 0;
+                                      padding-top: 0;
+                                      text-align: left;
+                                      vertical-align: top;
+                                      width: 100%;
+                                    "
+                                  >
+                                    <tbody>
+                                      <tr
+                                        style="
+                                          padding-bottom: 0;
+                                          padding-left: 0;
+                                          padding-right: 0;
+                                          padding-top: 0;
+                                          text-align: left;
+                                          vertical-align: top;
+                                        "
+                                      >
+                                        <th
+                                          style="
+                                            -moz-hyphens: auto;
+                                            -webkit-hyphens: auto;
+                                            margin: 0;
+                                            border-collapse: collapse !important;
+                                            color: #0a0a0a;
+                                            font-family: Helvetica, Arial,
+                                              sans-serif;
+                                            font-size: 16px;
+                                            font-weight: 400;
+                                            hyphens: auto;
+                                            line-height: 1.3;
+                                            margin: 0;
+                                            padding-bottom: 0;
+                                            padding-left: 0;
+                                            padding-right: 0;
+                                            padding-top: 0;
+                                            text-align: left;
+                                            vertical-align: top;
+                                            word-wrap: break-word;
+                                          "
+                                        >
+                                          <!--<center
+                                            style="min-width: 490px; width: 100%"
+                                          >-->
+                                          <center style="width: 100%">
+                                            <h5
+                                              class="text-primary text-center float-center"
+                                              style="
+                                                margin: 0;
+                                                margin-bottom: 10px;
+                                                color: #0b6fa6;
+                                                font-family: Helvetica, Arial,
+                                                  sans-serif;
+                                                font-size: 20px;
+                                                font-weight: 400;
+                                                line-height: 1.3;
+                                                margin: 0;
+                                                margin-bottom: 0;
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: center;
+                                                word-wrap: normal;
+                                              "
+                                              align="center"
+                                            >
+                                              <strong
+                                                >Departamento
+                                                {{
+                                                  page.data.lead
+                                                    .project_type_department_rel
+                                                    .name
+                                                }}</strong
+                                              >
+                                            </h5>
+                                          </center>
+                                        </th>
+                                        <th
+                                          class="expander"
+                                          style="
+                                            -moz-hyphens: auto;
+                                            -webkit-hyphens: auto;
+                                            margin: 0;
+                                            border-collapse: collapse !important;
+                                            color: #0a0a0a;
+                                            font-family: Helvetica, Arial,
+                                              sans-serif;
+                                            font-size: 16px;
+                                            font-weight: 400;
+                                            hyphens: auto;
+                                            line-height: 1.3;
+                                            margin: 0;
+                                            padding: 0 !important;
+                                            padding-bottom: 0;
+                                            padding-left: 0;
+                                            padding-right: 0;
+                                            padding-top: 0;
+                                            text-align: left;
+                                            vertical-align: top;
+                                            visibility: hidden;
+                                            width: 0;
+                                            word-wrap: break-word;
+                                          "
+                                        ></th>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </th>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table
+                            class="spacer"
+                            style="
+                              border-collapse: collapse;
+                              border-spacing: 0;
+                              padding-bottom: 0;
+                              padding-left: 0;
+                              padding-right: 0;
+                              padding-top: 0;
+                              text-align: left;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr
+                                style="
+                                  padding-bottom: 0;
+                                  padding-left: 0;
+                                  padding-right: 0;
+                                  padding-top: 0;
+                                  text-align: left;
+                                  vertical-align: top;
+                                "
+                              >
+                                <td
+                                  height="16"
+                                  style="
+                                    -moz-hyphens: auto;
+                                    -webkit-hyphens: auto;
+                                    margin: 0;
+                                    border-collapse: collapse !important;
+                                    color: #0a0a0a;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    hyphens: auto;
+                                    line-height: 16px;
+                                    margin: 0;
+                                    mso-line-height-rule: exactly;
+                                    padding-bottom: 0;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    padding-top: 0;
+                                    text-align: left;
+                                    vertical-align: top;
+                                    word-wrap: break-word;
+                                  "
+                                >
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                           <table
                             class="row"
                             style="
@@ -1284,18 +3720,14 @@
                             </tbody>
                           </table>
                           <table
-                            class="row"
+                            class="spacer"
                             style="
-                              max-width: 600px;
                               border-collapse: collapse;
                               border-spacing: 0;
-                              display: table;
-                              padding: 0;
                               padding-bottom: 0;
                               padding-left: 0;
                               padding-right: 0;
                               padding-top: 0;
-                              position: relative;
                               text-align: left;
                               vertical-align: top;
                               width: 100%;
@@ -1312,467 +3744,32 @@
                                   vertical-align: top;
                                 "
                               >
-                                <th
-                                  class="small-12 large-12 columns first last"
+                                <td
+                                  height="12"
                                   style="
                                     -moz-hyphens: auto;
                                     -webkit-hyphens: auto;
-                                    margin: 0 auto;
+                                    margin: 0;
                                     border-collapse: collapse !important;
                                     color: #0a0a0a;
                                     font-family: Helvetica, Arial, sans-serif;
-                                    font-size: 16px;
+                                    font-size: 12px;
                                     font-weight: 400;
                                     hyphens: auto;
-                                    line-height: 1.3;
-                                    margin: 0 auto;
-                                    padding-bottom: 16px;
-                                    padding-left: 30px;
-                                    padding-right: 30px;
+                                    line-height: 12px;
+                                    margin: 0;
+                                    mso-line-height-rule: exactly;
+                                    padding-bottom: 0;
+                                    padding-left: 0;
+                                    padding-right: 0;
                                     padding-top: 0;
                                     text-align: left;
                                     vertical-align: top;
-                                    width: 550px;
                                     word-wrap: break-word;
                                   "
                                 >
-                                  <table
-                                    style="
-                                      border-collapse: collapse;
-                                      border-spacing: 0;
-                                      padding-bottom: 0;
-                                      padding-left: 0;
-                                      padding-right: 0;
-                                      padding-top: 0;
-                                      text-align: left;
-                                      vertical-align: top;
-                                      width: 100%;
-                                    "
-                                  >
-                                    <tbody>
-                                      <tr
-                                        style="
-                                          padding-bottom: 0;
-                                          padding-left: 0;
-                                          padding-right: 0;
-                                          padding-top: 0;
-                                          text-align: left;
-                                          vertical-align: top;
-                                        "
-                                      >
-                                        <th
-                                          style="
-                                            -moz-hyphens: auto;
-                                            -webkit-hyphens: auto;
-                                            margin: 0;
-                                            border-collapse: collapse !important;
-                                            color: #0a0a0a;
-                                            font-family: Helvetica, Arial,
-                                              sans-serif;
-                                            font-size: 16px;
-                                            font-weight: 400;
-                                            hyphens: auto;
-                                            line-height: 1.3;
-                                            margin: 0;
-                                            padding-bottom: 0;
-                                            padding-left: 0;
-                                            padding-right: 0;
-                                            padding-top: 0;
-                                            text-align: left;
-                                            vertical-align: top;
-                                            word-wrap: break-word;
-                                          "
-                                        >
-                                        </th>
-                                        <th
-                                          class="expander"
-                                          style="
-                                            -moz-hyphens: auto;
-                                            -webkit-hyphens: auto;
-                                            margin: 0;
-                                            border-collapse: collapse !important;
-                                            color: #0a0a0a;
-                                            font-family: Helvetica, Arial,
-                                              sans-serif;
-                                            font-size: 16px;
-                                            font-weight: 400;
-                                            hyphens: auto;
-                                            line-height: 1.3;
-                                            margin: 0;
-                                            padding: 0 !important;
-                                            padding-bottom: 0;
-                                            padding-left: 0;
-                                            padding-right: 0;
-                                            padding-top: 0;
-                                            text-align: left;
-                                            vertical-align: top;
-                                            visibility: hidden;
-                                            width: 0;
-                                            word-wrap: break-word;
-                                          "
-                                        ></th>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </th>
-                              </tr>
-                            </tbody>
-                          </table>
-
-
-                          <table class="row" style="border-collapse:collapse;border-spacing:0;display:table;padding:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;position:relative;text-align:left;vertical-align:top;width:100%">
-                                        <tbody>
-                                            <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                <th class="small-12 large-12 columns first last" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0 auto;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0 auto;padding-bottom:16px;padding-left:30px;padding-right:30px;padding-top:0;text-align:left;vertical-align:top;width:550px;word-wrap:break-word">
-                                                    <table style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                        <tbody>
-                                                            <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                <th style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">
-                                                                    <table style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                            <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#7C7C7C;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:40%;word-wrap:break-word">
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>Tipo de Inmueble: <br>
-                                                                                <strong style="color: #000;"
-                                                                                  v-if="
-                                                                                    page.data.lead
-                                                                                      .project_type_department_rel
-                                                                                  "
-                                                                                  >
-                                                                                  {{
-                                                                                    page.data.lead
-                                                                                      .project_type_department_rel
-                                                                                      .name
-                                                                                  }}</strong
-                                                                                >
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </td>
-
-
-                                                                            <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#7C7C7C;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:40%;word-wrap:break-word">
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>Precio inmueble desde: <br>
-                                                                                <strong style="color: #000;">{{
-                                                                                  page.data.lead
-                                                                                    .project_type_department_rel
-                                                                                    .price_format
-                                                                                }}</strong>
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                            <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#7C7C7C;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:40%;word-wrap:break-word">
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>Metraje desde: <br>
-                                                                                <strong
-                                                                                  style="color: #000;"
-                                                                                  v-if="
-                                                                                    page.data.lead
-                                                                                      .project_type_department_rel
-                                                                                  "
-                                                                                  >{{
-                                                                                    page.data.lead
-                                                                                      .project_type_department_rel
-                                                                                      .area
-                                                                                  }}
-                                                                                  m2</strong
-                                                                                >
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </td>
-
-
-                                                                            <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#7C7C7C;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:40%;word-wrap:break-word">
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>N° de dormitorios: <br>
-                                                                                <strong style="color: #000;">
-                                                                                {{
-                                                                                  page.data.lead
-                                                                                    .project_type_department_rel
-                                                                                    .room
-                                                                                }}</strong>
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                            <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#7C7C7C;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:40%;word-wrap:break-word">
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>Estatus: <br>
-                                                                                <strong style="color: #000;"
-                                                                                  >
-                                                                                  {{
-                                                                                        page.data.lead
-                                                                                          .project_rel
-                                                                                          .status_rel[
-                                                                                          "name_" + $i18n.locale
-                                                                                        ]
-                                                                                      }}</strong
-                                                                                >
-                                                                                <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;width:100%">
-                                                                                    <tbody>
-                                                                                        <tr style="padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top">
-                                                                                            <td height="10" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </td>
-
-                                                                        </tr>
-                                                                    </table>
-                                                                </th>
-                                                                <th class="expander" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0!important;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;text-align:left;vertical-align:top;visibility:hidden;width:0;word-wrap:break-word"></th>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                          <table
-                            class="row"
-                            style="
-                              max-width: 600px;
-                              border-collapse: collapse;
-                              border-spacing: 0;
-                              display: table;
-                              padding: 0;
-                              padding-bottom: 0;
-                              padding-left: 0;
-                              padding-right: 0;
-                              padding-top: 0;
-                              position: relative;
-                              text-align: left;
-                              vertical-align: top;
-                              width: 100%;
-                            "
-                          >
-                            <tbody>
-                              <tr
-                                style="
-                                  padding-bottom: 0;
-                                  padding-left: 0;
-                                  padding-right: 0;
-                                  padding-top: 0;
-                                  text-align: left;
-                                  vertical-align: top;
-                                "
-                              >
-                                <th
-                                  class="small-12 large-12 columns first last"
-                                  style="
-                                    -moz-hyphens: auto;
-                                    -webkit-hyphens: auto;
-                                    margin: 0 auto;
-                                    border-collapse: collapse !important;
-                                    color: #0a0a0a;
-                                    font-family: Helvetica, Arial, sans-serif;
-                                    font-size: 16px;
-                                    font-weight: 400;
-                                    hyphens: auto;
-                                    line-height: 1.3;
-                                    margin: 0 auto;
-                                    padding-bottom: 16px;
-                                    padding-left: 30px;
-                                    padding-right: 30px;
-                                    padding-top: 0;
-                                    text-align: left;
-                                    vertical-align: top;
-                                    width: 550px;
-                                    word-wrap: break-word;
-                                  "
-                                >
-                                  <table
-                                    style="
-                                      border-collapse: collapse;
-                                      border-spacing: 0;
-                                      padding-bottom: 0;
-                                      padding-left: 0;
-                                      padding-right: 0;
-                                      padding-top: 0;
-                                      text-align: left;
-                                      vertical-align: top;
-                                      width: 100%;
-                                    "
-                                  >
-                                    <tbody>
-                                      <tr
-                                        style="
-                                          padding-bottom: 0;
-                                          padding-left: 0;
-                                          padding-right: 0;
-                                          padding-top: 0;
-                                          text-align: left;
-                                          vertical-align: top;
-                                        "
-                                      >
-                                        <th
-                                          style="
-                                            -moz-hyphens: auto;
-                                            -webkit-hyphens: auto;
-                                            margin: 0;
-                                            border-collapse: collapse !important;
-                                            color: #0a0a0a;
-                                            font-family: Helvetica, Arial,
-                                              sans-serif;
-                                            font-size: 16px;
-                                            font-weight: 400;
-                                            hyphens: auto;
-                                            line-height: 1.3;
-                                            margin: 0;
-                                            padding-bottom: 0;
-                                            padding-left: 0;
-                                            padding-right: 0;
-                                            padding-top: 0;
-                                            text-align: left;
-                                            vertical-align: top;
-                                            word-wrap: break-word;
-                                          "
-                                        >
-                                          <table
-                                            style="
-                                              border-collapse: collapse;
-                                              border-spacing: 0;
-                                              padding-bottom: 0;
-                                              padding-left: 0;
-                                              padding-right: 0;
-                                              padding-top: 0;
-                                              text-align: left;
-                                              vertical-align: top;
-                                              width: 100%;
-                                            "
-                                          >
-                                            <tr
-                                              v-if="
-                                                page.data.lead.project_rel
-                                                  .commentary_quotation
-                                              "
-                                              style="
-                                                padding-bottom: 0;
-                                                padding-left: 0;
-                                                padding-right: 0;
-                                                padding-top: 0;
-                                                text-align: left;
-                                                vertical-align: top;
-                                              "
-                                            >
-                                              <td
-                                                colspan="2"
-                                                style="
-                                                  -moz-hyphens: auto;
-                                                  -webkit-hyphens: auto;
-                                                  margin: 0;
-                                                  border-collapse: collapse !important;
-                                                  color: #0a0a0a;
-                                                  font-family: Helvetica, Arial,
-                                                    sans-serif;
-                                                  font-size: 16px;
-                                                  font-weight: 400;
-                                                  hyphens: auto;
-                                                  line-height: 1.3;
-                                                  margin: 0;
-                                                  padding-bottom: 0;
-                                                  padding-left: 0;
-                                                  padding-right: 0;
-                                                  padding-top: 0;
-                                                  text-align: left;
-                                                  vertical-align: top;
-                                                  word-wrap: break-word;
-                                                "
-                                              >
-                                                <i
-                                                  style="
-                                                    font-size: 14px;
-                                                    color: #7c7c7c;
-                                                  "
-                                                  >*
-                                                  {{
-                                                    page.data.lead.project_rel
-                                                      .commentary_quotation
-                                                  }}</i
-                                                >
-                                              </td>
-                                            </tr>
-                                          </table>
-                                        </th>
-                                        <th
-                                          class="expander"
-                                          style="
-                                            -moz-hyphens: auto;
-                                            -webkit-hyphens: auto;
-                                            margin: 0;
-                                            border-collapse: collapse !important;
-                                            color: #0a0a0a;
-                                            font-family: Helvetica, Arial,
-                                              sans-serif;
-                                            font-size: 16px;
-                                            font-weight: 400;
-                                            hyphens: auto;
-                                            line-height: 1.3;
-                                            margin: 0;
-                                            padding: 0 !important;
-                                            padding-bottom: 0;
-                                            padding-left: 0;
-                                            padding-right: 0;
-                                            padding-top: 0;
-                                            text-align: left;
-                                            vertical-align: top;
-                                            visibility: hidden;
-                                            width: 0;
-                                            word-wrap: break-word;
-                                          "
-                                        ></th>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </th>
+                                  &nbsp;
+                                </td>
                               </tr>
                             </tbody>
                           </table>
@@ -1881,6 +3878,32 @@
                                             word-wrap: break-word;
                                           "
                                         >
+                                          <h5
+                                            class="text-primary"
+                                            style="
+                                              margin: 0;
+                                              margin-bottom: 10px;
+                                              color: #0b6fa6;
+                                              font-family: Helvetica, Arial,
+                                                sans-serif;
+                                              font-size: 20px;
+                                              font-weight: 400;
+                                              line-height: 1.3;
+                                              margin: 0;
+                                              margin-bottom: 10px;
+                                              padding-bottom: 0;
+                                              padding-left: 0;
+                                              padding-right: 0;
+                                              padding-top: 0;
+                                              text-align: left;
+                                              word-wrap: normal;
+                                            "
+                                          >
+                                            <strong
+                                              >Opciones de
+                                              Financiamiento</strong
+                                            >
+                                          </h5>
                                         </th>
                                         <th
                                           class="expander"
@@ -2015,40 +4038,18 @@
                                             vertical-align: top;
                                             word-wrap: break-word;
                                           "
-                                        > 
-                                          <p
-                                              style="
-                                                margin: 0;
-                                                margin-bottom: 16px;
-                                                color: #0a0a0a;
-                                                font-family: Helvetica, Arial,
-                                                  sans-serif;
-                                                font-size: 16px;
-                                                font-weight: 400;
-                                                line-height: 1.3;
-                                                margin: 0;
-                                                margin-bottom: 16px;
-                                                padding-bottom: 0;
-                                                padding-left: 0;
-                                                padding-right: 0;
-                                                padding-top: 0;
-                                                text-align: left;
-                                              "
-                                            >
-                                              Contamos con opciones de financiamiento
-                                            </p>
-                                          <ul
+                                        >
+                                          <ol
                                             style="
                                               padding-top: 0;
                                               margin-top: 0;
                                               margin-bottom: 0;
                                               padding-right: 20px;
                                               padding-left: 20px;
-                                              list-style: disc;
                                             "
                                           >
                                             <li
-                                              style="margin-bottom: 0.5rem;font-size: 16px;"
+                                              style="margin-bottom: 0.5rem"
                                               v-for="el in page.data.lead
                                                 .project_rel
                                                 .financing_options_rel"
@@ -2056,7 +4057,7 @@
                                             >
                                               {{ el.name }}
                                             </li>
-                                          </ul>
+                                          </ol>
                                         </th>
                                         <th
                                           class="expander"
@@ -2089,6 +4090,60 @@
                                     </tbody>
                                   </table>
                                 </th>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table
+                            class="spacer"
+                            style="
+                              border-collapse: collapse;
+                              border-spacing: 0;
+                              padding-bottom: 0;
+                              padding-left: 0;
+                              padding-right: 0;
+                              padding-top: 0;
+                              text-align: left;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr
+                                style="
+                                  padding-bottom: 0;
+                                  padding-left: 0;
+                                  padding-right: 0;
+                                  padding-top: 0;
+                                  text-align: left;
+                                  vertical-align: top;
+                                "
+                              >
+                                <td
+                                  height="24"
+                                  style="
+                                    -moz-hyphens: auto;
+                                    -webkit-hyphens: auto;
+                                    margin: 0;
+                                    border-collapse: collapse !important;
+                                    color: #0a0a0a;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-size: 24px;
+                                    font-weight: 400;
+                                    hyphens: auto;
+                                    line-height: 24px;
+                                    margin: 0;
+                                    mso-line-height-rule: exactly;
+                                    padding-bottom: 0;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    padding-top: 0;
+                                    text-align: left;
+                                    vertical-align: top;
+                                    word-wrap: break-word;
+                                  "
+                                >
+                                  &nbsp;
+                                </td>
                               </tr>
                             </tbody>
                           </table>
@@ -2195,6 +4250,32 @@
                                             word-wrap: break-word;
                                           "
                                         >
+                                          <h5
+                                            class="text-primary"
+                                            style="
+                                              margin: 0;
+                                              margin-bottom: 0;
+                                              color: #0b6fa6;
+                                              font-family: Helvetica, Arial,
+                                                sans-serif;
+                                              font-size: 20px;
+                                              font-weight: 400;
+                                              line-height: 1.3;
+                                              margin: 0;
+                                              margin-bottom: 0;
+                                              padding-bottom: 0;
+                                              padding-left: 0;
+                                              padding-right: 0;
+                                              padding-top: 0;
+                                              text-align: left;
+                                              word-wrap: normal;
+                                            "
+                                          >
+                                            <strong
+                                              >Condiciones de la
+                                              Proforma</strong
+                                            >
+                                          </h5>
                                         </th>
                                         <th
                                           class="expander"
@@ -2348,7 +4429,7 @@
                                               padding-top: 0;
                                               text-align: left;
                                             "
-                                            class="email_text html_font_size_p"
+                                            class="email_text"
                                             v-html="
                                               page.data.lead.project_rel
                                                 .condition_quotation
@@ -2389,7 +4470,60 @@
                               </tr>
                             </tbody>
                           </table>
-                          
+                          <table
+                            class="spacer"
+                            style="
+                              border-collapse: collapse;
+                              border-spacing: 0;
+                              padding-bottom: 0;
+                              padding-left: 0;
+                              padding-right: 0;
+                              padding-top: 0;
+                              text-align: left;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <tbody>
+                              <tr
+                                style="
+                                  padding-bottom: 0;
+                                  padding-left: 0;
+                                  padding-right: 0;
+                                  padding-top: 0;
+                                  text-align: left;
+                                  vertical-align: top;
+                                "
+                              >
+                                <td
+                                  height="24"
+                                  style="
+                                    -moz-hyphens: auto;
+                                    -webkit-hyphens: auto;
+                                    margin: 0;
+                                    border-collapse: collapse !important;
+                                    color: #0a0a0a;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-size: 24px;
+                                    font-weight: 400;
+                                    hyphens: auto;
+                                    line-height: 24px;
+                                    margin: 0;
+                                    mso-line-height-rule: exactly;
+                                    padding-bottom: 0;
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                    padding-top: 0;
+                                    text-align: left;
+                                    vertical-align: top;
+                                    word-wrap: break-word;
+                                  "
+                                >
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                           <table
                             class="row"
                             style="
@@ -2502,7 +4636,7 @@
                                               font-weight: 400;
                                               line-height: 1.3;
                                               margin: 0;
-                                              margin-bottom: 6px;
+                                              margin-bottom: 0;
                                               padding-bottom: 0;
                                               padding-left: 0;
                                               padding-right: 0;
@@ -2512,15 +4646,11 @@
                                             "
                                           >
                                             <strong
-                                              >¿Tienes alguna duda?</strong
+                                              >¿Tienes alguna duda?<br />Contacte
+                                              con nuestro ejecutivo
+                                              comercial</strong
                                             >
                                           </h5>
-                                          <p style="margin: 0px 0px 16px; color: rgb(10, 10, 10); font-size: 16px; font-weight: 400; line-height: 1.3; padding: 0px; text-align: left;">
-                                            Contáctate con <strong> {{
-                                                    page.data.lead.advisor_rel
-                                                      .name
-                                                  }}</strong>, nuestro asesor de vivienda:
-                                          </p>
                                         </th>
                                         <th
                                           class="expander"
@@ -2669,6 +4799,293 @@
                                               width: 100%;
                                             "
                                           >
+                                            <tr
+                                              style="
+                                                padding-bottom: 0;
+                                                padding-left: 0;
+                                                padding-right: 0;
+                                                padding-top: 0;
+                                                text-align: left;
+                                                vertical-align: top;
+                                              "
+                                            >
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #7c7c7c;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  width: 40%;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                                Nombre:
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                              <td
+                                                style="
+                                                  -moz-hyphens: auto;
+                                                  -webkit-hyphens: auto;
+                                                  margin: 0;
+                                                  border-collapse: collapse !important;
+                                                  color: #0a0a0a;
+                                                  font-family: Helvetica, Arial,
+                                                    sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: 400;
+                                                  hyphens: auto;
+                                                  line-height: 1.3;
+                                                  margin: 0;
+                                                  padding-bottom: 0;
+                                                  padding-left: 0;
+                                                  padding-right: 0;
+                                                  padding-top: 0;
+                                                  text-align: left;
+                                                  vertical-align: top;
+                                                  word-wrap: break-word;
+                                                "
+                                              >
+                                                <strong>
+                                                  <table
+                                                    class="spacer"
+                                                    style="
+                                                      border-collapse: collapse;
+                                                      border-spacing: 0;
+                                                      padding-bottom: 0;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                      padding-top: 0;
+                                                      text-align: left;
+                                                      vertical-align: top;
+                                                      width: 100%;
+                                                    "
+                                                  >
+                                                    <tbody>
+                                                      <tr
+                                                        style="
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                        "
+                                                      >
+                                                        <td
+                                                          height="10"
+                                                          style="
+                                                            -moz-hyphens: auto;
+                                                            -webkit-hyphens: auto;
+                                                            margin: 0;
+                                                            border-collapse: collapse !important;
+                                                            color: #0a0a0a;
+                                                            font-family: Helvetica,
+                                                              Arial, sans-serif;
+                                                            font-size: 10px;
+                                                            font-weight: 400;
+                                                            hyphens: auto;
+                                                            line-height: 10px;
+                                                            margin: 0;
+                                                            mso-line-height-rule: exactly;
+                                                            padding-bottom: 0;
+                                                            padding-left: 0;
+                                                            padding-right: 0;
+                                                            padding-top: 0;
+                                                            text-align: left;
+                                                            vertical-align: top;
+                                                            word-wrap: break-word;
+                                                          "
+                                                        >
+                                                          &nbsp;
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                  {{
+                                                    page.data.lead.advisor_rel
+                                                      .name
+                                                  }}
+                                                </strong>
+                                                <table
+                                                  class="spacer"
+                                                  style="
+                                                    border-collapse: collapse;
+                                                    border-spacing: 0;
+                                                    padding-bottom: 0;
+                                                    padding-left: 0;
+                                                    padding-right: 0;
+                                                    padding-top: 0;
+                                                    text-align: left;
+                                                    vertical-align: top;
+                                                    width: 100%;
+                                                  "
+                                                >
+                                                  <tbody>
+                                                    <tr
+                                                      style="
+                                                        padding-bottom: 0;
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 0;
+                                                        text-align: left;
+                                                        vertical-align: top;
+                                                      "
+                                                    >
+                                                      <td
+                                                        height="10"
+                                                        style="
+                                                          -moz-hyphens: auto;
+                                                          -webkit-hyphens: auto;
+                                                          margin: 0;
+                                                          border-collapse: collapse !important;
+                                                          color: #0a0a0a;
+                                                          font-family: Helvetica,
+                                                            Arial, sans-serif;
+                                                          font-size: 10px;
+                                                          font-weight: 400;
+                                                          hyphens: auto;
+                                                          line-height: 10px;
+                                                          margin: 0;
+                                                          mso-line-height-rule: exactly;
+                                                          padding-bottom: 0;
+                                                          padding-left: 0;
+                                                          padding-right: 0;
+                                                          padding-top: 0;
+                                                          text-align: left;
+                                                          vertical-align: top;
+                                                          word-wrap: break-word;
+                                                        "
+                                                      >
+                                                        &nbsp;
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
                                             <tr
                                               style="
                                                 padding-bottom: 0;
@@ -3561,7 +5978,8 @@
                                                                   .mobile
                                                               "
                                                               target="_blank"
-                                                              >Whatsapp de tu asesor</a
+                                                              >Contacta a tu
+                                                              Asesor</a
                                                             >
                                                           </td>
                                                         </tr>
@@ -3977,7 +6395,6 @@ export default {
           status_rel: {},
           statusRel: {},
           financing_options_rel: {},
-          ubigeo_rel: {}
         },
         projectRel: {
           status_rel: {},
@@ -4008,9 +6425,6 @@ export default {
 };
 </script>
 <style scoped>
-.html_font_size_p.email_text > p{
-  font-size: inherit !important;
-}
 @media only screen {
   /*html {
     min-height: 100%;
