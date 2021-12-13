@@ -788,11 +788,6 @@
                                               text-align: left;
                                             "
                                           >
-                                            <!--A continuación te mostramos
-                                            información sobre el proyecto y el
-                                            depa que escogiste y como
-                                            contactarte con nosotros para poder
-                                            atender tus consulta.-->
                                             A continuación te mostramos
                                             información sobre el inmueble que
                                             escogiste en
@@ -806,7 +801,7 @@
                                                 page.data.lead.project_rel
                                                   .ubigeo_rel.district
                                               }}
-                                            </strong>
+                                            </strong>.
                                           </p>
                                           <table
                                             class="spacer"
