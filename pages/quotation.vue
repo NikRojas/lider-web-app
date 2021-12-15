@@ -800,8 +800,7 @@
                                               {{
                                                 page.data.lead.project_rel
                                                   .ubigeo_rel.district
-                                              }}
-                                            </strong>.
+                                              }}</strong>.
                                           </p>
                                           <table
                                             class="spacer"
