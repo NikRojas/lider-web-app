@@ -255,23 +255,39 @@
                   >
                     <Gallery :array="el.content"></Gallery>
                   </div>
-
-                  <div
-                    class="
-                      chat__message__wrapper--block chat__message__wrapper--text
-                    "
-                    v-if="el.message_below"
-                  >
+                  <template v-if="el.message_below">
+                    <div
+                      class="
+                        chat__message__wrapper--block chat__message__wrapper--text
+                      "
+                      v-if="el.message_below != 'Menú Inicio Botón'"
+                    >
+                      <div
+                        class="
+                          chat__message__wrapper
+                          chat__message__wrapper--block
+                          chat__message--ml-auto
+                        "
+                      >
+                        <Message :text="el.message_below"></Message>
+                      </div>
+                    </div>
                     <div
                       class="
                         chat__message__wrapper
                         chat__message__wrapper--block
-                        chat__message--ml-auto
+                        chat__message__wrapper--el
                       "
+                      v-else
                     >
-                      <Message :text="el.message_below"></Message>
+                      <Button
+                        :array="[{'text' : 'Menú Inicio'}]"
+                        :triggered="el.triggered"
+                        @click="clickButton"
+                        @toggle="toggleChat"
+                      ></Button>
                     </div>
-                  </div>
+                  </template>
                 </div>
               </div>
               <div
