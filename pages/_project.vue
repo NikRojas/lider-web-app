@@ -801,6 +801,7 @@ import "/static/css/jq.fancybox.min.css";
 import Terms from "../components/modals/Terms";
 import Policies from '../components/modals/Policies.vue';
 export default {
+  name: 'PageProjectId',
   head() {
     return {
       htmlAttrs: {

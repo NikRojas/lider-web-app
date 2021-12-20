@@ -283,8 +283,7 @@
                       <Button
                         :array="[{'text' : 'Menú Inicio'}]"
                         :triggered="el.triggered"
-                        @click="clickButton"
-                        @toggle="toggleChat"
+                        @click="clickButtonMenuInicio"
                       ></Button>
                     </div>
                   </template>
@@ -741,6 +740,14 @@ export default {
     clickButton(text, triggered = false) {
       this.message = text;
       this.sendMessage(triggered);
+    },
+    clickButtonMenuInicio(text, triggered = false){
+      this.message = text;
+      this.$store.dispatch("updateMessageMenuInicio");
+      const el = { message: this.message };
+      this.socket.emit("message", this.chatbotId, el, triggered);
+      this.setMessage(el);
+      this.message = "";
     },
     sendMessage(triggered = false) {
       if (!this.message) {

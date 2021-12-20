@@ -50,6 +50,9 @@ export const mutations = {
         //state.filters = filters; 
         state.filters = Object.assign({}, filters);
     },
+    SET_UPDATE_MESSAGE_MENU_INICIO(state){
+        state.chatMessages[state.chatMessages.length - 1].triggered = true;
+    }
 }
 
 export const actions = {
@@ -92,6 +95,9 @@ export const actions = {
     setFilters({ commit}, filters){
         commit('SET_FILTERS', filters);
     },
+    updateMessageMenuInicio({ commit}){
+        commit('SET_UPDATE_MESSAGE_MENU_INICIO');
+    }
 }
 
 export const getters = {
