@@ -621,6 +621,49 @@ export default {
       if (typeDepartments) this.typeDepartments = typeDepartments;
       this.updateFilter(false, true);
     },
+    updateFilter2(v = false, init = false) {
+      this.lastSelected = v;
+      this.requestServer = true;
+      let areas = this.rangeAreas;
+      let prices = this.rangePrices;
+      let minArea, maxArea, minPrice, maxPrice;
+      this.$axios
+        .$get("/api/reserve/filters", {
+          params: {
+            /*
+            range: this.range,*/
+            statuses: this.statuses,
+            projects: this.projects,
+            types: this.typeDepartments,
+            rooms: this.rooms,
+            floors: this.floors,
+            views: this.views,
+            ubigeo: this.departments,
+            /*
+            range_area: this.areas,*/
+          },
+        })
+        .then((response) => {
+          this.data = Object.assign({}, response.data.filters);
+          //Borrar los codigo de ubigeo ya no obtenidos
+          let codesUbigeo = response.data.filters.departments.filter(function (
+            obj
+          ) {
+            return !obj.is_department;
+          });
+          let notExists = this.departments.filter(
+            (el) => !codesUbigeo.map((a) => a.code_ubigeo).includes(el)
+          );
+          let notExistsDistrict = notExists.filter((el) => el.length == 6);
+          if (notExistsDistrict.length) {
+            this.departments = this.departments.filter(
+              (g) => !notExistsDistrict.includes(g)
+            );
+          }
+          this.sendFilters(false, false);
+          this.requestServer = false;
+        });
+    }
   },
   mounted() {
     if(this.$route.query.project){
@@ -628,7 +671,7 @@ export default {
       if(this.filtersParent.projects.length){
         let project = this.filtersParent.projects.find( el => el.slug_es == projectSlug);
         this.projects.push(project.id);
-        this.updateFilter('projects');
+        this.updateFilter2('projects');
       }
     }
     else{
