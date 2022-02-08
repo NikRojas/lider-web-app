@@ -71,6 +71,7 @@
               <div class="body">
                 <div class="card-head">
                   <div class="logo">
+                    
                     <img
                       :data-src="
                         storageUrl + '/img/projects/' + el.project_rel.logo_colour
@@ -119,6 +120,9 @@
                          </template>
                        </template>
                     </li>
+                     <li v-if="el.etapa_id">
+                      <b>{{ $t("Etapa") }}:</b><span>{{ el.etapa_rel.name }}</span>
+                    </li>
                     <template
                       v-if="
                         el.type_department_id &&
@@ -133,6 +137,7 @@
                         }}</span>
                       </li>
                     </template>
+                    
                     <li>
                       <b>{{ $t("Piso") }}:</b
                       ><span>{{ el.floor }}° {{ $t("piso") }}</span>
@@ -140,6 +145,7 @@
                     <li>
                       <b>{{ $t("Vista") }}:</b><span>{{ el.view_rel.name }}</span>
                     </li>
+                    
                     
                     <li>
                       <b>{{ $t("Precio total") }}:</b>

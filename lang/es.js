@@ -210,4 +210,5 @@ export default {
     'Ir a página principal': 'Ir a página principal',
     'Ver Piso': 'Ver Piso',
     'Separa tu inmueble': 'Separa tu inmueble',
+    'Etapa': 'Etapa'
 }
