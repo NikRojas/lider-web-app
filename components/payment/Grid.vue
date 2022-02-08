@@ -146,7 +146,6 @@
                       <b>{{ $t("Vista") }}:</b><span>{{ el.view_rel.name }}</span>
                     </li>
                     
-                    
                     <li>
                       <b>{{ $t("Precio total") }}:</b>
 
@@ -159,9 +158,6 @@
                         </template>
                       </span>
                     </li>
-                    <!--<li v-if="el.project_rel.reservation_in_package">
-                      <span v-html="el.project_rel.package_description"></span>
-                    </li>-->
                   </ul>
                 </div>
               </div>

@@ -105,6 +105,7 @@
         </div>
         <div>
           <ul>
+            
             <li>
               <b>{{ $t("Ubicación") }}:</b
               ><span>{{ el.project_rel.ubigeo_rel.district }}</span>
@@ -114,6 +115,9 @@
               ><span>{{
                 el.project_rel.status_rel["name_" + $i18n.locale]
               }}</span>
+            </li>
+             <li v-if="el.etapa_id">
+                      <b>{{ $t("Etapa") }}:</b><span>{{ el.etapa_rel.name }}</span>
             </li>
             <li
               v-if="
