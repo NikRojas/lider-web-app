@@ -86,8 +86,8 @@
                       class="lazyload"
                     />
 
-                    <strong>{{
-                      el.project_rel.status_rel["name_" + $i18n.locale]
+                    <strong v-if="el.etapa_id">{{
+                       el.etapa_rel.status_rel["name_" + $i18n.locale]
                     }}</strong>
                   </div>
                   <div class="card-caract">
@@ -120,9 +120,9 @@
                          </template>
                        </template>
                     </li>
-                     <li v-if="el.etapa_id">
+                    <!--<li v-if="el.etapa_id">
                       <b>{{ $t("Etapa") }}:</b><span>{{ el.etapa_rel.name }}</span>
-                    </li>
+                    </li>-->
                     <template
                       v-if="
                         el.type_department_id &&
