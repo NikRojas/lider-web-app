@@ -318,11 +318,11 @@
                           }}
                         </p>
                       </div>
-                      <div class="grid-s-12 grid-m-6 grid-l-4">
+                      <div class="grid-s-12 grid-m-6 grid-l-4" v-if="page.data.department.etapa_id">
                         <b>{{ $t("Estatus") }}:</b>
                         <p>
                           {{
-                            page.data.department.project_rel.status_rel[
+                            page.data.department.etapa_rel.status_rel[
                               "name_" + $i18n.locale
                             ]
                           }}

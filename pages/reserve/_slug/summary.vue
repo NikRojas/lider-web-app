@@ -210,11 +210,11 @@
                             }}
                           </p>
                         </div>
-                        <div class="">
+                        <div class="" v-if="page.data.department.etapa_id">
                           <b>{{ $t("Estatus") }}:</b>
                           <p>
                             {{
-                              page.data.department.project_rel.status_rel[
+                              page.data.department.etapa_rel.status_rel[
                                 "name_" + $i18n.locale
                               ]
                             }}
