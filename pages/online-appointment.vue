@@ -545,9 +545,8 @@ export default {
       this.$axios
         .$post("/api/post/lead/online-appointment", this.form)
         .then((response) => {
-          //this.request = false;
           document.getElementById('calendario').calLidLead('opcion', 'registrarLead'); 
-          this.success = true;
+          //this.success = true;
           //this.restore();
         })
         .catch((error) => {
@@ -610,7 +609,7 @@ export default {
           }
           else{
             self.messageError = "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
-            self.request = true;
+            self.request = false;
           }
         }
       };
