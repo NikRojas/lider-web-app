@@ -76,25 +76,47 @@
                   ]
                 "
               ></div>
+              <div
+                class="
+                  grid-s-12
+                  content-bg
+                  text-center
+                  margin-bottom
+                  content-disponible
+                "
+                v-if="requestAvailable"
+              >
+                <div class="load-3">
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                </div>
+                <h4>
+                  <b>{{ $t("Obteniendo Datos") }}</b>
+                </h4>
+              </div>
               <transition name="slide-fade">
-                <div v-if="success && successApi" key="true" class="form__text-success-2">
+                <div
+                  v-if="success && successApi"
+                  key="true"
+                  class="form__text-success-2"
+                >
                   <h3>
                     <b>¡{{ $t("Excelente") }}!</b>
                   </h3>
-                  <!--<p>
+                  <p>
+                    {{ $t("Hemos registrado tu Cita para el") }}
+                    {{ form.schedule_init }} {{ $t("con") }}
+                    <span style="text-transform: capitalize">{{
+                      dataFromApi.desUsuarioAsignado
+                    }}</span
+                    >.
                     {{
                       $t(
-                        "Hemos registrado tus datos con éxito. Pronto un asesor se pondrá en contacto contigo"
+                        "En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial."
                       )
-                    }}.
+                    }}
                   </p>
-                  <b>{{ $t("¡Gracias por solicitar información!") }}</b>-->
-
-                  <p>{{  $t("Hemos registrado tu Cita para el") }} {{ form.schedule_init }} {{ $t('con')}} <span style="text-transform: capitalize;">{{ dataFromApi.desUsuarioAsignado }}</span>.
-                  {{  $t("En el correo de Notificación de la Cita encontrarás los datos de contacto de tu Asesor Comercial.") }}
-
-                  </p>
-
                   <b>{{ $t("¡Gracias por contactarse con nosotros!") }}</b>
                 </div>
                 <form v-else key="false" @submit.prevent="submit">
@@ -106,10 +128,11 @@
                         >
                         <select
                           name="project_id"
+                          :disabled='getItFromApi'
                           v-model="form.project_id"
                           id="project_id"
                           class="form-control"
-                          @change="updateCalendarProject($event)"
+                          @change="updateCalendarProject()"
                         >
                           <option
                             :value="el.id"
@@ -125,6 +148,32 @@
                           v-if="errors && errors.project_id"
                           for="project_id"
                           >{{ $t(errors.project_id[0]) }}</span
+                        >
+                      </div>
+                    </div>
+                    <div class="grid-s-12">
+                      <div class="form-control">
+                        <label for="id_canal">{{ $t("Canal") }}*</label>
+                        <select
+                          name="id_canal"
+                          id="id_canal"
+                          v-model="form.id_canal"
+                          class="form-control"
+                          @change="updateCalendarProject()"
+                        >
+                          <option
+                            :value="el.id"
+                            v-for="el in page.data.canales"
+                            :key="el.id"
+                          >
+                            {{ el.name }}
+                          </option>
+                        </select>
+                        <span
+                          class="error error-red"
+                          v-if="errors && errors.id_canal"
+                          for="id_canal"
+                          >{{ $t(errors.id_canal[0]) }}</span
                         >
                       </div>
                     </div>
@@ -147,7 +196,7 @@
                         </select>-->
                         <div id="calendario"></div>
                         <span
-                          style="margin-top: 12px; display: block;"
+                          style="margin-top: 12px; display: block"
                           class="error error-red"
                           v-if="errors && errors.schedule"
                           for="schedule"
@@ -185,7 +234,29 @@
                     </div>
                     <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
-                        <label for="dni">DNI*</label>
+                        <label for="type_document_id"
+                          >{{ $t("Tipo de documento") }}*</label
+                        >
+                        <select name="" id="" v-model="form.type_document_id">
+                          <option
+                            v-for="el in page.data.typeDocuments"
+                            :value="el.id"
+                            :key="'tp' + el.id"
+                          >
+                            {{ el.description }}
+                          </option>
+                        </select>
+                        <span
+                          class="error error-red"
+                          v-if="errors && errors.type_document_id"
+                          for="type_document_id"
+                          >{{ $t(errors.type_document_id[0]) }}</span
+                        >
+                      </div>
+                    </div>
+                    <div class="grid-s-12 grid-m-6 grid-l-6">
+                      <div class="form-control">
+                        <label for="dni">N° de documento*</label>
                         <input
                           type="text"
                           id="dni"
@@ -211,7 +282,7 @@
                         >
                       </div>
                     </div>
-                    <div class="grid-s-12">
+                    <div class="grid-s-12 grid-m-6 grid-l-6">
                       <div class="form-control">
                         <label for="email">{{ $t("Correo") }}*</label>
                         <input type="text" id="email" v-model="form.email" />
@@ -319,14 +390,17 @@ export default {
         : "",
       script: [
         {
-          hid: 'extscript',
+          hid: "extscript",
           src: "/js/callider.min.js",
           //defer: true,
-          callback: () => (this.createCalendar()),
-          /*"clid-llave":
-            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",*/
+          callback: () => this.createCalendar(),
+          //Dev
           "clid-llave":
-            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
+            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
+          //Test
+          /*"clid-llave":
+            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",*/
+          //Prod
         },
       ],
       meta: [
@@ -438,116 +512,198 @@ export default {
   data() {
     return {
       storageUrl: process.env.STORAGE_URL,
-      messageError: '',
+      messageError: "",
       errors: {},
       page: {},
       form: {
         project_id: null,
         utm_source: "",
+        type_document_id: null,
+        id_canal: null,
         utm_medium: "",
         utm_campaign: "",
         utm_term: "",
         utm_content: "",
+        name: '',
         accepted: false,
       },
       request: false,
       success: false,
       externalLoaded: false,
       successApi: false,
-      dataFromApi: {}
+      dataFromApi: {},
+      requestAvailable: false,
+      getItFromApi: false
     };
   },
   created() {
-    /*if (this.page.data.project)
+    if (this.page.data.project)
       this.form.project_id = this.page.data.project.id;
-    this.page.data.timeDay.length
-      ? (this.form.schedule = this.page.data.timeDay[0].name)
-      : "";*/
+    if (this.$route.query.idlead){
+      this.getLead(this.$route.query.idlead)
+    }
   },
   methods: {
-    updateCalendarProject(ref){
-      let idProject;
-        idProject = ref.target.value;
-      let project = this.page.data.projects.find(x => x.id == idProject)
-      let actLead = {
+    getLead(id){
+      let el = {
+        id: id
+      }
+      this.requestAvailable = true;
+      this.$axios
+        .$post("/api/available/online-appointment", el)
+        .then((response) => {
+          this.requestAvailable = false;
+          if(response.data.available){
+            this.getItFromApi = true;
+            console.log(response)
+            this.form = Object.assign({}, response.data.lead);
+          }
+        })
+        .catch((error) => {
+          this.requestAvailable = false;
+        });
+    },
+    updateCalendarProject() {
+      if(this.form.project_id && this.form.id_canal){
+        let idProject;
+        let idCanal;
+        idProject = this.form.project_id;
+        idCanal = this.form.id_canal;
+        let project = this.page.data.projects.find((x) => x.id == idProject);
+        let canal = this.page.data.canales.find((x) => x.id == idCanal);
+        let actLead;
+        //Lead obtenida desde el API
+        if(this.getItFromApi){
+          actLead = {
             grupo: project.sap_code,
             fechaInicio: "",
             fechaFin: "",
+            idUsuarioAsignado: this.form.id_advisor,
+            canalProgramado: canal.sap_id,
+            idLead: this.form.id_lead
           };
-          document
-            .getElementById("calendario")
-            .calLidLead("opcion", "actualizarLead", actLead);
-            document.getElementById("calendario").calLidLead("refrescar");
+        }
+        else{
+          actLead = {
+            grupo: project.sap_code,
+            fechaInicio: "",
+            fechaFin: "",
+            canalProgramado: canal.sap_id,
+          };
+        }
+        document
+          .getElementById("calendario")
+          .calLidLead("opcion", "actualizarLead", actLead);
+        document.getElementById("calendario").calLidLead("refrescar");
+      } 
     },
     restore() {
       this.errors = {};
       this.form = {
-        accepted: false
+        accepted: false,
       };
     },
     submit() {
       this.messageError = "";
       let utm_source, utm_medium, utm_campaign, utm_term, utm_content;
-      utm_source = utm_medium = utm_campaign = utm_term = utm_content = "desconocido";
-      if (this.$route.query.utm_source){
+      utm_source =
+        utm_medium =
+        utm_campaign =
+        utm_term =
+        utm_content =
+          "desconocido";
+      if (this.$route.query.utm_source) {
         this.form.utm_source = this.$route.query.utm_source;
         utm_source = this.form.utm_source;
       }
-      if (this.$route.query.utm_medium){
+      if (this.$route.query.utm_medium) {
         this.form.utm_medium = this.$route.query.utm_medium;
         utm_medium = this.form.utm_medium;
       }
-      if (this.$route.query.utm_campaign){
+      if (this.$route.query.utm_campaign) {
         this.form.utm_campaign = this.$route.query.utm_campaign;
         utm_campaign = this.form.utm_campaign;
       }
-      if (this.$route.query.utm_term){
+      if (this.$route.query.utm_term) {
         this.form.utm_term = this.$route.query.utm_term;
         utm_term = this.form.utm_term;
       }
-      if (this.$route.query.utm_content){
+      if (this.$route.query.utm_content) {
         this.form.utm_content = this.$route.query.utm_content;
         utm_content = this.form.utm_content;
       }
-      
-      let utms = {
-        source: utm_source,
-        medium: utm_medium,
-        campaign: utm_campaign,
-        term: utm_term,
-        content: utm_content,
-        tipoDocumento: "D",
-        nroDocumento: this.form.document_number,
-        apellidoPaterno: this.form.lastname,
-        //apellidoMaterno: "",
-        nombres: this.form.name,
-        correo: this.form.email,
-        telefono1: this.form.mobile
-      };
-      document.getElementById('calendario').calLidLead('opcion', 'actualizarLead', utms);
-      let scheduleLead = document.getElementById("calendario").calLidLead('opcion','obtenerLead')
-      /*console.log(scheduleLead);
-      console.log(scheduleLead.fechaInicio);
-      console.log(scheduleLead.fechaFin);*/
-      if(scheduleLead.fechaInicio != ''){
-        let fIni = scheduleLead.fechaInicio;
-        let fFin = scheduleLead.fechaFin;
-        fIni = fIni.toString();
-        fFin = fFin.toString();
-        this.form.schedule_init = fIni.substr(6, 2)+'-'+fIni.substr(4, 2)+'-'+fIni.substr(0, 4)+' a las '+fIni.substr(8, 2)+':'+fIni.substr(10, 2);
-        this.form.schedule = fIni.substr(6, 2)+'/'+fIni.substr(4, 2)+'/'+fIni.substr(0, 4)+' '+fIni.substr(8, 2)+':'+fIni.substr(10, 2)+' - '+fFin.substr(6, 2)+'/'+fFin.substr(4, 2)+'/'+fFin.substr(0, 4)+' '+fFin.substr(8, 2)+':'+fFin.substr(10, 2)
-      }
-      else{
-        this.form.schedule = "";
-        this.form.schedule_init = "";
+      if(this.form.project_id && this.form.id_canal){
+        let scheduleLead = document
+          .getElementById("calendario")
+          .calLidLead("opcion", "obtenerLead");
+        console.log(scheduleLead);
+        /*console.log(scheduleLead.fechaInicio);
+        console.log(scheduleLead.fechaFin);*/
+        if (scheduleLead.fechaInicio != "") {
+          let fIni = scheduleLead.fechaInicio;
+          let fFin = scheduleLead.fechaFin;
+          fIni = fIni.toString();
+          fFin = fFin.toString();
+          this.form.schedule_init =
+            fIni.substr(6, 2) +
+            "-" +
+            fIni.substr(4, 2) +
+            "-" +
+            fIni.substr(0, 4) +
+            " a las " +
+            fIni.substr(8, 2) +
+            ":" +
+            fIni.substr(10, 2);
+          this.form.schedule =
+            fIni.substr(6, 2) +
+            "/" +
+            fIni.substr(4, 2) +
+            "/" +
+            fIni.substr(0, 4) +
+            " " +
+            fIni.substr(8, 2) +
+            ":" +
+            fIni.substr(10, 2) +
+            " - " +
+            fFin.substr(6, 2) +
+            "/" +
+            fFin.substr(4, 2) +
+            "/" +
+            fFin.substr(0, 4) +
+            " " +
+            fFin.substr(8, 2) +
+            ":" +
+            fFin.substr(10, 2);
+        } else {
+          this.form.schedule = "";
+          this.form.schedule_init = "";
+        }
       }
       this.request = true;
       this.$axios
         .$post("/api/post/lead/online-appointment", this.form)
         .then((response) => {
-          document.getElementById('calendario').calLidLead('opcion', 'registrarLead'); 
-          //this.success = true;
-          //this.restore();
+          let tipoDocumento = this.page.data.typeDocuments.find((x) => x.id == this.form.type_document_id);
+          let utms = {
+            source: utm_source,
+            medium: utm_medium,
+            campaign: utm_campaign,
+            term: utm_term,
+            content: utm_content,
+            tipoDocumento: tipoDocumento.sap_value,
+            nroDocumento: this.form.document_number,
+            apellidoPaterno: this.form.lastname,
+            //apellidoMaterno: "",
+            nombres: this.form.name,
+            correo: this.form.email,
+            telefono1: this.form.mobile,
+          };
+           document
+        .getElementById("calendario")
+        .calLidLead("opcion", "actualizarLead", utms);
+          document
+            .getElementById("calendario")
+            .calLidLead("opcion", "registrarLead");
         })
         .catch((error) => {
           this.request = false;
@@ -558,16 +714,21 @@ export default {
           this.restore();
         });
     },
-    createCalendar(){
-      //console.log("createdcalendar");
+    createCalendar() {
       let self = this;
-        let projectCode = "";
-        if (self.page.data.project){
+      let projectCode = "";
+      if (self.page.data.project) {
         self.form.project_id = self.page.data.project.id;
-        let project = self.page.data.projects.find(x => x.id == self.form.project_id)
+        let project = self.page.data.projects.find(
+          (x) => x.id == self.form.project_id
+        );
         projectCode = project.sap_code;
-        //console.log(projectCode);
       }
+      let actualizaLead = false;
+      if (this.$route.query.idlead){
+        actualizaLead = true;
+      }
+      console.log('Actualiza Lead '+actualizaLead);
       let cal = {
         lead: {
           tipoDocumento: "",
@@ -598,26 +759,24 @@ export default {
         formato24Horas: false,
         muestraFormulario: false,
         muestraBoton: false,
-        idioma: 'es',
-        finalizoRegistro: function(res){
+        idioma: "es",
+        finalizoRegistro: function (res) {
           console.log(res);
-          /*console.log(res.exito);*/
-          if(res.exito){
+          if (res.exito == true) {
             self.dataFromApi = Object.assign({}, res.lead);
             self.successApi = true;
             self.request = true;
-          }
-          else{
-            self.messageError = "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
+            self.success = true;
+          } else {
+            self.messageError =
+              "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
             self.request = false;
           }
-        }
+        },
+        actualizaLead: actualizaLead
       };
-        document.getElementById('calendario').calLidLead(cal);
-    }
-  },
-  mounted() {
-    //let self = this;
+      document.getElementById("calendario").calLidLead(cal);
+    },
   },
 };
 </script>

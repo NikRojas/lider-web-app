@@ -210,5 +210,8 @@ export default {
     'Ir a página principal': 'Ir a página principal',
     'Ver Piso': 'Ver Piso',
     'Separa tu inmueble': 'Separa tu inmueble',
-    'Etapa': 'Etapa'
+    'Etapa': 'Etapa',
+    'Canal': 'Canal',
+    'Por favor ingrese un canal.': 'Por favor ingrese un canal.',
+    'Por favor ingrese el horario que quiere ser contactado.': 'Por favor ingrese el horario que quiere ser contactado.'
 }
