@@ -395,11 +395,11 @@ export default {
           //defer: true,
           callback: () => this.createCalendar(),
           //Dev
-          "clid-llave":
-            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
+          //"clid-llave":
+            //"V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
           //Test
-          /*"clid-llave":
-            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",*/
+          "clid-llave":
+            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
           //Prod
         },
       ],
@@ -533,7 +533,8 @@ export default {
       successApi: false,
       dataFromApi: {},
       requestAvailable: false,
-      getItFromApi: false
+      getItFromApi: false,
+      calendarioInicializado: false
     };
   },
   created() {
@@ -564,38 +565,41 @@ export default {
         });
     },
     updateCalendarProject() {
-      if(this.form.project_id && this.form.id_canal){
-        let idProject;
-        let idCanal;
-        idProject = this.form.project_id;
-        idCanal = this.form.id_canal;
-        let project = this.page.data.projects.find((x) => x.id == idProject);
-        let canal = this.page.data.canales.find((x) => x.id == idCanal);
-        let actLead;
-        //Lead obtenida desde el API
-        if(this.getItFromApi){
-          actLead = {
-            grupo: project.sap_code,
-            fechaInicio: "",
-            fechaFin: "",
-            idUsuarioAsignado: this.form.id_advisor,
-            canalProgramado: canal.sap_id,
-            idLead: this.form.id_lead
-          };
-        }
-        else{
-          actLead = {
-            grupo: project.sap_code,
-            fechaInicio: "",
-            fechaFin: "",
-            canalProgramado: canal.sap_id,
-          };
-        }
-        document
-          .getElementById("calendario")
-          .calLidLead("opcion", "actualizarLead", actLead);
-        document.getElementById("calendario").calLidLead("refrescar");
-      } 
+      //Debe estar inicializado el calendario sino da error
+      if(this.calendarioInicializado){
+        if(this.form.project_id && this.form.id_canal){
+          let idProject;
+          let idCanal;
+          idProject = this.form.project_id;
+          idCanal = this.form.id_canal;
+          let project = this.page.data.projects.find((x) => x.id == idProject);
+          let canal = this.page.data.canales.find((x) => x.id == idCanal);
+          let actLead;
+          //Lead obtenida desde el API
+          if(this.getItFromApi){
+            actLead = {
+              grupo: project.sap_code,
+              fechaInicio: "",
+              fechaFin: "",
+              idUsuarioAsignado: this.form.id_advisor,
+              canalProgramado: canal.sap_id,
+              idLead: this.form.id_lead
+            };
+          }
+          else{
+            actLead = {
+              grupo: project.sap_code,
+              fechaInicio: "",
+              fechaFin: "",
+              canalProgramado: canal.sap_id,
+            };
+          }
+          document
+            .getElementById("calendario")
+            .calLidLead("opcion", "actualizarLead", actLead);
+          document.getElementById("calendario").calLidLead("refrescar");
+        } 
+      }
     },
     restore() {
       this.errors = {};
@@ -760,6 +764,10 @@ export default {
         muestraFormulario: false,
         muestraBoton: false,
         idioma: "es",
+        finalizoCarga: function (res) { 
+          console.log('Finalizo carga cal');
+          self.calendarioInicializado = true;
+        },
         finalizoRegistro: function (res) {
           console.log(res);
           if (res.exito == true) {
@@ -768,6 +776,7 @@ export default {
             self.request = true;
             self.success = true;
           } else {
+            self.errors = {};
             self.messageError =
               "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
             self.request = false;
@@ -776,6 +785,16 @@ export default {
         actualizaLead: actualizaLead
       };
       document.getElementById("calendario").calLidLead(cal);
+    },
+  },
+  watch: {
+    calendarioInicializado: {
+      //immediate: true,
+      handler: function (newValue) {
+        if (newValue == true ) {
+          this.updateCalendarProject()
+        }
+      },
     },
   },
 };
