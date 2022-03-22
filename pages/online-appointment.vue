@@ -177,7 +177,7 @@
                         >
                       </div>
                     </div>
-                    <div class="grid-s-12">
+                    <div class="grid-s-12" v-show="showHorario">
                       <div class="form-control">
                         <label for="schedule">{{ $t("Horario") }}*</label>
                         <!--<select
@@ -534,7 +534,8 @@ export default {
       dataFromApi: {},
       requestAvailable: false,
       getItFromApi: false,
-      calendarioInicializado: false
+      calendarioInicializado: false,
+      showHorario: false
     };
   },
   created() {
@@ -594,6 +595,7 @@ export default {
               canalProgramado: canal.sap_id,
             };
           }
+          this.showHorario = true;
           document
             .getElementById("calendario")
             .calLidLead("opcion", "actualizarLead", actLead);
@@ -744,8 +746,8 @@ export default {
           telefono1: "",
           telefono2: "",
           fechaRecepcion: "",
-          medio: 2,
-          canal: "",
+          medio: 0,
+          canal: "Página Web - Cita Online",
           grupo: projectCode,
           proyecto: "",
           comentario: "",
