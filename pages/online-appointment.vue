@@ -747,7 +747,7 @@ export default {
           telefono2: "",
           fechaRecepcion: "",
           medio: 0,
-          canal: "Página Web - Cita Online",
+          canal: 2,
           grupo: projectCode,
           proyecto: "",
           comentario: "",
