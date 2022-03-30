@@ -579,23 +579,6 @@ export default {
           let project = this.page.data.projects.find((x) => x.id == idProject);
           let canal = this.page.data.canales.find((x) => x.id == idCanal);
           let actLead;
-          let typeConference = '';
-          let generaConference = false;
-          console.log(this.form.id_canal)
-          switch (this.form.id_canal) {
-            case 3:
-              typeConference = 'ZOOM';
-              generaConference = true;
-              break;
-
-            case 4:
-              typeConference = 'MEET';
-              generaConference = true;
-              break;
-          
-            default:
-              break;
-          }
           //Lead obtenida desde el API
           if(this.getItFromApi){
             actLead = {
@@ -605,8 +588,6 @@ export default {
               idUsuarioAsignado: this.form.id_advisor,
               canalProgramado: canal.sap_id,
               idLead: this.form.id_lead,
-              generaVideoConf: generaConference,
-              tipoVideoConferencia: typeConference
             };
           }
           else{
@@ -615,16 +596,13 @@ export default {
               fechaInicio: "",
               fechaFin: "",
               canalProgramado: canal.sap_id,
-              generaVideoConf: generaConference,
-              tipoVideoConferencia: typeConference
             };
           }
-          //console.log(actLead);
           this.showHorario = true;
           document
             .getElementById("calendario")
             .calLidLead("opcion", "actualizarLead", actLead);
-          //document.getElementById("calendario").calLidLead("refrescar");
+          document.getElementById("calendario").calLidLead("refrescar");
         } 
       }
     },
@@ -667,7 +645,7 @@ export default {
         let scheduleLead = document
           .getElementById("calendario")
           .calLidLead("opcion", "obtenerLead");
-        console.log(scheduleLead);
+        //console.log(scheduleLead);
         /*console.log(scheduleLead.fechaInicio);
         console.log(scheduleLead.fechaFin);*/
         if (scheduleLead.fechaInicio != "") {
@@ -715,6 +693,22 @@ export default {
         .$post("/api/post/lead/online-appointment", this.form)
         .then((response) => {
           let tipoDocumento = this.page.data.typeDocuments.find((x) => x.id == this.form.type_document_id);
+          let typeConference = "";
+          let generaConference = false;
+          switch (this.form.id_canal) {
+            case 3:
+              typeConference = "MEET";
+              generaConference = true;
+              break;
+
+            case 4:
+              typeConference = "ZOOM";
+              generaConference = true;
+              break;
+          
+            default:
+              break;
+          }
           let utms = {
             source: utm_source,
             medium: utm_medium,
@@ -724,14 +718,20 @@ export default {
             tipoDocumento: tipoDocumento.sap_value,
             nroDocumento: this.form.document_number,
             apellidoPaterno: this.form.lastname,
+            tipoVideoConf: typeConference,
+            generaVideoConf: generaConference,
             //apellidoMaterno: "",
             nombres: this.form.name,
             correo: this.form.email,
             telefono1: this.form.mobile,
           };
+          
            document
         .getElementById("calendario")
         .calLidLead("opcion", "actualizarLead", utms);
+        /*console.log(document
+          .getElementById("calendario")
+          .calLidLead("opcion", "obtenerLead"))*/
           document
             .getElementById("calendario")
             .calLidLead("opcion", "registrarLead");
@@ -769,7 +769,7 @@ export default {
           apellidoMaterno: "",
           correo: "",
           telefono1: "",
-          telefono2: "",
+          //telefono2: "",
           fechaRecepcion: "",
           medio: 0,
           canal: 2,
@@ -783,7 +783,7 @@ export default {
           content: "",
           fechaInicio: "",
           fechaFin: "",
-          tipoVideoConferencia: '',
+          tipoVideoConf: "",
           generaVideoConf: false
         },
         alto: "260px",
@@ -813,6 +813,7 @@ export default {
         },
         actualizaLead: actualizaLead
       };
+      console.log(cal);
       document.getElementById("calendario").calLidLead(cal);
     },
   },
