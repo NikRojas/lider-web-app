@@ -369,6 +369,7 @@ import Banner from "../components/Banner";
 import Terms from "../components/modals/Terms";
 import Policies from "../components/modals/Policies";
 import "../assets/scss/_calendar.scss";
+import errorVue from '../layouts/error.vue';
 export default {
   async asyncData({ params, $axios, app }) {
     let { data } = await $axios.get("/api/page/online-appointment", {
@@ -391,19 +392,19 @@ export default {
       script: [
         {
           hid: "extscript",
-          src: "/js/callider.min.js",
-          //src: "/js/calliderDev.min.js",
+          //src: "/js/callider.min.js",
+          src: "/js/calliderDev.min.js",
           //defer: true,
           callback: () => this.createCalendar(),
           //Dev
-          //"clid-llave":
-            //"V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
+          "clid-llave":
+            "V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
           //Test
           //"clid-llave":
             //"NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
           //Prod
-          "clid-llave":
-            "NvYlr6fKJo2QMzX2rHbYXFjd+0ciLuHJTrfcba8ayqRgNHhfDjJGnALSMfkDkwuIH5CBHbEPeD8=",
+          //"clid-llave":
+            //"NvYlr6fKJo2QMzX2rHbYXFjd+0ciLuHJTrfcba8ayqRgNHhfDjJGnALSMfkDkwuIH5CBHbEPeD8=",
         },
       ],
       meta: [
@@ -568,7 +569,7 @@ export default {
           this.requestAvailable = false;
         });
     },
-    updateCalendarProject() {
+    updateCalendarProject(idUsuarioAsignado = false) {
       //Debe estar inicializado el calendario sino da error
       if(this.calendarioInicializado){
         if(this.form.project_id && this.form.id_canal){
@@ -581,6 +582,7 @@ export default {
           let actLead;
           //Lead obtenida desde el API
           if(this.getItFromApi){
+            //Aqui ya se tiene el idUsuarioAsignado o Asesor
             actLead = {
               grupo: project.sap_code,
               fechaInicio: "",
@@ -597,6 +599,9 @@ export default {
               fechaFin: "",
               canalProgramado: canal.sap_id,
             };
+            if(idUsuarioAsignado){
+              actLead.idUsuarioAsignado = idUsuarioAsignado;
+            }
           }
           this.showHorario = true;
           document
@@ -646,8 +651,6 @@ export default {
           .getElementById("calendario")
           .calLidLead("opcion", "obtenerLead");
         //console.log(scheduleLead);
-        /*console.log(scheduleLead.fechaInicio);
-        console.log(scheduleLead.fechaFin);*/
         if (scheduleLead.fechaInicio != "") {
           let fIni = scheduleLead.fechaInicio;
           let fFin = scheduleLead.fechaFin;
@@ -720,7 +723,6 @@ export default {
             apellidoPaterno: this.form.lastname,
             tipoVideoConf: typeConference,
             generaVideoConf: generaConference,
-            //apellidoMaterno: "",
             nombres: this.form.name,
             correo: this.form.email,
             telefono1: this.form.mobile,
@@ -729,9 +731,6 @@ export default {
            document
         .getElementById("calendario")
         .calLidLead("opcion", "actualizarLead", utms);
-        /*console.log(document
-          .getElementById("calendario")
-          .calLidLead("opcion", "obtenerLead"))*/
           document
             .getElementById("calendario")
             .calLidLead("opcion", "registrarLead");
@@ -806,9 +805,37 @@ export default {
             self.success = true;
           } else {
             self.errors = {};
-            self.messageError =
-              "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
+            //let arrayErrorMessages = ['V002 : Ud. ya tiene asignado...'];
+            let arrayErrorMessages = res.mensajesError;
+            let messageError;
+            let checkVMessage;
+            if(arrayErrorMessages.length){
+              let checkLetterMessage = arrayErrorMessages[0].charAt(0);
+              switch (checkLetterMessage) {
+                case 'V':
+                  checkVMessage = arrayErrorMessages[0].substring(0,4);
+                  /*if(checkVMessage === 'V001'){
+                    console.log(checkVMessage);
+                    let idUsuarioAsignado = res.lead.idUsuarioAsignado;
+                  }*/
+                  messageError = arrayErrorMessages[0].substring(7);
+                  break;
+                case 'E':
+                  messageError = "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
+                  break;
+                default:
+                  messageError = "Ocurrió un error al registrar tus datos. Inténtalo en unos minutos.";
+                  break;
+              }
+              console.log(messageError)
+            }
+            self.messageError = messageError;
             self.request = false;
+            if(checkVMessage === 'V001'){
+              let idUsuarioAsignado = res.lead.idUsuarioAsignado;
+              console.log('Actualizar Por Error IDUsuarioAsignado'+idUsuarioAsignado);
+              self.updateCalendarProject(idUsuarioAsignado);
+            }
           }
         },
         actualizaLead: actualizaLead
