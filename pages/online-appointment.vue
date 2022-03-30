@@ -391,18 +391,19 @@ export default {
       script: [
         {
           hid: "extscript",
-          src: "/js/callider.min.js",
+          //src: "/js/callider.min.js",
+          src: "/js/calliderDev.min.js",
           //defer: true,
           callback: () => this.createCalendar(),
           //Dev
           //"clid-llave":
             //"V/By9ukAB/L8uCOX9D9wYS/xcoxcoxlHNCDrgg6ep/Ug7xIUikUQ7M7u1YjJzprsHbgv1MlLkx/dVtMkqJx0taDBnxzfWxaR",
           //Test
-          //"clid-llave":
-            //"NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
-          //Prod
           "clid-llave":
-            "NvYlr6fKJo2QMzX2rHbYXFjd+0ciLuHJTrfcba8ayqRgNHhfDjJGnALSMfkDkwuIH5CBHbEPeD8=",
+            "NvYlr6fKJo1ajMiKaC9jZ69vYUUOQFbFg9mEYDp6K7ZsTxlG7+fBT87u1YjJzprsHbgv1MlLkx9BASZyeAj923To1ooEc/Jk",
+          //Prod
+          //"clid-llave":
+            //"NvYlr6fKJo2QMzX2rHbYXFjd+0ciLuHJTrfcba8ayqRgNHhfDjJGnALSMfkDkwuIH5CBHbEPeD8=",
         },
       ],
       meta: [
@@ -578,6 +579,23 @@ export default {
           let project = this.page.data.projects.find((x) => x.id == idProject);
           let canal = this.page.data.canales.find((x) => x.id == idCanal);
           let actLead;
+          let typeConference = '';
+          let generaConference = false;
+          console.log(this.form.id_canal)
+          switch (this.form.id_canal) {
+            case 3:
+              typeConference = 'ZOOM';
+              generaConference = true;
+              break;
+
+            case 4:
+              typeConference = 'MEET';
+              generaConference = true;
+              break;
+          
+            default:
+              break;
+          }
           //Lead obtenida desde el API
           if(this.getItFromApi){
             actLead = {
@@ -586,7 +604,9 @@ export default {
               fechaFin: "",
               idUsuarioAsignado: this.form.id_advisor,
               canalProgramado: canal.sap_id,
-              idLead: this.form.id_lead
+              idLead: this.form.id_lead,
+              generaVideoConf: generaConference,
+              tipoVideoConferencia: typeConference
             };
           }
           else{
@@ -595,13 +615,16 @@ export default {
               fechaInicio: "",
               fechaFin: "",
               canalProgramado: canal.sap_id,
+              generaVideoConf: generaConference,
+              tipoVideoConferencia: typeConference
             };
           }
+          //console.log(actLead);
           this.showHorario = true;
           document
             .getElementById("calendario")
             .calLidLead("opcion", "actualizarLead", actLead);
-          document.getElementById("calendario").calLidLead("refrescar");
+          //document.getElementById("calendario").calLidLead("refrescar");
         } 
       }
     },
@@ -760,6 +783,8 @@ export default {
           content: "",
           fechaInicio: "",
           fechaFin: "",
+          tipoVideoConferencia: '',
+          generaVideoConf: false
         },
         alto: "260px",
         ancho: "100%",
