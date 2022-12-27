@@ -709,7 +709,13 @@ export default {
       this.showNotification = false;
       if (this.reveal && this.firstTime) {
         this.$store.dispatch("setChatServerResponse");
-        this.socket.emit("join", this.chatbotId, this.host);
+        let project = false
+        if($nuxt.$route.name == "project___es" || $nuxt.$route.name == "project___en"){
+          //alert('proyecto');
+          //console.log($nuxt.$route.params.project);
+          project = $nuxt.$route.params.project
+        }
+        this.socket.emit("join", this.chatbotId, this.host, project);
       } else {
         this.firstTime = false;
       }
@@ -829,12 +835,12 @@ export default {
     },
   },
   created() {
-    const ZnV0dXJhIGNoYXRib3Q = this.$cookies.get("ZnV0dXJhIGNoYXRib3Q");
-    if (!ZnV0dXJhIGNoYXRib3Q) {
+    const idCookieChat = this.$cookies.get("ZnV0dXJhIGNoYXRib3Q");
+    if (!idCookieChat) {
       this.chatbotId = Date.now() + Math.random().toString().slice(2) + "cGc=";
       this.$cookies.set("ZnV0dXJhIGNoYXRib3Q", this.chatbotId);
     } else {
-      this.chatbotId = ZnV0dXJhIGNoYXRib3Q;
+      this.chatbotId = idCookieChat;
     }
   },
   watch: {
