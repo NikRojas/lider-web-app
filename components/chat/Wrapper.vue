@@ -760,7 +760,11 @@ export default {
         return;
       }
       const el = { message: this.message };
-      this.socket.emit("message", this.chatbotId, el, triggered);
+      /*let project = false
+      if($nuxt.$route.name == "project___es" || $nuxt.$route.name == "project___en"){
+          project = $nuxt.$route.params.project
+      }*/
+      this.socket.emit("message", this.chatbotId, el, triggered, project);
       this.setMessage(el);
       this.message = "";
     },
