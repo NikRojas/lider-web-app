@@ -61,8 +61,15 @@
             </div>
           </div>
           <button
-            class="button chat__close"
+            class="button chat__close chat__close-minimize"
             @click="toggleChat"
+            id="buttonChat__Minimize"
+          >
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 11h14v2H5z"/></svg>
+          </button>
+          <button
+            class="button chat__close"
+            @click="resetChat"
             id="buttonChat__Close"
           >
             <CloseIcon />
@@ -211,7 +218,7 @@
                       :triggered="el.triggered"
                       :array="el.content"
                       @click="clickButton"
-                      @toggle="toggleChat"
+                      @reset="resetChat"
                     ></Button>
                   </div>
                   <Qualify
@@ -704,6 +711,17 @@ export default {
       this.recognitionActive = true;
       this.recognition.start();
     },
+    resetChat(){
+      this.reveal = false;
+      this.showNotification = false;
+      this.firstTime = true;
+      //if(window.speechSynthesis){window.speechSynthesis.cancel();}
+      window.speechSynthesis.cancel();
+      this.$cookies.remove("ZnV0dXJhIGNoYXRib3Q");
+      this.chatbotId = Date.now() + Math.random().toString().slice(2) + "cGc=";
+      this.$cookies.set("ZnV0dXJhIGNoYXRib3Q", this.chatbotId);
+      this.$store.dispatch("setConversation", []);
+    },
     toggleChat() {
       this.reveal = !this.reveal;
       this.showNotification = false;
@@ -760,8 +778,8 @@ export default {
         return;
       }
       const el = { message: this.message };
-      /*let project = false
-      if($nuxt.$route.name == "project___es" || $nuxt.$route.name == "project___en"){
+      let project = false
+      /*if($nuxt.$route.name == "project___es" || $nuxt.$route.name == "project___en"){
           project = $nuxt.$route.params.project
       }*/
       this.socket.emit("message", this.chatbotId, el, triggered, project);

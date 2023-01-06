@@ -316,3 +316,13 @@ a.nav-separa {
         }
     }
 }
+
+.chat__close{
+    &.chat__close-minimize{
+        right: 72px !important;
+        .icon{
+            width: 1.5em !important;
+            height: 1.5em !important;
+        }
+    }
+}
