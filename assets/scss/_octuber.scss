@@ -270,3 +270,59 @@ a.nav-separa {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
     border: 2px solid hsla(0,0%,100%,0);
 }
+
+
+.btn--projet-separa{
+    padding: 0 20px !important;
+    margin-left: 0.3rem !important;
+    text-shadow: 0 2px 8px rgb(0 0 0 / 0%) !important;
+    color: $color_3 !important;;
+    border-color: $color_3 !important;
+    margin-right: 0 !important;
+    &:hover{
+        color: white !important;
+    }
+}
+
+.header-proyectos .grid-head-proyecto .menu ul li a.btn {
+    padding: 0 25px !important;
+}
+
+.header-proyectos .grid-head-proyecto .menu ul li a{
+    padding: 0 20px !important;
+}
+
+
+@media only screen and (min-width: 1025px) and (max-width: 1180px){
+    .header-proyectos .grid-head-proyecto .menu ul li a{
+        padding: 10px !important;
+    }
+}
+
+.btn--projet-separa{
+    span{
+        font-weight: bold;
+    }
+    .text-mobile{
+        display: none;
+        @media only screen and (max-width: 800px){
+            display: block;
+        }
+    }
+    .text-desktop{
+        display: none;
+        @media only screen and (min-width: 800px){
+            display: block;
+        }
+    }
+}
+
+.chat__close{
+    &.chat__close-minimize{
+        right: 72px !important;
+        .icon{
+            width: 1.5em !important;
+            height: 1.5em !important;
+        }
+    }
+}

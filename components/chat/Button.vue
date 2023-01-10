@@ -28,7 +28,7 @@ export default {
   methods: {
     click(text) {
       if(text == 'Cerrar Chat'){
-        this.$emit("toggle");
+        this.$emit("reset");
         return
       }
       else if(text == 'Refrescar'){

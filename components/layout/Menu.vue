@@ -43,8 +43,10 @@
           $route.name != 'reserve-slug-summary___en' &&
           $route.name != 'reserve-slug___es' &&
           $route.name != 'reserve-slug___en' &&
-           $route.name != 'reserve___es' &&
-          $route.name != 'reserve___en'" class="nav-separa" :to="localePath({name: 'reserve'})">
+          $route.name != 'reserve___es' &&
+          $route.name != 'reserve___en' &&
+          $route.name != 'project___es' &&
+          $route.name != 'project___en'" class="nav-separa" :to="localePath({name: 'reserve'})">
             {{ $t('Separa tu inmueble')}}
           </nuxt-link>
           <Dropdown

@@ -113,6 +113,12 @@
                   >{{ $t("Cotizar") }}</a
                 >
               </li>
+              <li>
+                <nuxt-link class="nav-separa btn--projet-separa" :to="localePath({name: 'reserve', query: { project: page.data.project['slug_'+ $i18n.locale] } })">
+                  <span class="text-desktop">{{ $t('Separa tu inmueble')}}</span>
+                  <span class="text-mobile">{{ $t('Separar')}}</span>
+                </nuxt-link>
+              </li>
             </ul>
           </div>
         </div>
