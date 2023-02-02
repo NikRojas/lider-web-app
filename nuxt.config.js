@@ -69,6 +69,7 @@ export default {
     { src: '~/plugins/simplebar-vue.js', mode: 'client' },
     { src: '~/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '~/plugins/vue-device-detector.js', mode: 'client' },
+    '~/plugins/gtm.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -102,7 +103,7 @@ export default {
     'cookie-universal-nuxt',
   ],
   gtm: {
-    id: 'GTM-T6FN5PJ',
+    //id: 'GTM-T6FN5PJ',
     //debug: true,
     enabled: true
   },
