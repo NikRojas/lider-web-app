@@ -72,6 +72,9 @@
             <li>
               <nuxt-link :to="localePath('privacy-policies')">{{ $t('Políticas de privacidad de datos')}}</nuxt-link>
             </li>
+            <li>
+              <nuxt-link :to="localePath('personal-data-form')">{{ $t('Formulario sobre datos personales')}}</nuxt-link>
+            </li>
           </ul>
         </div>
       </div>

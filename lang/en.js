@@ -210,5 +210,6 @@ export default {
     'Asesor asignado': 'Assigned advisor',
     'Ir a página principal': 'Go to Home',
     'Ver Piso': 'Show Floor',
-    'Etapa': 'Stage'
+    'Etapa': 'Stage',
+    'Formulario sobre datos personales': 'Personal data form'
 }
