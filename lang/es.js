@@ -213,5 +213,6 @@ export default {
     'Etapa': 'Etapa',
     'Canal': 'Canal',
     'Por favor ingrese un canal.': 'Por favor ingrese un canal.',
-    'Por favor ingrese el horario que quiere ser contactado.': 'Por favor ingrese el horario que quiere ser contactado.'
+    'Por favor ingrese el horario que quiere ser contactado.': 'Por favor ingrese el horario que quiere ser contactado.',
+    'Formulario sobre datos personales': 'Formulario sobre datos personales'
 }
