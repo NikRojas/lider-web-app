@@ -392,8 +392,8 @@ export default {
       script: [
         {
           hid: "extscript",
-          //src: "/js/callider.min.js",
-          src: "/js/calliderDev.min.js",
+          src: "/js/callider.min.js",
+          //src: "/js/calliderDev.min.js",
           //defer: true,
           callback: () => this.createCalendar(),
           //Dev
