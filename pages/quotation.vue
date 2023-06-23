@@ -179,6 +179,11 @@
                       width: 580px;
                     "
                   >-->
+                  <div v-if="page.data.lead.project_rel.quotation_banner_top" class="lazyload" style="margin-top: 20px; padding: 40px 15px; background-position: cover; height: 200px "
+                                   :data-bg="
+                                      storageUrl + '/img/projects/' + page.data.lead.project_rel.quotation_banner_top
+                                    ">
+                  </div>
                   <table
                     align="center"
                     class="container float-center"
@@ -3746,165 +3751,8 @@
                                     word-wrap: break-word;
                                   "
                                 >
-                                  <table
-                                    style="
-                                      border-collapse: collapse;
-                                      border-spacing: 0;
-                                      padding-bottom: 0;
-                                      padding-left: 0;
-                                      padding-right: 0;
-                                      padding-top: 0;
-                                      text-align: left;
-                                      vertical-align: top;
-                                      width: 100%;
-                                    "
-                                  >
-                                    <tbody>
-                                      <tr
-                                        style="
-                                          padding-bottom: 0;
-                                          padding-left: 0;
-                                          padding-right: 0;
-                                          padding-top: 0;
-                                          text-align: left;
-                                          vertical-align: top;
-                                        "
-                                      >
-                                        <th
-                                          style="
-                                            -moz-hyphens: auto;
-                                            -webkit-hyphens: auto;
-                                            margin: 0;
-                                            border-collapse: collapse !important;
-                                            color: #0a0a0a;
-                                            font-family: Helvetica, Arial,
-                                              sans-serif;
-                                            font-size: 16px;
-                                            font-weight: 400;
-                                            hyphens: auto;
-                                            line-height: 1.3;
-                                            margin: 0;
-                                            padding-bottom: 0;
-                                            padding-left: 0;
-                                            padding-right: 0;
-                                            padding-top: 0;
-                                            text-align: left;
-                                            vertical-align: top;
-                                            word-wrap: break-word;
-                                          "
-                                        >
-                                          <!--<center
-                                            style="min-width: 490px; width: 100%"
-                                          >-->
-                                          <center style="width: 100%">
-                                            <table
-                                              class="
-                                                button
-                                                large
-                                                success
-                                                float-center
-                                              "
-                                              style="
-                                                margin: 0 0 16px 0;
-                                                border-collapse: collapse;
-                                                border-spacing: 0;
-                                                float: none;
-                                                margin: 0 0 16px 0;
-                                                padding-bottom: 0;
-                                                padding-left: 0;
-                                                padding-right: 0;
-                                                padding-top: 0;
-                                                text-align: center;
-                                                vertical-align: top;
-                                                width: auto;
-                                              "
-                                            >
-                                              <tbody>
-                                                <tr
-                                                  style="
-                                                    padding-bottom: 0;
-                                                    padding-left: 0;
-                                                    padding-right: 0;
-                                                    padding-top: 0;
-                                                    text-align: left;
-                                                    vertical-align: top;
-                                                  "
-                                                >
-                                                  <td
-                                                    style="
-                                                      -moz-hyphens: auto;
-                                                      -webkit-hyphens: auto;
-                                                      margin: 0;
-                                                      border-collapse: collapse !important;
-                                                      color: #0a0a0a;
-                                                      font-family: Helvetica,
-                                                        Arial, sans-serif;
-                                                      font-size: 16px;
-                                                      font-weight: 400;
-                                                      hyphens: auto;
-                                                      line-height: 1.3;
-                                                      margin: 0;
-                                                      padding-bottom: 0;
-                                                      padding-left: 0;
-                                                      padding-right: 0;
-                                                      padding-top: 0;
-                                                      text-align: left;
-                                                      vertical-align: top;
-                                                      word-wrap: break-word;
-                                                    "
-                                                  >
-                                                    <table
-                                                      style="
-                                                        border-collapse: collapse;
-                                                        border-spacing: 0;
-                                                        padding-bottom: 0;
-                                                        padding-left: 0;
-                                                        padding-right: 0;
-                                                        padding-top: 0;
-                                                        text-align: left;
-                                                        vertical-align: top;
-                                                        width: 100%;
-                                                      "
-                                                    >
-                                                      <tbody>
-                                                        <tr
-                                                          style="
-                                                            padding-bottom: 0;
-                                                            padding-left: 0;
-                                                            padding-right: 0;
-                                                            padding-top: 0;
-                                                            text-align: left;
-                                                            vertical-align: top;
-                                                          "
-                                                        >
-                                                          <td
-                                                            style="
-                                                              -moz-hyphens: auto;
-                                                              -webkit-hyphens: auto;
-                                                              margin: 0;
-                                                              background: #25d366;
-                                                              border: 0 solid
-                                                                #25d366;
-                                                              border-collapse: collapse !important;
-                                                              color: #fefefe;
-                                                              font-family: Helvetica,
-                                                                Arial,
-                                                                sans-serif;
-                                                              font-size: 16px;
-                                                              font-weight: 400;
-                                                              hyphens: auto;
-                                                              line-height: 1.3;
-                                                              margin: 0;
-                                                              padding-bottom: 0;
-                                                              padding-left: 0;
-                                                              padding-right: 0;
-                                                              padding-top: 0;
-                                                              text-align: left;
-                                                              vertical-align: top;
-                                                              word-wrap: break-word;
-                                                            "
-                                                          >
-                                                            <a
+                                  <div style="text-align: center;">
+                                    <a
                                                               style="
                                                                 border: 0 solid
                                                                   #25d366;
@@ -3921,6 +3769,9 @@
                                                                   20px 10px 20px;
                                                                 text-align: left;
                                                                 text-decoration: none;
+                                                                margin-bottom: 8px;
+                                                                margin-right: 12px;
+                                                                border:none;border-radius:5px;background:#25d366
                                                               "
                                                               align="center"
                                                               :href="
@@ -3930,50 +3781,59 @@
                                                                   .mobile
                                                               "
                                                               target="_blank"
-                                                              >Whatsapp de tu
+                                                              >
+                                                              <img style="vertical-align: middle;" :data-src="require('~/assets/img/icons/whatsapp-line.png')" class="lazyload" alt="">
+                                                              Whatsapp de tu
                                                               asesor</a
                                                             >
-                                                          </td>
-                                                        </tr>
-                                                      </tbody>
-                                                    </table>
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </center>
-                                        </th>
-                                        <th
-                                          class="expander"
-                                          style="
-                                            -moz-hyphens: auto;
-                                            -webkit-hyphens: auto;
-                                            margin: 0;
-                                            border-collapse: collapse !important;
-                                            color: #0a0a0a;
-                                            font-family: Helvetica, Arial,
-                                              sans-serif;
-                                            font-size: 16px;
-                                            font-weight: 400;
-                                            hyphens: auto;
-                                            line-height: 1.3;
-                                            margin: 0;
-                                            padding: 0 !important;
-                                            padding-bottom: 0;
-                                            padding-left: 0;
-                                            padding-right: 0;
-                                            padding-top: 0;
-                                            text-align: left;
-                                            vertical-align: top;
-                                            visibility: hidden;
-                                            width: 0;
-                                            word-wrap: break-word;
-                                          "
-                                        ></th>
-                                      </tr>
-                                    </tbody>
-                                  </table>
 
+
+                                                            <a v-if="page.data.lead.project_rel.form_videocall"
+                                                              style="
+                                                              margin-bottom: 8px;
+                                                                border: 0 solid
+                                                                  #f15f23;
+                                                                border-radius: 3px;
+                                                                color: #fefefe;
+                                                                display: inline-block;
+                                                                font-family: Helvetica,
+                                                                  Arial,
+                                                                  sans-serif;
+                                                                font-size: 16px;
+                                                                font-weight: 700;
+                                                                line-height: 1.3;
+                                                                padding: 10px
+                                                                  20px 10px 20px;
+                                                                text-align: left;
+                                                                text-decoration: none;
+                                                                border:none;border-radius:5px;background:#f15f23
+                                                              "
+                                                              align="center"
+                                                              :href="
+                                                                localePath({
+                                                                  name: 'online-appointment',
+                                                                  query: {
+                                                                    project: page.data.lead.project_rel['slug_' + $i18n.locale],
+                                                                  },
+                                                                })
+                                                              "
+                                                              target="_blank"
+                                                              >
+                                                              <img style="vertical-align: middle;" :data-src="require('~/assets/img/icons/calendar-line.png')" class="lazyload" alt="">
+                                                              Agenda tu visita al piloto</a
+                                                            >
+                                  </div>
+
+                                   <div class="lazyload" style="margin-top: 20px; padding: 40px 15px; background-position: cover; "
+                                   :data-bg="
+                                      require('~/assets/img/icons/banner.jpg')
+                                    ">
+                                          <div style="color: #000; margin-bottom: 18px; font-family:Arial;font-size:24px;font-style:italic;line-height:1;text-align:center;color:#000000"><b style="color: #000; ">¡Conoce nuestro proyecto!</b></div>
+                                        <div v-if="page.data.lead.project_rel.brochure" style="margin-bottom: 10px; font-family:Arial;font-size:18px;line-height:1;text-align:center;color:#0b6fa6"><a style="color:#0b6fa6" target="_blank" 
+                                        :href="storageUrl+ '/files/projects/' +page.data.lead.project_rel.brochure">Descargar brochure</a></div>
+                                        <div v-if="page.data.lead.project_rel.url_video" style="font-family:Arial;font-size:18px;line-height:1;text-align:center;color:#0b6fa6"><a style="color:#0b6fa6" target="_blank" 
+                                        :href="page.data.lead.project_rel.url_video">Ver video del proyecto</a></div>
+                                    </div>
                                   <table
                                     style="
                                       margin-top: 50px;
@@ -4315,6 +4175,9 @@
               </td>
             </tr>
           </table>
+          <div>
+
+          </div>
           <!-- prevent Gmail on iOS font size manipulation -->
           <div
             style="
