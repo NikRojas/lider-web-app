@@ -47,7 +47,7 @@ export default {
     'Central de ventas': 'Sales center',
     'Oficina principal': 'Main office',
     'Ubicación oficinas': 'Office location',
-    'Redes Sociales': 'Social mediaa',
+    'Redes Sociales': 'Social media',
     'Comprobantes electrónicos': 'Electronic vouchers',
     'Miembros de': 'Members of',
     'Certificados por': 'Certified by',
