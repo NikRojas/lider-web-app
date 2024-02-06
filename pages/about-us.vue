@@ -227,9 +227,20 @@
     </section>
 <!--NROJAS 06.02.2024-->
     <section
-      class="section bg-nosotros-1 lazyload"
-      data-bg="https://admin.lider.com.pe/storage/img/about/aw-1613740843602fbb2bb06cb.jpg"      
-    ><div class="container"></div>
+      class="section bg-nosotros-1 lazyload">
+    <div class="container">
+        <div class="grid-col">
+          <div class="grid-s-12 grid-m-12 grid-l-6">
+            <div class="content text-justify wow fadeInUp" data-wow-delay="1s">
+              <img
+                class="lazyload"
+                data-src="https://admin.lider.com.pe/storage/img/about/aw-1613740843602fbb2bb06cb.jpg"      
+                alt="GPTW"
+              />
+            </div>
+          </div>
+        </div>
+    </div>
     </section>
 <!--FIN-->
   </main>
