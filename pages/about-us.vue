@@ -225,6 +225,13 @@
         </div>
       </div>
     </section>
+<!--NROJAS 06.02.2024-->
+    <section
+      class="section bg-nosotros-1 lazyload"
+      :data-bg="https://admin.lider.com.pe/storage/img/about/aw-1613740843602fbb2bb06cb.jpg"      
+    >
+    </section>
+<!--FIN-->
   </main>
 </template>
 <script>
