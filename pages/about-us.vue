@@ -226,19 +226,16 @@
       </div>
     </section>
 <!--NROJAS 06.02.2024-->
-    <section
-      class="section bg-nosotros-1 lazyload banner"
-      data-bg= storageUrl + '/img/about/aw-1613740843602fbb2bb06cb.jpg'
-      style="min-height: fit-content !important;"
-    >
-      <!--<div class="container">
-        <div class="grid-col">
-          <div class="grid-s-12 grid-m-12 grid-l-6">            
-          </div>
+<section class="bottom-section">
+      <div class="relative">                  
+            <div class="img wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; ">
+              <img
+                class="lazyload"          
+                :data-src=" storageUrl + '/img/about/gptw.jpg' "          
+              />                         
         </div>
-      </div>-->
-    </section>
-
+      </div>
+</section>
 <!--FIN-->
   </main>
 </template>
